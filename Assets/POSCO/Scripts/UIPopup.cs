@@ -50,13 +50,21 @@ public class UIPopup : MonoBehaviour
         battleCanvas.SetActive(true);
     }
 
+    //공격버튼 클릭
     public void OnClickDoBattleButton()
     {
         player.ChangeState(new PlayerBattleState(player));
     }
 
+    //도망가기버튼 클릭
     public void OnClickDoRunButton()
     {
         player.ChangeState(new PlayerIdleState(player));
+    }
+
+    //타겟 고르는 버튼 클릭
+    public void OnClickTargetNum(int targetNum)
+    {
+
     }
 }
