@@ -10,5 +10,17 @@ public abstract class PlayerStateBase
     protected GameManager gameManager;
     protected UIPopup uiPopup;
 
-    public 
+    public PlayerStateBase(Player player)
+    {
+        this.player = player;
+        this.gameManager = GameManager.Instance;
+        this.uiPopup = UIPopup.Instance;
+    }
+
+    public abstract void Enter();
+    public abstract void Update();
+    public abstract void Exit();
+
+    //상호작용을 위해 일단 넣어둠
+    public abstract void HandleCollision();
 }

@@ -1,18 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerIdleState : MonoBehaviour
+public class PlayerIdleState : PlayerStateBase
 {
-    // Start is called before the first frame update
-    void Start()
+    //player¿Í ¿¬°á
+    public PlayerIdleState(Player player) : base(player) { }
+
+    public override void Enter()
     {
-        
+        player.canMove = true;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Exit()
     {
-        
+        throw new System.NotImplementedException();
+    }
+
+    public override void HandleCollision()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void Update()
+    {
+        throw new System.NotImplementedException();
     }
 }
