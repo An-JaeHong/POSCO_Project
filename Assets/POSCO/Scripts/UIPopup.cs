@@ -25,4 +25,16 @@ public class UIPopup : MonoBehaviour
     {
 
     }
+
+    //적과 만난 캔버스UI
+    public void EnemyContactCanvasOpen()
+    {
+
+    }
+
+    //전투중의 UI
+    public void BattleCanvasOpen()
+    {
+
+    }
 }

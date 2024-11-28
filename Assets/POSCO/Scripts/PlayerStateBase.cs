@@ -22,5 +22,5 @@ public abstract class PlayerStateBase
     public abstract void Exit();
 
     //상호작용을 위해 일단 넣어둠
-    public abstract void HandleCollision();
+    public abstract void HandleCollision(Collision collision);
 }

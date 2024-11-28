@@ -130,6 +130,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4012500939877901966, guid: b402d2a04499d4249996ac79c8633224, type: 3}
+      propertyPath: playerMonsterList.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4012500939877901966, guid: b402d2a04499d4249996ac79c8633224, type: 3}
+      propertyPath: playerMonsterPrefabList.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4012500939877901966, guid: b402d2a04499d4249996ac79c8633224, type: 3}
+      propertyPath: playerMonsterPrefabList.Array.data[0]
+      value: 
+      objectReference: {fileID: 231989385600591462, guid: 1e6542a34962fb34c912952936907680, type: 3}
+    - target: {fileID: 4012500939877901966, guid: b402d2a04499d4249996ac79c8633224, type: 3}
+      propertyPath: playerMonsterPrefabList.Array.data[1]
+      value: 
+      objectReference: {fileID: 3290770729582014161, guid: acb7248f187573b4396684d1a7bc0e8a, type: 3}
+    - target: {fileID: 4012500939877901966, guid: b402d2a04499d4249996ac79c8633224, type: 3}
+      propertyPath: playerMonsterPrefabList.Array.data[2]
+      value: 
+      objectReference: {fileID: 1408502971525266044, guid: 4838d6d06bfc43f45a1c4bd9fa2c97ce, type: 3}
+    - target: {fileID: 4012500939877901966, guid: b402d2a04499d4249996ac79c8633224, type: 3}
+      propertyPath: playerMonsterPrefabList.Array.data[3]
+      value: 
+      objectReference: {fileID: 7405381491313754096, guid: 214898d0165033d4ca9228fdc277f36e, type: 3}
+    - target: {fileID: 4012500939877901966, guid: b402d2a04499d4249996ac79c8633224, type: 3}
+      propertyPath: playerMonsterPrefabList.Array.data[4]
+      value: 
+      objectReference: {fileID: 7890854564002070764, guid: ff2c278d7e59ac44587cb54860b15568, type: 3}
     - target: {fileID: 8125015914943489520, guid: b402d2a04499d4249996ac79c8633224, type: 3}
       propertyPath: m_Name
       value: Player

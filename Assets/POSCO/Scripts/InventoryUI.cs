@@ -17,8 +17,8 @@ public class InventoryUI : MonoBehaviour
     public Button Sellect;
     public Button Reset;
 
-    public List<GameObject> playerMonsters = new List<GameObject>();
-    public List<GameObject> tempSelectedMonsters = new List<GameObject>();
+    public List<Monster> playerMonsterList = new List<Monster>();
+    public List<Monster> tempSelectedMonsterList = new List<Monster>();
 
     private bool isOpenInventory = false;
     private int choiceNum = 0; //최대3마리 몬스터 
@@ -36,7 +36,7 @@ public class InventoryUI : MonoBehaviour
            button.interactable = false;
         }
 
-        tempSelectedMonsters.Clear();
+        tempSelectedMonsterList.Clear();
     }
 
     private void Awake()
@@ -50,13 +50,30 @@ public class InventoryUI : MonoBehaviour
         inventory.SetActive(false);
         monsterCardBackground.SetActive(false);
         showSelectMonsterBackground.SetActive(false);
-        playerMonsters = player.playerMonsters;
+
+        //시작하면 GameObject를 Monster형태로 바꿔줘야함
+        ConvertGameObjectToMonster();
     }
 
-    private void OnEnable()
+    //player에서 넘어온 Object형태를 Monster형태로 바꿔주는 함수
+    private void ConvertGameObjectToMonster()
     {
-        init();
+        //일단 Inventory에 있는 리스트를 초기화
+        playerMonsterList.Clear();
+        foreach (GameObject monsterObj in player.GetMonsterPrefabList())
+        {
+            if (monsterObj.TryGetComponent<Monster>(out Monster monster))
+            {
+                print($"{monster.name}");
+                playerMonsterList.Add(monster);
+            }
+        }
     }
+
+    //private void OnEnable()
+    //{
+    //    init();
+    //}
 
     private void Update()
     {
@@ -106,41 +123,42 @@ public class InventoryUI : MonoBehaviour
 
     public void OnCardButton(int number)
     {
-      
+
+        print($"{playerMonsterList[0]}");
         if (choiceNum < 3)
         {
             switch (number)
             {
                 case 0:
-                    tempSelectedMonsters.Add(playerMonsters[0]);
+                    tempSelectedMonsterList.Add(playerMonsterList[0]);
                     monsterCardNum[0].interactable = false;
                     print("첫번째 카드 비활성화");
-                    print($"{playerMonsters[0]} 임시저장됨");
+                    print($"{playerMonsterList[0]} 임시저장됨");
 
                     break;
                 case 1:
-                    tempSelectedMonsters.Add(playerMonsters[1]);
+                    tempSelectedMonsterList.Add(playerMonsterList[1]);
                     monsterCardNum[1].interactable = false;
                     print("두번째 카드 비활성화");
-                    print($"{playerMonsters[1]} 임시저장됨");
+                    print($"{playerMonsterList[1]} 임시저장됨");
                     break;
                 case 2:
-                    tempSelectedMonsters.Add(playerMonsters[2]);
+                    tempSelectedMonsterList.Add(playerMonsterList[2]);
                     monsterCardNum[2].interactable = false;
-                    print($"{playerMonsters[3]} 임시저장됨");
+                    print($"{playerMonsterList[3]} 임시저장됨");
                     print("세번째 카드 비활성화");
                     break;
                 case 3:
-                    tempSelectedMonsters.Add(playerMonsters[3]);
+                    tempSelectedMonsterList.Add(playerMonsterList[3]);
                     monsterCardNum[3].interactable = false;
                     print("네번째카드 비활성화");
-                    print($"{playerMonsters[4]} 임시저장됨");
+                    print($"{playerMonsterList[4]} 임시저장됨");
                     break;
                 case 4:
-                    tempSelectedMonsters.Add(playerMonsters[4]);
+                    tempSelectedMonsterList.Add(playerMonsterList[4]);
                     monsterCardNum[4].interactable = false;
                     print("다섯번째카드 비활성화");
-                    print($"{playerMonsters[4]} 임시저장됨");
+                    print($"{playerMonsterList[4]} 임시저장됨");
                     break;
             }
             choiceNum++;
@@ -162,7 +180,7 @@ public class InventoryUI : MonoBehaviour
             print("선택됨");
 
             //플레이어 몬스터에 정보 넣어야함
-            player.SetSelectedMonsters(tempSelectedMonsters);
+            player.SetSelectedMonsters(tempSelectedMonsterList);
 
 
          
@@ -188,7 +206,7 @@ public class InventoryUI : MonoBehaviour
             button.interactable = true;
         }
 
-        tempSelectedMonsters.Clear();
+        tempSelectedMonsterList.Clear();
     }
 
 

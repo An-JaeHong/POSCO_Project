@@ -10,21 +10,32 @@ public class PlayerIdleState : PlayerStateBase
 
     public override void Enter()
     {
+        //움직일 수 있어야한다
         player.canMove = true;
-    }
-
-    public override void Exit()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public override void HandleCollision()
-    {
-        throw new System.NotImplementedException();
+        //UI를 다 꺼야한다. -> 이건 나중에 Inventory랑은 다른 UI들이니 헷갈리지 말자.
+        uiPopup.AllCanvasClose();
     }
 
     public override void Update()
     {
-        throw new System.NotImplementedException();
+        //여기에 Player의 움직임을 관리할 메서드 생성
     }
+
+    public override void Exit()
+    {
+        //움직임 제한
+        player.canMove = false;
+    }
+
+    public override void HandleCollision(Collision collision)
+    {
+        if (collision.collider.TryGetComponent<Monster>(out Monster enemy))
+        {
+            if (enemy.CompareTag("Enemy"))
+            {
+                player.ChangeState(new PlayerContactEnemyState(player, enemy));
+            }
+        }
+    }
+
 }

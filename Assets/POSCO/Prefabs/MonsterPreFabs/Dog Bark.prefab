@@ -458,6 +458,7 @@ GameObject:
   m_Component:
   - component: {fileID: 559615858892684005}
   - component: {fileID: 7742432004654077178}
+  - component: {fileID: -1157127427700559526}
   m_Layer: 0
   m_Name: Dog Bark
   m_TagString: Untagged
@@ -508,6 +509,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-1157127427700559526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3290770729582014161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a25a6540f7e93f4e8b0dc4ee216a5b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3331385164551342366
 GameObject:
   m_ObjectHideFlags: 0
