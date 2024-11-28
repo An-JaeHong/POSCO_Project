@@ -18,6 +18,10 @@ public class PlayerContactEnemyState : PlayerStateBase
         //만난 순간 GameManager에게 플레이어의 정보와 적의 정보를 동기화
         gameManager.SetMonsterInformation(player.selectedMonsterList, enemyMonster);
     }
+    public override void Update()
+    {
+        throw new System.NotImplementedException();
+    }
 
     public override void Exit()
     {
@@ -29,8 +33,4 @@ public class PlayerContactEnemyState : PlayerStateBase
         throw new System.NotImplementedException();
     }
 
-    public override void Update()
-    {
-        throw new System.NotImplementedException();
-    }
 }
