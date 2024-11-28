@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1641943350692372740}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RigHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9070331133084603690}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RigRLegAnkle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4311217785573631863}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RigLLegFoot1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 751790153744542653}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RigRLegPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,7 +135,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7927923175043181431}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RigRLeg1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,7 +167,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8499253132038813664}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RigRLegFoot1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -198,7 +198,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5809191113203380806}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RigLArm1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -230,7 +230,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8032876250851224542}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RigPelvis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -264,7 +264,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1397636855888164037}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RigRArmPalm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -295,7 +295,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5925047198537091699}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RigSpine2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -327,7 +327,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3207623319328160895}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RigLLeg1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -359,7 +359,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3759541911855309099}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RigLLegPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -390,7 +390,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9097004193725257054}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RigLArm2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -422,7 +422,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 829157370898778097}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RigRArm1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -454,7 +454,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1183314034428119595}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RigRArm2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -486,7 +486,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8080144662508519202}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RigRLeg2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -518,7 +518,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3787547137276047524}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RigLArmPalm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -550,8 +550,8 @@ GameObject:
   m_Component:
   - component: {fileID: 350184231464287259}
   - component: {fileID: 197664061109039885}
-  - component: {fileID: 5732753548463203517}
-  m_Layer: 0
+  - component: {fileID: 3709595788032265990}
+  m_Layer: 6
   m_Name: Cactus
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -599,7 +599,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5732753548463203517
+--- !u!114 &3709595788032265990
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -608,9 +608,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6718151668701346049}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a25a6540f7e93f4e8b0dc4ee216a5b7, type: 3}
+  m_Script: {fileID: 11500000, guid: 3a232a9fe2d0db8469d4ee32237ebfc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  element: 2
   name: Cactus
 --- !u!1 &7231246708145821598
 GameObject:
@@ -621,7 +622,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5200720954326844121}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RigLLeg2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -653,7 +654,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5492713395518114937}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RigJaw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -684,7 +685,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5091795001222513575}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RigRibcage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -718,7 +719,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8522444884066211048}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RigSpine1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -750,7 +751,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5870193168227393192}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RigLLegAnkle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -782,7 +783,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3505864088034385563}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Rig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -814,7 +815,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9211046479085660820}
   - component: {fileID: 8555523750680232764}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cactus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -918,7 +919,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8423566861421096070}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RigNeck
   m_TagString: Untagged
   m_Icon: {fileID: 0}

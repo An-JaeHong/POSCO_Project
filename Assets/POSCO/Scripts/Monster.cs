@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
+
+    public string name;
     // Start is called before the first frame update
     void Start()
     {
