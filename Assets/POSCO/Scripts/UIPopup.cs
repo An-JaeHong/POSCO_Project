@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class UIPopup : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private static UIPopup instance;
+    public static UIPopup Instance { get { return instance; } }
+
+    private void Awake()
     {
-        
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        DontDestroyOnLoad(gameObject);
     }
 
-    // Update is called once per frame
-    void Update()
+    //¸ðµç Äµ¹ö½º ´Ý±â
+    public void AllCanvasClose()
     {
-        
+
     }
 }

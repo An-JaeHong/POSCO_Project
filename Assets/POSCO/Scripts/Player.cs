@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private List<GameObject> selectedMonsters = new List<GameObject>();
 
+    public bool canMove = true; //true : 움직일 수 있음, false : 움직일 수 없음
 
 
     public void SetSelectedMonsters(List<GameObject> selecedMonater)
