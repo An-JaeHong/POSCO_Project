@@ -19,6 +19,7 @@ public class PlayerIdleState : PlayerStateBase
     public override void Update()
     {
         //여기에 Player의 움직임을 관리할 메서드 생성
+        player.HandleMovement();
     }
 
     public override void Exit()
@@ -29,6 +30,11 @@ public class PlayerIdleState : PlayerStateBase
 
     public override void HandleCollision(Collision collision)
     {
+        if (player.selectedMonsterList.Count < 3)
+        {
+            Debug.Log("플레이어 포켓몬이 3마리 이하입니다");
+            return;
+        }
         if (collision.collider.TryGetComponent<Monster>(out Monster enemy))
         {
             if (enemy.CompareTag("Enemy"))

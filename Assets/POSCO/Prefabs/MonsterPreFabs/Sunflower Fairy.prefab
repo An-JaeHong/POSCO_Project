@@ -328,7 +328,7 @@ GameObject:
   - component: {fileID: 4251227727141545033}
   m_Layer: 0
   m_Name: Sunflower Fairy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

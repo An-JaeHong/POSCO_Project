@@ -32,7 +32,11 @@ public class GameManager : MonoBehaviour
     //적 정보 넘겨받기
     public void SetMonsterInformation(List<Monster> playerMonsterList, Monster enemyMoster)
     {
-        //CameraManager.Instance.HandleCamera(CAMERATYPE.BATTLEMAP);
+        //if (playerMonsterList.Count < 3)
+        //{
+        //    print("플레이어 포켓몬이 3마리 이하입니다");
+        //    return;
+        //}
 
         playerMonsterInBattleList = playerMonsterList;
         for (int i = 0; i < 3; i++)

@@ -2,16 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBattleState : MonoBehaviour
+public class PlayerBattleState : PlayerStateBase
 {
-    // Start is called before the first frame update
-    void Start()
+    public PlayerBattleState(Player player) : base(player) { }
+
+    public override void Enter()
+    {
+        //적과 전투에 들어가면 플레이어는 움직일 수 없다.
+        player.canMove = false;
+        //들어가면 카메라를 배틀맵으로 움직인다.
+        CameraManager.Instance.HandleCamera(CameraType.BattleMap);
+        //그다음 배틀맵 UI를 띄운다
+        uiPopup.BattleCanvasOpen();
+        gameManager.SetMonsterOnBattlePosition();
+    }
+    
+    //update는 아직까진 필요없다.
+    public override void Update()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Exit()
+    {
+        player.canMove = true;
+        uiPopup.battleCanvas.SetActive(false);
+        CameraManager.Instance.HandleCamera(CameraType.FieldMap);
+    }
+
+    //여기서는 필요없다.
+    public override void HandleCollision(Collision collision)
     {
         
     }
