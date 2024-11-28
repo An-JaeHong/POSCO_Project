@@ -25,7 +25,7 @@ public class PlayerContactEnemyState : PlayerStateBase
 
     public override void Exit()
     {
-        throw new System.NotImplementedException();
+        uiPopup.
     }
 
     public override void HandleCollision(Collision collision)
