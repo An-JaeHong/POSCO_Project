@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerContactEnemyState : PlayerStateBase
 {
@@ -17,9 +18,31 @@ public class PlayerContactEnemyState : PlayerStateBase
         //적과 만나는 순간은 만날 수 없어야한다.
         player.canMove = false;
         //적과 만나면 적과 만났다는 UI를 띄워야함
-        uiPopup.EnemyContactCanvasOpen();
+        //uiPopup.EnemyContactCanvasOpen();
         //만난 순간 GameManager에게 플레이어의 정보와 적의 정보를 동기화
+
+        var buttons = new Dictionary<string, UnityAction>
+        {
+            { "Fight", () => StartBattle() },
+            { "RunAway", () => RunAway() }
+        };
+
+        UIPopupManager.Instance.ShowPopup(
+            $"{enemyMonster.name} is appear!, what do you do?",
+            buttons
+            );
+    }
+
+    private void StartBattle()
+    {
         gameManager.SetMonsterInformation(player.selectedMonsterList, enemyMonster);
+
+        player.ChangeState(new PlayerBattleState(player));
+    }
+
+    private void RunAway()
+    {
+        player.ChangeState(new PlayerIdleState(player));
     }
 
     //Update에는 딱히 쓰는게 없다
@@ -32,7 +55,8 @@ public class PlayerContactEnemyState : PlayerStateBase
     {
         //적과 헤어지면 움직일 수 있다.
         player.canMove = true;
-        uiPopup.enemyContactCanvas.SetActive(false);
+        //uiPopup.enemyContactCanvas.SetActive(false);
+        UIPopupManager.Instance.ClosePopup();
     }
 
     //이것도 딱히 쓰는게 없다.

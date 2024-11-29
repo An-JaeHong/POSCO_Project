@@ -26,8 +26,8 @@ public class PlayerBattleState : PlayerStateBase
     public override void Exit()
     {
         player.canMove = true;
-        uiPopup.chooseBattleStateCanvas.SetActive(false);
-        uiPopup.chooseTargetCanvas.SetActive(false);
+        //uiPopup.chooseBattleStateCanvas.SetActive(false);
+        //uiPopup.chooseTargetCanvas.SetActive(false);
         CameraManager.Instance.HandleCamera(CameraType.FieldMap);
     }
 

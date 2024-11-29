@@ -142,7 +142,7 @@ public class TurnManager : MonoBehaviour
         //print($"{player.name}는 무엇을 할까?");
 
         //판넬을 보여줌
-        UIPopup.Instance.ChooseBattleStateCanvasOpen();
+        //UIPopup.Instance.ChooseBattleStateCanvasOpen();
         yield return new WaitUntil(() => GameManager.Instance.isPlayerActionComplete);
 
         turnQueue.Enqueue(player); //다시 Queue에 넣어줌 그래야 계속 반복

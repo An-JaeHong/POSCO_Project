@@ -14,7 +14,7 @@ public abstract class PlayerStateBase
     {
         this.player = player;
         this.gameManager = GameManager.Instance;
-        this.uiPopup = UIPopup.Instance;
+        //this.uiPopup = UIPopup.Instance;
     }
 
     public abstract void Enter();

@@ -13,7 +13,7 @@ public class UIPopupManager : MonoBehaviour
     //버튼
     [SerializeField] private GameObject buttonPrefab;
     //띄울 위치
-    [SerializeField] private Transform canvasTransform;
+    [SerializeField] private RectTransform canvasTransform;
 
     private GameObject currentPopup;
     private Dictionary<string, UIButton> activeButton = new Dictionary<string, UIButton>();
@@ -31,7 +31,7 @@ public class UIPopupManager : MonoBehaviour
     }
 
     //실질적으로 버튼달린 UI를 생성하는 함수
-    public void ShowPopup(string title, string content, Dictionary<string, UnityAction> buttons)
+    public void ShowPopup(string title, Dictionary<string, UnityAction> buttons)
     {
         //UI는 중복해서 뜰 수 없다.
         if (currentPopup != null)

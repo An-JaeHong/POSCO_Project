@@ -13,7 +13,7 @@ public class PlayerIdleState : PlayerStateBase
         //움직일 수 있어야한다
         player.canMove = true;
         //UI를 다 꺼야한다. -> 이건 나중에 Inventory랑은 다른 UI들이니 헷갈리지 말자.
-        uiPopup.AllCanvasClose();
+        //uiPopup.AllCanvasClose();
     }
 
     public override void Update()
