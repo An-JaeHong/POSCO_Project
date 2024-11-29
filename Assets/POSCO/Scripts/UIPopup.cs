@@ -2,29 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 public class UIPopup : MonoBehaviour
 {
-    //UIÀÇ Text
+    //UIï¿½ï¿½ Text
     [SerializeField] private TextMeshProUGUI titleText;
-    [SerializeField] private TextMeshProUGUI contentText;
-    //¹öÆ° ¶ç¿ï À§Ä¡ => Horizontal LayoutÀ» µé°í ÀÖ¾î¾ßÇÔ
-    [SerializeField] private Transform buttonContainer;
+    //[SerializeField] private TextMeshProUGUI contentText;
+    //ï¿½ï¿½Æ° ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ => Horizontal Layoutï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½ï¿½
+    [SerializeField] private RectTransform buttonContainer;
 
-    public Transform ButtonContainer => buttonContainer;
+    public RectTransform ButtonContainer => buttonContainer;
 
     //private static UIPopup instance;
     //public static UIPopup Instance { get { return instance; } }
 
-    ////ÀûÀ» ¸¸³µÀ»¶§ ¶ß´Â UI
+    ////ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß´ï¿½ UI
     //public GameObject enemyContactCanvas;
-    ////ÀüÅõ¿¡ µé¾î°¬À»¶§ °ø°ÝÇÒ²«Áö ¾Æ´Ï¸é Èú ÇÒ²«Áö ¶ß´Â UI
+    ////ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½î°¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ò²ï¿½ï¿½ï¿½ ï¿½Æ´Ï¸ï¿½ ï¿½ï¿½ ï¿½Ò²ï¿½ï¿½ï¿½ ï¿½ß´ï¿½ UI
     //public GameObject chooseBattleStateCanvas;
-    ////°ø°ÝÇÏ±â ´©¸£¸é ´©±¼ ¼±ÅÃÇÒ²«Áö
+    ////ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ò²ï¿½ï¿½ï¿½
     //public GameObject chooseTargetCanvas;
 
-    ////Çàµ¿À» °í¸£´Â ÅØ½ºÆ®
+    ////ï¿½àµ¿ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½Æ®
     //private TextMeshProUGUI chooseStateText;
 
     //private Player player;
@@ -50,7 +51,7 @@ public class UIPopup : MonoBehaviour
         //player = FindObjectOfType<Player>();
         //AllCanvasClose();
 
-        ////¸ó½ºÅÍÀÇ ÅÏÀÌ ¹Ù²ð¶§ ¸¶´Ù ÇöÀçÅÏÀÇ ¸ó½ºÅÍ°¡ °è¼Ó ¹Ù²ï´Ù.
+        ////ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ ï¿½Ù²ï¿½ï¿½.
         //TurnManager.Instance.monsterTurnChange += SetCurrentTurnMonster;
     }
 
@@ -64,7 +65,7 @@ public class UIPopup : MonoBehaviour
     //    contentText.text = content;
     //}
 
-    //¸ðµç Äµ¹ö½º ´Ý±â
+    //ï¿½ï¿½ï¿½ Äµï¿½ï¿½ï¿½ï¿½ ï¿½Ý±ï¿½
     //public void AllCanvasClose()
     //{
     //    enemyContactCanvas.SetActive(false);
@@ -72,13 +73,13 @@ public class UIPopup : MonoBehaviour
     //    chooseTargetCanvas.SetActive(false);
     //}
 
-    ////Àû°ú ¸¸³­ Äµ¹ö½ºUI
+    ////ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Äµï¿½ï¿½ï¿½ï¿½UI
     //public void EnemyContactCanvasOpen()
     //{
     //    enemyContactCanvas.SetActive(true);
     //}
 
-    ////ÀüÅõÁßÀÇ UI
+    ////ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ UI
     //public void ChooseBattleStateCanvasOpen()
     //{
     //    chooseBattleStateCanvas.SetActive(true);
@@ -90,19 +91,19 @@ public class UIPopup : MonoBehaviour
     //    chooseStateText.text = $"{currentTurnMonster.name}'Turn. Choose your state!";
     //}
 
-    ////°ø°ÝÇÏ±â ¹öÆ°À» Å¬¸¯ÇÏ¸é ÇÃ·¹ÀÌ¾î »óÅÂ¸¦ ÀüÅõ»óÅÂ·Î ¸¸µé¾î¾ßÇÑ´Ù.
+    ////ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
     //public void OnClickDoBattleButton()
     //{
     //    player.ChangeState(new PlayerBattleState(player));
     //}
 
-    ////µµ¸Á°¡±â¹öÆ° Å¬¸¯
+    ////ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ° Å¬ï¿½ï¿½
     //public void OnClickDoRunButton()
     //{
     //    player.ChangeState(new PlayerIdleState(player));
     //}
 
-    ////Å¸°Ù °í¸£´Â ¹öÆ° Å¬¸¯
+    ////Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ° Å¬ï¿½ï¿½
     //public void OnClickTargetNum(int targetNum)
     //{
     //    Monster target = new Monster();
@@ -124,7 +125,7 @@ public class UIPopup : MonoBehaviour
 
     //public void OnClickDoAttackButton()
     //{
-    //    print("°ø°ÝÇÏ±â¸¦ ¼±ÅÃÇß´Ù!");
+    //    print("ï¿½ï¿½ï¿½ï¿½ï¿½Ï±â¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½ß´ï¿½!");
     //    chooseBattleStateCanvas.SetActive(false);
     //    ChooseTargetCanvasOpen();
     //}
@@ -134,7 +135,7 @@ public class UIPopup : MonoBehaviour
 
     //}
 
-    ////ÇöÀç ÅÏÀÎ ¸ó½ºÅÍ¸¦ ºÒ·¯¿Â´Ù.
+    ////ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½Ò·ï¿½ï¿½Â´ï¿½.
     //public void SetCurrentTurnMonster(Monster currentTurnMonster)
     //{
     //    this.currentTurnMonster = currentTurnMonster;

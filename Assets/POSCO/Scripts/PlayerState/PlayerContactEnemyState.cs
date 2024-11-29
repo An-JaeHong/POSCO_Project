@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -23,8 +24,16 @@ public class PlayerContactEnemyState : PlayerStateBase
 
         var buttons = new Dictionary<string, UnityAction>
         {
-            { "Fight", () => StartBattle() },
-            { "RunAway", () => RunAway() }
+            { "Fight", () =>
+                {
+                    StartBattle(); 
+                } 
+            },
+            { "RunAway", () =>
+                { 
+                    RunAway();
+                }
+            }
         };
 
         UIPopupManager.Instance.ShowPopup(
@@ -38,11 +47,14 @@ public class PlayerContactEnemyState : PlayerStateBase
         gameManager.SetMonsterInformation(player.selectedMonsterList, enemyMonster);
 
         player.ChangeState(new PlayerBattleState(player));
+
+        Debug.Log("전투에 들어옴");
     }
 
     private void RunAway()
     {
         player.ChangeState(new PlayerIdleState(player));
+        Debug.Log("도망감");
     }
 
     //Update에는 딱히 쓰는게 없다

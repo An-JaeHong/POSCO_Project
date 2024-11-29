@@ -33,6 +33,13 @@ public class UIPopupManager : MonoBehaviour
     //실질적으로 버튼달린 UI를 생성하는 함수
     public void ShowPopup(string title, Dictionary<string, UnityAction> buttons)
     {
+        //프리팹이 있는지 체크
+        if (popupPrefab == null)
+        {
+            Debug.LogError("popupPrefab이 할당되지 않았습니다");
+            return;
+        }
+
         //UI는 중복해서 뜰 수 없다.
         if (currentPopup != null)
         {
@@ -42,8 +49,21 @@ public class UIPopupManager : MonoBehaviour
         //일단 Background 띄움
         currentPopup = Instantiate(popupPrefab, canvasTransform);
         UIPopup popup = currentPopup.GetComponent<UIPopup>();
-
+        //print($"popup Created : {popup}");
+        //print($"ButtonContainer : {popup.ButtonContainer}");
         //팝업 내용 바꿔줄곳
+        if (popup == null)
+        {
+            Debug.LogError("UIPopup 컴포넌트를 찾을 수 없습니다!");
+            return;
+        }
+
+        if (popup.ButtonContainer == null)
+        {
+            Debug.LogError("ButtonContainer가 할당되지 않았습니다!");
+            return;
+        }
+
         popup.SetTitle(title);
         //popup.SetContent(content);
 
@@ -52,8 +72,21 @@ public class UIPopupManager : MonoBehaviour
         //버튼 생성하는 곳
         foreach (var button in buttons)
         {
+            if (buttonPrefab == null)
+            {
+                Debug.LogError("Button Prefab이 할당되지 않았습니다!");
+                return;
+            }
             var buttonObj = Instantiate(buttonPrefab, popup.ButtonContainer);
             var uiButton = buttonObj.GetComponent<UIButton>();
+
+            if (uiButton == null)
+            {
+                Debug.LogError("UIButton 컴포넌트를 찾을 수 없습니다!");
+                return;
+            }
+
+            print($"SetPopup - button.key : {button.Key}");
             uiButton.ButtonPrefabSetup(button.Key, button.Value);
             activeButton[button.Key] = uiButton;
         }
