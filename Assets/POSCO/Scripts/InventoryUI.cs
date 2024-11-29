@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,8 +19,9 @@ public class InventoryUI : MonoBehaviour
     public Button Sellect;
     public Button Reset;
 
-    public List<GameObject> textureMonsterPrefabs;// 모든 몬스터(UI에 TextureMonster
-    
+    public List<GameObject> textureMonsterPrefabsList;// 모든 몬스터(UI에 TextureMonster를 List로 저장)
+    public List<GameObject> texturePlayerMonsterList; // UI에 띄울 몬스터 리스트
+
     public List<Monster> playerMonsterList = new List<Monster>();
     public List<Monster> tempSelectedMonsterList = new List<Monster>();
 
@@ -27,15 +30,15 @@ public class InventoryUI : MonoBehaviour
 
     private Player player;
 
-   
+
 
     private void init()
     {
         choiceNum = 0;
 
-        foreach ( var button in monsterCardNum)
+        foreach (var button in monsterCardNum)
         {
-           button.interactable = false;
+            button.interactable = false;
         }
 
         tempSelectedMonsterList.Clear();
@@ -45,24 +48,37 @@ public class InventoryUI : MonoBehaviour
     {
         //player = FindObjectOfType<Player>();
     }
+
     private void Start()
     {
+        
         LoadMonsterPrefabs();
+
         player = FindObjectOfType<Player>();
         init();
         inventory.SetActive(false);
         monsterCardBackground.SetActive(false);
         showSelectMonsterBackground.SetActive(false);
 
+       
+
+
         //시작하면 GameObject를 Monster형태로 바꿔줘야함
         ConvertGameObjectToMonster();
+
+        //사진으로 출력될 몬스터 프리팹 소환
+        FindSameMonsters();
+        InstantiatePrefab();
     }
+
+
+    //Resours -> TextureRenderer 폴더 내의 모든 프리팹을 로드하여 리스트에 담기
     private void LoadMonsterPrefabs()
     {
-        //Resours -> TextureRenderer 폴더 내의 모든 프리팹을 로드하여 리스트에 담기
-        textureMonsterPrefabs = new List<GameObject>(Resources.LoadAll<GameObject>("TextureRenderer"));
-        
+        textureMonsterPrefabsList = new List<GameObject>(Resources.LoadAll<GameObject>("TextureRenderer"));
+
     }
+
 
     //player에서 넘어온 Object형태를 Monster형태로 바꿔주는 함수
     private void ConvertGameObjectToMonster()
@@ -100,7 +116,7 @@ public class InventoryUI : MonoBehaviour
                 showSelectMonsterBackground.SetActive(false);
                 isOpenInventory = false;
             }
-            
+
         }
 
     }
@@ -111,7 +127,7 @@ public class InventoryUI : MonoBehaviour
 
         //inventory 활성화하면 ShowMonsterButton 활성화
         inventory.SetActive(true);
-        
+
     }
     public void OnShowMonsterButton()
     {
@@ -192,17 +208,17 @@ public class InventoryUI : MonoBehaviour
             player.SetSelectedMonsters(tempSelectedMonsterList);
 
 
-         
+
         }
 
 
         //삭제예정 stack으로 구현할 예정입니다.
         //지금은 선택누를시 모두 종료됨
-        
+
         inventory.SetActive(false);
         monsterCardBackground.SetActive(false);
         showSelectMonsterBackground.SetActive(false);
-        
+
     }
 
     public void OnRestetButton()
@@ -217,6 +233,47 @@ public class InventoryUI : MonoBehaviour
 
         tempSelectedMonsterList.Clear();
     }
+
+
+
+
+
+
+
+    public void FindSameMonsters()
+    {
+        print("들어옴1");
+        for (int i = 0; i < playerMonsterList.Count; i++)
+        {
+            foreach (var monster in textureMonsterPrefabsList)
+            {
+                if (monster.name == playerMonsterList[i].name)
+                {
+                    texturePlayerMonsterList.Add(monster);
+                    break;
+                }
+            }
+        }
+    }
+
+    public void InstantiatePrefab()
+    {
+        print("들어옴2");
+        GameObject prefabToInstantiate;
+        UIMonster newTextureMonster;
+        for (int i = 0; i < playerMonsterList.Count; i++)
+        {
+            float posNum = i * 10f;
+            prefabToInstantiate = textureMonsterPrefabsList[i];
+            newTextureMonster = Instantiate(prefabToInstantiate).GetComponent<UIMonster>();
+            newTextureMonster.transform.position = new Vector3(20 - posNum, 0, 0);
+        }
+
+    }
+
+
+
+
 
 
 }
