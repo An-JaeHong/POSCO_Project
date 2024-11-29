@@ -612,6 +612,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Cactus
+  hp: 10
+  damage: 3
+  element: 3
+  isEnemy: 0
 --- !u!1 &7231246708145821598
 GameObject:
   m_ObjectHideFlags: 0

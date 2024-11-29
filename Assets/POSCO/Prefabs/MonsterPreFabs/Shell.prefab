@@ -489,6 +489,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Shell
+  hp: 10
+  damage: 3
+  element: 2
+  isEnemy: 0
 --- !u!1 &3336267759989954419
 GameObject:
   m_ObjectHideFlags: 0

@@ -1444,6 +1444,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Shade
+  hp: 10
+  damage: 3
+  element: 1
+  isEnemy: 0
 --- !u!1 &8029286592187402967
 GameObject:
   m_ObjectHideFlags: 0

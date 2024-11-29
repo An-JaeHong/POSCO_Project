@@ -353,6 +353,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Phantom
+  hp: 10
+  damage: 3
+  element: 2
+  isEnemy: 0
 --- !u!1 &1266572345507604657
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,6 +17,8 @@ public class InventoryUI : MonoBehaviour
     public Button Sellect;
     public Button Reset;
 
+    public List<GameObject> textureMonsterPrefabs;// 모든 몬스터(UI에 TextureMonster
+    
     public List<Monster> playerMonsterList = new List<Monster>();
     public List<Monster> tempSelectedMonsterList = new List<Monster>();
 
@@ -25,7 +27,7 @@ public class InventoryUI : MonoBehaviour
 
     private Player player;
 
-    
+   
 
     private void init()
     {
@@ -45,6 +47,7 @@ public class InventoryUI : MonoBehaviour
     }
     private void Start()
     {
+        LoadMonsterPrefabs();
         player = FindObjectOfType<Player>();
         init();
         inventory.SetActive(false);
@@ -53,6 +56,12 @@ public class InventoryUI : MonoBehaviour
 
         //시작하면 GameObject를 Monster형태로 바꿔줘야함
         ConvertGameObjectToMonster();
+    }
+    private void LoadMonsterPrefabs()
+    {
+        //Resours -> TextureRenderer 폴더 내의 모든 프리팹을 로드하여 리스트에 담기
+        textureMonsterPrefabs = new List<GameObject>(Resources.LoadAll<GameObject>("TextureRenderer"));
+        
     }
 
     //player에서 넘어온 Object형태를 Monster형태로 바꿔주는 함수

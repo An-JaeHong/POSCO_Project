@@ -230,6 +230,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Fungi
+  hp: 10
+  damage: 3
+  element: 3
+  isEnemy: 0
 --- !u!1 &3326659279661230053
 GameObject:
   m_ObjectHideFlags: 0

@@ -406,6 +406,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Sunflower Fairy
+  hp: 10
+  damage: 3
+  element: 3
+  isEnemy: 0
 --- !u!1 &2699880621368654181
 GameObject:
   m_ObjectHideFlags: 0

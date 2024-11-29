@@ -2832,3 +2832,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Dragon Fire
+  hp: 10
+  damage: 3
+  element: 1
+  isEnemy: 0

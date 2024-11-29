@@ -105,6 +105,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Blossom
+  hp: 10
+  damage: 3
+  element: 3
+  isEnemy: 0
 --- !u!1 &289276018258297540
 GameObject:
   m_ObjectHideFlags: 0

@@ -836,6 +836,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Dog Bowwow
+  hp: 10
+  damage: 3
+  element: 1
+  isEnemy: 0
 --- !u!1 &4675690525675549308
 GameObject:
   m_ObjectHideFlags: 0

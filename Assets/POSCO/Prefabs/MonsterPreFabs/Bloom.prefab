@@ -220,6 +220,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Bloom
+  hp: 10
+  damage: 3
+  element: 3
+  isEnemy: 0
 --- !u!1 &518486653863540308
 GameObject:
   m_ObjectHideFlags: 0

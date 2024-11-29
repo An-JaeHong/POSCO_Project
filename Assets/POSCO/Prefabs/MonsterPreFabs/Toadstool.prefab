@@ -177,6 +177,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Toadstool
+  hp: 10
+  damage: 3
+  element: 3
+  isEnemy: 0
 --- !u!1 &268335397161211143
 GameObject:
   m_ObjectHideFlags: 0

@@ -525,6 +525,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Spook
+  hp: 10
+  damage: 3
+  element: 2
+  isEnemy: 0
 --- !u!1 &3321792107674651912
 GameObject:
   m_ObjectHideFlags: 0
