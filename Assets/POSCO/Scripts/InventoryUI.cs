@@ -118,6 +118,8 @@ public class InventoryUI : MonoBehaviour
             }
 
         }
+        if(texturePlayerMonsterList !=null)
+        { print(texturePlayerMonsterList[0].name); }
 
     }
 
