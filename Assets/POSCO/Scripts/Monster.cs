@@ -1,7 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
+public enum Element
+{
+    None,
+    Fire,
+    Water,
+    Grass,
+}
 
 public class Monster : MonoBehaviour
 {
