@@ -9,6 +9,7 @@ public class UIPopup : MonoBehaviour
 
     public GameObject enemyContactCanvas;
     public GameObject battleCanvas;
+    public GameObject chooseBattleStateCanvas;
 
     private Player player;
 
@@ -64,6 +65,16 @@ public class UIPopup : MonoBehaviour
 
     //타겟 고르는 버튼 클릭
     public void OnClickTargetNum(int targetNum)
+    {
+
+    }
+
+    public void OnClickDoAttackButton()
+    {
+
+    }
+
+    public void onClickDoHealButton()
     {
 
     }
