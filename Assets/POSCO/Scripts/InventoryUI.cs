@@ -51,7 +51,7 @@ public class InventoryUI : MonoBehaviour
 
     private void Start()
     {
-        
+
         LoadMonsterPrefabs();
 
         player = FindObjectOfType<Player>();
@@ -60,7 +60,7 @@ public class InventoryUI : MonoBehaviour
         monsterCardBackground.SetActive(false);
         showSelectMonsterBackground.SetActive(false);
 
-       
+
 
 
         //시작하면 GameObject를 Monster형태로 바꿔줘야함
@@ -118,7 +118,7 @@ public class InventoryUI : MonoBehaviour
             }
 
         }
-        if(texturePlayerMonsterList !=null)
+        if (texturePlayerMonsterList != null)
         { print(texturePlayerMonsterList[0].name); }
 
     }
@@ -196,7 +196,29 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
-    public void OnSellectBoutton()
+
+
+
+
+    //Monster card에서 몬스터 선택시 선택한 몬스터 띄우기
+    private void SetCelectMonster()
+    {
+        switch(choiceNum)
+        {
+            case 0://all clear
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+                case 3:
+            break;
+        }
+    }
+
+
+
+public void OnSellectBoutton()
     {
         print("Sellect 누름");
 
