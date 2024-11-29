@@ -19,14 +19,14 @@ public class InventoryUI : MonoBehaviour
     public Button Sellect;
     public Button Reset;
 
-    public List<GameObject> textureMonsterPrefabsList;// ¸ðµç ¸ó½ºÅÍ(UI¿¡ TextureMonster¸¦ List·Î ÀúÀå)
-    public List<GameObject> texturePlayerMonsterList; // UI¿¡ ¶ç¿ï ¸ó½ºÅÍ ¸®½ºÆ®
+    public List<GameObject> textureMonsterPrefabsList;// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(UIï¿½ï¿½ TextureMonsterï¿½ï¿½ Listï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
+    public List<GameObject> texturePlayerMonsterList; // UIï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
 
     public List<Monster> playerMonsterList = new List<Monster>();
     public List<Monster> tempSelectedMonsterList = new List<Monster>();
 
     private bool isOpenInventory = false;
-    private int choiceNum = 0; //ÃÖ´ë3¸¶¸® ¸ó½ºÅÍ 
+    private int choiceNum = 0; //ï¿½Ö´ï¿½3ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
 
     private Player player;
 
@@ -63,16 +63,16 @@ public class InventoryUI : MonoBehaviour
 
 
 
-        //½ÃÀÛÇÏ¸é GameObject¸¦ MonsterÇüÅÂ·Î ¹Ù²ãÁà¾ßÇÔ
+        //ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ GameObjectï¿½ï¿½ Monsterï¿½ï¿½ï¿½Â·ï¿½ ï¿½Ù²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         ConvertGameObjectToMonster();
 
-        //»çÁøÀ¸·Î Ãâ·ÂµÉ ¸ó½ºÅÍ ÇÁ¸®ÆÕ ¼ÒÈ¯
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Âµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
         FindSameMonsters();
         InstantiatePrefab();
     }
 
 
-    //Resours -> TextureRenderer Æú´õ ³»ÀÇ ¸ðµç ÇÁ¸®ÆÕÀ» ·ÎµåÇÏ¿© ¸®½ºÆ®¿¡ ´ã±â
+    //Resours -> TextureRenderer ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½
     private void LoadMonsterPrefabs()
     {
         textureMonsterPrefabsList = new List<GameObject>(Resources.LoadAll<GameObject>("TextureRenderer"));
@@ -80,10 +80,10 @@ public class InventoryUI : MonoBehaviour
     }
 
 
-    //player¿¡¼­ ³Ñ¾î¿Â ObjectÇüÅÂ¸¦ MonsterÇüÅÂ·Î ¹Ù²ãÁÖ´Â ÇÔ¼ö
+    //playerï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¾ï¿½ï¿½ Objectï¿½ï¿½ï¿½Â¸ï¿½ Monsterï¿½ï¿½ï¿½Â·ï¿½ ï¿½Ù²ï¿½ï¿½Ö´ï¿½ ï¿½Ô¼ï¿½
     private void ConvertGameObjectToMonster()
     {
-        //ÀÏ´Ü Inventory¿¡ ÀÖ´Â ¸®½ºÆ®¸¦ ÃÊ±âÈ­
+        //ï¿½Ï´ï¿½ Inventoryï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ê±ï¿½È­
         playerMonsterList.Clear();
         foreach (GameObject monsterObj in player.GetMonsterPrefabList())
         {
@@ -118,22 +118,20 @@ public class InventoryUI : MonoBehaviour
             }
 
         }
-        if (texturePlayerMonsterList != null)
-        { print(texturePlayerMonsterList[0].name); }
 
     }
 
     private void OpenInventory()
     {
-        init();// ¼öÁ¤ÇÊ¿ä
+        init();// ï¿½ï¿½ï¿½ï¿½ï¿½Ê¿ï¿½
 
-        //inventory È°¼ºÈ­ÇÏ¸é ShowMonsterButton È°¼ºÈ­
+        //inventory È°ï¿½ï¿½È­ï¿½Ï¸ï¿½ ShowMonsterButton È°ï¿½ï¿½È­
         inventory.SetActive(true);
 
     }
     public void OnShowMonsterButton()
     {
-        //monsterCardBackground È°¼ºÈ­ÇÏ¸é cardButton È°¼ºÈ­
+        //monsterCardBackground È°ï¿½ï¿½È­ï¿½Ï¸ï¿½ cardButton È°ï¿½ï¿½È­
         monsterCardBackground.SetActive(true);
         choiceBattleMonster.interactable = true;
     }
@@ -159,40 +157,40 @@ public class InventoryUI : MonoBehaviour
                 case 0:
                     tempSelectedMonsterList.Add(playerMonsterList[0]);
                     monsterCardNum[0].interactable = false;
-                    print("Ã¹¹øÂ° Ä«µå ºñÈ°¼ºÈ­");
-                    print($"{playerMonsterList[0]} ÀÓ½ÃÀúÀåµÊ");
+                    print("Ã¹ï¿½ï¿½Â° Ä«ï¿½ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­");
+                    print($"{playerMonsterList[0]} ï¿½Ó½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 
                     break;
                 case 1:
                     tempSelectedMonsterList.Add(playerMonsterList[1]);
                     monsterCardNum[1].interactable = false;
-                    print("µÎ¹øÂ° Ä«µå ºñÈ°¼ºÈ­");
-                    print($"{playerMonsterList[1]} ÀÓ½ÃÀúÀåµÊ");
+                    print("ï¿½Î¹ï¿½Â° Ä«ï¿½ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­");
+                    print($"{playerMonsterList[1]} ï¿½Ó½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
                     break;
                 case 2:
                     tempSelectedMonsterList.Add(playerMonsterList[2]);
                     monsterCardNum[2].interactable = false;
-                    print($"{playerMonsterList[3]} ÀÓ½ÃÀúÀåµÊ");
-                    print("¼¼¹øÂ° Ä«µå ºñÈ°¼ºÈ­");
+                    print($"{playerMonsterList[3]} ï¿½Ó½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+                    print("ï¿½ï¿½ï¿½ï¿½Â° Ä«ï¿½ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­");
                     break;
                 case 3:
                     tempSelectedMonsterList.Add(playerMonsterList[3]);
                     monsterCardNum[3].interactable = false;
-                    print("³×¹øÂ°Ä«µå ºñÈ°¼ºÈ­");
-                    print($"{playerMonsterList[4]} ÀÓ½ÃÀúÀåµÊ");
+                    print("ï¿½×¹ï¿½Â°Ä«ï¿½ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­");
+                    print($"{playerMonsterList[4]} ï¿½Ó½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
                     break;
                 case 4:
                     tempSelectedMonsterList.Add(playerMonsterList[4]);
                     monsterCardNum[4].interactable = false;
-                    print("´Ù¼¸¹øÂ°Ä«µå ºñÈ°¼ºÈ­");
-                    print($"{playerMonsterList[4]} ÀÓ½ÃÀúÀåµÊ");
+                    print("ï¿½Ù¼ï¿½ï¿½ï¿½Â°Ä«ï¿½ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­");
+                    print($"{playerMonsterList[4]} ï¿½Ó½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
                     break;
             }
             choiceNum++;
         }
         else
         {
-            print("3°³±îÁö¸¸ ¼±ÅÃ°¡´É");
+            print("3ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ã°ï¿½ï¿½ï¿½");
         }
     }
 
@@ -200,7 +198,7 @@ public class InventoryUI : MonoBehaviour
 
 
 
-    //Monster card¿¡¼­ ¸ó½ºÅÍ ¼±ÅÃ½Ã ¼±ÅÃÇÑ ¸ó½ºÅÍ ¶ç¿ì±â
+    //Monster cardï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ã½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     private void SetCelectMonster()
     {
         switch(choiceNum)
@@ -220,15 +218,15 @@ public class InventoryUI : MonoBehaviour
 
 public void OnSellectBoutton()
     {
-        print("Sellect ´©¸§");
+        print("Sellect ï¿½ï¿½ï¿½ï¿½");
 
         if (choiceNum == 3)
         {
 
 
-            print("¼±ÅÃµÊ");
+            print("ï¿½ï¿½ï¿½Ãµï¿½");
 
-            //ÇÃ·¹ÀÌ¾î ¸ó½ºÅÍ¿¡ Á¤º¸ ³Ö¾î¾ßÇÔ
+            //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½Í¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½ï¿½
             player.SetSelectedMonsters(tempSelectedMonsterList);
 
 
@@ -236,8 +234,8 @@ public void OnSellectBoutton()
         }
 
 
-        //»èÁ¦¿¹Á¤ stackÀ¸·Î ±¸ÇöÇÒ ¿¹Á¤ÀÔ´Ï´Ù.
-        //Áö±ÝÀº ¼±ÅÃ´©¸¦½Ã ¸ðµÎ Á¾·áµÊ
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ stackï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ã´ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 
         inventory.SetActive(false);
         monsterCardBackground.SetActive(false);
@@ -247,7 +245,7 @@ public void OnSellectBoutton()
 
     public void OnRestetButton()
     {
-        print("ÃÊ±âÈ­µÊ");
+        print("ï¿½Ê±ï¿½È­ï¿½ï¿½");
         choiceNum = 0;
 
         foreach (var button in monsterCardNum)
@@ -266,7 +264,7 @@ public void OnSellectBoutton()
 
     public void FindSameMonsters()
     {
-        print("µé¾î¿È1");
+        print("ï¿½ï¿½ï¿½ï¿½1");
         for (int i = 0; i < playerMonsterList.Count; i++)
         {
             foreach (var monster in textureMonsterPrefabsList)
@@ -282,7 +280,7 @@ public void OnSellectBoutton()
 
     public void InstantiatePrefab()
     {
-        print("µé¾î¿È2");
+        print("ï¿½ï¿½ï¿½ï¿½2");
         GameObject prefabToInstantiate;
         UIMonster newTextureMonster;
         for (int i = 0; i < playerMonsterList.Count; i++)
