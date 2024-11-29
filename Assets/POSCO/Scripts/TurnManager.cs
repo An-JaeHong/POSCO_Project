@@ -1,29 +1,32 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class TurnManager : MonoBehaviour
 {
-    //외부에서 접근하면 안되서 Serializable로 안씀
-    public enum Turn
-    {
-        None,
-        PlayerTurn,
-        EnemyTurn,
-    }
 
     //외부에서도 접근이 가능해야함
     private static TurnManager instance;
     public static TurnManager Instance { get { return instance; } }
 
-    //외부에서 턴을 바꿀 수 없어야 함
-    public Turn currentTurn { get; private set; }
+    ////외부에서 접근하면 안되서 Serializable로 안씀
+    //public enum Turn
+    //{
+    //    None,
+    //    PlayerTurn,
+    //    EnemyTurn,
+    //}
 
     //턴
-    private Queue<Monster> turnQueue = new Queue<Monster>();
+    public Queue<Monster> turnQueue = new Queue<Monster>();
     //현재 턴을 가지고 있는 캐릭터
     private Monster currentTurnMonster;
+    //입력되어있는 커멘드
+    private Stack<ICommand> commandHistory = new Stack<ICommand>();
 
     //GameManager에서 넘겨받을 MonsterList
     public List<Monster> playerMonsterList = new List<Monster>();
@@ -121,6 +124,12 @@ public class TurnManager : MonoBehaviour
             {
                 yield return StartCoroutine(HandleEnemyTurn(currentTurnMonster));
             }
+
+            //둘 중 한팀이 전멸하면 끝
+            if (CheckBattleEnd())
+            {
+                break;
+            }
         }
 
     }
@@ -132,17 +141,20 @@ public class TurnManager : MonoBehaviour
 
         //판넬을 보여줌
         UIPopup.Instance.ChooseBattleStateCanvasOpen(player);
-        yield return new WaitUntil(() => GameManager.Instance.IsPlayerActionComplete);
+        yield return new WaitUntil(() => GameManager.Instance.isPlayerActionComplete);
+
         turnQueue.Enqueue(player); //다시 Queue에 넣어줌 그래야 계속 반복
+        //다시 플레이어 액션 실행
+        GameManager.Instance.isPlayerActionComplete = false;
     }
 
     //Action은 파라미터를 하나만 넘겨받을 수 있어서 구조체를 이용해 공격하는 자, 공격하는 대상 둘다 받음
     public struct ActionData
     {
-        public CreatureInfo attacker;
-        public CreatureInfo target;
+        public Monster attacker;
+        public Monster target;
 
-        public ActionData(CreatureInfo attacker, CreatureInfo target)
+        public ActionData(Monster attacker, Monster target)
         {
             this.attacker = attacker;
             this.target = target;
@@ -151,24 +163,40 @@ public class TurnManager : MonoBehaviour
 
     //적 턴이 실행되면 불러올 Action
     public event Action<ActionData> enemyAttack;
-    private IEnumerator HandleEnemyTurn(CreatureInfo enemy)
+    private IEnumerator HandleEnemyTurn(Monster enemy)
     {
         print($"{enemy.name}이(가) 행동 중...");
         yield return new WaitForSeconds(1f);
 
         //체력이 0보다 높은 대상 찾기
-        List<CreatureInfo> targetList = playerCreatureList.FindAll(c => c.hp > 0);
+        List<Monster> targetMonsterList = playerMonsterList.FindAll(M => M.hp > 0);
 
-        if (targetList.Count > 0)
+        //한마리라도 있으면 실행
+        if (targetMonsterList.Count > 0)
         {
-            CreatureInfo target = targetList[UnityEngine.Random.Range(0, targetList.Count)];
-            ActionData actionData = new ActionData(enemy, target);
+            //살아있는 얘 중에서 Random으로 타겟을 지정
+            Monster targetMonster = targetMonsterList[UnityEngine.Random.Range(0, targetMonsterList.Count)];
 
+            //그다음 event로 받아온 변수 초기화
+            ActionData actionData = new ActionData(enemy, targetMonster);
             //담겨있던 event 실행
             enemyAttack?.Invoke(actionData);
-            yield return new WaitUntil(() => InGameManager.Instance.IsEnemyActionComplete);
+            yield return new WaitUntil(() => GameManager.Instance.isEnemyActionComplete);
         }
         turnQueue.Enqueue(enemy);
     }
+    
+    //전투가 끝났는지 확인
+    public bool CheckBattleEnd()
+    {
+        bool allPlayerMonstersDead = playerMonsterList.All(m => m.hp <= 0);
+        bool allEnemiesDead = enemyMonsterList.All(m => m.hp <= 0);
 
+        if (allPlayerMonstersDead || allEnemiesDead)
+        {
+            return true;
+        }
+
+        return false;
+    }
 }
