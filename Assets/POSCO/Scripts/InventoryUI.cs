@@ -235,7 +235,7 @@ public class InventoryUI : MonoBehaviour
             print("파괴됨");
             Destroy(prefab); // 게임 오브젝트 파괴
         }
-        //prefabList.Clear(); // 리스트 초기화
+        prefabList.Clear(); // 리스트 초기화
     }
 
 
