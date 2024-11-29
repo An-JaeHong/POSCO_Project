@@ -524,6 +524,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a25a6540f7e93f4e8b0dc4ee216a5b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: Spook
 --- !u!1 &3321792107674651912
 GameObject:
   m_ObjectHideFlags: 0

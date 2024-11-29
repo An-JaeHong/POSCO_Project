@@ -415,6 +415,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a232a9fe2d0db8469d4ee32237ebfc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  element: 0
+  name: Dragon Inferno
 --- !u!1 &1480111623879257333
 GameObject:
   m_ObjectHideFlags: 0
