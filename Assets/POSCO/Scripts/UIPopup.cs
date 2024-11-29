@@ -6,6 +6,14 @@ using UnityEngine.UIElements;
 
 public class UIPopup : MonoBehaviour
 {
+    //UI의 Text
+    [SerializeField] private TextMeshProUGUI titleText;
+    [SerializeField] private TextMeshProUGUI contentText;
+    //버튼 띄울 위치 => Horizontal Layout을 들고 있어야함
+    [SerializeField] private Transform buttonContainer;
+
+    public Transform ButtonContainer => buttonContainer;
+
     private static UIPopup instance;
     public static UIPopup Instance { get { return instance; } }
 
@@ -20,7 +28,7 @@ public class UIPopup : MonoBehaviour
     private TextMeshProUGUI chooseStateText;
 
     private Player player;
-    private Monster currentTurnMonster = new Monster();
+    public Monster currentTurnMonster = new Monster();
 
     private void Awake()
     {
@@ -45,6 +53,16 @@ public class UIPopup : MonoBehaviour
         //몬스터의 턴이 바뀔때 마다 현재턴의 몬스터가 계속 바뀐다.
         TurnManager.Instance.monsterTurnChange += SetCurrentTurnMonster;
     }
+
+    public void SetTitle(string content)
+    {
+        contentText.text = content;
+    }
+
+    //public void SetContent(string content)
+    //{
+    //    contentText.text = content;
+    //}
 
     //모든 캔버스 닫기
     public void AllCanvasClose()
@@ -107,7 +125,8 @@ public class UIPopup : MonoBehaviour
     public void OnClickDoAttackButton()
     {
         print("공격하기를 선택했다!");
-        chooseTargetCanvas.SetActive(true);
+        chooseBattleStateCanvas.SetActive(false);
+        ChooseTargetCanvasOpen();
     }
 
     public void onClickDoHealButton()

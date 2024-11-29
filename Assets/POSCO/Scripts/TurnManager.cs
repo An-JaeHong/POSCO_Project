@@ -8,7 +8,6 @@ using UnityEngine.UIElements;
 
 public class TurnManager : MonoBehaviour
 {
-
     //외부에서도 접근이 가능해야함
     private static TurnManager instance;
     public static TurnManager Instance { get { return instance; } }

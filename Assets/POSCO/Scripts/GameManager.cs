@@ -35,6 +35,10 @@ public class GameManager : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
 
+    }
+
+    private void Start()
+    {
         //턴 바뀔때마다 함수를 실행한다.
         TurnManager.Instance.monsterTurnChange += SetCurrentTurnMonster;
     }
