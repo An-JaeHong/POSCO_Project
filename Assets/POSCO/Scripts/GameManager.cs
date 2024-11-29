@@ -20,6 +20,9 @@ public class GameManager : MonoBehaviour
     public bool isPlayerActionComplete = false;
     public bool isEnemyActionComplete = false;
 
+    //현재 턴의 몬스터
+    private Monster currentTurnMonster = new Monster();
+
     private void Awake()
     {
         if (instance == null)
@@ -31,6 +34,9 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
+
+        //턴 바뀔때마다 함수를 실행한다.
+        TurnManager.Instance.monsterTurnChange += SetCurrentTurnMonster;
     }
 
     //적 정보 넘겨받기
@@ -47,7 +53,7 @@ public class GameManager : MonoBehaviour
         }
 
         //턴 매니저에게 몬스터 정보 넘겨주기
-        TurnManager.Instance.SetMonsterInfomation(playerMonsterInBattleList, enemyMonsterInBattleList);
+        TurnManager.Instance.SetMonsterInfomation(playerMonsterInBattleList, enemyMonsterInBattleList);     
     }
 
     //플레이어와 적 지정된 포지션에 생성하기
@@ -63,5 +69,28 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //현재 턴인 몬스터를 불러온다.
+    public void SetCurrentTurnMonster(Monster currentTurnMonster)
+    {
+        this.currentTurnMonster = currentTurnMonster;
+    }
 
+    //플레이어가 공격하는 행동에 돌입
+    public void ExecutePlayerAttackAction(Monster target)
+    {
+        //생성자로 생성해주고
+        AttackCommand attackCommand = new AttackCommand(currentTurnMonster, target);
+        //공격페이즈 돌입
+        attackCommand.Execute();
+        //턴끝
+        isPlayerActionComplete = true;
+    }
+
+    //위와 같다
+    public void ExecuteEnemyAttackAction(Monster target)
+    {
+        AttackCommand attackCommand = new AttackCommand(currentTurnMonster, target);
+        attackCommand.Execute();
+        isEnemyActionComplete = true;
+    }
 }

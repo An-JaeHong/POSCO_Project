@@ -12,8 +12,8 @@ public class PlayerBattleState : PlayerStateBase
         player.canMove = false;
         //들어가면 카메라를 배틀맵으로 움직인다.
         CameraManager.Instance.HandleCamera(CameraType.BattleMap);
-        //그다음 배틀맵 UI를 띄운다
-        uiPopup.BattleCanvasOpen();
+        //그다음 배틀맵 UI를 띄운다 -> TurnManager에서 할거임
+        //uiPopup.ChooseBattleStateCanvasOpen();
         gameManager.SetMonsterOnBattlePosition();
     }
     
@@ -26,7 +26,8 @@ public class PlayerBattleState : PlayerStateBase
     public override void Exit()
     {
         player.canMove = true;
-        uiPopup.battleCanvas.SetActive(false);
+        uiPopup.chooseBattleStateCanvas.SetActive(false);
+        uiPopup.chooseTargetCanvas.SetActive(false);
         CameraManager.Instance.HandleCamera(CameraType.FieldMap);
     }
 

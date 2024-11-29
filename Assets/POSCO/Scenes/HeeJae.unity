@@ -359,7 +359,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 369151419135080172, guid: 679c2e55c113d9a4484f3a243f87896d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3785388595793979349, guid: 679c2e55c113d9a4484f3a243f87896d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -607,10 +607,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1079680224690657502, guid: 8b728ef95cdda794cb4322187bfb04ee, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887674280826362014, guid: 8b728ef95cdda794cb4322187bfb04ee, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3038593200520532989, guid: 8b728ef95cdda794cb4322187bfb04ee, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2066735072}
+    - target: {fileID: 3433232776104350599, guid: 8b728ef95cdda794cb4322187bfb04ee, type: 3}
+      propertyPath: m_Name
+      value: ChooseTargetUIBackground
+      objectReference: {fileID: 0}
+    - target: {fileID: 3433232776104350599, guid: 8b728ef95cdda794cb4322187bfb04ee, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3995078227005697155, guid: 8b728ef95cdda794cb4322187bfb04ee, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -625,7 +641,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6175213470219744726, guid: 8b728ef95cdda794cb4322187bfb04ee, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6206008970262282847, guid: 8b728ef95cdda794cb4322187bfb04ee, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -640,11 +656,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b728ef95cdda794cb4322187bfb04ee, type: 3}
---- !u!1 &1302889753 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6175213470219744726, guid: 8b728ef95cdda794cb4322187bfb04ee, type: 3}
-  m_PrefabInstance: {fileID: 1302889752}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1312092065
 GameObject:
   m_ObjectHideFlags: 0
@@ -783,6 +794,8 @@ MonoBehaviour:
   - {fileID: 1667497089}
   - {fileID: 56905714}
   - {fileID: 2137268004}
+  isPlayerActionComplete: 0
+  isEnemyActionComplete: 0
 --- !u!4 &1508013902
 Transform:
   m_ObjectHideFlags: 0
@@ -980,6 +993,11 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 2.3934891, z: 1}
   m_Center: {x: 0, y: 0.69674456, z: 0}
+--- !u!1 &1769685366 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3433232776104350599, guid: 8b728ef95cdda794cb4322187bfb04ee, type: 3}
+  m_PrefabInstance: {fileID: 1302889752}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1820433609
 GameObject:
   m_ObjectHideFlags: 0
@@ -1184,8 +1202,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyContactCanvas: {fileID: 108419843}
-  battleCanvas: {fileID: 1302889753}
   chooseBattleStateCanvas: {fileID: 1973018637}
+  chooseTargetCanvas: {fileID: 1769685366}
 --- !u!4 &2066735073
 Transform:
   m_ObjectHideFlags: 0

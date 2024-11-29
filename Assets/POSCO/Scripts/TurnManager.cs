@@ -24,7 +24,7 @@ public class TurnManager : MonoBehaviour
     //턴
     public Queue<Monster> turnQueue = new Queue<Monster>();
     //현재 턴을 가지고 있는 캐릭터
-    private Monster currentTurnMonster;
+    public Monster currentTurnMonster;
     //입력되어있는 커멘드
     private Stack<ICommand> commandHistory = new Stack<ICommand>();
 
@@ -57,7 +57,7 @@ public class TurnManager : MonoBehaviour
         StartCoroutine(HandleTurn());
     }
 
-    //GameManager에서 연결
+    //GameManager에서 연결 -> 배틀에 들어온 몬스터들을 받아온다.
     public void SetMonsterInfomation(List<Monster> playerMonsterList, List<Monster> enemyMonsterList)
     {
         this.playerMonsterList = playerMonsterList;
@@ -89,6 +89,8 @@ public class TurnManager : MonoBehaviour
         //이렇게되면 플레이어1, 2, 3, 적1, 2, 3 순서로 Queue가 형성이 된다.
     }
 
+    //Monster의 턴이 바뀔때 마다 GameManger와 UIPopup에 정보를 넘겨줄 수 있어야한다.
+    public event Action<Monster> monsterTurnChange;
     //본격적인 턴 관리
     private IEnumerator HandleTurn()
     {
@@ -113,6 +115,7 @@ public class TurnManager : MonoBehaviour
             }
 
             print($"{currentTurnMonster.name}의 턴!");
+            monsterTurnChange?.Invoke(currentTurnMonster);
 
             //플레이어라면
             if (!currentTurnMonster.isEnemy)
@@ -137,10 +140,10 @@ public class TurnManager : MonoBehaviour
     //플레이어에 관한 턴인데 한명씩 공격하게 해야함
     private IEnumerator HandlePlayerTurn(Monster player)
     {
-        print($"{player.name}는 무엇을 할까?");
+        //print($"{player.name}는 무엇을 할까?");
 
         //판넬을 보여줌
-        UIPopup.Instance.ChooseBattleStateCanvasOpen(player);
+        UIPopup.Instance.ChooseBattleStateCanvasOpen();
         yield return new WaitUntil(() => GameManager.Instance.isPlayerActionComplete);
 
         turnQueue.Enqueue(player); //다시 Queue에 넣어줌 그래야 계속 반복
@@ -162,7 +165,7 @@ public class TurnManager : MonoBehaviour
     }
 
     //적 턴이 실행되면 불러올 Action
-    public event Action<ActionData> enemyAttack;
+    //public event Action<ActionData> enemyAttack;
     private IEnumerator HandleEnemyTurn(Monster enemy)
     {
         print($"{enemy.name}이(가) 행동 중...");
@@ -180,7 +183,7 @@ public class TurnManager : MonoBehaviour
             //그다음 event로 받아온 변수 초기화
             ActionData actionData = new ActionData(enemy, targetMonster);
             //담겨있던 event 실행
-            enemyAttack?.Invoke(actionData);
+            //enemyAttack?.Invoke(actionData);
             yield return new WaitUntil(() => GameManager.Instance.isEnemyActionComplete);
         }
         turnQueue.Enqueue(enemy);
@@ -199,4 +202,10 @@ public class TurnManager : MonoBehaviour
 
         return false;
     }
+
+    ////GameManager, UIpop에서 쓸 현재 공격하는 몬스터 정보를 넘겨줌
+    //public void SetCurrentTurnMonster(Monster currentMonster)
+    //{
+    //    currentMonster = currentTurnMonster;
+    //}
 }

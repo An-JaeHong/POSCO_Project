@@ -2,17 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ICommand : MonoBehaviour
+//Command Pattern을 쓸 예정
+public interface ICommand
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    //실행시킬 함수
+    public void Execute();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    //뒤로 돌릴 함수인데, 쓸 이유는 없을 것 같지만 혹시 모르니 작성
+    public void Undo();
 }
