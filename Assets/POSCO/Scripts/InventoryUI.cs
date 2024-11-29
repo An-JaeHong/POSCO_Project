@@ -19,14 +19,16 @@ public class InventoryUI : MonoBehaviour
     public Button Sellect;
     public Button Reset;
 
-    public List<GameObject> textureMonsterPrefabsList;// ��� ����(UI�� TextureMonster�� List�� ����)
-    public List<GameObject> texturePlayerMonsterList; // UI�� ��� ���� ����Ʈ
+    public List<GameObject> textureMonsterPrefabsList;// 인벤토리에 띄울 몬스터 전체 리스트
+    public List<GameObject> texturePlayerMonsterList; // 인벤토리에 띄울 몬스터 리스트
+    public List<GameObject> textureSelcetedMonsterList;
+    public GameObject monsterToInstantiate;
 
     public List<Monster> playerMonsterList = new List<Monster>();
     public List<Monster> tempSelectedMonsterList = new List<Monster>();
 
     private bool isOpenInventory = false;
-    private int choiceNum = 0; //�ִ�3���� ���� 
+    private int choiceNum = 0; //최대 3마리까지 선택을 위해 3보다 작음을 확인
 
     private Player player;
 
@@ -68,7 +70,7 @@ public class InventoryUI : MonoBehaviour
 
         //�������� ��µ� ���� ������ ��ȯ
         FindSameMonsters();
-        InstantiatePrefab();
+        InstantiatePlayerMonster();
     }
 
 
@@ -157,40 +159,51 @@ public class InventoryUI : MonoBehaviour
                 case 0:
                     tempSelectedMonsterList.Add(playerMonsterList[0]);
                     monsterCardNum[0].interactable = false;
-                    print("ù��° ī�� ��Ȱ��ȭ");
-                    print($"{playerMonsterList[0]} �ӽ������");
+                    monsterToInstantiate = texturePlayerMonsterList[0];
+                    print("첫번째 카드선택");
+                    print($"{playerMonsterList[0]} 저장됨");
+
 
                     break;
                 case 1:
                     tempSelectedMonsterList.Add(playerMonsterList[1]);
                     monsterCardNum[1].interactable = false;
-                    print("�ι�° ī�� ��Ȱ��ȭ");
-                    print($"{playerMonsterList[1]} �ӽ������");
+                    monsterToInstantiate = texturePlayerMonsterList[1];
+                    print("두번째 카드선택");
+                    print($"{playerMonsterList[1]} 저장됨");
                     break;
                 case 2:
                     tempSelectedMonsterList.Add(playerMonsterList[2]);
                     monsterCardNum[2].interactable = false;
-                    print($"{playerMonsterList[3]} �ӽ������");
-                    print("����° ī�� ��Ȱ��ȭ");
+                    monsterToInstantiate = texturePlayerMonsterList[2];
+                    print("3번째 카드 선택");
+                    print($"{playerMonsterList[3]} 저장됨");
                     break;
                 case 3:
                     tempSelectedMonsterList.Add(playerMonsterList[3]);
                     monsterCardNum[3].interactable = false;
-                    print("�׹�°ī�� ��Ȱ��ȭ");
-                    print($"{playerMonsterList[4]} �ӽ������");
+                    monsterToInstantiate = texturePlayerMonsterList[3];
+                    print("4번째 카드 선택");
+                    print($"{playerMonsterList[4]} 저장됨");
                     break;
                 case 4:
                     tempSelectedMonsterList.Add(playerMonsterList[4]);
                     monsterCardNum[4].interactable = false;
-                    print("�ټ���°ī�� ��Ȱ��ȭ");
-                    print($"{playerMonsterList[4]} �ӽ������");
+                    monsterToInstantiate = texturePlayerMonsterList[4];
+                    print("5번째 카드 선택");
+                    print($"{playerMonsterList[4]} 저장됨");
                     break;
             }
+            GameObject instantiatedMonster = Instantiate(monsterToInstantiate);
+            textureSelcetedMonsterList.Add(instantiatedMonster);
+
             choiceNum++;
+           
+            SetCelectMonster();
         }
         else
         {
-            print("3�������� ���ð���");
+            print("공격 몬스터를 설정하세요");
         }
     }
 
@@ -203,28 +216,39 @@ public class InventoryUI : MonoBehaviour
     {
         switch(choiceNum)
         {
-            case 0://all clear
-                break;
             case 1:
+                InstantiateSelectedMonster(0);
                 break;
             case 2:
+                InstantiateSelectedMonster(1);
                 break;
-                case 3:
+            case 3:
+                InstantiateSelectedMonster(2);
             break;
         }
     }
 
-
-
-public void OnSellectBoutton()
+    public void DestroyPrefabsInList(List<GameObject> prefabList)
     {
-        print("Sellect ����");
+        foreach (var prefab in prefabList)
+        {
+            print("파괴됨");
+            Destroy(prefab); // 게임 오브젝트 파괴
+        }
+        //prefabList.Clear(); // 리스트 초기화
+    }
+
+
+
+    public void OnSellectBoutton()
+    {
+        //print("Sellect ����");
 
         if (choiceNum == 3)
         {
 
 
-            print("���õ�");
+            //print("���õ�");
 
             //�÷��̾� ���Ϳ� ���� �־����
             player.SetSelectedMonsters(tempSelectedMonsterList);
@@ -245,14 +269,14 @@ public void OnSellectBoutton()
 
     public void OnRestetButton()
     {
-        print("�ʱ�ȭ��");
+        //print("�ʱ�ȭ��");
         choiceNum = 0;
 
         foreach (var button in monsterCardNum)
         {
             button.interactable = true;
         }
-
+        DestroyPrefabsInList(textureSelcetedMonsterList);
         tempSelectedMonsterList.Clear();
     }
 
@@ -264,7 +288,7 @@ public void OnSellectBoutton()
 
     public void FindSameMonsters()
     {
-        print("����1");
+        //print("����1");
         for (int i = 0; i < playerMonsterList.Count; i++)
         {
             foreach (var monster in textureMonsterPrefabsList)
@@ -278,9 +302,9 @@ public void OnSellectBoutton()
         }
     }
 
-    public void InstantiatePrefab()
+    public void InstantiatePlayerMonster()
     {
-        print("����2");
+        //print("����2");
         GameObject prefabToInstantiate;
         UIMonster newTextureMonster;
         for (int i = 0; i < playerMonsterList.Count; i++)
@@ -291,6 +315,15 @@ public void OnSellectBoutton()
             newTextureMonster.transform.position = new Vector3(20 - posNum, 0, 0);
         }
 
+    }
+    public void InstantiateSelectedMonster(int num)
+    {
+        GameObject prefabToInstantiate;
+        UIMonster newTextureMonster;
+
+        prefabToInstantiate = textureSelcetedMonsterList[num];
+        newTextureMonster = Instantiate(prefabToInstantiate).GetComponent<UIMonster>();
+        newTextureMonster.transform.position = new Vector3(100+num*20, 0, 0);
     }
 
 
