@@ -6,15 +6,10 @@ public class Monster : MonoBehaviour
 {
 
     public string name;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float hp;
+    public float damage;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public bool isEnemy;
+
+    
 }

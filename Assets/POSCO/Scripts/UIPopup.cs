@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class UIPopup : MonoBehaviour
@@ -10,6 +11,9 @@ public class UIPopup : MonoBehaviour
     public GameObject enemyContactCanvas;
     public GameObject battleCanvas;
     public GameObject chooseBattleStateCanvas;
+
+    //행동을 고르는 텍스트
+    private TextMeshProUGUI chooseStateText;
 
     private Player player;
 
@@ -24,6 +28,8 @@ public class UIPopup : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
+
+        chooseStateText = chooseBattleStateCanvas.GetComponent<TextMeshProUGUI>();
     }
 
     private void Start()
@@ -49,6 +55,13 @@ public class UIPopup : MonoBehaviour
     public void BattleCanvasOpen()
     {
         battleCanvas.SetActive(true);
+    }
+
+    public void ChooseBattleStateCanvasOpen(Monster playerMonster)
+    {
+        
+        chooseBattleStateCanvas.SetActive(true);
+        chooseStateText.text = $"{playerMonster.name}'Turn. Choose your state!";
     }
 
     //공격버튼 클릭
