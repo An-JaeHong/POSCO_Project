@@ -37,7 +37,7 @@ public class PlayerBattleState : PlayerStateBase
         };
 
         UIPopupManager.Instance.ShowPopup(
-            $"",
+            $"asdasdasdasdasd",
             buttons
             );
     }
