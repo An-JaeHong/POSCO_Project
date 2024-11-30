@@ -30,7 +30,7 @@ public class Monster : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        animator.SetTrigger("TakeDamage");
+        //animator.SetTrigger("TakeDamage");
     }
 
     public void Heal(float healAmount)
@@ -40,12 +40,12 @@ public class Monster : MonoBehaviour
 
     public void PlayerAttackAnimation()
     {
-        animator.SetTrigger("OnAttack");
+        //animator.SetTrigger("OnAttack");
     }
 
     private void OnDead()
     {
-        animator.SetBool("IsDead", true);
+        //animator.SetBool("IsDead", true);
     }
 
 
