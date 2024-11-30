@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     public bool isEnemyActionComplete = false;
 
     //현재 턴의 몬스터
-    private Monster currentTurnMonster = new Monster();
+    public Monster currentTurnMonster = new Monster();
 
     private void Awake()
     {

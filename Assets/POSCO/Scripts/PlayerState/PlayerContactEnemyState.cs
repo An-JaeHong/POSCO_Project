@@ -25,12 +25,14 @@ public class PlayerContactEnemyState : PlayerStateBase
         //생성할 버튼에 대한 정보
         var buttons = new Dictionary<string, UnityAction>
         {
-            { "Fight", () =>
+            { 
+                "Fight", () =>
                 {
                     StartBattle(); 
                 } 
             },
-            { "RunAway", () =>
+            { 
+                "RunAway", () =>
                 { 
                     RunAway();
                 }
