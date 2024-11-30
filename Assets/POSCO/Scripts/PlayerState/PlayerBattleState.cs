@@ -42,10 +42,85 @@ public class PlayerBattleState : PlayerStateBase
             );
     }
 
+    //공격하기를 누르면 누굴 공격할지를 선택할 수 있어야한다.
     private void DoAttack()
     {
-        Debug.Log($"FromDoAttack -> {GameManager.Instance.currentTurnMonster}가 공격받는중");
-        GameManager.Instance.ExecutePlayerAttackAction(GameManager.Instance.currentTurnMonster);
+        //GameManager.Instance.ExecutePlayerAttackAction(GameManager.Instance.currentTurnMonster);
+        ChooseTarget();
+    }
+
+    //공격 대상 선택
+    private void ChooseTarget()
+    {
+
+        var buttons = new Dictionary<string, UnityAction>
+        {
+            {
+                "First", () =>
+                {
+                    DoAttackFirstTarget();
+                }
+            },
+            {
+                "Second", () =>
+                {
+                    DoAttackSecondTarget();
+                }
+            },
+            {
+                "Third", () =>
+                {
+                    DoAttackThirdTarget();
+                }
+            }
+        };
+
+        UIPopupManager.Instance.ShowPopup(
+            $"ChooseTarget!",
+            buttons
+            );
+    }
+
+    private void DoAttackFirstTarget()
+    {
+        Debug.Log("첫번째 타겟을 골랐다!");
+        Monster target = TurnManager.Instance.enemyMonsterList[0];
+        if (target.hp <= 0)
+        {
+            Debug.Log("이미 죽은 몬스터이다. 다른 몬스터를 골라!");
+        }
+        else
+        {
+            GameManager.Instance.ExecutePlayerAttackAction(target);
+        }
+    }
+
+    private void DoAttackSecondTarget()
+    {
+        Debug.Log("두번째 타겟을 골랐다!");
+        Monster target = TurnManager.Instance.enemyMonsterList[1];
+        if (target.hp <= 0)
+        {
+            Debug.Log("이미 죽은 몬스터이다. 다른 몬스터를 골라!");
+        }
+        else
+        {
+            GameManager.Instance.ExecutePlayerAttackAction(target);
+        }
+    }
+    
+    private void DoAttackThirdTarget()
+    {
+        Debug.Log("세번째 타겟을 골랐다!");
+        Monster target = TurnManager.Instance.enemyMonsterList[2];
+        if (target.hp <= 0)
+        {
+            Debug.Log("이미 죽은 몬스터이다. 다른 몬스터를 골라!");
+        }
+        else
+        {
+            GameManager.Instance.ExecutePlayerAttackAction(target);
+        }
     }
 
     private void DoHeal()

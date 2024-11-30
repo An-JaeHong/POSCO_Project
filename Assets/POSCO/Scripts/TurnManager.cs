@@ -66,6 +66,11 @@ public class TurnManager : MonoBehaviour
     //턴 초기화 -> 씬이 하나이니까 전투가 다 끝나면 초기화 하는 방식으로 해야할 듯
     private void InitializeTurnQueue()
     {
+        //초기화할때, 만난 몬스터들의 isEnemy를 true로 만들어준다. 이래야지 턴이 잘 작동한다. -> 조금 마음에 들지는 않는다.
+        foreach (Monster enemyMonster in enemyMonsterList)
+        {
+            enemyMonster.isEnemy = true;
+        }
         //시작할때 마다 턴 초기화
         turnQueue.Clear();
 
@@ -180,9 +185,11 @@ public class TurnManager : MonoBehaviour
             Monster targetMonster = targetMonsterList[UnityEngine.Random.Range(0, targetMonsterList.Count)];
 
             //그다음 event로 받아온 변수 초기화
-            ActionData actionData = new ActionData(enemy, targetMonster);
+            //ActionData actionData = new ActionData(enemy, targetMonster);
+            //enemyAttack?.Invoke(actionData);
             //담겨있던 event 실행
             //enemyAttack?.Invoke(actionData);
+            GameManager.Instance.ExecuteEnemyAttackAction(targetMonster);
             yield return new WaitUntil(() => GameManager.Instance.isEnemyActionComplete);
         }
         turnQueue.Enqueue(enemy);
