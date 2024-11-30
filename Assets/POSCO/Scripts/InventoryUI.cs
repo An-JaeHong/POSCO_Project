@@ -24,10 +24,10 @@ public class InventoryUI : MonoBehaviour
 
 
     public GameObject[] colectedCard;//d
-    public Texture[] colectedMonsterTexure;
-    public Texture emptyTexureRenderer;
+    public List<RenderTexture> colectedMonsterTexure;
+    public RenderTexture emptyTexureRenderer;
     public RawImage targetRawImage;
-
+    
 
     public List<Monster> playerMonsterList = new List<Monster>();
     public List<Monster> tempSelectedMonsterList = new List<Monster>();
@@ -164,52 +164,49 @@ public class InventoryUI : MonoBehaviour
                 case 0:
                     tempSelectedMonsterList.Add(playerMonsterList[0]);
                     monsterCardNum[0].interactable = false;
-                   
+                    targetRawImage = monsterCardNum[0].GetComponentInChildren<RawImage>();
                     print("첫번째 카드선택");
                     print($"{playerMonsterList[0]} 저장됨");
-
-
                     break;
                 case 1:
                     tempSelectedMonsterList.Add(playerMonsterList[1]);
                     monsterCardNum[1].interactable = false;
-                   
+                    targetRawImage = monsterCardNum[1].GetComponentInChildren<RawImage>();
                     print("두번째 카드선택");
                     print($"{playerMonsterList[1]} 저장됨");
                     break;
                 case 2:
                     tempSelectedMonsterList.Add(playerMonsterList[2]);
                     monsterCardNum[2].interactable = false;
-              
+                    targetRawImage = monsterCardNum[2].GetComponentInChildren<RawImage>();
                     print("3번째 카드 선택");
                     print($"{playerMonsterList[3]} 저장됨");
                     break;
                 case 3:
                     tempSelectedMonsterList.Add(playerMonsterList[3]);
                     monsterCardNum[3].interactable = false;
-    
+                    targetRawImage = monsterCardNum[3].GetComponentInChildren<RawImage>();
                     print("4번째 카드 선택");
                     print($"{playerMonsterList[4]} 저장됨");
                     break;
                 case 4:
                     tempSelectedMonsterList.Add(playerMonsterList[4]);
                     monsterCardNum[4].interactable = false;
-   
+                    targetRawImage = monsterCardNum[4].GetComponentInChildren<RawImage>();
                     print("5번째 카드 선택");
                     print($"{playerMonsterList[4]} 저장됨");
                     break;
             }
-            targetRawImage = this.GetComponent<RawImage>();
+        
+           choiceNum++;
 
-            choiceNum++;
-
-           
-            //SetCelectMonster();
         }
         else
         {
             print("공격 몬스터를 설정하세요");
         }
+
+        ShowSetCelectMonster();
     }
 
 
@@ -217,20 +214,21 @@ public class InventoryUI : MonoBehaviour
 
 
     //Monster card���� ���� ���ý� ������ ���� ����
-    private void SetCelectMonster()
+    private void ShowSetCelectMonster()
     {
-        switch(choiceNum)
-        {
-            case 1:
-                colectedMonsterTexure[0] = targetRawImage.texture; 
-                break;
-            case 2:
-                colectedMonsterTexure[1] = targetRawImage.texture;
-                break;
-            case 3:
-                colectedMonsterTexure[2] = targetRawImage.texture;
-                break;
-        }
+        //switch (choiceNum)
+        //{
+        //    case 0:
+        //        targetRawImage.texture
+        //        break;
+        //    case 1:
+        //        break;
+        //    case 2:
+        //        break;
+
+
+                
+        //            }
     }
 
 
@@ -271,13 +269,6 @@ public class InventoryUI : MonoBehaviour
             button.interactable = true;
         }
         tempSelectedMonsterList.Clear();
-
-        for(int i = 0; i< 3 ; i++)
-        {
-            colectedMonsterTexure[i]= targetRawImage.texture;
-
-        }
-
 
     }
 

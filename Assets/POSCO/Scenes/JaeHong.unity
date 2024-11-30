@@ -497,73 +497,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3732477519341838387, guid: cdc04cb26af40d942925360edeb46395, type: 3}
   m_PrefabInstance: {fileID: 2049541234}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &338656434 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 26659928498525465, guid: cdc04cb26af40d942925360edeb46395, type: 3}
-  m_PrefabInstance: {fileID: 2049541234}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 338656432}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &338656436
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 338656432}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 338656434}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 951098297}
-        m_TargetAssemblyTypeName: InventoryUI, Assembly-CSharp
-        m_MethodName: OnCardButton
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 4
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &339094406
 GameObject:
   m_ObjectHideFlags: 0
@@ -653,310 +586,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3013145816227690712, guid: cdc04cb26af40d942925360edeb46395, type: 3}
   m_PrefabInstance: {fileID: 2049541234}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &346153977 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5712194515310924215, guid: cdc04cb26af40d942925360edeb46395, type: 3}
-  m_PrefabInstance: {fileID: 2049541234}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 346153975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &346153979
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 346153975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 346153977}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 951098297}
-        m_TargetAssemblyTypeName: InventoryUI, Assembly-CSharp
-        m_MethodName: OnCardButton
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!224 &544720334 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 5785464938131687323, guid: cdc04cb26af40d942925360edeb46395, type: 3}
-  m_PrefabInstance: {fileID: 2049541234}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &583950228 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 829714807907857173, guid: cdc04cb26af40d942925360edeb46395, type: 3}
   m_PrefabInstance: {fileID: 2049541234}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &583950230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 583950228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 583950231}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 951098297}
-        m_TargetAssemblyTypeName: InventoryUI, Assembly-CSharp
-        m_MethodName: OnCardButton
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &583950231 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6050459622253807238, guid: cdc04cb26af40d942925360edeb46395, type: 3}
-  m_PrefabInstance: {fileID: 2049541234}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 583950228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &613268872
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 613268873}
-  - component: {fileID: 613268875}
-  - component: {fileID: 613268874}
-  m_Layer: 0
-  m_Name: ColectedCardTexture3
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &613268873
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 613268872}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1641196466}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &613268874
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 613268872}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Texture: {fileID: 8400000, guid: 9f8432d868368304e99637a8bf2b018c, type: 2}
-  m_UVRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
---- !u!222 &613268875
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 613268872}
-  m_CullTransparentMesh: 1
---- !u!224 &907416955 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 5863483177287832517, guid: cdc04cb26af40d942925360edeb46395, type: 3}
-  m_PrefabInstance: {fileID: 2049541234}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &951098297 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5931684690414173104, guid: cdc04cb26af40d942925360edeb46395, type: 3}
-  m_PrefabInstance: {fileID: 2049541234}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fa3dc0717947524a974b0db1b2a88e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &1039325331
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1039325332}
-  - component: {fileID: 1039325334}
-  - component: {fileID: 1039325333}
-  m_Layer: 0
-  m_Name: ColectedCardTexture1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1039325332
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1039325331}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 544720334}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1039325333
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1039325331}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Texture: {fileID: 8400000, guid: 9f8432d868368304e99637a8bf2b018c, type: 2}
-  m_UVRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
---- !u!222 &1039325334
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1039325331}
-  m_CullTransparentMesh: 1
 --- !u!1 &1118710992
 GameObject:
   m_ObjectHideFlags: 0
@@ -1138,73 +772,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1910608051866764380, guid: cdc04cb26af40d942925360edeb46395, type: 3}
   m_PrefabInstance: {fileID: 2049541234}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1292646627 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2718055555211791931, guid: cdc04cb26af40d942925360edeb46395, type: 3}
-  m_PrefabInstance: {fileID: 2049541234}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1292646625}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1292646629
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1292646625}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 1292646627}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 951098297}
-        m_TargetAssemblyTypeName: InventoryUI, Assembly-CSharp
-        m_MethodName: OnCardButton
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1001 &1302889752
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1306,98 +873,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b728ef95cdda794cb4322187bfb04ee, type: 3}
---- !u!1 &1308809639
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1308809642}
-  - component: {fileID: 1308809641}
-  - component: {fileID: 1308809640}
-  m_Layer: 0
-  m_Name: SelecedMonsterCamera1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!81 &1308809640
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1308809639}
-  m_Enabled: 0
---- !u!20 &1308809641
-Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1308809639}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
-  m_Iso: 200
-  m_ShutterSpeed: 0.005
-  m_Aperture: 16
-  m_FocusDistance: 10
-  m_FocalLength: 50
-  m_BladeCount: 5
-  m_Curvature: {x: 2, y: 11}
-  m_BarrelClipping: 0.25
-  m_Anamorphism: 0
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 64
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 8400000, guid: 9f8432d868368304e99637a8bf2b018c, type: 2}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
---- !u!4 &1308809642
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1308809639}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.9990483, z: -0.043619405, w: 0}
-  m_LocalPosition: {x: 100, y: 1, z: 4}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 5, y: 180, z: 0}
 --- !u!1 &1312092065
 GameObject:
   m_ObjectHideFlags: 0
@@ -1563,73 +1038,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 197523238893121303, guid: cdc04cb26af40d942925360edeb46395, type: 3}
   m_PrefabInstance: {fileID: 2049541234}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1466865783 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8439589010868331152, guid: cdc04cb26af40d942925360edeb46395, type: 3}
-  m_PrefabInstance: {fileID: 2049541234}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1466865781}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1466865785
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1466865781}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 1466865783}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 951098297}
-        m_TargetAssemblyTypeName: InventoryUI, Assembly-CSharp
-        m_MethodName: OnCardButton
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &1487857411
 GameObject:
   m_ObjectHideFlags: 0
@@ -1808,11 +1216,6 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!224 &1641196466 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 1410524611968582823, guid: cdc04cb26af40d942925360edeb46395, type: 3}
-  m_PrefabInstance: {fileID: 2049541234}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1672757187
 GameObject:
   m_ObjectHideFlags: 0
@@ -2157,78 +1560,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 5, y: 180, z: 0}
---- !u!1 &1972495485
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1972495486}
-  - component: {fileID: 1972495488}
-  - component: {fileID: 1972495487}
-  m_Layer: 0
-  m_Name: ColectedCardTexture2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1972495486
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1972495485}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 907416955}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1972495487
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1972495485}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Texture: {fileID: 8400000, guid: 9f8432d868368304e99637a8bf2b018c, type: 2}
-  m_UVRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
---- !u!222 &1972495488
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1972495485}
-  m_CullTransparentMesh: 1
 --- !u!1001 &2049541234
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2237,57 +1568,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 197523238893121303, guid: cdc04cb26af40d942925360edeb46395, type: 3}
-      propertyPath: m_Name
-      value: MonsterCardButton4
-      objectReference: {fileID: 0}
-    - target: {fileID: 829714807907857173, guid: cdc04cb26af40d942925360edeb46395, type: 3}
-      propertyPath: m_Name
-      value: MonsterCardButton1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1910608051866764380, guid: cdc04cb26af40d942925360edeb46395, type: 3}
-      propertyPath: m_Name
-      value: MonsterCardButton3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2899537633786688468, guid: cdc04cb26af40d942925360edeb46395, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2899537633786688468, guid: cdc04cb26af40d942925360edeb46395, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3013145816227690712, guid: cdc04cb26af40d942925360edeb46395, type: 3}
-      propertyPath: m_Name
-      value: MonsterCardButton2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3098927674708558074, guid: cdc04cb26af40d942925360edeb46395, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3098927674708558074, guid: cdc04cb26af40d942925360edeb46395, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3347411216812452624, guid: cdc04cb26af40d942925360edeb46395, type: 3}
-      propertyPath: m_Color.a
-      value: 0.5882353
-      objectReference: {fileID: 0}
-    - target: {fileID: 3347411216812452624, guid: cdc04cb26af40d942925360edeb46395, type: 3}
-      propertyPath: m_Color.b
-      value: 0.514151
-      objectReference: {fileID: 0}
-    - target: {fileID: 3347411216812452624, guid: cdc04cb26af40d942925360edeb46395, type: 3}
-      propertyPath: m_Color.g
+    - target: {fileID: 796479089736308776, guid: cdc04cb26af40d942925360edeb46395, type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 8400000, guid: 94bee570d2039bc49995678dd2e91561, type: 2}
+    - target: {fileID: 1396191845747034105, guid: cdc04cb26af40d942925360edeb46395, type: 3}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3347411216812452624, guid: cdc04cb26af40d942925360edeb46395, type: 3}
-      propertyPath: m_Color.r
-      value: 0.9070275
+    - target: {fileID: 2899537633786688468, guid: cdc04cb26af40d942925360edeb46395, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3732477519341838387, guid: cdc04cb26af40d942925360edeb46395, type: 3}
-      propertyPath: m_Name
-      value: MonsterCardButton5
+    - target: {fileID: 2899537633786688468, guid: cdc04cb26af40d942925360edeb46395, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3098927674708558074, guid: cdc04cb26af40d942925360edeb46395, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3098927674708558074, guid: cdc04cb26af40d942925360edeb46395, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3746907490115982917, guid: cdc04cb26af40d942925360edeb46395, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2310,84 +1613,64 @@ PrefabInstance:
       value: InventoryUI
       objectReference: {fileID: 0}
     - target: {fileID: 5931684690414173104, guid: cdc04cb26af40d942925360edeb46395, type: 3}
-      propertyPath: emptyTexureRenderer
-      value: 
-      objectReference: {fileID: 8400000, guid: 9f8432d868368304e99637a8bf2b018c, type: 2}
-    - target: {fileID: 5931684690414173104, guid: cdc04cb26af40d942925360edeb46395, type: 3}
       propertyPath: colectedCard.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5931684690414173104, guid: cdc04cb26af40d942925360edeb46395, type: 3}
+      propertyPath: targetCamera.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5931684690414173104, guid: cdc04cb26af40d942925360edeb46395, type: 3}
+      propertyPath: targetTexture.Array.size
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5931684690414173104, guid: cdc04cb26af40d942925360edeb46395, type: 3}
       propertyPath: colectedCard.Array.data[0]
       value: 
-      objectReference: {fileID: 1039325331}
+      objectReference: {fileID: 583950228}
     - target: {fileID: 5931684690414173104, guid: cdc04cb26af40d942925360edeb46395, type: 3}
       propertyPath: colectedCard.Array.data[1]
       value: 
-      objectReference: {fileID: 1972495485}
+      objectReference: {fileID: 346153975}
     - target: {fileID: 5931684690414173104, guid: cdc04cb26af40d942925360edeb46395, type: 3}
       propertyPath: colectedCard.Array.data[2]
       value: 
-      objectReference: {fileID: 613268872}
+      objectReference: {fileID: 1292646625}
     - target: {fileID: 5931684690414173104, guid: cdc04cb26af40d942925360edeb46395, type: 3}
-      propertyPath: monsterCardNum.Array.data[0]
+      propertyPath: colectedCard.Array.data[3]
       value: 
-      objectReference: {fileID: 583950230}
+      objectReference: {fileID: 1466865781}
     - target: {fileID: 5931684690414173104, guid: cdc04cb26af40d942925360edeb46395, type: 3}
-      propertyPath: monsterCardNum.Array.data[1]
+      propertyPath: colectedCard.Array.data[4]
       value: 
-      objectReference: {fileID: 346153979}
+      objectReference: {fileID: 338656432}
     - target: {fileID: 5931684690414173104, guid: cdc04cb26af40d942925360edeb46395, type: 3}
-      propertyPath: monsterCardNum.Array.data[2]
+      propertyPath: targetCamera.Array.data[0]
       value: 
-      objectReference: {fileID: 1292646629}
+      objectReference: {fileID: 0}
     - target: {fileID: 5931684690414173104, guid: cdc04cb26af40d942925360edeb46395, type: 3}
-      propertyPath: monsterCardNum.Array.data[3]
+      propertyPath: targetCamera.Array.data[1]
       value: 
-      objectReference: {fileID: 1466865785}
+      objectReference: {fileID: 0}
     - target: {fileID: 5931684690414173104, guid: cdc04cb26af40d942925360edeb46395, type: 3}
-      propertyPath: monsterCardNum.Array.data[4]
+      propertyPath: targetCamera.Array.data[2]
       value: 
-      objectReference: {fileID: 338656436}
+      objectReference: {fileID: 0}
     - target: {fileID: 5931684690414173104, guid: cdc04cb26af40d942925360edeb46395, type: 3}
-      propertyPath: ColectedMonsterTexure.Array.size
+      propertyPath: targetTexture.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5931684690414173104, guid: cdc04cb26af40d942925360edeb46395, type: 3}
+      propertyPath: targetTexture.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5931684690414173104, guid: cdc04cb26af40d942925360edeb46395, type: 3}
+      propertyPath: targetTexture.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5931684690414173104, guid: cdc04cb26af40d942925360edeb46395, type: 3}
+      propertyPath: colectedMonsterTexure.Array.size
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5931684690414173104, guid: cdc04cb26af40d942925360edeb46395, type: 3}
-      propertyPath: texureMonsterRenderer.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5931684690414173104, guid: cdc04cb26af40d942925360edeb46395, type: 3}
-      propertyPath: texureMonsterRenderer.Array.data[0]
-      value: 
-      objectReference: {fileID: 8400000, guid: 94bee570d2039bc49995678dd2e91561, type: 2}
-    - target: {fileID: 5931684690414173104, guid: cdc04cb26af40d942925360edeb46395, type: 3}
-      propertyPath: texureMonsterRenderer.Array.data[1]
-      value: 
-      objectReference: {fileID: 8400000, guid: 36ab6b6b94817b74f8742944b8c8b3dd, type: 2}
-    - target: {fileID: 5931684690414173104, guid: cdc04cb26af40d942925360edeb46395, type: 3}
-      propertyPath: texureMonsterRenderer.Array.data[2]
-      value: 
-      objectReference: {fileID: 8400000, guid: 44e512d6d2d25c543bb5806846e0c617, type: 2}
-    - target: {fileID: 5931684690414173104, guid: cdc04cb26af40d942925360edeb46395, type: 3}
-      propertyPath: texureMonsterRenderer.Array.data[3]
-      value: 
-      objectReference: {fileID: 8400000, guid: ed3fc2cfc2426004fa5b5426ed345d33, type: 2}
-    - target: {fileID: 5931684690414173104, guid: cdc04cb26af40d942925360edeb46395, type: 3}
-      propertyPath: texureMonsterRenderer.Array.data[4]
-      value: 
-      objectReference: {fileID: 8400000, guid: 526e2ab04ef3b3e4aa22918a3dae07fd, type: 2}
-    - target: {fileID: 5931684690414173104, guid: cdc04cb26af40d942925360edeb46395, type: 3}
-      propertyPath: textureMonsterPrefabsList.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5931684690414173104, guid: cdc04cb26af40d942925360edeb46395, type: 3}
-      propertyPath: textureSelcetedMonsterList.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5995222255516283922, guid: cdc04cb26af40d942925360edeb46395, type: 3}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7702040420492693577, guid: cdc04cb26af40d942925360edeb46395, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2479,32 +1762,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 5785464938131687323, guid: cdc04cb26af40d942925360edeb46395, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1039325332}
-    - targetCorrespondingSourceObject: {fileID: 5863483177287832517, guid: cdc04cb26af40d942925360edeb46395, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1972495486}
-    - targetCorrespondingSourceObject: {fileID: 1410524611968582823, guid: cdc04cb26af40d942925360edeb46395, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 613268873}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 829714807907857173, guid: cdc04cb26af40d942925360edeb46395, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 583950230}
-    - targetCorrespondingSourceObject: {fileID: 3013145816227690712, guid: cdc04cb26af40d942925360edeb46395, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 346153979}
-    - targetCorrespondingSourceObject: {fileID: 1910608051866764380, guid: cdc04cb26af40d942925360edeb46395, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1292646629}
-    - targetCorrespondingSourceObject: {fileID: 197523238893121303, guid: cdc04cb26af40d942925360edeb46395, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1466865785}
-    - targetCorrespondingSourceObject: {fileID: 3732477519341838387, guid: cdc04cb26af40d942925360edeb46395, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 338656436}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cdc04cb26af40d942925360edeb46395, type: 3}
 --- !u!1001 &651940278770544327
 PrefabInstance:
@@ -2879,4 +2138,3 @@ SceneRoots:
   - {fileID: 1118710995}
   - {fileID: 1383287282}
   - {fileID: 1886232351}
-  - {fileID: 1308809642}
