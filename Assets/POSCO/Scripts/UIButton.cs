@@ -24,24 +24,13 @@ public class UIButton : MonoBehaviour
         buttonText.text = text;
 
         //이전 리스너 제거
-        if(callback != null)
+        if (callback != null)
         {
             button.onClick.RemoveListener(callback);
         }
 
         callback = onClick;
-        if (callback != null)
-        {
-            button.onClick.AddListener(() => {
-                Debug.Log($"Button {text} clicked!");
-                callback.Invoke();
-            });
-            Debug.Log($"Callback added for button {text}");
-        }
-        else
-        {
-            Debug.LogError($"Callback is null for button {text}");
-        }
+        button.onClick.AddListener(callback);
     }
 
     //버튼 사라지면 구독자들 지워야함

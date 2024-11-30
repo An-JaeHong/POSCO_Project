@@ -49,46 +49,20 @@ public class UIPopupManager : MonoBehaviour
         //일단 Background 띄움
         currentPopup = Instantiate(popupPrefab, canvasTransform);
         UIPopup popup = currentPopup.GetComponent<UIPopup>();
-        //print($"popup Created : {popup}");
-        //print($"ButtonContainer : {popup.ButtonContainer}");
-        //팝업 내용 바꿔줄곳
-        if (popup == null)
-        {
-            Debug.LogError("UIPopup 컴포넌트를 찾을 수 없습니다!");
-            return;
-        }
-
-        if (popup.ButtonContainer == null)
-        {
-            Debug.LogError("ButtonContainer가 할당되지 않았습니다!");
-            return;
-        }
 
         popup.SetTitle(title);
-        //popup.SetContent(content);
 
-
-        //activeButton.Clear();
         //버튼 생성하는 곳
         foreach (var button in buttons)
         {
             if (buttonPrefab == null)
             {
-                Debug.LogError("Button Prefab이 할당되지 않았습니다!");
                 return;
             }
             var buttonObj = Instantiate(buttonPrefab, popup.ButtonContainer);
             var uiButton = buttonObj.GetComponent<UIButton>();
 
-            if (uiButton == null)
-            {
-                Debug.LogError("UIButton 컴포넌트를 찾을 수 없습니다!");
-                return;
-            }
-
-            print($"SetPopup - button.key : {button.Key}");
             uiButton.ButtonPrefabSetup(button.Key, button.Value);
-            //activeButton[button.Key] = uiButton;
         }
     }
 

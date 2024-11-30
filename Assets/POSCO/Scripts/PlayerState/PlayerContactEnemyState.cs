@@ -37,23 +37,10 @@ public class PlayerContactEnemyState : PlayerStateBase
             }
         };
 
-        foreach (var button in buttons)
-        {
-            if (button.Value == null)
-            {
-                Debug.LogError($"Callback for button {button.Key} is null");
-            }
-        }
-
         UIPopupManager.Instance.ShowPopup(
             $"{enemyMonster.name} is appear!, what do you do?",
             buttons
         );
-
-        UIPopupManager.Instance.ShowPopup(
-            $"{enemyMonster.name} is appear!, what do you do?",
-            buttons
-            );
     }
 
     private void StartBattle()
