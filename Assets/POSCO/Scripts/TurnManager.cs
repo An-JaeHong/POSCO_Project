@@ -93,7 +93,7 @@ public class TurnManager : MonoBehaviour
         //이렇게되면 플레이어1, 2, 3, 적1, 2, 3 순서로 Queue가 형성이 된다.
     }
 
-    //Monster의 턴이 바뀔때 마다 GameManger와 UIPopup에 정보를 넘겨줄 수 있어야한다.
+    //Monster의 턴이 바뀔떄 마다 호출되는 이벤트
     public event Action<Monster> monsterTurnChange;
     //본격적인 턴 관리
     private IEnumerator HandleTurn()
@@ -129,6 +129,7 @@ public class TurnManager : MonoBehaviour
             //적이라면
             else
             {
+                UIPopupManager.Instance.ClosePopup();
                 yield return StartCoroutine(HandleEnemyTurn(currentTurnMonster));
             }
 

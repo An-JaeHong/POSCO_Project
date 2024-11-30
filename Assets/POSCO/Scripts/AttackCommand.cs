@@ -17,7 +17,9 @@ public class AttackCommand : ICommand
     public void Execute()
     {
         target.TakeDamage(attacker.damage);
+        Debug.Log($"{target}이 공격받았다!");
         attacker.PlayerAttackAnimation();
+        Debug.Log($"{attacker}가 공격했다!");
     }
 
     public void Undo()

@@ -7,7 +7,10 @@ using UnityEngine.Events;
 
 public class PlayerBattleState : PlayerStateBase
 {
-    public PlayerBattleState(Player player) : base(player) { }
+    public PlayerBattleState(Player player) : base(player) 
+    {
+        TurnManager.Instance.monsterTurnChange += OnMonsterTurnChange;
+    }
 
     public override void Enter()
     {
@@ -20,6 +23,20 @@ public class PlayerBattleState : PlayerStateBase
         CameraManager.Instance.HandleCamera(CameraType.BattleMap);
         gameManager.SetMonsterOnBattlePosition();
 
+        //플레이어 턴일때 띄워주는 팝업
+        //ShowPlayerTurnPopup();
+    }
+
+    private void OnMonsterTurnChange(Monster currentMonster)
+    {
+        if (!currentMonster.isEnemy)
+        {
+            ShowPlayerTurnPopup(currentMonster);
+        }
+    }
+
+    private void ShowPlayerTurnPopup(Monster currentMonster)
+    {
         var buttons = new Dictionary<string, UnityAction>
         {
             {
@@ -37,7 +54,7 @@ public class PlayerBattleState : PlayerStateBase
         };
 
         UIPopupManager.Instance.ShowPopup(
-            $"asdasdasdasdasd",
+            $"{currentMonster.name}'s Turn. What do you do?",
             buttons
             );
     }
@@ -58,19 +75,19 @@ public class PlayerBattleState : PlayerStateBase
             {
                 "First", () =>
                 {
-                    DoAttackFirstTarget();
+                    DoAttackTarget(0);
                 }
             },
             {
                 "Second", () =>
                 {
-                    DoAttackSecondTarget();
+                    DoAttackTarget(1);
                 }
             },
             {
                 "Third", () =>
                 {
-                    DoAttackThirdTarget();
+                    DoAttackTarget(2);
                 }
             }
         };
@@ -81,45 +98,20 @@ public class PlayerBattleState : PlayerStateBase
             );
     }
 
-    private void DoAttackFirstTarget()
+    private void DoAttackTarget(int targetnum)
     {
-        Debug.Log("첫번째 타겟을 골랐다!");
-        Monster target = TurnManager.Instance.enemyMonsterList[0];
-        if (target.hp <= 0)
+        //적이 다 죽으면 고를 수 없어야함
+        if (targetnum < TurnManager.Instance.enemyMonsterList.Count)
         {
-            Debug.Log("이미 죽은 몬스터이다. 다른 몬스터를 골라!");
-        }
-        else
-        {
-            GameManager.Instance.ExecutePlayerAttackAction(target);
-        }
-    }
-
-    private void DoAttackSecondTarget()
-    {
-        Debug.Log("두번째 타겟을 골랐다!");
-        Monster target = TurnManager.Instance.enemyMonsterList[1];
-        if (target.hp <= 0)
-        {
-            Debug.Log("이미 죽은 몬스터이다. 다른 몬스터를 골라!");
-        }
-        else
-        {
-            GameManager.Instance.ExecutePlayerAttackAction(target);
-        }
-    }
-    
-    private void DoAttackThirdTarget()
-    {
-        Debug.Log("세번째 타겟을 골랐다!");
-        Monster target = TurnManager.Instance.enemyMonsterList[2];
-        if (target.hp <= 0)
-        {
-            Debug.Log("이미 죽은 몬스터이다. 다른 몬스터를 골라!");
-        }
-        else
-        {
-            GameManager.Instance.ExecutePlayerAttackAction(target);
+            Monster target = TurnManager.Instance.enemyMonsterList[targetnum];
+            if (target.hp > 0)
+            {
+                GameManager.Instance.ExecutePlayerAttackAction(target);
+            }
+            else
+            {
+                Debug.Log("이미 쓰러진 몬스터입니다. 다른 몬스터를 선택해주세요");
+            }
         }
     }
 
