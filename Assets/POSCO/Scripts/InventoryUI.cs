@@ -23,8 +23,8 @@ public class InventoryUI : MonoBehaviour
     public List<GameObject> texturePlayerMonsterList; // 인벤토리에 띄울 몬스터 리스트
 
 
-    public GameObject[] colectedCard;//d
-    public List<RenderTexture> colectedMonsterTexure;
+    public List<GameObject> colectedCard;//d
+    public List<GameObject> ShowColectedMonster;
     public RenderTexture emptyTexureRenderer;
     public RawImage targetRawImage;
     
@@ -34,10 +34,11 @@ public class InventoryUI : MonoBehaviour
 
     private bool isOpenInventory = false;
     private int choiceNum = 0; //최대 3마리까지 선택을 위해 3보다 작음을 확인
+    public GameObject[] cameraForMonster;
 
     private Player player;
-
-
+    private GameObject targetGameObject;
+    private RawImage rawImage;
 
     private void init()
     {
@@ -167,6 +168,7 @@ public class InventoryUI : MonoBehaviour
                     targetRawImage = monsterCardNum[0].GetComponentInChildren<RawImage>();
                     print("첫번째 카드선택");
                     print($"{playerMonsterList[0]} 저장됨");
+                    print(targetRawImage);
                     break;
                 case 1:
                     tempSelectedMonsterList.Add(playerMonsterList[1]);
@@ -174,6 +176,7 @@ public class InventoryUI : MonoBehaviour
                     targetRawImage = monsterCardNum[1].GetComponentInChildren<RawImage>();
                     print("두번째 카드선택");
                     print($"{playerMonsterList[1]} 저장됨");
+                    print(targetRawImage);
                     break;
                 case 2:
                     tempSelectedMonsterList.Add(playerMonsterList[2]);
@@ -203,32 +206,23 @@ public class InventoryUI : MonoBehaviour
         }
         else
         {
-            print("공격 몬스터를 설정하세요");
+            print("배틀 몬스터는최대 3마리 입니다.");
         }
 
-        ShowSetCelectMonster();
+        ShowSetCelectMonster(choiceNum - 1);
     }
 
 
 
 
-
     //Monster card���� ���� ���ý� ������ ���� ����
-    private void ShowSetCelectMonster()
+    private void ShowSetCelectMonster(int num)
     {
-        //switch (choiceNum)
-        //{
-        //    case 0:
-        //        targetRawImage.texture
-        //        break;
-        //    case 1:
-        //        break;
-        //    case 2:
-        //        break;
+        targetGameObject = ShowColectedMonster[num];
+        rawImage = targetGameObject.GetComponent<RawImage>();
+        rawImage.texture = targetRawImage.texture;
 
 
-                
-        //            }
     }
 
 
@@ -269,7 +263,12 @@ public class InventoryUI : MonoBehaviour
             button.interactable = true;
         }
         tempSelectedMonsterList.Clear();
-
+        for(int i = 0; i <3;i++)
+            {
+            targetGameObject = ShowColectedMonster[i];
+            rawImage = targetGameObject.GetComponent<RawImage>();
+            rawImage.texture = emptyTexureRenderer;
+        }
     }
 
 
@@ -297,14 +296,16 @@ public class InventoryUI : MonoBehaviour
     public void InstantiatePlayerMonster()
     {
         //print("����2");
-        GameObject prefabToInstantiate;
         UIMonster newTextureMonster;
+        UIMonster NewMonsterCamera;
         for (int i = 0; i < playerMonsterList.Count; i++)
         {
             float posNum = i * 10f;
-            prefabToInstantiate = textureMonsterPrefabsList[i];
-            newTextureMonster = Instantiate(prefabToInstantiate).GetComponent<UIMonster>();
+           
+            newTextureMonster = Instantiate(textureMonsterPrefabsList[i]).GetComponent<UIMonster>();
             newTextureMonster.transform.position = new Vector3(20 - posNum, 0, 0);
+
+            NewMonsterCamera= Instantiate(cameraForMonster[i]).GetComponent<UIMonster>();
         }
 
     }

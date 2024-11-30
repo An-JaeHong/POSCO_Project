@@ -7210,14 +7210,25 @@ MonoBehaviour:
   textureMonsterPrefabsList: []
   texturePlayerMonsterList: []
   colectedCard:
+  - {fileID: 829714807907857173}
+  - {fileID: 3013145816227690712}
+  - {fileID: 1910608051866764380}
+  - {fileID: 197523238893121303}
+  - {fileID: 3732477519341838387}
+  ShowColectedMonster:
   - {fileID: 5436521770863067203}
   - {fileID: 7899651056579243454}
   - {fileID: 945510953504080097}
-  colectedMonsterTexure: []
   emptyTexureRenderer: {fileID: 8400000, guid: 9f8432d868368304e99637a8bf2b018c, type: 2}
   targetRawImage: {fileID: 0}
   playerMonsterList: []
   tempSelectedMonsterList: []
+  cameraForMonster:
+  - {fileID: 6035291490524159512, guid: 824ad36380bb14e4f82f9f4ec5a3dc0a, type: 3}
+  - {fileID: 712120335310921696, guid: 2ff15126980545f4698f96d9ff5092dd, type: 3}
+  - {fileID: 7337480510585202495, guid: 5e61f980e36ebe240978167830edcde2, type: 3}
+  - {fileID: 7222953263897827237, guid: 0f9ee6756e7e95f46aed6988355a367f, type: 3}
+  - {fileID: 4478740746710893072, guid: 572be93c4dd8a014cb9773b8f46e4995, type: 3}
 --- !u!1 &5428462399412964413
 GameObject:
   m_ObjectHideFlags: 0
