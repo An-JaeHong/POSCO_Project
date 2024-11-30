@@ -106,7 +106,7 @@ public class PlayerBattleState : PlayerStateBase
             Monster target = TurnManager.Instance.enemyMonsterList[targetnum];
             if (target.hp > 0)
             {
-                GameManager.Instance.ExecutePlayerAttackAction(target);
+                GameManager.Instance.ExecutePlayerAttackAction(TurnManager.Instance.currentTurnMonster, target);
             }
             else
             {

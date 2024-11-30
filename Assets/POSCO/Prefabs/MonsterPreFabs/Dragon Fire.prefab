@@ -2836,3 +2836,4 @@ MonoBehaviour:
   damage: 3
   element: 1
   isEnemy: 0
+  animator: {fileID: 5259391607515894101}

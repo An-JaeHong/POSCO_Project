@@ -181,6 +181,7 @@ MonoBehaviour:
   damage: 3
   element: 3
   isEnemy: 0
+  animator: {fileID: 6776722359987207221}
 --- !u!1 &268335397161211143
 GameObject:
   m_ObjectHideFlags: 0

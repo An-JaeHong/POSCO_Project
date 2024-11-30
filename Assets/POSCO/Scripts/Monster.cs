@@ -21,16 +21,35 @@ public class Monster : MonoBehaviour
     public Element element;
 
     public bool isEnemy;
-    private Animator animator;
+    public Animator animator;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
+
+        //ев╫╨ем
+        animator = GetComponentInChildren<Animator>();
+        if (animator == null)
+        {
+            Debug.LogError($"Animator component is missing on {gameObject.name}");
+        }
+        else
+        {
+            Debug.Log($"Animator component found on {gameObject.name}");
+            if (animator.runtimeAnimatorController == null)
+            {
+                Debug.LogError($"Animator Controller is missing on {gameObject.name}");
+            }
+            else
+            {
+                Debug.Log($"Animator Controller is assigned on {gameObject.name}");
+            }
+        }
     }
 
     public void TakeDamage(float damage)
     {
-        //animator.SetTrigger("TakeDamage");
+        animator.SetTrigger("TakeDamage");
     }
 
     public void Heal(float healAmount)
@@ -40,12 +59,23 @@ public class Monster : MonoBehaviour
 
     public void PlayerAttackAnimation()
     {
-        //animator.SetTrigger("OnAttack");
+        animator.SetTrigger("OnAttack");
+
+        //StartCoroutine(PlayerAttackAnimationCoroutine());
     }
+
+    private IEnumerator PlayerAttackAnimationCoroutine()
+    {
+        yield return null;
+        animator.SetTrigger("OnAttack");
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        yield return new WaitForSeconds(stateInfo.length);
+    }
+
 
     private void OnDead()
     {
-        //animator.SetBool("IsDead", true);
+        animator.SetBool("IsDead", true);
     }
 
 

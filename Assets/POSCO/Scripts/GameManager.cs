@@ -66,10 +66,12 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < playerMonsterInBattleList.Count; i++)
         {
             Monster temp = Instantiate(playerMonsterInBattleList[i], playerBattlePosList[i].transform.position, Quaternion.identity);
+            temp.animator = GetComponent<Animator>();
         }
         for (int i = 0; i < enemyMonsterInBattleList.Count; i++)
         {
             Monster temp = Instantiate(enemyMonsterInBattleList[i], enemyBattlePosList[i].transform.position, Quaternion.identity);
+            temp.animator = GetComponent<Animator>();
         }
     }
 
@@ -80,13 +82,28 @@ public class GameManager : MonoBehaviour
     }
 
     //플레이어가 공격하는 행동에 돌입
-    public void ExecutePlayerAttackAction(Monster target)
+    public void ExecutePlayerAttackAction(Monster attacker, Monster target)
     {
-        //생성자로 생성해주고
-        AttackCommand attackCommand = new AttackCommand(currentTurnMonster, target);
-        //공격페이즈 돌입
+        ////생성자로 생성해주고
+        //AttackCommand attackCommand = new AttackCommand(currentTurnMonster, target);
+        ////공격페이즈 돌입
+        //attackCommand.Execute();
+        ////턴끝
+        //isPlayerActionComplete = true;
+        StartCoroutine(PlayerAttackAnimation(attacker, target));
+    }
+
+    private IEnumerator PlayerAttackAnimation(Monster attacker, Monster target)
+    {
+        attacker.PlayerAttackAnimation();
+
+        AnimatorStateInfo stateInfo = attacker.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0);
+
+        // 애니메이션 길이만큼 대기
+        yield return new WaitForSeconds(stateInfo.length);
+
+        AttackCommand attackCommand = new AttackCommand(attacker, target);
         attackCommand.Execute();
-        //턴끝
         isPlayerActionComplete = true;
     }
 
