@@ -22,6 +22,7 @@ public class PlayerContactEnemyState : PlayerStateBase
         //uiPopup.EnemyContactCanvasOpen();
         //만난 순간 GameManager에게 플레이어의 정보와 적의 정보를 동기화
 
+        //생성할 버튼에 대한 정보
         var buttons = new Dictionary<string, UnityAction>
         {
             { "Fight", () =>
@@ -35,6 +36,19 @@ public class PlayerContactEnemyState : PlayerStateBase
                 }
             }
         };
+
+        foreach (var button in buttons)
+        {
+            if (button.Value == null)
+            {
+                Debug.LogError($"Callback for button {button.Key} is null");
+            }
+        }
+
+        UIPopupManager.Instance.ShowPopup(
+            $"{enemyMonster.name} is appear!, what do you do?",
+            buttons
+        );
 
         UIPopupManager.Instance.ShowPopup(
             $"{enemyMonster.name} is appear!, what do you do?",

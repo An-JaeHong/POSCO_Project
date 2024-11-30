@@ -68,7 +68,7 @@ public class UIPopupManager : MonoBehaviour
         //popup.SetContent(content);
 
 
-        activeButton.Clear();
+        //activeButton.Clear();
         //버튼 생성하는 곳
         foreach (var button in buttons)
         {
@@ -88,7 +88,7 @@ public class UIPopupManager : MonoBehaviour
 
             print($"SetPopup - button.key : {button.Key}");
             uiButton.ButtonPrefabSetup(button.Key, button.Value);
-            activeButton[button.Key] = uiButton;
+            //activeButton[button.Key] = uiButton;
         }
     }
 

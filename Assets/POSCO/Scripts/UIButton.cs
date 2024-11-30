@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class UIButton : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI buttonText;
-    private Button button;
+    [SerializeField] private Button button;
     private UnityAction callback;
 
     //버튼 연결
@@ -21,22 +21,27 @@ public class UIButton : MonoBehaviour
     //버튼 프리팹 세팅
     public void ButtonPrefabSetup(string text, UnityAction onClick)
     {
-        //if (button == null)
-        //{
-        //    Debug.LogError("Button component가 없다");
-        //    return;
-        //}
-        //print($"button setup - text : {text}");
-        //세팅값 입력에 따라 버튼값 설정해주기
         buttonText.text = text;
+
+        //이전 리스너 제거
         if(callback != null)
         {
             button.onClick.RemoveListener(callback);
         }
 
-        button.onClick.AddListener(() => Debug.Log($"Button {text} clicked!"));
         callback = onClick;
-        Debug.Log($"ButtonListener : {button.onClick.GetPersistentEventCount()}");
+        if (callback != null)
+        {
+            button.onClick.AddListener(() => {
+                Debug.Log($"Button {text} clicked!");
+                callback.Invoke();
+            });
+            Debug.Log($"Callback added for button {text}");
+        }
+        else
+        {
+            Debug.LogError($"Callback is null for button {text}");
+        }
     }
 
     //버튼 사라지면 구독자들 지워야함
@@ -44,7 +49,7 @@ public class UIButton : MonoBehaviour
     {
         if (callback != null)
         {
-            button.onClick.RemoveListener(callback);
+            button.onClick.RemoveAllListeners();
         }
     }
 }
