@@ -152,6 +152,12 @@ public class InventoryUI : MonoBehaviour
         }
         showSelectMonsterBackground.SetActive(true);
         choiceBattleMonster.interactable = false;
+        for (int i = 0; i < 3; i++)
+        {
+            targetGameObject = ShowColectedMonster[i];
+            rawImage = targetGameObject.GetComponent<RawImage>();
+            rawImage.texture = emptyTexureRenderer;
+        }
     }
 
     public void OnCardButton(int number)
