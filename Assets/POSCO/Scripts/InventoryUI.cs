@@ -21,8 +21,13 @@ public class InventoryUI : MonoBehaviour
 
     public List<GameObject> textureMonsterPrefabsList;// 인벤토리에 띄울 몬스터 전체 리스트
     public List<GameObject> texturePlayerMonsterList; // 인벤토리에 띄울 몬스터 리스트
-    public List<GameObject> textureSelcetedMonsterList;
-    public GameObject monsterToInstantiate;
+
+
+    public GameObject[] colectedCard;//d
+    public Texture[] colectedMonsterTexure;
+    public Texture emptyTexureRenderer;
+    public RawImage targetRawImage;
+
 
     public List<Monster> playerMonsterList = new List<Monster>();
     public List<Monster> tempSelectedMonsterList = new List<Monster>();
@@ -159,7 +164,7 @@ public class InventoryUI : MonoBehaviour
                 case 0:
                     tempSelectedMonsterList.Add(playerMonsterList[0]);
                     monsterCardNum[0].interactable = false;
-                    monsterToInstantiate = texturePlayerMonsterList[0];
+                   
                     print("첫번째 카드선택");
                     print($"{playerMonsterList[0]} 저장됨");
 
@@ -168,38 +173,38 @@ public class InventoryUI : MonoBehaviour
                 case 1:
                     tempSelectedMonsterList.Add(playerMonsterList[1]);
                     monsterCardNum[1].interactable = false;
-                    monsterToInstantiate = texturePlayerMonsterList[1];
+                   
                     print("두번째 카드선택");
                     print($"{playerMonsterList[1]} 저장됨");
                     break;
                 case 2:
                     tempSelectedMonsterList.Add(playerMonsterList[2]);
                     monsterCardNum[2].interactable = false;
-                    monsterToInstantiate = texturePlayerMonsterList[2];
+              
                     print("3번째 카드 선택");
                     print($"{playerMonsterList[3]} 저장됨");
                     break;
                 case 3:
                     tempSelectedMonsterList.Add(playerMonsterList[3]);
                     monsterCardNum[3].interactable = false;
-                    monsterToInstantiate = texturePlayerMonsterList[3];
+    
                     print("4번째 카드 선택");
                     print($"{playerMonsterList[4]} 저장됨");
                     break;
                 case 4:
                     tempSelectedMonsterList.Add(playerMonsterList[4]);
                     monsterCardNum[4].interactable = false;
-                    monsterToInstantiate = texturePlayerMonsterList[4];
+   
                     print("5번째 카드 선택");
                     print($"{playerMonsterList[4]} 저장됨");
                     break;
             }
-            GameObject instantiatedMonster = Instantiate(monsterToInstantiate);
-            textureSelcetedMonsterList.Add(instantiatedMonster);
+            targetRawImage = this.GetComponent<RawImage>();
 
             choiceNum++;
+
            
-            SetCelectMonster();
+            //SetCelectMonster();
         }
         else
         {
@@ -217,27 +222,16 @@ public class InventoryUI : MonoBehaviour
         switch(choiceNum)
         {
             case 1:
-                InstantiateSelectedMonster(0);
+                colectedMonsterTexure[0] = targetRawImage.texture; 
                 break;
             case 2:
-                InstantiateSelectedMonster(1);
+                colectedMonsterTexure[1] = targetRawImage.texture;
                 break;
             case 3:
-                InstantiateSelectedMonster(2);
-            break;
+                colectedMonsterTexure[2] = targetRawImage.texture;
+                break;
         }
     }
-
-    public void DestroyPrefabsInList(List<GameObject> prefabList)
-    {
-        foreach (var prefab in prefabList)
-        {
-            print("파괴됨");
-            Destroy(prefab); // 게임 오브젝트 파괴
-        }
-        prefabList.Clear(); // 리스트 초기화
-    }
-
 
 
     public void OnSellectBoutton()
@@ -276,8 +270,15 @@ public class InventoryUI : MonoBehaviour
         {
             button.interactable = true;
         }
-        DestroyPrefabsInList(textureSelcetedMonsterList);
         tempSelectedMonsterList.Clear();
+
+        for(int i = 0; i< 3 ; i++)
+        {
+            colectedMonsterTexure[i]= targetRawImage.texture;
+
+        }
+
+
     }
 
 
@@ -315,15 +316,6 @@ public class InventoryUI : MonoBehaviour
             newTextureMonster.transform.position = new Vector3(20 - posNum, 0, 0);
         }
 
-    }
-    public void InstantiateSelectedMonster(int num)
-    {
-        GameObject prefabToInstantiate;
-        UIMonster newTextureMonster;
-
-        prefabToInstantiate = textureSelcetedMonsterList[num];
-        newTextureMonster = Instantiate(prefabToInstantiate).GetComponent<UIMonster>();
-        newTextureMonster.transform.position = new Vector3(100+num*20, 0, 0);
     }
 
 
