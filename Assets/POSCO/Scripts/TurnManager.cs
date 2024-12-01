@@ -72,7 +72,7 @@ public class TurnManager : MonoBehaviour
         {
             if (this.playerMonsterList[i].animator != null)
             {
-                print("animator 다 붙어있구만우");
+                print("animator 다 붙어있구만유");
             }
         }
 
@@ -164,6 +164,7 @@ public class TurnManager : MonoBehaviour
             //적이라면
             else
             {
+                //팝업 닫아주고
                 UIPopupManager.Instance.ClosePopup();
                 yield return StartCoroutine(HandleEnemyTurn(currentTurnMonster));
             }
@@ -180,10 +181,7 @@ public class TurnManager : MonoBehaviour
     //플레이어에 관한 턴인데 한명씩 공격하게 해야함
     private IEnumerator HandlePlayerTurn(Monster player)
     {
-        //print($"{player.name}는 무엇을 할까?");
-
-        //판넬을 보여줌
-        //UIPopup.Instance.ChooseBattleStateCanvasOpen();
+        //isPlayerActionComplete가 true가 될때까지 기다린다.
         yield return new WaitUntil(() => GameManager.Instance.isPlayerActionComplete);
 
         turnQueue.Enqueue(player); //다시 Queue에 넣어줌 그래야 계속 반복
@@ -192,17 +190,17 @@ public class TurnManager : MonoBehaviour
     }
 
     //Action은 파라미터를 하나만 넘겨받을 수 있어서 구조체를 이용해 공격하는 자, 공격하는 대상 둘다 받음
-    public struct ActionData
-    {
-        public Monster attacker;
-        public Monster target;
+    //public struct ActionData
+    //{
+    //    public Monster attacker;
+    //    public Monster target;
 
-        public ActionData(Monster attacker, Monster target)
-        {
-            this.attacker = attacker;
-            this.target = target;
-        }
-    }
+    //    public ActionData(Monster attacker, Monster target)
+    //    {
+    //        this.attacker = attacker;
+    //        this.target = target;
+    //    }
+    //}
 
     //적 턴이 실행되면 불러올 Action
     //public event Action<ActionData> enemyAttack;
@@ -225,8 +223,9 @@ public class TurnManager : MonoBehaviour
             //enemyAttack?.Invoke(actionData);
             //담겨있던 event 실행
             //enemyAttack?.Invoke(actionData);
-            GameManager.Instance.ExecuteEnemyAttackAction(targetMonster);
+            GameManager.Instance.ExecuteEnemyAttackAction(currentTurnMonster, targetMonster);
             yield return new WaitUntil(() => GameManager.Instance.isEnemyActionComplete);
+            GameManager.Instance.isEnemyActionComplete = false;
         }
         turnQueue.Enqueue(enemy);
     }

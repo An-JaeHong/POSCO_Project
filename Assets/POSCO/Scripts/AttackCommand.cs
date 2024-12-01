@@ -8,26 +8,107 @@ public class AttackCommand : ICommand
     private Monster attacker;
     private Monster target;
 
+    private CoroutineStarter coroutineStarter;
+
     public AttackCommand(Monster attacker, Monster target)
     {
         this.attacker=attacker;
         this.target=target;
     }
 
-    public void Execute()
+    public void PlayerAttackExecute()
     {
-        attacker.PlayerAttackAnimation();
-        //테스트용 
-        //Debug.LogError($"{attacker.transform.position}");
+        //attacker.PlayerAttackAnimation();
+        //Debug.Log($"{attacker}가 공격했다!");
 
-        Debug.Log($"{attacker}가 공격했다!");
-        target.TakeDamage(attacker.damage);
-        Debug.Log($"{target}이 공격받았다!");
+        //target.TakeDamage(attacker.damage);
+        //Debug.Log($"{target}이 공격받았다!");
+
+        CoroutineStarter.Instance.StartPlayerAttackCoroutine(this);
+    }
+
+    public void EnemyAttackExecute()
+    {
+        CoroutineStarter.Instance.StartEnemyAttackCoroutine(this);
     }
 
     public void Undo()
     {
         
+    }
+    
+    public IEnumerator PlayerAttackCoroutine()
+    {
+        //기존 위치 저장
+        Vector3 currentPlayerPosition = attacker.transform.position;
+        Vector3 targetPosition = target.transform.position;
+
+        //시간 더해줄 변수
+        float moveTime = 0;
+        //움직이는 시간
+        float moveDuration = 1f;
+        while (moveTime < moveDuration)
+        {
+            attacker.transform.position = Vector3.Lerp(currentPlayerPosition, targetPosition, moveTime / moveDuration);
+            moveTime += Time.deltaTime;
+            yield return null;
+        }
+
+        //다시 시간 초기화
+        moveTime = 0;
+
+        //이동 후 공격
+        attacker.PlayAttackAnimation();
+        target.TakeDamage(attacker.damage);
+
+        //돌아오기까지 2초 대기
+        yield return new WaitForSeconds(2f);
+        while (moveTime < moveDuration)
+        {
+            attacker.transform.position = Vector3.Lerp(targetPosition, currentPlayerPosition, moveTime / moveDuration);
+            moveTime += Time.deltaTime;
+            yield return null;
+        }
+
+        //공격이 끝나면 PlayerAction이 끝났다는걸 알려줘야함
+        GameManager.Instance.isPlayerActionComplete = true;
+    }
+
+    public IEnumerator EnemyAttackCoroutine()
+    {
+        //기존 위치 저장
+        Vector3 currentPlayerPosition = attacker.transform.position;
+        Vector3 targetPosition = target.transform.position;
+
+        //시간 더해줄 변수
+        float moveTime = 0;
+        //움직이는 시간
+        float moveDuration = 1f;
+        while (moveTime < moveDuration)
+        {
+            attacker.transform.position = Vector3.Lerp(currentPlayerPosition, targetPosition, moveTime / moveDuration);
+            moveTime += Time.deltaTime;
+            yield return null;
+        }
+
+        //다시 시간 초기화
+        moveTime = 0;
+
+        //이동 후 공격
+        attacker.PlayAttackAnimation();
+        target.TakeDamage(attacker.damage);
+
+        //돌아오기까지 2초 대기
+        yield return new WaitForSeconds(2f);
+        while (moveTime < moveDuration)
+        {
+            attacker.transform.position = Vector3.Lerp(targetPosition, currentPlayerPosition, moveTime / moveDuration);
+            moveTime += Time.deltaTime;
+            yield return null;
+        }
+
+        //공격이 끝나면 PlayerAction이 끝났다는걸 알려줘야함
+        GameManager.Instance.isEnemyActionComplete = true;
     }
 
 }

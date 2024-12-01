@@ -22,23 +22,11 @@ public class Monster : MonoBehaviour
 
     public bool isEnemy;
     public Animator animator;
-     
+    
     private void Awake()
     {
-        //테스트용
-        print("1");
-
         animator = GetComponent<Animator>();  
 
-        //테스트용
-        if (animator == null)
-        {
-            print($"{name} 없음");
-        }
-        else
-        {
-            print($"{name} 있음");
-        }
         ////테스터
         //animator = GetComponentInChildren<Animator>();
         //if (animator == null)
@@ -69,21 +57,20 @@ public class Monster : MonoBehaviour
 
     }
 
-    public void PlayerAttackAnimation()
+    public void PlayAttackAnimation()
     {
         animator.SetTrigger("OnAttack");
 
-        StartCoroutine(PlayerAttackAnimationCoroutine());
+        StartCoroutine(PlayAttackAnimationCoroutine());
     }
 
-    private IEnumerator PlayerAttackAnimationCoroutine()
+    private IEnumerator PlayAttackAnimationCoroutine()
     {
         yield return null;
         animator.SetTrigger("OnAttack");
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
         yield return new WaitForSeconds(stateInfo.length);
     }
-
 
     private void OnDead()
     {
