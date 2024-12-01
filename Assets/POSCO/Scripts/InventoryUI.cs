@@ -40,6 +40,7 @@ public class InventoryUI : MonoBehaviour
     private GameObject targetGameObject;
     private RawImage rawImage;
 
+
     private void init()
     {
         choiceNum = 0;
@@ -51,6 +52,7 @@ public class InventoryUI : MonoBehaviour
 
         tempSelectedMonsterList.Clear();
     }
+
 
     private void Awake()
     {
@@ -67,8 +69,6 @@ public class InventoryUI : MonoBehaviour
         inventory.SetActive(false);
         monsterCardBackground.SetActive(false);
         showSelectMonsterBackground.SetActive(false);
-
-
 
 
         //�����ϸ� GameObject�� Monster���·� �ٲ������
@@ -98,6 +98,7 @@ public class InventoryUI : MonoBehaviour
     {
         //�ϴ� Inventory�� �ִ� ����Ʈ�� �ʱ�ȭ
         playerMonsterList.Clear();
+
         foreach (GameObject monsterObj in player.GetMonsterPrefabList())
         {
             if (monsterObj.TryGetComponent<Monster>(out Monster monster))
@@ -224,8 +225,6 @@ public class InventoryUI : MonoBehaviour
     }
 
 
-
-
     //Monster card���� ���� ���ý� ������ ���� ����
     private void ShowSetCelectMonster(int num)
     {
@@ -239,21 +238,13 @@ public class InventoryUI : MonoBehaviour
 
     public void OnSellectBoutton()
     {
-        //print("Sellect ����");
 
         if (choiceNum == 3)
         {
 
-
-            //print("���õ�");
-
             //�÷��̾� ���Ϳ� ���� �־����
             player.SetSelectedMonsters(tempSelectedMonsterList);
-
-
-
         }
-
 
         //�������� stack���� ������ �����Դϴ�.
         //������ ���ô����� ��� �����
@@ -266,7 +257,6 @@ public class InventoryUI : MonoBehaviour
 
     public void OnRestetButton()
     {
-        //print("�ʱ�ȭ��");
         choiceNum = 0;
 
         foreach (var button in monsterCardNum)
