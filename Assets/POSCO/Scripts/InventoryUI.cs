@@ -12,7 +12,8 @@ public class InventoryUI : MonoBehaviour
     public GameObject inventory;
     public GameObject monsterCardBackground;
     public GameObject showSelectMonsterBackground;
-
+    
+    //버튼들
     public Button showMonster;
     public Button[] monsterCardNum;
     public Button choiceBattleMonster;
@@ -23,7 +24,7 @@ public class InventoryUI : MonoBehaviour
     public List<GameObject> texturePlayerMonsterList; // 인벤토리에 띄울 몬스터 리스트
 
 
-    public List<GameObject> colectedCard;//d
+    public List<GameObject> colectedCard;
     public List<GameObject> ShowColectedMonster;
     public RenderTexture emptyTexureRenderer;
     public RawImage targetRawImage;
@@ -105,11 +106,6 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
-    //private void OnEnable()
-    //{
-    //    init();
-    //}
-
     private void Update()
     {
         if (Input.GetKeyUp(KeyCode.I))
@@ -133,7 +129,7 @@ public class InventoryUI : MonoBehaviour
 
     private void OpenInventory()
     {
-        init();// �����ʿ�
+        init();
 
         //inventory Ȱ��ȭ�ϸ� ShowMonsterButton Ȱ��ȭ
         inventory.SetActive(true);
