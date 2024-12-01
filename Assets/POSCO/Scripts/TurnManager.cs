@@ -61,9 +61,30 @@ public class TurnManager : MonoBehaviour
     {
         this.playerMonsterList = playerMonsterList;
         this.enemyMonsterList = enemyMonsterList;
+        print("2");
         foreach (Monster playerMonster in playerMonsterList)
         {
             print($"TurnManager에서 실행 : {playerMonster.transform.position}");
+        }
+        if (playerMonsterList[0].animator != null)
+        {
+            print("동네사람들 여기 애니메이터 붙어있어요!");
+        }
+        else
+        {
+            for(int i = 0; i < 3; i++)
+            {
+                playerMonsterList[i].animator = playerMonsterList[i].GetComponent<Animator>();
+                enemyMonsterList[i].animator = enemyMonsterList[i].GetComponent<Animator>();
+            }
+        }
+        if (playerMonsterList[0].animator != null)
+        {
+            print("동네사람들 여기 애니메이터 붙어있어요!");
+        }
+        else
+        {
+            print("아직도 안붙음");
         }
     }
 

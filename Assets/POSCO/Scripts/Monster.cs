@@ -21,12 +21,20 @@ public class Monster : MonoBehaviour
     public Element element;
 
     public bool isEnemy;
-    private Animator animator = null;
-
+    public Animator animator;
+     
     private void Awake()
     {
-        animator = GetComponent<Animator>();
-
+        print("1");
+        animator = GetComponent<Animator>();  
+        if (animator==null)
+        {
+            print($"{name} 없음");
+        }
+        else
+        {
+            print($"{name} 있음");
+        }
         ////테스터
         //animator = GetComponentInChildren<Animator>();
         //if (animator == null)
