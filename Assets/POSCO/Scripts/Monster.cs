@@ -21,30 +21,30 @@ public class Monster : MonoBehaviour
     public Element element;
 
     public bool isEnemy;
-    public Animator animator;
+    private Animator animator = null;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
 
-        //테스터
-        animator = GetComponentInChildren<Animator>();
-        if (animator == null)
-        {
-            Debug.LogError($"Animator component is missing on {gameObject.name}");
-        }
-        else
-        {
-            Debug.Log($"Animator component found on {gameObject.name}");
-            if (animator.runtimeAnimatorController == null)
-            {
-                Debug.LogError($"Animator Controller is missing on {gameObject.name}");
-            }
-            else
-            {
-                Debug.Log($"Animator Controller is assigned on {gameObject.name}");
-            }
-        }
+        ////테스터
+        //animator = GetComponentInChildren<Animator>();
+        //if (animator == null)
+        //{
+        //    Debug.LogError($"Animator component is missing on {gameObject.name}");
+        //}
+        //else
+        //{
+        //    Debug.Log($"Animator component found on {gameObject.name}");
+        //    if (animator.runtimeAnimatorController == null)
+        //    {
+        //        Debug.LogError($"Animator Controller is missing on {gameObject.name}");
+        //    }
+        //    else
+        //    {
+        //        Debug.Log($"Animator Controller is assigned on {gameObject.name}");
+        //    }
+        //}
     }
 
     public void TakeDamage(float damage)
