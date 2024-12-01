@@ -86,10 +86,22 @@ public class GameManager : MonoBehaviour
     {
         //생성자로 생성해주고
         AttackCommand attackCommand = new AttackCommand(currentTurnMonster, target);
-        print($"currentTurnMonster의 위치 : {currentTurnMonster.transform.position}");
-        print($"currentTurnMonster의 의 이름 : {currentTurnMonster.name}");
-        print($"target의 위치 : {target.transform.position}");
-        print($"target의 이름 : {target.name}");
+        //print($"currentTurnMonster의 위치 : {currentTurnMonster.transform.position}");
+        //print($"currentTurnMonster의 의 이름 : {currentTurnMonster.name}");
+        //print($"currentTurnMonster의 타입 : {currentTurnMonster.GetType()}");
+        //print($"target의 위치 : {target.transform.position}");
+        //print($"target의 이름 : {target.name}");
+
+        foreach (var playerMonster in playerBattlePosList)
+        {
+            print($"플레이어 몬스터 위치 : {playerMonster.transform.position}");
+        }
+
+        foreach (var enemyMonster in enemyBattlePosList)
+        {
+            print($"적 몬스터 위치 : {enemyMonster.transform.position}");
+        }
+
         //공격페이즈 돌입
         attackCommand.Execute();
         //턴끝
