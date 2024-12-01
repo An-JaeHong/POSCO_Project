@@ -49,6 +49,11 @@ public class PlayerContactEnemyState : PlayerStateBase
     {
         gameManager.SetMonsterInformation(player.selectedMonsterList, enemyMonster);
 
+        foreach(Monster selectedMonser in player.selectedMonsterList)
+        {
+            Debug.Log($"StartBattle을 할때 넘겨주는 플레이어 몬스터 : {selectedMonser.transform.position}");
+        }
+
         player.ChangeState(new PlayerBattleState(player));
 
         Debug.Log("전투에 들어옴");
