@@ -78,10 +78,6 @@ public class InventoryUI : MonoBehaviour
         FindSameMonsters();
         InstantiatePlayerMonster();
 
-        //foreach(var object1 in playerMonsterList)
-        //{
-        ////print(object1.name);
-        //}
     }
 
 
