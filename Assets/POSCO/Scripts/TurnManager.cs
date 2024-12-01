@@ -61,31 +61,37 @@ public class TurnManager : MonoBehaviour
     {
         this.playerMonsterList = playerMonsterList;
         this.enemyMonsterList = enemyMonsterList;
-        print("2");
-        foreach (Monster playerMonster in playerMonsterList)
+
+        //테스트용
+        foreach (Monster playerMonster in this.playerMonsterList)
         {
             print($"TurnManager에서 실행 : {playerMonster.transform.position}");
         }
-        if (playerMonsterList[0].animator != null)
+        //테스트용
+        for (int i = 0; i < 3; i++)
         {
-            print("동네사람들 여기 애니메이터 붙어있어요!");
-        }
-        else
-        {
-            for(int i = 0; i < 3; i++)
+            if (this.playerMonsterList[i].animator != null)
             {
-                playerMonsterList[i].animator = playerMonsterList[i].GetComponent<Animator>();
-                enemyMonsterList[i].animator = enemyMonsterList[i].GetComponent<Animator>();
+                print("animator 다 붙어있구만우");
             }
         }
-        if (playerMonsterList[0].animator != null)
-        {
-            print("동네사람들 여기 애니메이터 붙어있어요!");
-        }
-        else
-        {
-            print("아직도 안붙음");
-        }
+
+        //else
+        //{
+        //    for(int i = 0; i < 3; i++)
+        //    {
+        //        this.playerMonsterList[i].animator = playerMonsterList[i].GetComponent<Animator>();
+        //        this.enemyMonsterList[i].animator = enemyMonsterList[i].GetComponent<Animator>();
+        //    }
+        //}
+        //if (this.playerMonsterList[0].animator != null)
+        //{
+        //    print("동네사람들 여기 애니메이터 붙어있어요!");
+        //}
+        //else
+        //{
+        //    print("아직도 안붙음");
+        //}
     }
 
     //턴 초기화 -> 씬이 하나이니까 전투가 다 끝나면 초기화 하는 방식으로 해야할 듯
@@ -144,7 +150,10 @@ public class TurnManager : MonoBehaviour
             }
 
             print($"{currentTurnMonster.name}의 턴!");
-            print($"현재 턴인 몬스터 위치 : {currentTurnMonster.transform.position}");
+
+            //테스트용 
+            print($"현재턴인 몬스터의 위치 : {currentTurnMonster.transform.position}");
+
             monsterTurnChange?.Invoke(currentTurnMonster);
 
             //플레이어라면

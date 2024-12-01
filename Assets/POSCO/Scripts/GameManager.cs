@@ -76,7 +76,8 @@ public class GameManager : MonoBehaviour
             temp2[i] = Instantiate(enemyMonsterInBattleList[i], enemyBattlePosList[i].transform.position, Quaternion.identity);
             //temp.animator = FindObjectOfType<Animator>();
         }
-        TurnManager.Instance.SetMonsterInfomation(playerMonsterInBattleList, enemyMonsterInBattleList);
+
+        TurnManager.Instance.SetMonsterInfomation(temp1, temp2);
 
         //테스트용
         for (int i = 0; i < 3; i++)
@@ -91,8 +92,9 @@ public class GameManager : MonoBehaviour
     public void SetCurrentTurnMonster(Monster currentTurnMonster)
     {
         this.currentTurnMonster = currentTurnMonster;
-        //print($"현재 턴을 가지고 있는 몬스터 이름 : {this.currentTurnMonster}");
-        //print($"현재 턴을 가지고 있는 몬스터 위치 : {this.currentTurnMonster.transform.position}");
+
+        //테스트용
+        print($"From GameManager : {this.currentTurnMonster.transform.position}");
     }
 
     //플레이어가 공격하는 행동에 돌입
@@ -106,6 +108,7 @@ public class GameManager : MonoBehaviour
         //print($"target의 위치 : {target.transform.position}");
         //print($"target의 이름 : {target.name}");
 
+        //테스트용
         foreach (var playerMonster in playerBattlePosList)
         {
             print($"플레이어 몬스터 위치 : {playerMonster.transform.position}");

@@ -17,7 +17,9 @@ public class AttackCommand : ICommand
     public void Execute()
     {
         attacker.PlayerAttackAnimation();
-        Debug.LogError($"{attacker.transform.position}");
+        //테스트용 
+        //Debug.LogError($"{attacker.transform.position}");
+
         Debug.Log($"{attacker}가 공격했다!");
         target.TakeDamage(attacker.damage);
         Debug.Log($"{target}이 공격받았다!");

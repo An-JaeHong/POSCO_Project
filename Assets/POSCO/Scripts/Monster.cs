@@ -25,9 +25,13 @@ public class Monster : MonoBehaviour
      
     private void Awake()
     {
+        //테스트용
         print("1");
+
         animator = GetComponent<Animator>();  
-        if (animator==null)
+
+        //테스트용
+        if (animator == null)
         {
             print($"{name} 없음");
         }
@@ -69,7 +73,7 @@ public class Monster : MonoBehaviour
     {
         animator.SetTrigger("OnAttack");
 
-        //StartCoroutine(PlayerAttackAnimationCoroutine());
+        StartCoroutine(PlayerAttackAnimationCoroutine());
     }
 
     private IEnumerator PlayerAttackAnimationCoroutine()
