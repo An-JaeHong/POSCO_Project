@@ -130,37 +130,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4012500939877901966, guid: b402d2a04499d4249996ac79c8633224, type: 3}
-      propertyPath: playerMonsterPrefabList.Array.size
-      value: 5
+    - target: {fileID: 1023607403059741832, guid: b402d2a04499d4249996ac79c8633224, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4012500939877901966, guid: b402d2a04499d4249996ac79c8633224, type: 3}
-      propertyPath: playerMonsterPrefabList.Array.data[0]
-      value: 
-      objectReference: {fileID: 429202136443674265, guid: ea126fe3b0c3abd4f9c8d1f2cbe860e6, type: 3}
-    - target: {fileID: 4012500939877901966, guid: b402d2a04499d4249996ac79c8633224, type: 3}
-      propertyPath: playerMonsterPrefabList.Array.data[1]
-      value: 
-      objectReference: {fileID: 231989385600591462, guid: 1e6542a34962fb34c912952936907680, type: 3}
-    - target: {fileID: 4012500939877901966, guid: b402d2a04499d4249996ac79c8633224, type: 3}
-      propertyPath: playerMonsterPrefabList.Array.data[2]
-      value: 
-      objectReference: {fileID: 6718151668701346049, guid: 5a9ade796449802428092a4f1f1f98f6, type: 3}
-    - target: {fileID: 4012500939877901966, guid: b402d2a04499d4249996ac79c8633224, type: 3}
-      propertyPath: playerMonsterPrefabList.Array.data[3]
-      value: 
-      objectReference: {fileID: 5689664202465289564, guid: 563384e2a390e0a4192b13842809cb62, type: 3}
-    - target: {fileID: 4012500939877901966, guid: b402d2a04499d4249996ac79c8633224, type: 3}
-      propertyPath: playerMonsterPrefabList.Array.data[4]
-      value: 
-      objectReference: {fileID: 3290770729582014161, guid: acb7248f187573b4396684d1a7bc0e8a, type: 3}
     - target: {fileID: 8125015914943489520, guid: b402d2a04499d4249996ac79c8633224, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 8125015914943489520, guid: b402d2a04499d4249996ac79c8633224, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8362528161526105515, guid: b402d2a04499d4249996ac79c8633224, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1512,6 +1488,10 @@ PrefabInstance:
     - target: {fileID: 5981521552896009903, guid: 4af7e5a566ad7d348810ea66485b9a0e, type: 3}
       propertyPath: m_Name
       value: Camera_GameMap
+      objectReference: {fileID: 0}
+    - target: {fileID: 7124390806851393523, guid: 4af7e5a566ad7d348810ea66485b9a0e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8738288509278250849, guid: 4af7e5a566ad7d348810ea66485b9a0e, type: 3}
       propertyPath: m_LocalPosition.x

@@ -77,6 +77,11 @@ public class InventoryUI : MonoBehaviour
         //�������� ��µ� ���� ������ ��ȯ
         FindSameMonsters();
         InstantiatePlayerMonster();
+
+        //foreach(var object1 in playerMonsterList)
+        //{
+        ////print(object1.name);
+        //}
     }
 
 
@@ -97,7 +102,7 @@ public class InventoryUI : MonoBehaviour
         {
             if (monsterObj.TryGetComponent<Monster>(out Monster monster))
             {
-                print($"{monster.name}");
+                //print($"{monster.name}");
                 playerMonsterList.Add(monster);
             }
         }
@@ -285,13 +290,15 @@ public class InventoryUI : MonoBehaviour
 
     public void FindSameMonsters()
     {
-        //print("����1");
+        print("소환됨1");
         for (int i = 0; i < playerMonsterList.Count; i++)
         {
+           
             foreach (var monster in textureMonsterPrefabsList)
             {
                 if (monster.name == playerMonsterList[i].name)
                 {
+                    print(monster.name);
                     texturePlayerMonsterList.Add(monster);
                     break;
                 }
@@ -301,14 +308,14 @@ public class InventoryUI : MonoBehaviour
 
     public void InstantiatePlayerMonster()
     {
-        //print("����2");
+        print("소환됨 2");
         UIMonster newTextureMonster;
         UIMonster NewMonsterCamera;
         for (int i = 0; i < playerMonsterList.Count; i++)
         {
             float posNum = i * 10f;
            
-            newTextureMonster = Instantiate(textureMonsterPrefabsList[i]).GetComponent<UIMonster>();
+            newTextureMonster = Instantiate(texturePlayerMonsterList[i]).GetComponent<UIMonster>();
             newTextureMonster.transform.position = new Vector3(20 - posNum, 0, 0);
 
             NewMonsterCamera= Instantiate(cameraForMonster[i]).GetComponent<UIMonster>();
