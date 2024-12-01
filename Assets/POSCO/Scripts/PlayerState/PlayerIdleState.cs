@@ -35,6 +35,8 @@ public class PlayerIdleState : PlayerStateBase
             Debug.Log("플레이어 포켓몬이 3마리 이하입니다");
             return;
         }
+
+        //만난적의 정보가 PlayerContactEnemyState에 넘어감
         if (collision.collider.TryGetComponent<Monster>(out Monster enemy))
         {
             if (enemy.CompareTag("Enemy"))

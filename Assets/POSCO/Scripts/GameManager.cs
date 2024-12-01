@@ -44,41 +44,55 @@ public class GameManager : MonoBehaviour
     }
 
     //적 정보 넘겨받기
-    public void SetMonsterInformation(List<Monster> playerMonsterList, Monster enemyMoster)
+    public void SetMonsterInformation(Player player, Monster enemyMoster)
     {
-        playerMonsterInBattleList = playerMonsterList;
+        playerMonsterInBattleList = player.selectedMonsterList;
         for (int i = 0; i < 3; i++)
         {
             enemyMonsterInBattleList.Add(enemyMoster);
 
             //로그 찍어보는 용도
-            print(playerMonsterInBattleList[i].name);
-            print(enemyMonsterInBattleList[i].name);
+            print(playerMonsterInBattleList[i].transform.position);
+            print(enemyMonsterInBattleList[i].transform.position);
         }
 
-        //턴 매니저에게 몬스터 정보 넘겨주기
-        TurnManager.Instance.SetMonsterInfomation(playerMonsterInBattleList, enemyMonsterInBattleList);     
+        //턴 매니저에게 몬스터 정보 넘겨주기 왜 이때하냐? 플레이어가 만난 후에 지금 플레이어의 정보와 만난 몬스터의 정보를 받고 그다음에 GameManager가 Turn한테 넘겨주는게 맞아서
+        //TurnManager.Instance.SetMonsterInfomation(playerMonsterInBattleList, enemyMonsterInBattleList);
+        SetMonsterOnBattlePosition();
     }
 
     //플레이어와 적 지정된 포지션에 생성하기
     public void SetMonsterOnBattlePosition()
     {
+        List<Monster> temp1 = new List<Monster>(playerMonsterInBattleList);
+        List<Monster> temp2 = new List<Monster>(enemyMonsterInBattleList);
         for (int i = 0; i < playerMonsterInBattleList.Count; i++)
         {
-            Monster temp = Instantiate(playerMonsterInBattleList[i], playerBattlePosList[i].transform.position, Quaternion.identity);
+            temp1[i] = Instantiate(playerMonsterInBattleList[i], playerBattlePosList[i].transform.position, Quaternion.identity);
             //temp.animator = FindObjectOfType<Animator>();
         }
         for (int i = 0; i < enemyMonsterInBattleList.Count; i++)
         {
-            Monster temp = Instantiate(enemyMonsterInBattleList[i], enemyBattlePosList[i].transform.position, Quaternion.identity);
+            temp2[i] = Instantiate(enemyMonsterInBattleList[i], enemyBattlePosList[i].transform.position, Quaternion.identity);
             //temp.animator = FindObjectOfType<Animator>();
         }
+        TurnManager.Instance.SetMonsterInfomation(playerMonsterInBattleList, enemyMonsterInBattleList);
+
+        //테스트용
+        for (int i = 0; i < 3; i++)
+        {
+            print($"temp1의 포지션 : {temp1[i].transform.position}");
+            print($"temp2의 포지션 : {temp2[i].transform.position}");
+        }
+
     }
 
     //현재 턴인 몬스터를 불러온다.
     public void SetCurrentTurnMonster(Monster currentTurnMonster)
     {
         this.currentTurnMonster = currentTurnMonster;
+        //print($"현재 턴을 가지고 있는 몬스터 이름 : {this.currentTurnMonster}");
+        //print($"현재 턴을 가지고 있는 몬스터 위치 : {this.currentTurnMonster.transform.position}");
     }
 
     //플레이어가 공격하는 행동에 돌입

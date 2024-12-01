@@ -7,13 +7,19 @@ using UnityEngine.Events;
 
 public class PlayerBattleState : PlayerStateBase
 {
-    public PlayerBattleState(Player player) : base(player) 
+    //테스트 용
+    private List<Monster> playerMonsterList = new List<Monster>();
+
+    private Monster enemyMonster;
+    public PlayerBattleState(Player player, Monster enemy) : base(player) 
     {
-        TurnManager.Instance.monsterTurnChange += OnMonsterTurnChange;
+        //적 동기화
+        enemyMonster = enemy;
     }
 
     public override void Enter()
     {
+        TurnManager.Instance.monsterTurnChange += OnMonsterTurnChange;
         //전투에 들어가면
         //1. 필드에 있는 플레이어 움직임 정지
         //2. 카메라 배틀맵으로 교체
@@ -21,16 +27,28 @@ public class PlayerBattleState : PlayerStateBase
         //4. 선택하는 UI생성
         player.canMove = false;
         CameraManager.Instance.HandleCamera(CameraType.BattleMap);
-        gameManager.SetMonsterOnBattlePosition();
+        //gameManager.SetMonsterOnBattlePosition();
 
         //플레이어 턴일때 띄워주는 팝업
         //ShowPlayerTurnPopup();
+
+        //테스트
+        playerMonsterList = GameManager.Instance.playerMonsterInBattleList;
+        foreach(var playerMonster in playerMonsterList)
+        {
+            Debug.Log($"현재 이렇게 넘겨 받으면 뜨는 위치 : {playerMonster.transform.position}");
+        }
     }
 
+    //몬스터의 턴이 바뀔때 적이 아니라면 팝업이 실행됨
     private void OnMonsterTurnChange(Monster currentMonster)
     {
         if (!currentMonster.isEnemy)
         {
+            //테스트용
+            Debug.Log($"현재 몬스터는 누구인가? : {currentMonster}");
+            Debug.Log($"현재 몬스터 위치는? : {currentMonster.transform.position}");
+
             ShowPlayerTurnPopup(currentMonster);
         }
     }

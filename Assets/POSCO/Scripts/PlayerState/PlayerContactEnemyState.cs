@@ -11,6 +11,7 @@ public class PlayerContactEnemyState : PlayerStateBase
 
     public PlayerContactEnemyState(Player player, Monster enemy) : base(player)
     {
+        //만난적 동기화
         this.enemyMonster = enemy;
     }
 
@@ -47,14 +48,16 @@ public class PlayerContactEnemyState : PlayerStateBase
 
     private void StartBattle()
     {
-        gameManager.SetMonsterInformation(player.selectedMonsterList, enemyMonster);
+        //현재 플레이어가 들고있는 몬스터와 만난 몬스터의 정보를 넘겨줌
+        gameManager.SetMonsterInformation(player, enemyMonster);
+        //foreach(var selectedMonster in player.selectedMonsterList)
+        //{
 
-        foreach(Monster selectedMonser in player.selectedMonsterList)
-        {
-            Debug.Log($"StartBattle을 할때 넘겨주는 플레이어 몬스터 : {selectedMonser.transform.position}");
-        }
+        //    Debug.Log($"StartBattle에서 넘어온 플레이어가 선택한 몬스터 위치 : {selectedMonster.transform.position}");
+        //}
 
-        player.ChangeState(new PlayerBattleState(player));
+        //플레이어의 정보와, 만난적의 정보를 넘겨줌
+        player.ChangeState(new PlayerBattleState(player, enemyMonster));
 
         Debug.Log("전투에 들어옴");
     }
