@@ -72,17 +72,17 @@ public class InventoryUI : MonoBehaviour
         showSelectMonsterBackground.SetActive(false);
 
 
-        //�����ϸ� GameObject�� Monster���·� �ٲ������
+       //GameObject-> Monster 변환후 저장
         ConvertGameObjectToMonster();
 
-        //�������� ��µ� ���� ������ ��ȯ
+      //Inventory에 띄울 몬스터 소환(화면 밖에 소환됨)
         FindSameMonsters();
         InstantiatePlayerMonster();
 
     }
 
 
-    //Resours -> TextureRenderer ���� ���� ��� �������� �ε��Ͽ� ����Ʈ�� ���
+    //Resours -> TextureRenderer iventory에 표현할 전체 몬스터 정보 리스트에 저장
     private void LoadMonsterPrefabs()
     {
         textureMonsterPrefabsList = new List<GameObject>(Resources.LoadAll<GameObject>("TextureRenderer"));
@@ -90,10 +90,10 @@ public class InventoryUI : MonoBehaviour
     }
 
 
-    //player���� �Ѿ�� Object���¸� Monster���·� �ٲ��ִ� �Լ�
+    //GameObject-> Monster 변환후 저장
     private void ConvertGameObjectToMonster()
     {
-        //�ϴ� Inventory�� �ִ� ����Ʈ�� �ʱ�ȭ
+        //초기화 한번 후 진행
         playerMonsterList.Clear();
 
         foreach (GameObject monsterObj in player.GetMonsterPrefabList())
@@ -130,14 +130,11 @@ public class InventoryUI : MonoBehaviour
     private void OpenInventory()
     {
         init();
-
-        //inventory Ȱ��ȭ�ϸ� ShowMonsterButton Ȱ��ȭ
         inventory.SetActive(true);
 
     }
     public void OnShowMonsterButton()
     {
-        //monsterCardBackground Ȱ��ȭ�ϸ� cardButton Ȱ��ȭ
         monsterCardBackground.SetActive(true);
         choiceBattleMonster.interactable = true;
     }
@@ -217,7 +214,7 @@ public class InventoryUI : MonoBehaviour
     }
 
 
-    //Monster card���� ���� ���ý� ������ ���� ����
+    //Monster card에 선택한 몬스터 표현
     private void ShowSetCelectMonster(int num)
     {
         targetGameObject = ShowColectedMonster[num];
