@@ -61,15 +61,15 @@ public class TurnManager : MonoBehaviour
     {
         this.playerMonsterList = playerMonsterList;
         this.enemyMonsterList = enemyMonsterList;
+        foreach (Monster playerMonster in playerMonsterList)
+        {
+            print($"TurnManager에서 실행 : {playerMonster.transform.position}");
+        }
     }
 
     //턴 초기화 -> 씬이 하나이니까 전투가 다 끝나면 초기화 하는 방식으로 해야할 듯
     private void InitializeTurnQueue()
     {
-        foreach (Monster playerMonster in playerMonsterList)
-        {
-            print($"TurnManager에서 실행 : {playerMonster.transform.position}");
-        }
         //초기화할때, 만난 몬스터들의 isEnemy를 true로 만들어준다. 이래야지 턴이 잘 작동한다. -> 조금 마음에 들지는 않는다.
         foreach (Monster enemyMonster in enemyMonsterList)
         {
