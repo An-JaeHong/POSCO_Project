@@ -4,20 +4,18 @@ using UnityEngine;
 
 public class UIInventory : MonoBehaviour
 {
-    //플레이어가 들고있는 몬스터정보 복사 (확인을 위해 public으로 설정해둠 오류가 없음이 확인되면 private변경)
+    //플레이어가 들고있는 몬스터정보 복사 
     public List<Monster> playerMonsterList = new List<Monster>();
-    //선택된 몬스터가 임시로 저장되는 공간 (확인을 위해 public으로 설정해둠 오류가 없음이 확인되면 private변경)
+    //선택된 몬스터가 임시로 저장되는 공간 
     public List<Monster> TempSelectedMonsterList = new List<Monster>();
 
-    // 인벤토리에 띄울 몬스터 전체 리스트(public ->private)
+
+    // 인벤토리에 띄울 몬스터 전체 리스트
     public List<GameObject> textureMonsterPrefabsList;
-    // 인벤토리에 띄울 몬스터 리스트(public ->private)
+    // 인벤토리에 띄울 몬스터 리스트
     public List<GameObject> texturePlayerMonsterList; 
 
-    
-    
-
-    public GameObject MonsterCardPrefab;
+    public GameObject[] cameraForMonster;
 
     private Player player;
 

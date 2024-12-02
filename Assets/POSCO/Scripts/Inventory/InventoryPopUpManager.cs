@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryPopUpManager : MonoBehaviour
 {
@@ -11,15 +12,18 @@ public class InventoryPopUpManager : MonoBehaviour
     public GameObject ivnetoryMenuBackgoundPrefab;
     public GameObject showMonsterBackgoundPrefab;
     public GameObject showSelectedMonsterBackgoundPrefab;
-
     public GameObject showItemBackgoundPrefab;
-    //[SerializeField] private GameObject
     public GameObject canvasTransform;
+    public GameObject MonsterCardPrefab;
 
+    public RectTransform MonsterCardPos;
     public RectTransform inventoryPos;
 
     private bool isOpenInventory = false;
+    private UIInventory inventory;
 
+    public Image[] element;
+    public Image[] elementBackground;
 
 
     private void Awake()
@@ -37,7 +41,7 @@ public class InventoryPopUpManager : MonoBehaviour
     private void Start()
     {
 
-
+        inventory = FindObjectOfType<UIInventory>();
     }
 
     private void Update()
@@ -93,6 +97,57 @@ public class InventoryPopUpManager : MonoBehaviour
     {
         GameObject InventoryPrefab = Instantiate(showItemBackgoundPrefab, inventoryPos);
     }
+
+
+    //¸¸µå´ÂÁß 
+    //public void InstantiateMonsterCard()
+    //{
+    //    for (int i = 0; i < inventory.playerMonsterList.Count; i++)
+    //    {
+    //        GameObject monstercard = Instantiate(MonsterCardPrefab, MonsterCardPos);
+    //        Transform targetobject = transform.Find("Background");
+    //        Image image = targetobject.GetComponent<Image>();
+    //        image = element[1];
+    //    } 
+    //}
+
+
+    // Transform targetObject = transform.Find("ParentName/ChildName/GrandchildName");
+    public void FindSameMonsters()
+    {
+        print("¼ÒÈ¯µÊ1");
+        for (int i = 0; i < inventory.playerMonsterList.Count; i++)
+        {
+
+            foreach (var monster in inventory.textureMonsterPrefabsList)
+            {
+                if (monster.name == inventory.playerMonsterList[i].name)
+                {
+                    print(monster.name);
+                    inventory.texturePlayerMonsterList.Add(monster);
+                    break;
+                }
+            }
+        }
+    }
+
+    public void InstantiatePlayerMonster()
+    {
+        print("¼ÒÈ¯µÊ 2");
+        UIMonster newTextureMonster;
+        UIMonster NewMonsterCamera;
+        for (int i = 0; i < inventory.playerMonsterList.Count; i++)
+        {
+            float posNum = i * 10f;
+
+            newTextureMonster = Instantiate(inventory.texturePlayerMonsterList[i]).GetComponent<UIMonster>();
+            newTextureMonster.transform.position = new Vector3(20 - posNum, 0, 0);
+
+            NewMonsterCamera = Instantiate(inventory.cameraForMonster[i]).GetComponent<UIMonster>();
+        }
+
+    }
+
 
 }
 

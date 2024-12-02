@@ -37,4 +37,6 @@ public class UIInventoryManager : MonoBehaviour
 
 
 
+
+    //여기서 소환 정보를 가지고
 }
