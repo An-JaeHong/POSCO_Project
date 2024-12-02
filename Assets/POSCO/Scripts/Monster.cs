@@ -12,6 +12,14 @@ public enum Element
     Grass,
 }
 
+public enum AttackType
+{
+    None,
+    NormalAttack,
+    Skill1,
+    Skill2,
+}
+
 public class Monster : MonoBehaviour
 {
 
@@ -22,6 +30,9 @@ public class Monster : MonoBehaviour
 
     public bool isEnemy;
     public Animator animator;
+
+    //공격 타입
+    public AttackType attackType;
     
     private void Awake()
     {
@@ -49,7 +60,7 @@ public class Monster : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        animator.SetTrigger("TakeDamage");
+        animator.SetTrigger("OnTakeDamage");
     }
 
     public void Heal(float healAmount)
@@ -57,9 +68,14 @@ public class Monster : MonoBehaviour
 
     }
 
+    public void PlayerSkillAnimatio()
+    {
+
+    }
+
     public void PlayAttackAnimation()
     {
-        animator.SetTrigger("OnAttack");
+        animator.SetTrigger("OnNarmalAttack");
 
         //StartCoroutine(PlayAttackAnimationCoroutine());
     }
@@ -67,7 +83,7 @@ public class Monster : MonoBehaviour
     private IEnumerator PlayAttackAnimationCoroutine()
     {
         yield return null;
-        animator.SetTrigger("OnAttack");
+        animator.SetTrigger("OnNarmalAttack");
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
         yield return new WaitForSeconds(stateInfo.length);
     }
