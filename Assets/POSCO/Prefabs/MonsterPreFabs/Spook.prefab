@@ -525,7 +525,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Spook
-  hp: 10
+  hp: 3
   damage: 3
   element: 2
   isEnemy: 0

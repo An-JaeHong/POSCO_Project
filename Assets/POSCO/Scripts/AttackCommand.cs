@@ -80,7 +80,6 @@ public class AttackCommand : ICommand
 
         //공격이 끝나면 PlayerAction이 끝났다는걸 알려줘야함
         GameManager.Instance.isPlayerActionComplete = true;
-        attacker.InitalizeSkill();
     }
 
 
@@ -90,7 +89,6 @@ public class AttackCommand : ICommand
         attacker.PlayerSkillAnimation();
         yield return new WaitForSeconds(2f);
         GameManager.Instance.isPlayerActionComplete = true;
-        attacker.InitalizeSkill();
     }
 
 

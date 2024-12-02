@@ -3,8 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class TurnManager : MonoBehaviour
 {
@@ -238,12 +240,37 @@ public class TurnManager : MonoBehaviour
         bool allPlayerMonstersDead = playerMonsterList.All(m => m.hp <= 0);
         bool allEnemiesDead = enemyMonsterList.All(m => m.hp <= 0);
 
-        if (allPlayerMonstersDead || allEnemiesDead)
+        if (allPlayerMonstersDead)
         {
+            AllPlayerMonsterDead();
+            print("플레이어 몬스터 전멸");
             return true;
         }
-
+        else if (allEnemiesDead)
+        {
+            AllEnemyMonsterDead();
+            print("적 몬스터 전멸");
+            return true;
+        }
+        
         return false;
+    }
+
+    //전투 끝나면 실행되는 액션
+    public event Action OnBattleEnd;
+
+    public Monster contactedFieldMonster;
+
+    public void AllPlayerMonsterDead()
+    {
+        Destroy(contactedFieldMonster);
+        OnBattleEnd?.Invoke();
+    }
+
+    public void AllEnemyMonsterDead()
+    {
+        Destroy(contactedFieldMonster);
+        OnBattleEnd?.Invoke();
     }
 
     ////GameManager, UIpop에서 쓸 현재 공격하는 몬스터 정보를 넘겨줌

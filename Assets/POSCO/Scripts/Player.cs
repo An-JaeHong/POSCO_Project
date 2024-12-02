@@ -61,8 +61,10 @@ public class Player : MonoBehaviour
     //플레이어의 상태를 바꾸는 함수
     public void ChangeState(PlayerStateBase newState)
     {
+        Debug.Log($"before :  {currentState}");
         currentState.Exit();
         currentState = newState;
+        Debug.Log($"afters :  {currentState}");
         currentState.Enter();
     }
 
@@ -98,6 +100,7 @@ public class Player : MonoBehaviour
     //접촉하는 대상이 있으면 실행
     public void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("OnCollisionEnter");
         //만난 상태로 돌입
         currentState.HandleCollision(collision);
 

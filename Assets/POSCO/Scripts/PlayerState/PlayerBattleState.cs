@@ -17,10 +17,19 @@ public class PlayerBattleState : PlayerStateBase
         enemyMonster = enemy;
     }
 
+    private void TmpBattleEnd()
+    {
+
+            player.ChangeState(new PlayerIdleState(player));
+    }
+
     public override void Enter()
     {
         //턴 바뀔때 마다 호출하는 함수
         TurnManager.Instance.monsterTurnChange += OnMonsterTurnChange;
+        //배틀 종료되면 호출하는 함수
+        //TurnManager.Instance.OnBattleEnd += Exit;
+        TurnManager.Instance.OnBattleEnd += TmpBattleEnd;
         //전투에 들어가면
         //1. 필드에 있는 플레이어 움직임 정지
         //2. 카메라 배틀맵으로 교체
@@ -86,12 +95,13 @@ public class PlayerBattleState : PlayerStateBase
             );
     }
 
-    //공격하기를 누르면 누굴 공격할지를 선택할 수 있어야한다.
+    //기본공격
     private void DoNormalAttack()
     {
-        //GameManager.Instance.ExecutePlayerAttackAction(GameManager.Instance.currentTurnMonster);
-        ChooseTarget();
+        //현재 공격하는 Monster의 공격 타입을 기본공격 타입으로 바꾸고
         TurnManager.Instance.currentTurnMonster.attackType = AttackType.NormalAttack;
+        //타겟을 고른다
+        ChooseTarget();
     }
 
     private void DoSkillAttack()
@@ -191,6 +201,7 @@ public class PlayerBattleState : PlayerStateBase
             //UIPopupManager.Instance.ClosePopup();
         }
 
+        //스킬공격인데 1번 2번은 나중에 나누면 될 듯 하다
         else if (TurnManager.Instance.currentTurnMonster.attackType == AttackType.Skill1 || TurnManager.Instance.currentTurnMonster.attackType == AttackType.Skill2)
         {
             //적이 다 죽으면 고를 수 없어야함
@@ -243,10 +254,20 @@ public class PlayerBattleState : PlayerStateBase
 
     public override void Exit()
     {
-        player.canMove = true;
+        Debug.Log("Exit 1");
+
+        //TurnManager.Instance.OnBattleEnd -= Exit;
+        TurnManager.Instance.OnBattleEnd -= TmpBattleEnd;
+        Debug.Log("Exit 2");
+        //player.canMove = true;
         //uiPopup.chooseBattleStateCanvas.SetActive(false);
         //uiPopup.chooseTargetCanvas.SetActive(false);
         CameraManager.Instance.HandleCamera(CameraType.FieldMap);
+        Debug.Log("Exit 3");
+
+        // 이 부분때문에 무한으로 즐김
+        //player.ChangeState(new PlayerIdleState(player));
+        Debug.Log("Exit 4");
     }
 
     //여기서는 필요없다.

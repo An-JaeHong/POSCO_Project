@@ -2157,7 +2157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Shadow
-  hp: 10
+  hp: 3
   damage: 3
   element: 1
   isEnemy: 0
