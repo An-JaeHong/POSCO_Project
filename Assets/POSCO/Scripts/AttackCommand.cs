@@ -16,7 +16,7 @@ public class AttackCommand : ICommand
         this.target=target;
     }
 
-    public void PlayerAttackExecute()
+    public void PlayerNormalAttackExecute()
     {
         //attacker.PlayerAttackAnimation();
         //Debug.Log($"{attacker}가 공격했다!");
@@ -24,7 +24,12 @@ public class AttackCommand : ICommand
         //target.TakeDamage(attacker.damage);
         //Debug.Log($"{target}이 공격받았다!");
 
-        CoroutineStarter.Instance.StartPlayerAttackCoroutine(this);
+        CoroutineStarter.Instance.StartPlayerNormalAttackCoroutine(this);
+    }
+
+    public void PlayerSkillAttackExecute()
+    {
+        CoroutineStarter.Instance.StartPlayerSkillAttackCoroutine(this);
     }
 
     public void EnemyAttackExecute()
@@ -36,8 +41,8 @@ public class AttackCommand : ICommand
     {
         
     }
-    
-    public IEnumerator PlayerAttackCoroutine()
+
+    public IEnumerator PlayerNormalAttackCoroutine()
     {
         //기존 위치 저장
         Vector3 currentPlayerPosition = attacker.transform.position;
@@ -73,6 +78,14 @@ public class AttackCommand : ICommand
         //공격이 끝나면 PlayerAction이 끝났다는걸 알려줘야함
         GameManager.Instance.isPlayerActionComplete = true;
     }
+
+
+    //재홍님 여기에다가 스킬 구현하시면 됩니다.
+    public IEnumerator PlayerSkillAttackCoroutine()
+    {
+        yield return null;
+    }
+
 
     public IEnumerator EnemyAttackCoroutine()
     {

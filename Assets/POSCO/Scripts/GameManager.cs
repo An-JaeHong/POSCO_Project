@@ -98,7 +98,7 @@ public class GameManager : MonoBehaviour
     }
 
     //플레이어가 공격하는 행동에 돌입
-    public void ExecutePlayerAttackAction(Monster attacker, Monster target)
+    public void ExecutePlayerNormalAttackAction(Monster attacker, Monster target)
     {
         //생성자로 생성해주고
         AttackCommand attackCommand = new AttackCommand(attacker, target);
@@ -120,7 +120,7 @@ public class GameManager : MonoBehaviour
         }
 
         //공격페이즈 돌입
-        attackCommand.PlayerAttackExecute();
+        attackCommand.PlayerNormalAttackExecute();
         //턴끝
         //isPlayerActionComplete = true;
         //StartCoroutine(PlayerAttackAnimation(attacker, target));
@@ -140,6 +140,12 @@ public class GameManager : MonoBehaviour
     //    isPlayerActionComplete = true;
     //    yield return null;
     //}
+
+    public void ExecutePlayerSkillAttackAction(Monster attacker, Monster target)
+    {
+        AttackCommand attackCommand = new AttackCommand(attacker, target);
+        attackCommand.PlayerSkillAttackExecute();
+    }
 
     //위와 같다
     public void ExecuteEnemyAttackAction(Monster attacker, Monster target)

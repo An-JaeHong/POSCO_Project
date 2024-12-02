@@ -61,7 +61,7 @@ public class Monster : MonoBehaviour
     {
         animator.SetTrigger("OnAttack");
 
-        StartCoroutine(PlayAttackAnimationCoroutine());
+        //StartCoroutine(PlayAttackAnimationCoroutine());
     }
 
     private IEnumerator PlayAttackAnimationCoroutine()

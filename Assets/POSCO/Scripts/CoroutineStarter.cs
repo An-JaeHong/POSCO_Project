@@ -21,13 +21,18 @@ public class CoroutineStarter : MonoBehaviour
 
         //DontDestroyOnLoad(gameObject);
     }
-    public void StartPlayerAttackCoroutine(AttackCommand attackCoroutine)
+    public void StartPlayerNormalAttackCoroutine(AttackCommand attackCoroutine)
     {
-        StartCoroutine(attackCoroutine.PlayerAttackCoroutine());
+        StartCoroutine(attackCoroutine.PlayerNormalAttackCoroutine());
     }
 
     public void StartEnemyAttackCoroutine(AttackCommand attackCoroutine)
     {
         StartCoroutine(attackCoroutine.EnemyAttackCoroutine());
+    }
+
+    public void StartPlayerSkillAttackCoroutine(AttackCommand attackCoroutine)
+    {
+        StartCoroutine(attackCoroutine.PlayerSkillAttackCoroutine());
     }
 }

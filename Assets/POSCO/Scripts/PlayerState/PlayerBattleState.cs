@@ -58,9 +58,15 @@ public class PlayerBattleState : PlayerStateBase
         var buttons = new Dictionary<string, UnityAction>
         {
             {
-                "DoAttack", () =>
+                "DoNormalAttack", () =>
                 {
-                    DoAttack();
+                    DoNormalAttack();
+                }
+            },
+            {
+                "DoSkillAttack", () =>
+                {
+                    DoSkillAttack();
                 }
             },
             {
@@ -78,14 +84,44 @@ public class PlayerBattleState : PlayerStateBase
     }
 
     //공격하기를 누르면 누굴 공격할지를 선택할 수 있어야한다.
-    private void DoAttack()
+    private void DoNormalAttack()
     {
         //GameManager.Instance.ExecutePlayerAttackAction(GameManager.Instance.currentTurnMonster);
-        ChooseTarget();
+        NormalAttackChooseTarget();
+    }
+
+    private void DoSkillAttack()
+    {
+        SkillAttackChooseTarget();
+    }
+
+    private void SkillAttackChooseTarget()
+    {
+        var buttons = new Dictionary<string, UnityAction>
+        {
+            {
+                "First", () =>
+                {
+                    DoSkillAttackTarget(0);
+                }
+            },
+            {
+                "Second", () =>
+                {
+                    DoSkillAttackTarget(1);
+                }
+            },
+            {
+                "Third", () =>
+                {
+                    DoSkillAttackTarget(2);
+                }
+            }
+        };
     }
 
     //공격 대상 선택
-    private void ChooseTarget()
+    private void NormalAttackChooseTarget()
     {
 
         var buttons = new Dictionary<string, UnityAction>
@@ -93,19 +129,19 @@ public class PlayerBattleState : PlayerStateBase
             {
                 "First", () =>
                 {
-                    DoAttackTarget(0);
+                    DoNormalAttackTarget(0);
                 }
             },
             {
                 "Second", () =>
                 {
-                    DoAttackTarget(1);
+                    DoNormalAttackTarget(1);
                 }
             },
             {
                 "Third", () =>
                 {
-                    DoAttackTarget(2);
+                    DoNormalAttackTarget(2);
                 }
             }
         };
@@ -116,7 +152,7 @@ public class PlayerBattleState : PlayerStateBase
             );
     }
 
-    private void DoAttackTarget(int targetnum)
+    private void DoNormalAttackTarget(int targetnum)
     {
         //적이 다 죽으면 고를 수 없어야함
         if (targetnum < TurnManager.Instance.enemyMonsterList.Count)
@@ -124,7 +160,25 @@ public class PlayerBattleState : PlayerStateBase
             Monster target = TurnManager.Instance.enemyMonsterList[targetnum];
             if (target.hp > 0)
             {
-                GameManager.Instance.ExecutePlayerAttackAction(TurnManager.Instance.currentTurnMonster, target);
+                GameManager.Instance.ExecutePlayerNormalAttackAction(TurnManager.Instance.currentTurnMonster, target);
+            }
+            else
+            {
+                Debug.Log("이미 쓰러진 몬스터입니다. 다른 몬스터를 선택해주세요");
+            }
+        }
+        UIPopupManager.Instance.ClosePopup();
+    }
+
+    private void DoSkillAttackTarget(int targetnum)
+    {
+        //적이 다 죽으면 고를 수 없어야함
+        if (targetnum < TurnManager.Instance.enemyMonsterList.Count)
+        {
+            Monster target = TurnManager.Instance.enemyMonsterList[targetnum];
+            if (target.hp > 0)
+            {
+                GameManager.Instance.ExecutePlayerSkillAttackAction(TurnManager.Instance.currentTurnMonster, target);
             }
             else
             {
