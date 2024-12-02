@@ -17,6 +17,7 @@ public class AttackCommand : ICommand
         this.target=target;
     }
 
+    //기본공격시 실행하는 함수
     public void PlayerNormalAttackExecute()
     {
         //attacker.PlayerAttackAnimation();
@@ -28,6 +29,7 @@ public class AttackCommand : ICommand
         CoroutineStarter.Instance.StartPlayerNormalAttackCoroutine(this);
     }
 
+    //스킬공격시 실행하는 함수
     public void PlayerSkillAttackExecute()
     {
         CoroutineStarter.Instance.StartPlayerSkillAttackCoroutine(this);

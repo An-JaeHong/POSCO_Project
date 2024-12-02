@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.ParticleSystem;
 
 [Serializable]
 public enum Element
@@ -96,20 +97,13 @@ public class Monster : MonoBehaviour
 
     public void InitalizeSkill()
     {
-        if (selectedSkill == null)
+        if (selectedSkill.particle == null || selectedSkill == null)
         {
-            Debug.LogWarning($"{gameObject.name} has no skill selected!");
             return;
         }
-
-        if (selectedSkill.particle == null)
-        {
-            Debug.LogWarning($"{selectedSkill.name} has no particle assigned!");
-            return;
-        }
-        attackType = AttackType.None;
-        selectedSkill = null;
-        Destroy(playedParticle);
+        //attackType = AttackType.None;
+        //selectedSkill = null;
+        Destroy(selectedSkill.particle);
     }
 
     public void PlayAttackAnimation()

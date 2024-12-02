@@ -44,6 +44,7 @@ public class PlayerBattleState : PlayerStateBase
     //몬스터의 턴이 바뀔때 적이 아니라면 팝업이 실행됨
     private void OnMonsterTurnChange(Monster currentMonster)
     {
+        //플레이어 몬스터만 실행함
         if (!currentMonster.isEnemy)
         {
             //테스트용
@@ -54,6 +55,7 @@ public class PlayerBattleState : PlayerStateBase
         }
     }
 
+    //PlayerTurn일때 필요한 팝업창 띄우는 함수
     private void ShowPlayerTurnPopup(Monster currentMonster)
     {
         var buttons = new Dictionary<string, UnityAction>
