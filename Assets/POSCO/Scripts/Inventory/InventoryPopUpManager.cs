@@ -1,4 +1,4 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -99,17 +99,17 @@ public class InventoryPopUpManager : MonoBehaviour
     }
 
 
-    //만드는중 
-    //public void InstantiateMonsterCard()
-    //{
-    //    for (int i = 0; i < inventory.playerMonsterList.Count; i++)
-    //    {
-    //        GameObject monstercard = Instantiate(MonsterCardPrefab, MonsterCardPos);
-    //        Transform targetobject = transform.Find("Background");
-    //        Image image = targetobject.GetComponent<Image>();
-    //        image = element[1];
-    //    } 
-    //}
+  
+    public void InstantiateMonsterCard()
+    {
+        for (int i = 0; i < inventory.playerMonsterList.Count; i++)
+        {
+            GameObject monstercard = Instantiate(MonsterCardPrefab, MonsterCardPos);
+            Transform targetobject = transform.Find("Background");
+            Image image = targetobject.GetComponent<Image>();
+            image = element[1];
+        }
+    }
 
 
     // Transform targetObject = transform.Find("ParentName/ChildName/GrandchildName");
