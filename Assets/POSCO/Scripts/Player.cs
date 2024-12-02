@@ -45,6 +45,15 @@ public class Player : MonoBehaviour
             }
         }
 
+        if (Input.GetKeyUp(KeyCode.Z))
+        {
+            Time.timeScale = 3f;
+        }
+        if (Input.GetKeyUp(KeyCode.X))
+        {
+            Time.timeScale = 1f;
+        }
+
         //상태패턴 계속 실행
         currentState.Update();
     }

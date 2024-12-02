@@ -55,6 +55,13 @@ public class Monster : MonoBehaviour
     public void TakeDamage(float damage)
     {
         animator.SetTrigger("OnTakeDamage");
+        hp -= damage;
+        print($"{name}가 맞았다. 남은체력 : {hp}");
+        if (hp <= 0)
+        {
+            hp = 0;
+            OnDead();
+        }
     }
 
     public void Heal(float healAmount)
@@ -83,14 +90,21 @@ public class Monster : MonoBehaviour
             playedParticle = Instantiate(selectedSkill.particle, transform.position, Quaternion.identity);
         }
 
-        print($"{gameObject.name}이(가) 스킬 {selectedSkill.name}를 사용했습니다!");
+        print($"{name}이(가) 스킬 {selectedSkill.name}를 사용했습니다!");
 
     }
 
     public void InitalizeSkill()
     {
+        if (selectedSkill == null)
+        {
+            Debug.LogWarning($"{gameObject.name} has no skill selected!");
+            return;
+        }
+
         if (selectedSkill.particle == null)
         {
+            Debug.LogWarning($"{selectedSkill.name} has no particle assigned!");
             return;
         }
         attackType = AttackType.None;
@@ -101,6 +115,7 @@ public class Monster : MonoBehaviour
     public void PlayAttackAnimation()
     {
         animator.SetTrigger("OnNarmalAttack");
+        print($"{name}가 공격했다!");
 
         //StartCoroutine(PlayAttackAnimationCoroutine());
     }
@@ -116,6 +131,7 @@ public class Monster : MonoBehaviour
     private void OnDead()
     {
         animator.SetBool("IsDead", true);
+        print($"{name}가 죽었다.");
     }
 
 

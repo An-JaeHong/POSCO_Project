@@ -31,6 +31,8 @@ public class TurnManager : MonoBehaviour
     public List<Monster> playerMonsterList = new List<Monster>();
     public List<Monster> enemyMonsterList = new List<Monster>();
 
+    public bool isTurnDone = false;
+
 
     ////턴이 바뀌면 실행되는 이벤트들을 모아둘꺼임
     //public event Action<Turn> onTurnChanged;

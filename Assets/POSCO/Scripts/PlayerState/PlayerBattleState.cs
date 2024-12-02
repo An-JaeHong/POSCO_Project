@@ -183,9 +183,10 @@ public class PlayerBattleState : PlayerStateBase
                 else
                 {
                     Debug.Log("이미 쓰러진 몬스터입니다. 다른 몬스터를 선택해주세요");
+                    ChooseTarget();
                 }
             }
-            UIPopupManager.Instance.ClosePopup();
+            //UIPopupManager.Instance.ClosePopup();
         }
 
         else if (TurnManager.Instance.currentTurnMonster.attackType == AttackType.Skill1 || TurnManager.Instance.currentTurnMonster.attackType == AttackType.Skill2)
@@ -201,9 +202,11 @@ public class PlayerBattleState : PlayerStateBase
                 else
                 {
                     Debug.Log("이미 쓰러진 몬스터입니다. 다른 몬스터를 선택해주세요");
+                    ChooseTarget();
                 }
+
             }
-            UIPopupManager.Instance.ClosePopup();
+            //UIPopupManager.Instance.ClosePopup();
         }
     }
 
