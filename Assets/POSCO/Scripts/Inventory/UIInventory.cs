@@ -15,6 +15,7 @@ public class UIInventory : MonoBehaviour
     public List<GameObject> texturePlayerMonsterList; 
 
     
+    
 
     public GameObject MonsterCardPrefab;
 
