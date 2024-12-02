@@ -6,7 +6,9 @@ using UnityEngine;
 public interface ICommand
 {
     //실행시킬 함수
-    public void PlayerAttackExecute();
+    public void PlayerNormalAttackExecute();
+
+    public void PlayerSkillAttackExecute();
 
     public void EnemyAttackExecute();
 
