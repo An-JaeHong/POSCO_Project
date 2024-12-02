@@ -841,6 +841,10 @@ MonoBehaviour:
   element: 1
   isEnemy: 0
   animator: {fileID: 6324982472966451383}
+  skills:
+  - {fileID: 11400000, guid: 75afdeb9da4e07e45bca0aa5a51a7c8c, type: 2}
+  - {fileID: 11400000, guid: ba06ccaf781acb84cb1354620ef69101, type: 2}
+  attackType: 0
 --- !u!1 &4675690525675549308
 GameObject:
   m_ObjectHideFlags: 0

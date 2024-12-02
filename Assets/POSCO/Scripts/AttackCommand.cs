@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 //공격하는 행동
@@ -77,13 +78,17 @@ public class AttackCommand : ICommand
 
         //공격이 끝나면 PlayerAction이 끝났다는걸 알려줘야함
         GameManager.Instance.isPlayerActionComplete = true;
+        attacker.InitalizeSkill();
     }
 
 
     //재홍님 여기에다가 스킬 구현하시면 됩니다.
     public IEnumerator PlayerSkillAttackCoroutine()
     {
-        yield return null;
+        attacker.PlayerSkillAnimation();
+        yield return new WaitForSeconds(2f);
+        GameManager.Instance.isPlayerActionComplete = true;
+        attacker.InitalizeSkill();
     }
 
 

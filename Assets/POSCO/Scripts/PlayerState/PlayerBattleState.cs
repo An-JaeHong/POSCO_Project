@@ -19,6 +19,7 @@ public class PlayerBattleState : PlayerStateBase
 
     public override void Enter()
     {
+        //턴 바뀔때 마다 호출하는 함수
         TurnManager.Instance.monsterTurnChange += OnMonsterTurnChange;
         //전투에 들어가면
         //1. 필드에 있는 플레이어 움직임 정지
@@ -87,41 +88,55 @@ public class PlayerBattleState : PlayerStateBase
     private void DoNormalAttack()
     {
         //GameManager.Instance.ExecutePlayerAttackAction(GameManager.Instance.currentTurnMonster);
-        NormalAttackChooseTarget();
+        ChooseTarget();
+        TurnManager.Instance.currentTurnMonster.attackType = AttackType.NormalAttack;
     }
 
     private void DoSkillAttack()
     {
-        SkillAttackChooseTarget();
-    }
-
-    private void SkillAttackChooseTarget()
-    {
+        //스킬을 고르는 팝업이 떠야함
         var buttons = new Dictionary<string, UnityAction>
         {
             {
-                "First", () =>
+                $"{TurnManager.Instance.currentTurnMonster.skills[0].name}", () =>
                 {
-                    DoSkillAttackTarget(0);
+                    SelectSkill(0);
                 }
             },
             {
-                "Second", () =>
+                $"{TurnManager.Instance.currentTurnMonster.skills[1].name}", () =>
                 {
-                    DoSkillAttackTarget(1);
+                    SelectSkill(1);
                 }
             },
-            {
-                "Third", () =>
-                {
-                    DoSkillAttackTarget(2);
-                }
-            }
         };
+
+        UIPopupManager.Instance.ShowPopup(
+            $"Choose Skill",
+            buttons
+            );
+    }
+
+    private void SelectSkill(int skillNum)
+    {
+        switch(skillNum)
+        {
+            case 0:
+                TurnManager.Instance.currentTurnMonster.attackType = AttackType.Skill1;
+                break;
+            case 1:
+                TurnManager.Instance.currentTurnMonster.attackType = AttackType.Skill2;
+                break;
+        }
+
+        TurnManager.Instance.currentTurnMonster.SetSkillNum(skillNum);
+
+        //그다음 타겟을 고르게 해야함
+        ChooseTarget();
     }
 
     //공격 대상 선택
-    private void NormalAttackChooseTarget()
+    private void ChooseTarget()
     {
 
         var buttons = new Dictionary<string, UnityAction>
@@ -129,19 +144,19 @@ public class PlayerBattleState : PlayerStateBase
             {
                 "First", () =>
                 {
-                    DoNormalAttackTarget(0);
+                    DoAttackTarget(0);
                 }
             },
             {
                 "Second", () =>
                 {
-                    DoNormalAttackTarget(1);
+                    DoAttackTarget(1);
                 }
             },
             {
                 "Third", () =>
                 {
-                    DoNormalAttackTarget(2);
+                    DoAttackTarget(2);
                 }
             }
         };
@@ -152,41 +167,63 @@ public class PlayerBattleState : PlayerStateBase
             );
     }
 
-    private void DoNormalAttackTarget(int targetnum)
+    private void DoAttackTarget(int targetnum)
     {
-        //적이 다 죽으면 고를 수 없어야함
-        if (targetnum < TurnManager.Instance.enemyMonsterList.Count)
+        //기본공격일때
+        if (TurnManager.Instance.currentTurnMonster.attackType == AttackType.NormalAttack)
         {
-            Monster target = TurnManager.Instance.enemyMonsterList[targetnum];
-            if (target.hp > 0)
+            //적이 다 죽으면 고를 수 없어야함
+            if (targetnum < TurnManager.Instance.enemyMonsterList.Count)
             {
-                GameManager.Instance.ExecutePlayerNormalAttackAction(TurnManager.Instance.currentTurnMonster, target);
+                Monster target = TurnManager.Instance.enemyMonsterList[targetnum];
+                if (target.hp > 0)
+                {
+                    GameManager.Instance.ExecutePlayerNormalAttackAction(TurnManager.Instance.currentTurnMonster, target);
+                }
+                else
+                {
+                    Debug.Log("이미 쓰러진 몬스터입니다. 다른 몬스터를 선택해주세요");
+                }
             }
-            else
-            {
-                Debug.Log("이미 쓰러진 몬스터입니다. 다른 몬스터를 선택해주세요");
-            }
+            UIPopupManager.Instance.ClosePopup();
         }
-        UIPopupManager.Instance.ClosePopup();
+
+        else if (TurnManager.Instance.currentTurnMonster.attackType == AttackType.Skill1 || TurnManager.Instance.currentTurnMonster.attackType == AttackType.Skill2)
+        {
+            //적이 다 죽으면 고를 수 없어야함
+            if (targetnum < TurnManager.Instance.enemyMonsterList.Count)
+            {
+                Monster target = TurnManager.Instance.enemyMonsterList[targetnum];
+                if (target.hp > 0)
+                {
+                    GameManager.Instance.ExecutePlayerSkillAttackAction(TurnManager.Instance.currentTurnMonster, target);
+                }
+                else
+                {
+                    Debug.Log("이미 쓰러진 몬스터입니다. 다른 몬스터를 선택해주세요");
+                }
+            }
+            UIPopupManager.Instance.ClosePopup();
+        }
     }
 
-    private void DoSkillAttackTarget(int targetnum)
-    {
-        //적이 다 죽으면 고를 수 없어야함
-        if (targetnum < TurnManager.Instance.enemyMonsterList.Count)
-        {
-            Monster target = TurnManager.Instance.enemyMonsterList[targetnum];
-            if (target.hp > 0)
-            {
-                GameManager.Instance.ExecutePlayerSkillAttackAction(TurnManager.Instance.currentTurnMonster, target);
-            }
-            else
-            {
-                Debug.Log("이미 쓰러진 몬스터입니다. 다른 몬스터를 선택해주세요");
-            }
-        }
-        UIPopupManager.Instance.ClosePopup();
-    }
+    //private void DoSkillAttackTarget(int targetnum)
+    //{
+    //    //적이 다 죽으면 고를 수 없어야함
+    //    if (targetnum < TurnManager.Instance.enemyMonsterList.Count)
+    //    {
+    //        Monster target = TurnManager.Instance.enemyMonsterList[targetnum];
+    //        if (target.hp > 0)
+    //        {
+    //            GameManager.Instance.ExecutePlayerSkillAttackAction(TurnManager.Instance.currentTurnMonster, target);
+    //        }
+    //        else
+    //        {
+    //            Debug.Log("이미 쓰러진 몬스터입니다. 다른 몬스터를 선택해주세요");
+    //        }
+    //    }
+    //    UIPopupManager.Instance.ClosePopup();
+    //}
 
     private void DoHeal()
     {

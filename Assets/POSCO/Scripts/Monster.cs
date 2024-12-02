@@ -31,31 +31,25 @@ public class Monster : MonoBehaviour
     public bool isEnemy;
     public Animator animator;
 
-    //공격 타입
+    //가지고 있는 스킬 배열
+    public SkillData[] skills;
+    //선택된 스킬
+    private SkillData selectedSkill;
+
+    private GameObject playedParticle;
+
+    //공격 타입 -> 나중에 기본경격인지, 스킬인지 확인하게끔 필요한 변수
     public AttackType attackType;
     
     private void Awake()
     {
         animator = GetComponent<Animator>();  
+    }
 
-        ////테스터
-        //animator = GetComponentInChildren<Animator>();
-        //if (animator == null)
-        //{
-        //    Debug.LogError($"Animator component is missing on {gameObject.name}");
-        //}
-        //else
-        //{
-        //    Debug.Log($"Animator component found on {gameObject.name}");
-        //    if (animator.runtimeAnimatorController == null)
-        //    {
-        //        Debug.LogError($"Animator Controller is missing on {gameObject.name}");
-        //    }
-        //    else
-        //    {
-        //        Debug.Log($"Animator Controller is assigned on {gameObject.name}");
-        //    }
-        //}
+    private void Start()
+    {
+        selectedSkill = null;
+        attackType = AttackType.None;
     }
 
     public void TakeDamage(float damage)
@@ -68,9 +62,40 @@ public class Monster : MonoBehaviour
 
     }
 
-    public void PlayerSkillAnimatio()
+    public void SetSkillNum(int skillNum)
     {
+        //입력된 숫자가 0보다 작거나, 입력된 숫자가 보유한 스킬의 숫자보다 크면 return
+        if (skillNum < 0 || skillNum >= skills.Length)
+        {
+            print("스킬 입력이 잘못되었습니다");
+            return;
+        }
 
+        //스킬이 선택됨
+        selectedSkill = skills[skillNum];
+    }
+
+    public void PlayerSkillAnimation()
+    {
+        if (selectedSkill.particle != null)
+        {
+            animator.SetTrigger("OnSkill1");
+            playedParticle = Instantiate(selectedSkill.particle, transform.position, Quaternion.identity);
+        }
+
+        print($"{gameObject.name}이(가) 스킬 {selectedSkill.name}를 사용했습니다!");
+
+    }
+
+    public void InitalizeSkill()
+    {
+        if (selectedSkill.particle == null)
+        {
+            return;
+        }
+        attackType = AttackType.None;
+        selectedSkill = null;
+        Destroy(playedParticle);
     }
 
     public void PlayAttackAnimation()
@@ -80,13 +105,13 @@ public class Monster : MonoBehaviour
         //StartCoroutine(PlayAttackAnimationCoroutine());
     }
 
-    private IEnumerator PlayAttackAnimationCoroutine()
-    {
-        yield return null;
-        animator.SetTrigger("OnNarmalAttack");
-        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-        yield return new WaitForSeconds(stateInfo.length);
-    }
+    //private IEnumerator PlayAttackAnimationCoroutine()
+    //{
+    //    yield return null;
+    //    animator.SetTrigger("OnNarmalAttack");
+    //    AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+    //    yield return new WaitForSeconds(stateInfo.length);
+    //}
 
     private void OnDead()
     {
