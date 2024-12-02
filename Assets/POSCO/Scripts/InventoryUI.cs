@@ -23,6 +23,10 @@ public class InventoryUI : MonoBehaviour
     public List<GameObject> textureMonsterPrefabsList;// 인벤토리에 띄울 몬스터 전체 리스트
     public List<GameObject> texturePlayerMonsterList; // 인벤토리에 띄울 몬스터 리스트
 
+    public GameObject[] selectedMonsterBackground;
+    public Image[] elementBackgroundImage;
+
+    public Image[] elementPrefabs;
 
     public List<GameObject> colectedCard;
     public List<GameObject> ShowColectedMonster;
