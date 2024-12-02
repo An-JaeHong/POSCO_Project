@@ -31,7 +31,7 @@ public class UIInventory : MonoBehaviour
         
     }
 
-    //GameObject-> Monster 변환 후 playerMonsterList에 저장 
+    //GameObject-> Monster 변환 후 playerMonster   List에 저장 
 
     private void BringPlaterMonsterList()
     {

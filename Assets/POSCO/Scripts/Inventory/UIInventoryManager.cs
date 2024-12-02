@@ -20,6 +20,7 @@ public class UIInventoryManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+
     private Stack<InventoryPopUpManager> inventoryPopup = new Stack<InventoryPopUpManager>();
 
     private void Update()

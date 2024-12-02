@@ -118,6 +118,7 @@ public class InventoryUI : MonoBehaviour
             {
                 OpenInventory();
                 isOpenInventory = true;
+                print(playerMonsterList[0].element);
             }
             else
             {
@@ -224,8 +225,6 @@ public class InventoryUI : MonoBehaviour
         targetGameObject = ShowColectedMonster[num];
         rawImage = targetGameObject.GetComponent<RawImage>();
         rawImage.texture = targetRawImage.texture;
-
-
     }
 
 
@@ -305,9 +304,6 @@ public class InventoryUI : MonoBehaviour
         }
 
     }
-
-
-
 
 
 

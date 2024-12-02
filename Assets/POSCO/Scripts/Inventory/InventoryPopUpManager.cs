@@ -1,5 +1,6 @@
-    using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,11 +21,13 @@ public class InventoryPopUpManager : MonoBehaviour
     public RectTransform inventoryPos;
 
     private bool isOpenInventory = false;
-    private UIInventory inventory;
+    private UIInventory uiInventory;
 
-    public Image[] element;
-    public Image[] elementBackground;
 
+    public Sprite[] element;
+    public Sprite[] elementBackground;
+
+    private int choiceNum = 0;
 
     private void Awake()
     {
@@ -41,7 +44,7 @@ public class InventoryPopUpManager : MonoBehaviour
     private void Start()
     {
 
-        inventory = FindObjectOfType<UIInventory>();
+        uiInventory = FindObjectOfType<UIInventory>();
     }
 
     private void Update()
@@ -52,6 +55,7 @@ public class InventoryPopUpManager : MonoBehaviour
         {
             print("누름");
             InstantiateInventoryMenu();
+            InstantiateMonsterCard();
             isOpenInventory = true;
         }
 
@@ -61,21 +65,81 @@ public class InventoryPopUpManager : MonoBehaviour
             isOpenInventory = false;
         }
     }
-
-    public void OnshowMonster()
+    
+    public void OnShowMonster()
     {
         InstantiateShowMonster();
     }
 
-    public void OnshowSelectedMonster()
+    public void OnShowSelectedMonster()
     {
         InstantiateSelectedMonster();
     }
 
-    public void OnshowItem()
+    public void OnShowItem()
     {
         InstantiateShowItem();
     }
+
+    //public void OnMonsterCard(int number)
+    //{
+    //    print($"{uiInventory.playerMonsterList[0]}");
+    //    if (choiceNum < 3)
+    //    {
+    //        switch (number)
+    //        {
+    //            case 0:
+    //                uiInventory.TempSelectedMonsterList.Add(uiInventory.playerMonsterList[0]);
+    //                monsterCardNum[0].interactable = false;
+    //                targetRawImage = monsterCardNum.GetComponentInChildren<RawImage>();
+    //                print("첫번째 카드선택");
+    //                break;
+    //            case 1:
+    //                uiInventory.TempSelectedMonsterList.Add(uiInventory.playerMonsterList[0]);
+    //                monsterCardNum[0].interactable = false;
+    //                targetRawImage = monsterCardNum[0].GetComponentInChildren<RawImage>();
+    //                print("두번째 카드선택");
+    //                break;
+    //            case 2:
+    //                uiInventory.TempSelectedMonsterList.Add(uiInventory.playerMonsterList[0]);
+    //                monsterCardNum[0].interactable = false;
+    //                targetRawImage = monsterCardNum[0].GetComponentInChildren<RawImage>();
+    //                print("3번째 카드 선택");
+                
+    //                break;
+    //            case 3:
+    //                uiInventory.TempSelectedMonsterList.Add(uiInventory.playerMonsterList[0]);
+    //                monsterCardNum[0].interactable = false;
+    //                targetRawImage = monsterCardNum[0].GetComponentInChildren<RawImage>();
+    //                print("4번째 카드 선택");
+              
+    //                break;
+    //            case 4:
+    //                uiInventory.TempSelectedMonsterList.Add(uiInventory.playerMonsterList[0]);
+    //                monsterCardNum[0].interactable = false;
+    //                targetRawImage = monsterCardNum[0].GetComponentInChildren<RawImage>();
+    //                print("5번째 카드 선택");
+             
+    //                break;
+    //        }
+
+    //        choiceNum++;
+
+    //    }
+    //    else
+    //    {
+    //        print("배틀 몬스터는최대 3마리 입니다.");
+    //    }
+
+    //    ShowSetCelectMonster(choiceNum - 1);
+    //}
+
+    //private void ShowSetCelectMonster(int num)
+    //{
+    //    targetGameObject = ShowColectedMonster[num];
+    //    rawImage = targetGameObject.GetComponent<RawImage>();
+    //    rawImage.texture = targetRawImage.texture;
+    //}
 
     public void InstantiateInventoryMenu()
     {
@@ -99,15 +163,32 @@ public class InventoryPopUpManager : MonoBehaviour
     }
 
 
-  
     public void InstantiateMonsterCard()
     {
-        for (int i = 0; i < inventory.playerMonsterList.Count; i++)
+        for (int i = 0; i < uiInventory.playerMonsterList.Count; i++)
         {
             GameObject monstercard = Instantiate(MonsterCardPrefab, MonsterCardPos);
-            Transform targetobject = transform.Find("Background");
-            Image image = targetobject.GetComponent<Image>();
-            image = element[1];
+            Transform targetBackgroundObject = transform.Find("Background");
+            Image backgroundImage = targetBackgroundObject.GetComponent<Image>();
+            Transform targetElementObject = transform.Find("Background/RoleIcon/RoleIcon");
+            Image elementIconObject = targetElementObject.GetComponent<Image>();
+
+            switch (uiInventory.playerMonsterList[i].element)
+            {
+                case Element.Fire:
+                    backgroundImage.sprite = elementBackground[1];
+                    elementIconObject.sprite = element[1];
+                    break;
+                case Element.Water:
+                    backgroundImage.sprite = elementBackground[2];
+                    elementIconObject.sprite = element[2];
+                    break;
+                case Element.Grass:
+                    backgroundImage.sprite = elementBackground[3];
+                    elementIconObject.sprite = element[3];
+                    break;
+            }
+            
         }
     }
 
@@ -116,15 +197,15 @@ public class InventoryPopUpManager : MonoBehaviour
     public void FindSameMonsters()
     {
         print("소환됨1");
-        for (int i = 0; i < inventory.playerMonsterList.Count; i++)
+        for (int i = 0; i < uiInventory.playerMonsterList.Count; i++)
         {
 
-            foreach (var monster in inventory.textureMonsterPrefabsList)
+            foreach (var monster in uiInventory.textureMonsterPrefabsList)
             {
-                if (monster.name == inventory.playerMonsterList[i].name)
+                if (monster.name == uiInventory.playerMonsterList[i].name)
                 {
                     print(monster.name);
-                    inventory.texturePlayerMonsterList.Add(monster);
+                    uiInventory.texturePlayerMonsterList.Add(monster);
                     break;
                 }
             }
@@ -136,17 +217,18 @@ public class InventoryPopUpManager : MonoBehaviour
         print("소환됨 2");
         UIMonster newTextureMonster;
         UIMonster NewMonsterCamera;
-        for (int i = 0; i < inventory.playerMonsterList.Count; i++)
+        for (int i = 0; i < uiInventory.playerMonsterList.Count; i++)
         {
             float posNum = i * 10f;
 
-            newTextureMonster = Instantiate(inventory.texturePlayerMonsterList[i]).GetComponent<UIMonster>();
+            newTextureMonster = Instantiate(uiInventory.texturePlayerMonsterList[i]).GetComponent<UIMonster>();
             newTextureMonster.transform.position = new Vector3(20 - posNum, 0, 0);
 
-            NewMonsterCamera = Instantiate(inventory.cameraForMonster[i]).GetComponent<UIMonster>();
+            NewMonsterCamera = Instantiate(uiInventory.cameraForMonster[i]).GetComponent<UIMonster>();
         }
 
     }
+
 
 
 }
