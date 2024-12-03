@@ -8,11 +8,11 @@ public class UIPopupManager : MonoBehaviour
     private static UIPopupManager instance;
     public static UIPopupManager Instance { get { return instance; } }
 
-    //ÆË¾÷¶ç¿ï Background
+    //ï¿½Ë¾ï¿½ï¿½ï¿½ï¿½ Background
     [SerializeField] private GameObject popupPrefab;
-    //¹öÆ°
+    //ï¿½ï¿½Æ°
     [SerializeField] private GameObject buttonPrefab;
-    //¶ç¿ï À§Ä¡
+    //ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡
     [SerializeField] private RectTransform canvasTransform;
 
     private GameObject currentPopup;
@@ -30,29 +30,29 @@ public class UIPopupManager : MonoBehaviour
         }
     }
 
-    //½ÇÁúÀûÀ¸·Î ¹öÆ°´Þ¸° UI¸¦ »ý¼ºÇÏ´Â ÇÔ¼ö
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°ï¿½Þ¸ï¿½ UIï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
     public void ShowPopup(string title, Dictionary<string, UnityAction> buttons)
     {
-        //ÇÁ¸®ÆÕÀÌ ÀÖ´ÂÁö Ã¼Å©
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ Ã¼Å©
         if (popupPrefab == null)
         {
-            Debug.LogError("popupPrefabÀÌ ÇÒ´çµÇÁö ¾Ê¾Ò½À´Ï´Ù");
+            Debug.LogError("popupPrefabï¿½ï¿½ ï¿½Ò´ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾Ò½ï¿½ï¿½Ï´ï¿½");
             return;
         }
 
-        //UI´Â Áßº¹ÇØ¼­ ¶ã ¼ö ¾ø´Ù.
+        //UIï¿½ï¿½ ï¿½ßºï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
         if (currentPopup != null)
         {
             Destroy(currentPopup);
         }
 
-        //ÀÏ´Ü Background ¶ç¿ò
+        //ï¿½Ï´ï¿½ Background ï¿½ï¿½ï¿½
         currentPopup = Instantiate(popupPrefab, canvasTransform);
         UIPopup popup = currentPopup.GetComponent<UIPopup>();
 
         popup.SetTitle(title);
 
-        //¹öÆ° »ý¼ºÇÏ´Â °÷
+        //ï¿½ï¿½Æ° ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½
         foreach (var button in buttons)
         {
             if (buttonPrefab == null)
@@ -66,7 +66,7 @@ public class UIPopupManager : MonoBehaviour
         }
     }
 
-    //ÆË¾÷ ´ÝÀ»¶§µµ ÇöÀç ÀÖ´Â Á¤º¸µé ´Ù ÆÄ±«
+    //ï¿½Ë¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ä±ï¿½
     public void ClosePopup()
     {
         if (currentPopup != null)

@@ -63,8 +63,8 @@ public class TurnManager : MonoBehaviour
     private void Start()
     {
         //시작하면 턴 초기화 후 실행
-        InitializeTurnQueue();
-        StartCoroutine(HandleTurn());
+        //InitializeTurnQueue();
+        //StartCoroutine(HandleTurn());
     }
 
     //GameManager에서 연결 -> 배틀에 들어온 몬스터들을 받아온다.
@@ -106,7 +106,7 @@ public class TurnManager : MonoBehaviour
     }
 
     //턴 초기화 -> 씬이 하나이니까 전투가 다 끝나면 초기화 하는 방식으로 해야할 듯
-    private void InitializeTurnQueue()
+    public void InitializeTurnQueue()
     {
         //초기화할때, 만난 몬스터들의 isEnemy를 true로 만들어준다. 이래야지 턴이 잘 작동한다. -> 조금 마음에 들지는 않는다.
         foreach (Monster enemyMonster in enemyMonsterList)
@@ -133,6 +133,8 @@ public class TurnManager : MonoBehaviour
             }
         }
         //이렇게되면 플레이어1, 2, 3, 적1, 2, 3 순서로 Queue가 형성이 된다.
+
+        StartCoroutine(HandleTurn());
     }
 
     //Monster의 턴이 바뀔떄 마다 호출되는 이벤트

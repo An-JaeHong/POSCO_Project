@@ -16,6 +16,11 @@ public class GameManager : MonoBehaviour
     public List<Transform> playerBattlePosList = new List<Transform>();
     public List<Transform> enemyBattlePosList = new List<Transform>();
 
+    //실제로 소환되는 몬스터들의 Prefab리스트
+    private List<GameObject> instantiateMonsterList = new List<GameObject>();
+    //깊은 복사로 저장할 원래 몬스터의 정보
+    private MonsterDeepCopy originEnemyMonster = new MonsterDeepCopy();
+
     //턴이 끝났는지 알 수 있는 변수
     public bool isPlayerActionComplete = false;
     public bool isEnemyActionComplete = false;
@@ -42,62 +47,75 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        //턴 바뀔때마다 함수를 실행한다.
+        //턴 바뀔때마다 함수를 실행한다. -> 근데 굳이 필요가 있나 싶다. TurnManager.Instance.currentTurnMonster로 충분할 것 같다.
         TurnManager.Instance.monsterTurnChange += SetCurrentTurnMonster;
     }
 
-    //적 정보 넘겨받기
-    public void SetMonsterInformation(Player player, Monster enemyMoster)
+    //만난 몬스터들 정보 넘겨받는 함수
+    public void SetMonsterInformation(Player player, Monster enemyMonster)
     {
+        //플레이어 몬스터 리스트는 얕은 복사로 받아온다. -> 정보가 변하면 안되기 때문에.
         playerMonsterInBattleList = player.selectedMonsterList;
-        for (int i = 0; i < 3; i++)
-        {
-            enemyMonsterInBattleList.Add(enemyMoster);
 
-            //로그 찍어보는 용도
-            print(playerMonsterInBattleList[i].transform.position);
-            print(enemyMonsterInBattleList[i].transform.position);
+        //일단 적 몬스터 리스트도 얕은 복사로 받아온 다음에 마지막에 정보를 초기화 해준다.
+        for(int i = 0; i < 3; i++)
+        {
+            enemyMonsterInBattleList.Add(enemyMonster);
         }
 
-        //턴 매니저에게 몬스터 정보 넘겨주기 왜 이때하냐? 플레이어가 만난 후에 지금 플레이어의 정보와 만난 몬스터의 정보를 받고 그다음에 GameManager가 Turn한테 넘겨주는게 맞아서
-        //TurnManager.Instance.SetMonsterInfomation(playerMonsterInBattleList, enemyMonsterInBattleList);
+        //새로 들어온 몬스터 정보는 일단 초기화
+        originEnemyMonster = null;
+
+        //여기에서 깊은 복사로 원래 몬스터 정보를 보관해준다.
+        originEnemyMonster =
+            new MonsterDeepCopy
+            {
+                Name = enemyMonster.name,
+                Hp = enemyMonster.hp,
+                Damage = enemyMonster.damage,
+                Element = enemyMonster.element,
+                IsEnemy = enemyMonster.isEnemy,
+                Skills = enemyMonster.skills,
+            };
+
         SetMonsterOnBattlePosition();
     }
 
+    //List<GameObject> enemyMonsterObj = new List<GameObject>();
     //플레이어와 적 지정된 포지션에 생성하기
     public void SetMonsterOnBattlePosition()
     {
-        List<Monster> temp1 = new List<Monster>(playerMonsterInBattleList);
-        List<Monster> temp2 = new List<Monster>(enemyMonsterInBattleList);
+        //실제 소환되는 몬스터들 -> Monster형태, GameObject 형태는 instantiateMonsterList이다.
+        List<Monster> spawnedPlayerMonsterList = new List<Monster>();
+        List<Monster> spawnedEnemyMonsterList = new List<Monster>();
+
         for (int i = 0; i < playerMonsterInBattleList.Count; i++)
         {
-            temp1[i] = Instantiate(playerMonsterInBattleList[i], playerBattlePosList[i].transform.position, Quaternion.Euler(0, 90f, 0));
-            //temp.animator = FindObjectOfType<Animator>();
+            GameObject playerMonsterObj = Instantiate(playerMonsterInBattleList[i].gameObject, playerBattlePosList[i].transform.position, Quaternion.Euler(0, 90f, 0));
+            Monster tempMonster = playerMonsterObj.GetComponent<Monster>();
+            spawnedPlayerMonsterList.Add(tempMonster);
+
+            //나중에 한번에 삭제하기 편하게 하려고 리스트에 추가한다.
+            instantiateMonsterList.Add(playerMonsterObj);
         }
         for (int i = 0; i < enemyMonsterInBattleList.Count; i++)
         {
-            temp2[i] = Instantiate(enemyMonsterInBattleList[i], enemyBattlePosList[i].transform.position, Quaternion.Euler(0, -90f, 0));
-            //temp.animator = FindObjectOfType<Animator>();
+            GameObject enemyMonsterObj = Instantiate(enemyMonsterInBattleList[i].gameObject, enemyBattlePosList[i].transform.position, Quaternion.Euler(0, 90f, 0));
+            Monster tempMonster = enemyMonsterObj.GetComponent<Monster>();
+            spawnedEnemyMonsterList.Add(tempMonster);
+
+            //나중에 한번에 삭제하기 편하게 하려고 리스트에 추가한다.
+            instantiateMonsterList.Add(enemyMonsterObj);
         }
 
-        TurnManager.Instance.SetMonsterInfomation(temp1, temp2);
-
-        //테스트용
-        for (int i = 0; i < 3; i++)
-        {
-            print($"temp1의 포지션 : {temp1[i].transform.position}");
-            print($"temp2의 포지션 : {temp2[i].transform.position}");
-        }
-
+        //그 후에 소환된 Monster형태의 몬스터 리스트를 TurnManager에게 넘겨준다.
+        TurnManager.Instance.SetMonsterInfomation(spawnedPlayerMonsterList, spawnedEnemyMonsterList);
     }
 
     //현재 턴인 몬스터를 불러온다.
     public void SetCurrentTurnMonster(Monster currentTurnMonster)
     {
         this.currentTurnMonster = currentTurnMonster;
-
-        //테스트용
-        print($"From GameManager : {this.currentTurnMonster.transform.position}");
     }
 
     //플레이어가 공격하는 행동에 돌입
@@ -157,5 +175,45 @@ public class GameManager : MonoBehaviour
     {
         AttackCommand attackCommand = new AttackCommand(attacker, target);
         attackCommand.EnemyAttackExecute();
+    }
+
+    //싸운 몬스터 오브젝트들 제거해주는 함수
+    public void ClearBattleMonsters()
+    {
+        foreach(GameObject instantiateMonster in instantiateMonsterList)
+        {
+            Destroy(instantiateMonster);
+        }
+        instantiateMonsterList.Clear();
+    }
+
+    //몬스터 정보는 초기화 해준다.
+    public void InitializeMonsterInfo()
+    {
+        foreach(Monster enemyMonsterInBattle in enemyMonsterInBattleList)
+        {
+            enemyMonsterInBattle.hp = originEnemyMonster.Hp;
+            enemyMonsterInBattle.name = originEnemyMonster.Name;
+            enemyMonsterInBattle.damage = originEnemyMonster.Damage;
+            enemyMonsterInBattle.element = originEnemyMonster.Element;
+            enemyMonsterInBattle.isEnemy = originEnemyMonster.IsEnemy;
+            enemyMonsterInBattle.skills = originEnemyMonster.Skills;
+        }
+        enemyMonsterInBattleList.Clear();
+        //playerMonsterInBattleList.Clear();
+    }
+
+    //전투가 끝나고나서 전투의 상태를 초기화 해주는 함수
+    public void InitializeBattleState()
+    {
+        //playerMonsterInBattleList.Clear();
+        //enemyMonsterInBattleList.Clear();
+
+        ClearBattleMonsters();
+        InitializeMonsterInfo();
+
+        //행동 완료를 false로 바꿔준다.
+        isPlayerActionComplete = false;
+        isEnemyActionComplete = false;
     }
 }

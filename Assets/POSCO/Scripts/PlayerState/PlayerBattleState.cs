@@ -38,6 +38,7 @@ public class PlayerBattleState : PlayerStateBase
         //4. 선택하는 UI생성
         player.canMove = false;
         CameraManager.Instance.HandleCamera(CameraType.BattleMap);
+        TurnManager.Instance.InitializeTurnQueue();
         //gameManager.SetMonsterOnBattlePosition();
 
         //플레이어 턴일때 띄워주는 팝업
@@ -45,6 +46,8 @@ public class PlayerBattleState : PlayerStateBase
 
         //테스트
         playerMonsterList = GameManager.Instance.playerMonsterInBattleList;
+
+        //테스트
         foreach(var playerMonster in playerMonsterList)
         {
             Debug.Log($"현재 이렇게 넘겨 받으면 뜨는 위치 : {playerMonster.transform.position}");
@@ -54,6 +57,9 @@ public class PlayerBattleState : PlayerStateBase
     //몬스터의 턴이 바뀔때 적이 아니라면 팝업이 실행됨
     private void OnMonsterTurnChange(Monster currentMonster)
     {
+        //테스트용
+        Debug.Log("현재 몬스터가 적이라서 뜨는 문구다");
+
         //플레이어 몬스터만 실행함
         if (!currentMonster.isEnemy)
         {
@@ -260,6 +266,7 @@ public class PlayerBattleState : PlayerStateBase
 
         //TurnManager.Instance.OnBattleEnd -= Exit;
         TurnManager.Instance.OnBattleEnd -= HandleBattleEnd;
+        TurnManager.Instance.monsterTurnChange -= OnMonsterTurnChange;
         Debug.Log("Exit 2");
         //player.canMove = true;
         //uiPopup.chooseBattleStateCanvas.SetActive(false);
@@ -286,6 +293,9 @@ public class PlayerBattleState : PlayerStateBase
         {
             Debug.Log("플레이어가 졌다");
         }
+
+        //게임 끝나고나면 전투상태를 초기화 시켜줘야한다.
+        GameManager.Instance.InitializeBattleState();
     }
 
     //여기서는 필요없다.

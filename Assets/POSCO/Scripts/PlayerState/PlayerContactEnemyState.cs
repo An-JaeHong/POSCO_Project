@@ -17,6 +17,9 @@ public class PlayerContactEnemyState : PlayerStateBase
 
     public override void Enter()
     {
+        //테스트
+        Debug.Log("ContactEnemyEnter에 다시 들어옴");
+
         //적과 만나는 순간은 만날 수 없어야한다.
         player.canMove = false;
         //적과 만나면 적과 만났다는 UI를 띄워야함
