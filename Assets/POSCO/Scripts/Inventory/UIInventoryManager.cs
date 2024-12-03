@@ -21,7 +21,7 @@ public class UIInventoryManager : MonoBehaviour
     }
 
 
-    private Stack<InventoryPopUpManager> inventoryPopup = new Stack<InventoryPopUpManager>();
+    private Stack<InventoryPopUp> inventoryPopup = new Stack<InventoryPopUp>();
 
     private void Update()
     {
@@ -31,7 +31,7 @@ public class UIInventoryManager : MonoBehaviour
         }
     }
 
-    public void OpenPopup(InventoryPopUpManager popup)
+    public void OpenPopup(InventoryPopUp popup)
     {
         inventoryPopup.Push(popup);
     }

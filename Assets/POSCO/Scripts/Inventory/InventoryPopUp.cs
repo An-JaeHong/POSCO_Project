@@ -4,11 +4,11 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InventoryPopUpManager : MonoBehaviour
+public class InventoryPopUp : MonoBehaviour
 {
 
-    private static InventoryPopUpManager instance;
-    public static InventoryPopUpManager Instance { get { return instance; } }
+    private static InventoryPopUp instance;
+    public static InventoryPopUp Instance { get { return instance; } }
 
     public GameObject ivnetoryMenuBackgoundPrefab;
     public GameObject showMonsterBackgoundPrefab;
@@ -16,8 +16,10 @@ public class InventoryPopUpManager : MonoBehaviour
     public GameObject showItemBackgoundPrefab;
     public GameObject canvasTransform;
     public GameObject monsterCardPrefab;
+    public GameObject inventoryPrefab;
 
-    public RectTransform monsterCardPos;
+
+
     public RectTransform inventoryPos;
     
 
@@ -53,9 +55,9 @@ public class InventoryPopUpManager : MonoBehaviour
         {
             isOpenInventory = true;
             print("´©¸§");
-            uiInventory.InstantiateMonsterCard(monsterCardPrefab, monsterCardPos);
+            
             InstantiateInventoryMenu();
-           
+            
 
         }
 
@@ -68,25 +70,26 @@ public class InventoryPopUpManager : MonoBehaviour
     
     public void InstantiateInventoryMenu()
     {
-        GameObject inventoryPrefab = Instantiate(ivnetoryMenuBackgoundPrefab, inventoryPos);
-        Transform monsterButton = transform.Find("ShowMonsterButton");
-        Transform itemButton = transform.Find("ShowItemButton");
-        Button buttonMonster = inventoryPrefab.GetComponentInChildren<Button>();
-        Button buttonItem = inventoryPrefab.GetComponentInChildren<Button>();
+        inventoryPrefab = Instantiate(ivnetoryMenuBackgoundPrefab, inventoryPos);
+        Transform monsterButton = inventoryPrefab.transform.Find("ShowMonsterButton");
+        Transform itemButton = inventoryPrefab.transform.Find("ShowItemButton");
+        Button showMonsterButton = monsterButton.GetComponentInChildren<Button>();
+        Button showItemItemButton = itemButton.GetComponentInChildren<Button>();
 
-        buttonMonster = monsterButton.GetComponentInChildren<Button>();
-        buttonItem = itemButton.GetComponentInChildren<Button>();
+        //showMonsterButton = monsterButton.GetComponentInChildren<Button>();
+        //showItemItemButton = itemButton.GetComponentInChildren<Button>();
 
-        buttonMonster.onClick.AddListener(() => InstantiateShowMonster());
-        buttonItem.onClick.AddListener(() => InstantiateShowItem());
+        showMonsterButton.onClick.AddListener(() => InstantiateShowMonster());
+        showItemItemButton.onClick.AddListener(() => InstantiateShowItem());
 
-
- 
     }
 
     public void InstantiateShowMonster()
     {
+        
         GameObject monsterCardBackgroundPrefab = Instantiate(showMonsterBackgoundPrefab, inventoryPos);
+       
+        uiInventory.InstantiateMonsterCard(monsterCardBackgroundPrefab);
     }
 
     public void InstantiateSelectedMonster()

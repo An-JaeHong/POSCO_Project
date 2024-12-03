@@ -14,24 +14,29 @@ public class UIInventory : MonoBehaviour
     // 인벤토리에 띄울 몬스터 전체 리스트
     public List<GameObject> textureMonsterPrefabsList;
     // 인벤토리에 띄울 몬스터 리스트
-    public List<GameObject> texturePlayerMonsterList; 
+    public List<GameObject> texturePlayerMonsterList;
 
-    public GameObject[] cameraForMonster;
-
+    public GameObject invetoryCameraPrefab;
     public Sprite[] element;
     public Sprite[] elementBackground;
-
+    
     private int choiceNum = 0;
 
+    public RectTransform monsterCardPos;
+
     private Player player;
+    private InventoryPopUp inventoryPopUp;
+
+    public GameObject monsterCardPrefab;
 
     private void Start()
     {
-       
+        
     }
 
     private void OnEnable()
     {
+        LoadMonsterPrefabs();
         player = FindObjectOfType<Player>();
         BringPlaterMonsterList();
         FindSameMonsters();
@@ -47,7 +52,7 @@ public class UIInventory : MonoBehaviour
 
     private void BringPlaterMonsterList()
     {
-        print(player.playerMonsterPrefabList.Count);
+     
         foreach (GameObject monsterObj in player.playerMonsterPrefabList)
         {
             if (monsterObj.TryGetComponent<Monster>(out Monster monster))
@@ -56,51 +61,76 @@ public class UIInventory : MonoBehaviour
             }
         }
     }
+    private void LoadMonsterPrefabs()
+    {
+        textureMonsterPrefabsList = new List<GameObject>(Resources.LoadAll<GameObject>("TextureRenderer"));
+
+    }
 
     public void FindSameMonsters()
     {
-        print("소환됨1");
+       
+   
         for (int i = 0; i < playerMonsterList.Count; i++)
         {
-
+              
             foreach (var monster in textureMonsterPrefabsList)
             {
+                   
                 if (monster.name == playerMonsterList[i].name)
                 {
-                    print(monster.name);
+                    //print("있다");
                     texturePlayerMonsterList.Add(monster);
                     break;
                 }
             }
         }
+        //print(texturePlayerMonsterList.Count);
     }
 
     public void InstantiatePlayerMonster()
     {
-        print("소환됨 2");
+        //print("소환됨 2");
         UIMonster newTextureMonster;
-        UIMonster NewMonsterCamera;
+        GameObject newMonsterCamera;
+        //print(playerMonsterList.Count);
+        //print(player.playerMonsterPrefabList.Count);
+        //print(texturePlayerMonsterList.Count);
+      
+       
         for (int i = 0; i < playerMonsterList.Count; i++)
         {
             float posNum = i * 10f;
-
+      
             newTextureMonster = Instantiate(texturePlayerMonsterList[i]).GetComponent<UIMonster>();
             newTextureMonster.transform.position = new Vector3(20 - posNum, 0, 0);
+            newMonsterCamera = Instantiate(invetoryCameraPrefab);
+            newMonsterCamera.transform.position = new Vector3(20 - posNum, 2, 4);
+            newMonsterCamera.transform.rotation = Quaternion.Euler(15, 180, 0);
+            
 
-            NewMonsterCamera = Instantiate(cameraForMonster[i]).GetComponent<UIMonster>();
         }
 
     }
     //생성된 몬스터 카드 속성에 맞게 생성
-    public void InstantiateMonsterCard(GameObject monsterCardPrefab, RectTransform monsterCardPos)
+    public void InstantiateMonsterCard(GameObject monsterCardBackgroundPrefab)
     {
+        Transform target = monsterCardBackgroundPrefab.transform;
+        target = monsterCardBackgroundPrefab.transform.Find("MonsterCardGirdLayoutGroup");
+        monsterCardPos = target.GetComponent<RectTransform>();
+
+        print(monsterCardPos.transform);
+       
+        { print("널입니다"); }
         print("진입함?");
+      
         for (int i = 0; i < playerMonsterList.Count; i++)
         {
             GameObject monstercard = Instantiate(monsterCardPrefab, monsterCardPos);
-            Transform targetBackgroundObject = transform.Find("MonsterCard");
+            Transform targetBackgroundObject = monstercard.transform.Find("MonsterCard");
+           
             Image backgroundImage = targetBackgroundObject.GetComponent<Image>();
-            Transform targetElementObject = transform.Find("MonsterCard/RoleIcon/Icon");
+            Transform targetElementObject = monstercard.transform.Find("MonsterCard/RoleIcon/Icon");
             Image elementIconObject = targetElementObject.GetComponent<Image>();
 
 

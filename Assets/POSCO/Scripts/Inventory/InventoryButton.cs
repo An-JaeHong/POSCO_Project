@@ -6,15 +6,13 @@ public class InventoryButton : MonoBehaviour
 {
 
     //버튼 세팅
-
-    public Sprite[] element;
-    public Sprite[] elementBackground;
-
-    private InventoryPopUpManager inventoryPopUpManager;
+    UIInventory uiInventory;
+    private InventoryPopUp inventoryPopUpManager;
 
     public void OnShowMonster()
     {
         inventoryPopUpManager.InstantiateShowMonster();
+        
     }
 
     public void OnShowSelectedMonster()
