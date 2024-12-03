@@ -137,11 +137,11 @@ PrefabInstance:
     - target: {fileID: 4012500939877901966, guid: b402d2a04499d4249996ac79c8633224, type: 3}
       propertyPath: playerMonsterPrefabList.Array.data[0]
       value: 
-      objectReference: {fileID: 231989385600591462, guid: 1e6542a34962fb34c912952936907680, type: 3}
+      objectReference: {fileID: 9119523038293248613, guid: d194da323d8a12d45b3a584721936430, type: 3}
     - target: {fileID: 4012500939877901966, guid: b402d2a04499d4249996ac79c8633224, type: 3}
       propertyPath: playerMonsterPrefabList.Array.data[1]
       value: 
-      objectReference: {fileID: 3291340212783203374, guid: f4a65c0b8f4069245848751be9d652f2, type: 3}
+      objectReference: {fileID: 231989385600591462, guid: 1e6542a34962fb34c912952936907680, type: 3}
     - target: {fileID: 4012500939877901966, guid: b402d2a04499d4249996ac79c8633224, type: 3}
       propertyPath: playerMonsterPrefabList.Array.data[2]
       value: 
@@ -986,6 +986,13 @@ MonoBehaviour:
   - {fileID: 21300000, guid: dd9b78b87892c442295cf5955624e533, type: 3}
   - {fileID: 21300000, guid: 397588afa7f724588a5adb0cbc80fe56, type: 3}
   - {fileID: 21300000, guid: 6095364454bc04bdb95879a0950ebc0e, type: 3}
+  renderTexture:
+  - {fileID: 8400000, guid: 94bee570d2039bc49995678dd2e91561, type: 2}
+  - {fileID: 8400000, guid: 36ab6b6b94817b74f8742944b8c8b3dd, type: 2}
+  - {fileID: 8400000, guid: 44e512d6d2d25c543bb5806846e0c617, type: 2}
+  - {fileID: 8400000, guid: ed3fc2cfc2426004fa5b5426ed345d33, type: 2}
+  - {fileID: 8400000, guid: 526e2ab04ef3b3e4aa22918a3dae07fd, type: 2}
+  emptyRenderTexture: {fileID: 8400000, guid: 9f8432d868368304e99637a8bf2b018c, type: 2}
   monsterCardPos: {fileID: 0}
   monsterCardPrefab: {fileID: 7834506113421134526, guid: 47e1cb5e65b51464eb1bccde9b16cf60, type: 3}
 --- !u!1 &1549884504

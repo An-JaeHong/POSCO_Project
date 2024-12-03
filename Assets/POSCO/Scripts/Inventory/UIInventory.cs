@@ -19,6 +19,9 @@ public class UIInventory : MonoBehaviour
     public GameObject invetoryCameraPrefab;
     public Sprite[] element;
     public Sprite[] elementBackground;
+
+    public RenderTexture[] renderTexture;
+    public RenderTexture emptyRenderTexture;
     
     private int choiceNum = 0;
 
@@ -107,7 +110,11 @@ public class UIInventory : MonoBehaviour
             newMonsterCamera = Instantiate(invetoryCameraPrefab);
             newMonsterCamera.transform.position = new Vector3(20 - posNum, 2, 4);
             newMonsterCamera.transform.rotation = Quaternion.Euler(15, 180, 0);
-            
+            Camera camera = newMonsterCamera.GetComponent<Camera>();
+            camera.targetTexture = renderTexture[i];
+
+
+
 
         }
 
@@ -120,18 +127,16 @@ public class UIInventory : MonoBehaviour
         monsterCardPos = target.GetComponent<RectTransform>();
 
         print(monsterCardPos.transform);
-       
-        { print("널입니다"); }
-        print("진입함?");
-      
+            
         for (int i = 0; i < playerMonsterList.Count; i++)
         {
             GameObject monstercard = Instantiate(monsterCardPrefab, monsterCardPos);
             Image backgroundImage = monstercard.GetComponent<Image>();
-
             Transform targetElementObject = monstercard.transform.Find("RoleIcon/Icon");
-
             Image elementIconObject = targetElementObject.GetComponent<Image>();
+            Transform targetTexture = monstercard.transform.Find("MonsterCardButton1");
+            RawImage rawImage = targetTexture.GetComponent<RawImage>();
+            rawImage.texture = renderTexture[i];
 
 
 
