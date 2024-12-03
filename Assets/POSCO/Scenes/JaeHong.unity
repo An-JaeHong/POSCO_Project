@@ -978,8 +978,14 @@ MonoBehaviour:
   textureMonsterPrefabsList: []
   texturePlayerMonsterList: []
   invetoryCameraPrefab: {fileID: 6035291490524159512, guid: 824ad36380bb14e4f82f9f4ec5a3dc0a, type: 3}
-  element: []
-  elementBackground: []
+  element:
+  - {fileID: 21300000, guid: 5692db8a476a44e039316aeecbe16bc6, type: 3}
+  - {fileID: 21300000, guid: 155e1dda5a5e148d28643cbf1592fbdd, type: 3}
+  - {fileID: 21300000, guid: 41e6ef92b7cb2403d9a8f89dc3a90a0f, type: 3}
+  elementBackground:
+  - {fileID: 21300000, guid: dd9b78b87892c442295cf5955624e533, type: 3}
+  - {fileID: 21300000, guid: 397588afa7f724588a5adb0cbc80fe56, type: 3}
+  - {fileID: 21300000, guid: 6095364454bc04bdb95879a0950ebc0e, type: 3}
   monsterCardPos: {fileID: 0}
   monsterCardPrefab: {fileID: 7834506113421134526, guid: 47e1cb5e65b51464eb1bccde9b16cf60, type: 3}
 --- !u!1 &1549884504
