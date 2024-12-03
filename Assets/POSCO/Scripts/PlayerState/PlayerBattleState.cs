@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -17,19 +18,19 @@ public class PlayerBattleState : PlayerStateBase
         enemyMonster = enemy;
     }
 
-    private void TmpBattleEnd()
-    {
+    //private void TmpBattleEnd()
+    //{
 
-            player.ChangeState(new PlayerIdleState(player));
-    }
+    //        player.ChangeState(new PlayerIdleState(player));
+    //}
 
     public override void Enter()
     {
         //턴 바뀔때 마다 호출하는 함수
         TurnManager.Instance.monsterTurnChange += OnMonsterTurnChange;
         //배틀 종료되면 호출하는 함수
-        //TurnManager.Instance.OnBattleEnd += Exit;
-        TurnManager.Instance.OnBattleEnd += TmpBattleEnd;
+        TurnManager.Instance.OnBattleEnd += HandleBattleEnd;
+        //TurnManager.Instance.OnBattleEnd += TmpBattleEnd;
         //전투에 들어가면
         //1. 필드에 있는 플레이어 움직임 정지
         //2. 카메라 배틀맵으로 교체
@@ -252,12 +253,13 @@ public class PlayerBattleState : PlayerStateBase
         
     }
 
+    
     public override void Exit()
     {
         Debug.Log("Exit 1");
 
         //TurnManager.Instance.OnBattleEnd -= Exit;
-        TurnManager.Instance.OnBattleEnd -= TmpBattleEnd;
+        TurnManager.Instance.OnBattleEnd -= HandleBattleEnd;
         Debug.Log("Exit 2");
         //player.canMove = true;
         //uiPopup.chooseBattleStateCanvas.SetActive(false);
@@ -268,6 +270,22 @@ public class PlayerBattleState : PlayerStateBase
         // 이 부분때문에 무한으로 즐김
         //player.ChangeState(new PlayerIdleState(player));
         Debug.Log("Exit 4");
+    }
+
+    private void HandleBattleEnd()
+    {
+        //상태 변환시키고
+        player.ChangeState(new PlayerIdleState(player));
+
+        //만약 모든 적이 죽으면 밖에 있는 몬스터를 삭제시켜야한다.
+        if (TurnManager.Instance.allEnemyMonstersDead == true)
+        {
+            GameObject.Destroy(GameManager.Instance.contactedFieldMonster);
+        }
+        else if (TurnManager.Instance.allPlayerMonstersDead == true)
+        {
+            Debug.Log("플레이어가 졌다");
+        }
     }
 
     //여기서는 필요없다.

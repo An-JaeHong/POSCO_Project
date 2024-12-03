@@ -35,6 +35,13 @@ public class TurnManager : MonoBehaviour
 
     public bool isTurnDone = false;
 
+    //모든 아군과 적의 몬스터가 죽었는지
+    public bool allPlayerMonstersDead = false;
+    public bool allEnemyMonstersDead = false;
+
+
+    //전투 끝나면 실행되는 액션
+    public event Action OnBattleEnd;
 
     ////턴이 바뀌면 실행되는 이벤트들을 모아둘꺼임
     //public event Action<Turn> onTurnChanged;
@@ -237,41 +244,53 @@ public class TurnManager : MonoBehaviour
     //전투가 끝났는지 확인
     public bool CheckBattleEnd()
     {
-        bool allPlayerMonstersDead = playerMonsterList.All(m => m.hp <= 0);
-        bool allEnemiesDead = enemyMonsterList.All(m => m.hp <= 0);
+        allPlayerMonstersDead = playerMonsterList.All(m => m.hp <= 0);
+        allEnemyMonstersDead = enemyMonsterList.All(m => m.hp <= 0);
 
-        if (allPlayerMonstersDead)
-        {
-            AllPlayerMonsterDead();
-            print("플레이어 몬스터 전멸");
-            return true;
-        }
-        else if (allEnemiesDead)
-        {
-            AllEnemyMonsterDead();
-            print("적 몬스터 전멸");
-            return true;
-        }
+        ////플레이어 몬스터가 전멸할때
+        //if (allPlayerMonstersDead)
+        //{
+        //    AllPlayerMonsterDead();
+        //    print("플레이어 몬스터 전멸");
+        //    return true;
+        //}
+        ////적 몬스터가 전멸할때
+        //else if (allEnemyMonstersDead)
+        //{
+        //    AllEnemyMonsterDead();
+        //    print("적 몬스터 전멸");
+        //    return true;
+        //}
         
+        //return false;
+        if (allPlayerMonstersDead == true || allEnemyMonstersDead == true)
+        {
+            //AllPlayerMonsterDead();
+            //AllEnemyMonsterDead();
+
+            //전투가 종료되면 불러올 함수들
+            OnBattleEnd?.Invoke();
+            return true;
+        }
         return false;
     }
 
     //전투 끝나면 실행되는 액션
-    public event Action OnBattleEnd;
+    //public event Action OnBattleEnd;
 
-    public Monster contactedFieldMonster;
+    //public GameObject contactedFieldMonster;
 
-    public void AllPlayerMonsterDead()
-    {
-        Destroy(contactedFieldMonster);
-        OnBattleEnd?.Invoke();
-    }
+    //public void AllPlayerMonsterDead()
+    //{
+    //    //Destroy(contactedFieldMonster);
+    //    OnBattleEnd?.Invoke();
+    //}
 
-    public void AllEnemyMonsterDead()
-    {
-        Destroy(contactedFieldMonster);
-        OnBattleEnd?.Invoke();
-    }
+    //public void AllEnemyMonsterDead()
+    //{
+    //    Destroy(contactedFieldMonster);
+    //    OnBattleEnd?.Invoke();
+    //}
 
     ////GameManager, UIpop에서 쓸 현재 공격하는 몬스터 정보를 넘겨줌
     //public void SetCurrentTurnMonster(Monster currentMonster)

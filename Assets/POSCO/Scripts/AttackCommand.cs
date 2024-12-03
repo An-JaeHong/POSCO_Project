@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.FullSerializer;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
@@ -27,6 +28,9 @@ public class AttackCommand : ICommand
         //Debug.Log($"{target}이 공격받았다!");
 
         CoroutineStarter.Instance.StartPlayerNormalAttackCoroutine(this);
+
+        //임시
+        TurnManager.Instance.OnBattleEnd += Undo;
     }
 
     //스킬공격시 실행하는 함수
@@ -127,7 +131,14 @@ public class AttackCommand : ICommand
     //전투 끝나면 실행할 함수
     public void Undo()
     {
-
+        //if (TurnManager.Instance.allPlayerMonstersDead == true)
+        //{
+        //    Debug.Log("아군 몬스터 전멸");
+        //}
+        //else if (TurnManager.Instance.allEnemyMonstersDead == true)
+        //{
+        //    Debug.Log("적 몬스터 전멸");
+        //}
     }
 
 }

@@ -23,7 +23,8 @@ public class GameManager : MonoBehaviour
     //현재 턴의 몬스터
     public Monster currentTurnMonster = new Monster();
 
-    public Monster contactedFieldMonster;
+    //밖에서 만난 몬스터
+    public GameObject contactedFieldMonster;
 
     private void Awake()
     {
