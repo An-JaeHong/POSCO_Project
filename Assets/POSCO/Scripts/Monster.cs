@@ -18,7 +18,7 @@ public enum AttackType
     None,
     NormalAttack,
     Skill1,
-    Skill2,
+    Skill2, //-> 확장성을 위해 남겨두었지만 사용은 하지 않음
 }
 
 public class Monster : MonoBehaviour
@@ -38,6 +38,9 @@ public class Monster : MonoBehaviour
     private SkillData selectedSkill;
 
     private GameObject playedParticle;
+
+    //몇초동안 파티클 실행할껀지
+    public float playParticleDuration;
 
     //공격 타입 -> 나중에 기본경격인지, 스킬인지 확인하게끔 필요한 변수
     public AttackType attackType;
@@ -70,6 +73,7 @@ public class Monster : MonoBehaviour
 
     }
 
+    //스킬을 선택하는 함수
     public void SetSkillNum(int skillNum)
     {
         //입력된 숫자가 0보다 작거나, 입력된 숫자가 보유한 스킬의 숫자보다 크면 return
@@ -83,15 +87,32 @@ public class Monster : MonoBehaviour
         selectedSkill = skills[skillNum];
     }
 
-    public void PlayerSkillAnimation()
+    //첫번째 스킬 애니메이션 실행하는 함수
+    public void FirstSkillAnimation()
     {
+        //파티클이 존재하면
         if (selectedSkill.particle != null)
         {
+            //공격하는 애니메이션이랑 파티클 소환은 따로따로
             animator.SetTrigger("OnSkill1");
+
+            //공격 타입에 따라 파티클 소환되는 위치를 바꿔야한다. 예를들면 근접공격 -> 공격할위치, 원거리 공격 -> 본인위치
             playedParticle = Instantiate(selectedSkill.particle, transform.position, Quaternion.identity);
+
+            //여기에서 파티클을 몇초간 실행할지 정해준다.
+            Invoke("DestroySkillParticle", playParticleDuration);
         }
 
         print($"{name}이(가) 스킬 {selectedSkill.name}를 사용했습니다!");
+    }
+
+    public void DestroySkillParticle()
+    {
+        Destroy(playedParticle);
+    }
+
+    public void SecondSkillAniamtion()
+    {
 
     }
 

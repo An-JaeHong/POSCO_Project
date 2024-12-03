@@ -34,9 +34,9 @@ public class AttackCommand : ICommand
     }
 
     //스킬공격시 실행하는 함수
-    public void PlayerSkillAttackExecute()
+    public void PlayerFristSkillAttackExecute()
     {
-        CoroutineStarter.Instance.StartPlayerSkillAttackCoroutine(this);
+        CoroutineStarter.Instance.PlayerFirstSkillAttackCoroutine(this);
     }
 
     public void EnemyAttackExecute()
@@ -82,10 +82,13 @@ public class AttackCommand : ICommand
     }
 
 
-    //재홍님 여기에다가 스킬 구현하시면 됩니다.
-    public IEnumerator PlayerSkillAttackCoroutine()
+    //첫번째 애니메이션 실행하는 코루틴
+    public IEnumerator FirstSkillAttackCoroutine()
     {
-        attacker.PlayerSkillAnimation();
+        //첫번째 스킬 실행하는 애니메이션실행
+        attacker.FirstSkillAnimation();
+
+        //2초후에 행동을 재개
         yield return new WaitForSeconds(2f);
         GameManager.Instance.isPlayerActionComplete = true;
     }

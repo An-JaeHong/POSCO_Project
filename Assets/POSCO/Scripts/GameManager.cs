@@ -163,10 +163,10 @@ public class GameManager : MonoBehaviour
     //    yield return null;
     //}
 
-    public void ExecutePlayerSkillAttackAction(Monster attacker, Monster target)
+    public void ExecutePlayerFirstSkillAttackAction(Monster attacker, Monster target)
     {
         AttackCommand attackCommand = new AttackCommand(attacker, target);
-        attackCommand.PlayerSkillAttackExecute();
+        attackCommand.PlayerFristSkillAttackExecute();
         UIPopupManager.Instance.ClosePopup();
     }
 

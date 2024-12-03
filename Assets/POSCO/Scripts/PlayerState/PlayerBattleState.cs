@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http.Headers;
 using Unity.VisualScripting;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
@@ -113,27 +115,29 @@ public class PlayerBattleState : PlayerStateBase
 
     private void DoSkillAttack()
     {
-        //스킬을 고르는 팝업이 떠야함
-        var buttons = new Dictionary<string, UnityAction>
-        {
-            {
-                $"{TurnManager.Instance.currentTurnMonster.skills[0].name}", () =>
-                {
-                    SelectSkill(0);
-                }
-            },
-            {
-                $"{TurnManager.Instance.currentTurnMonster.skills[1].name}", () =>
-                {
-                    SelectSkill(1);
-                }
-            },
-        };
+        ////스킬을 고르는 팝업이 떠야함
+        //var buttons = new Dictionary<string, UnityAction>
+        //{
+        //    {
+        //        $"{TurnManager.Instance.currentTurnMonster.skills[0].name}", () =>
+        //        {
+        //            SelectSkill(0);
+        //        }
+        //    },
+        //    {
+        //        $"{TurnManager.Instance.currentTurnMonster.skills[1].name}", () =>
+        //        {
+        //            SelectSkill(1);
+        //        }
+        //    },
+        //};
 
-        UIPopupManager.Instance.ShowPopup(
-            $"Choose Skill",
-            buttons
-            );
+        //UIPopupManager.Instance.ShowPopup(
+        //    $"Choose Skill",
+        //    buttons
+        //    );
+        TurnManager.Instance.currentTurnMonster.attackType = AttackType.Skill1;
+        ChooseTarget();
     }
 
     private void SelectSkill(int skillNum)
@@ -157,28 +161,59 @@ public class PlayerBattleState : PlayerStateBase
     //공격 대상 선택
     private void ChooseTarget()
     {
+        //살아있는 적을 리스트로 받는다
+        List<Monster> aliveTargetList = TurnManager.Instance.enemyMonsterList.Where(m => m.hp > 0).ToList();
+            //List<string> targetNum = new List<string> { "First", "Second", "Third" };
 
-        var buttons = new Dictionary<string, UnityAction>
+            //switch (aliveTargetList.Count())
+            //{
+            //    case 1:
+            //        targetNum = "First";
+            //        break;
+            //    case 2:
+            //        targetNum = "Second";
+            //        break;
+            //    case 3:
+            //        targetNum = "Third";
+            //        break;
+            //}
+
+            var buttons = new Dictionary<string, UnityAction>();
+
+        for (int i = 0; i < aliveTargetList.Count; i++)
         {
-            {
-                "First", () =>
-                {
-                    DoAttackTarget(0);
-                }
-            },
-            {
-                "Second", () =>
-                {
-                    DoAttackTarget(1);
-                }
-            },
-            {
-                "Third", () =>
-                {
-                    DoAttackTarget(2);
-                }
-            }
-        };
+            int index = TurnManager.Instance.enemyMonsterList.IndexOf(aliveTargetList[i]);
+            string targetNum = $"Target{index + 1}";
+
+            buttons.Add(
+                    targetNum,
+                    () =>
+                    {
+                        DoAttackTarget(index);
+                    }
+            );
+        }
+        //var buttons = new Dictionary<string, UnityAction>
+        //{
+        //    {
+        //        $"{targetNum}", () =>
+        //        {
+        //            DoAttackTarget(0);
+        //        }
+        //    },
+        //    {
+        //        $"{targetNum}", () =>
+        //        {
+        //            DoAttackTarget(1);
+        //        }
+        //    },
+        //    {
+        //        $"{targetNum}", () =>
+        //        {
+        //            DoAttackTarget(2);
+        //        }
+        //    }
+        //};
 
         UIPopupManager.Instance.ShowPopup(
             $"ChooseTarget!",
@@ -209,7 +244,7 @@ public class PlayerBattleState : PlayerStateBase
         }
 
         //스킬공격인데 1번 2번은 나중에 나누면 될 듯 하다
-        else if (TurnManager.Instance.currentTurnMonster.attackType == AttackType.Skill1 || TurnManager.Instance.currentTurnMonster.attackType == AttackType.Skill2)
+        else if (TurnManager.Instance.currentTurnMonster.attackType == AttackType.Skill1)
         {
             //적이 다 죽으면 고를 수 없어야함
             if (targetnum < TurnManager.Instance.enemyMonsterList.Count)
@@ -217,7 +252,7 @@ public class PlayerBattleState : PlayerStateBase
                 Monster target = TurnManager.Instance.enemyMonsterList[targetnum];
                 if (target.hp > 0)
                 {
-                    GameManager.Instance.ExecutePlayerSkillAttackAction(TurnManager.Instance.currentTurnMonster, target);
+                    GameManager.Instance.ExecutePlayerFirstSkillAttackAction(TurnManager.Instance.currentTurnMonster, target);
                 }
                 else
                 {

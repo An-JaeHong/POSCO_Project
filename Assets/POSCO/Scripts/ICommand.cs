@@ -8,7 +8,7 @@ public interface ICommand
     //실행시킬 함수
     public void PlayerNormalAttackExecute();
 
-    public void PlayerSkillAttackExecute();
+    public void PlayerFristSkillAttackExecute();
 
     public void EnemyAttackExecute();
 
