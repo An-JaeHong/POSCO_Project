@@ -127,10 +127,10 @@ public class UIInventory : MonoBehaviour
         for (int i = 0; i < playerMonsterList.Count; i++)
         {
             GameObject monstercard = Instantiate(monsterCardPrefab, monsterCardPos);
-            Transform targetBackgroundObject = monstercard.transform.Find("MonsterCard");
-           
-            Image backgroundImage = targetBackgroundObject.GetComponent<Image>();
-            Transform targetElementObject = monstercard.transform.Find("MonsterCard/RoleIcon/Icon");
+            Image backgroundImage = monstercard.GetComponent<Image>();
+
+            Transform targetElementObject = monstercard.transform.Find("RoleIcon/Icon");
+
             Image elementIconObject = targetElementObject.GetComponent<Image>();
 
 
@@ -139,18 +139,18 @@ public class UIInventory : MonoBehaviour
             {
                 case Element.Fire:
         print("진입함?3");
-                    backgroundImage.sprite = elementBackground[1];
-                    elementIconObject.sprite = element[1];
+                    backgroundImage.sprite = elementBackground[0];
+                    elementIconObject.sprite = element[0];
                     break;
                 case Element.Water:
                     print("진입함?4");
-                    backgroundImage.sprite = elementBackground[2];
-                    elementIconObject.sprite = element[2];
+                    backgroundImage.sprite = elementBackground[1];
+                    elementIconObject.sprite = element[1];
                     break;
                 case Element.Grass:
                     print("진입함?5");
-                    backgroundImage.sprite = elementBackground[3];
-                    elementIconObject.sprite = element[3];
+                    backgroundImage.sprite = elementBackground[2];
+                    elementIconObject.sprite = element[2];
                     break;
             
             }
