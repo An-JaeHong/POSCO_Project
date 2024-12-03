@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -134,11 +135,13 @@ public class UIInventory : MonoBehaviour
             Image backgroundImage = monstercard.GetComponent<Image>();
             Transform targetElementObject = monstercard.transform.Find("RoleIcon/Icon");
             Image elementIconObject = targetElementObject.GetComponent<Image>();
-            Transform targetTexture = monstercard.transform.Find("MonsterCardButton1");
+            Transform targetTexture = monstercard.transform.Find("MonsterCardButton");
             RawImage rawImage = targetTexture.GetComponent<RawImage>();
             rawImage.texture = renderTexture[i];
-
-
+            Transform targetText = monstercard.transform.Find("TextName");
+            TMP_Text inputText = targetText.GetComponent<TMP_Text>();
+            print (texturePlayerMonsterList[i].name);
+            inputText.text = texturePlayerMonsterList[i].name;
 
             switch (playerMonsterList[i].element)
             {

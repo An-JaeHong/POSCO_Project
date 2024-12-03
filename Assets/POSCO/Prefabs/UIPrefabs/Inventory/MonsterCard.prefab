@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 4279808073488353024}
   - component: {fileID: 2702649991158664366}
   m_Layer: 0
-  m_Name: MonsterCardButton1
+  m_Name: MonsterCardButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -662,7 +662,7 @@ GameObject:
   - component: {fileID: 8104518439299397699}
   - component: {fileID: 4806772820046621911}
   m_Layer: 0
-  m_Name: Text_Name
+  m_Name: TextName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
