@@ -40,11 +40,6 @@ public class AttackCommand : ICommand
         CoroutineStarter.Instance.StartEnemyAttackCoroutine(this);
     }
 
-    public void Undo()
-    {
-        
-    }
-
     public IEnumerator PlayerNormalAttackCoroutine()
     {
         //기존 위치 저장
@@ -127,6 +122,12 @@ public class AttackCommand : ICommand
 
         //공격이 끝나면 PlayerAction이 끝났다는걸 알려줘야함
         GameManager.Instance.isEnemyActionComplete = true;
+    }
+
+    //전투 끝나면 실행할 함수
+    public void Undo()
+    {
+
     }
 
 }
