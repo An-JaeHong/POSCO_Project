@@ -34,6 +34,7 @@ public class Monster : MonoBehaviour
 
     //가지고 있는 스킬 배열
     public SkillData[] skills;
+
     //선택된 스킬
     private SkillData selectedSkill;
 

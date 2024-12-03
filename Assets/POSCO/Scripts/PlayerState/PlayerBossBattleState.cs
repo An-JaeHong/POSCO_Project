@@ -1,62 +1,28 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http.Headers;
-using Unity.VisualScripting;
-using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerBattleState : PlayerStateBase
+public class PlayerBossBattleState : PlayerStateBase
 {
-    //테스트 용
-    private List<Monster> playerMonsterList = new List<Monster>();
-
-    private Monster enemyMonster;
-    public PlayerBattleState(Player player, Monster enemy) : base(player) 
+    private Boss boss;
+    public PlayerBossBattleState(Player player, Boss boss) : base(player)
     {
-        //적 동기화
-        enemyMonster = enemy;
+        this.boss = boss;
     }
-
-    //private void TmpBattleEnd()
-    //{
-
-    //        player.ChangeState(new PlayerIdleState(player));
-    //}
 
     public override void Enter()
     {
-        //턴 바뀔때 마다 호출하는 함수
+
         TurnManager.Instance.monsterTurnChange += OnMonsterTurnChange;
         //배틀 종료되면 호출하는 함수
         TurnManager.Instance.OnBattleEnd += HandleBattleEnd;
-        //TurnManager.Instance.OnBattleEnd += TmpBattleEnd;
-        //전투에 들어가면
-        //1. 필드에 있는 플레이어 움직임 정지
-        //2. 카메라 배틀맵으로 교체
-        //3. 만난 몬스터의 정보와 플레이어의 몬스터 정보를 GameManager에게 넘겨줌
-        //4. 선택하는 UI생성
         player.canMove = false;
-        CameraManager.Instance.HandleCamera(CameraType.BattleMap);
+        CameraManager.Instance.HandleCamera(CameraType.BossMap);
         TurnManager.Instance.InitializeTurnQueue();
-        //gameManager.SetMonsterOnBattlePosition();
-
-        //플레이어 턴일때 띄워주는 팝업
-        //ShowPlayerTurnPopup();
-
-        //테스트
-        playerMonsterList = GameManager.Instance.playerMonsterInBattleList;
-
-        //테스트
-        foreach(var playerMonster in playerMonsterList)
-        {
-            Debug.Log($"현재 이렇게 넘겨 받으면 뜨는 위치 : {playerMonster.transform.position}");
-        }
     }
 
-    //몬스터의 턴이 바뀔때 적이 아니라면 팝업이 실행됨
     private void OnMonsterTurnChange(Monster currentMonster)
     {
         //테스트용
@@ -141,7 +107,7 @@ public class PlayerBattleState : PlayerStateBase
 
     private void SelectSkill(int skillNum)
     {
-        switch(skillNum)
+        switch (skillNum)
         {
             case 0:
                 TurnManager.Instance.currentTurnMonster.attackType = AttackType.Skill1;
@@ -163,22 +129,22 @@ public class PlayerBattleState : PlayerStateBase
     {
         //살아있는 적을 리스트로 받는다
         List<Monster> aliveTargetList = TurnManager.Instance.enemyMonsterList.Where(m => m.hp > 0).ToList();
-            //List<string> targetNum = new List<string> { "First", "Second", "Third" };
+        //List<string> targetNum = new List<string> { "First", "Second", "Third" };
 
-            //switch (aliveTargetList.Count())
-            //{
-            //    case 1:
-            //        targetNum = "First";
-            //        break;
-            //    case 2:
-            //        targetNum = "Second";
-            //        break;
-            //    case 3:
-            //        targetNum = "Third";
-            //        break;
-            //}
+        //switch (aliveTargetList.Count())
+        //{
+        //    case 1:
+        //        targetNum = "First";
+        //        break;
+        //    case 2:
+        //        targetNum = "Second";
+        //        break;
+        //    case 3:
+        //        targetNum = "Third";
+        //        break;
+        //}
 
-            var buttons = new Dictionary<string, UnityAction>();
+        var buttons = new Dictionary<string, UnityAction>();
 
         for (int i = 0; i < aliveTargetList.Count; i++)
         {
@@ -291,10 +257,10 @@ public class PlayerBattleState : PlayerStateBase
     //update는 아직까진 필요없다.
     public override void Update()
     {
-        
+
     }
 
-    
+
     public override void Exit()
     {
         Debug.Log("Exit 1");
@@ -336,6 +302,6 @@ public class PlayerBattleState : PlayerStateBase
     //여기서는 필요없다.
     public override void HandleCollision(Collision collision)
     {
-        
+
     }
 }

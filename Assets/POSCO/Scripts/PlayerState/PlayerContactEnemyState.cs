@@ -80,7 +80,7 @@ public class PlayerContactEnemyState : PlayerStateBase
     public override void Exit()
     {
         //적과 헤어지면 움직일 수 있다.
-        player.canMove = true;
+        //player.canMove = true;
         //uiPopup.enemyContactCanvas.SetActive(false);
         UIPopupManager.Instance.ClosePopup();
     }

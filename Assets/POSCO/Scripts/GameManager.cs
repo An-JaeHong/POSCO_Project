@@ -15,18 +15,21 @@ public class GameManager : MonoBehaviour
     //전투에서 몬스터가 생성될 포지션리스트
     public List<Transform> playerBattlePosList = new List<Transform>();
     public List<Transform> enemyBattlePosList = new List<Transform>();
+    //보스맵에서 생성될 포지션리스트
+    public List<Transform> BossBattlePlayerPosList = new List<Transform>();
+    public List<Transform> BossBattlePosList = new List<Transform>();
 
     //실제로 소환되는 몬스터들의 Prefab리스트
     private List<GameObject> instantiateMonsterList = new List<GameObject>();
     //깊은 복사로 저장할 원래 몬스터의 정보
-    private MonsterDeepCopy originEnemyMonster = new MonsterDeepCopy();
+    private List<MonsterDeepCopy> originEnemyMonster = new List<MonsterDeepCopy>();
 
     //턴이 끝났는지 알 수 있는 변수
     public bool isPlayerActionComplete = false;
     public bool isEnemyActionComplete = false;
 
     //현재 턴의 몬스터
-    public Monster currentTurnMonster = new Monster();
+    public Monster currentTurnMonster;
 
     //밖에서 만난 몬스터
     public GameObject contactedFieldMonster;
@@ -58,16 +61,18 @@ public class GameManager : MonoBehaviour
         playerMonsterInBattleList = player.selectedMonsterList;
 
         //일단 적 몬스터 리스트도 얕은 복사로 받아온 다음에 마지막에 정보를 초기화 해준다.
-        for(int i = 0; i < 3; i++)
+        for (int i = 0; i < 3; i++)
         {
             enemyMonsterInBattleList.Add(enemyMonster);
         }
 
         //새로 들어온 몬스터 정보는 일단 초기화
-        originEnemyMonster = null;
+        originEnemyMonster.Clear();
 
         //여기에서 깊은 복사로 원래 몬스터 정보를 보관해준다.
-        originEnemyMonster =
+        for (int i = 0; i < 3; i++)
+        {
+            MonsterDeepCopy temp =
             new MonsterDeepCopy
             {
                 Name = enemyMonster.name,
@@ -77,8 +82,40 @@ public class GameManager : MonoBehaviour
                 IsEnemy = enemyMonster.isEnemy,
                 Skills = enemyMonster.skills,
             };
+            originEnemyMonster.Add(temp);
+        }
 
         SetMonsterOnBattlePosition();
+    }
+
+    public void SetBossInformation(Player player, Boss boss)
+    {
+        playerMonsterInBattleList = player.selectedMonsterList;
+
+        //일단 적 몬스터 리스트도 얕은 복사로 받아온 다음에 마지막에 정보를 초기화 해준다.
+        enemyMonsterInBattleList = boss.bossMonster;
+
+        //새로 들어온 몬스터 정보는 일단 초기화
+        originEnemyMonster.Clear();
+
+        //여기에서 깊은 복사로 원래 몬스터 정보를 보관해준다.
+
+        for (int i = 0; i < 3; i++)
+        {
+            MonsterDeepCopy temp =
+                new MonsterDeepCopy
+                {
+                    Name = boss.bossMonster[i].name,
+                    Hp = boss.bossMonster[i].hp,
+                    Damage = boss.bossMonster[i].damage,
+                    Element = boss.bossMonster[i].element,
+                    IsEnemy = boss.bossMonster[i].isEnemy,
+                    Skills = boss.bossMonster[i].skills,
+                };
+            originEnemyMonster.Add(temp);
+        }
+
+        SetMonsterOnBossMapPosition();
     }
 
     //List<GameObject> enemyMonsterObj = new List<GameObject>();
@@ -101,6 +138,36 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < enemyMonsterInBattleList.Count; i++)
         {
             GameObject enemyMonsterObj = Instantiate(enemyMonsterInBattleList[i].gameObject, enemyBattlePosList[i].transform.position, Quaternion.Euler(0, 90f, 0));
+            Monster tempMonster = enemyMonsterObj.GetComponent<Monster>();
+            spawnedEnemyMonsterList.Add(tempMonster);
+
+            //나중에 한번에 삭제하기 편하게 하려고 리스트에 추가한다.
+            instantiateMonsterList.Add(enemyMonsterObj);
+        }
+
+        //그 후에 소환된 Monster형태의 몬스터 리스트를 TurnManager에게 넘겨준다.
+        TurnManager.Instance.SetMonsterInfomation(spawnedPlayerMonsterList, spawnedEnemyMonsterList);
+    }
+
+    //보스맵에서 생성되는 함수
+    public void SetMonsterOnBossMapPosition()
+    {
+        //실제 소환되는 몬스터들 -> Monster형태, GameObject 형태는 instantiateMonsterList이다.
+        List<Monster> spawnedPlayerMonsterList = new List<Monster>();
+        List<Monster> spawnedEnemyMonsterList = new List<Monster>();
+
+        for (int i = 0; i < playerMonsterInBattleList.Count; i++)
+        {
+            GameObject playerMonsterObj = Instantiate(playerMonsterInBattleList[i].gameObject, BossBattlePlayerPosList[i].transform.position, Quaternion.Euler(0, -90f, 0));
+            Monster tempMonster = playerMonsterObj.GetComponent<Monster>();
+            spawnedPlayerMonsterList.Add(tempMonster);
+
+            //나중에 한번에 삭제하기 편하게 하려고 리스트에 추가한다.
+            instantiateMonsterList.Add(playerMonsterObj);
+        }
+        for (int i = 0; i < enemyMonsterInBattleList.Count; i++)
+        {
+            GameObject enemyMonsterObj = Instantiate(enemyMonsterInBattleList[i].gameObject, BossBattlePosList[i].transform.position, Quaternion.Euler(0, 90f, 0));
             Monster tempMonster = enemyMonsterObj.GetComponent<Monster>();
             spawnedEnemyMonsterList.Add(tempMonster);
 
@@ -190,14 +257,14 @@ public class GameManager : MonoBehaviour
     //몬스터 정보는 초기화 해준다.
     public void InitializeMonsterInfo()
     {
-        foreach(Monster enemyMonsterInBattle in enemyMonsterInBattleList)
+        for(int i = 0; i < enemyMonsterInBattleList.Count; i++)
         {
-            enemyMonsterInBattle.hp = originEnemyMonster.Hp;
-            enemyMonsterInBattle.name = originEnemyMonster.Name;
-            enemyMonsterInBattle.damage = originEnemyMonster.Damage;
-            enemyMonsterInBattle.element = originEnemyMonster.Element;
-            enemyMonsterInBattle.isEnemy = originEnemyMonster.IsEnemy;
-            enemyMonsterInBattle.skills = originEnemyMonster.Skills;
+            enemyMonsterInBattleList[i].hp = originEnemyMonster[i].Hp;
+            enemyMonsterInBattleList[i].name = originEnemyMonster[i].Name;
+            enemyMonsterInBattleList[i].damage = originEnemyMonster[i].Damage;
+            enemyMonsterInBattleList[i].element = originEnemyMonster[i].Element;
+            enemyMonsterInBattleList[i].isEnemy = originEnemyMonster[i].IsEnemy;
+            enemyMonsterInBattleList[i].skills = originEnemyMonster[i].Skills;
         }
         enemyMonsterInBattleList.Clear();
         //playerMonsterInBattleList.Clear();
