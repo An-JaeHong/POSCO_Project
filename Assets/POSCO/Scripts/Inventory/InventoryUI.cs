@@ -100,14 +100,22 @@ public class InventoryUI : MonoBehaviour
         //초기화 한번 후 진행
         playerMonsterList.Clear();
 
-        foreach (GameObject monsterObj in player.GetMonsterPrefabList())
-        {
-            if (monsterObj.TryGetComponent<Monster>(out Monster monster))
-            {
-                //print($"{monster.name}");
-                playerMonsterList.Add(monster);
-            }
-        }
+        //foreach (GameObject monsterObj in player.GetMonsterPrefabList())
+        //{
+        //    if (monsterObj.TryGetComponent<Monster>(out Monster monster))
+        //    {
+        //        //print($"{monster.name}");
+        //        playerMonsterList.Add(monster);
+        //    }
+        //}
+
+        playerMonsterList[0] = player.playerMonsterPrefabList[0].GetComponent<Monster>();
+        playerMonsterList[1] = player.playerMonsterPrefabList[1].GetComponent<Monster>();
+        playerMonsterList[2] = player.playerMonsterPrefabList[2].GetComponent<Monster>();
+        playerMonsterList[3] = player.playerMonsterPrefabList[3].GetComponent<Monster>();
+        playerMonsterList[4] = player.playerMonsterPrefabList[4].GetComponent<Monster>();
+
+        print(playerMonsterList[1].name);
     }
 
     private void Update()
