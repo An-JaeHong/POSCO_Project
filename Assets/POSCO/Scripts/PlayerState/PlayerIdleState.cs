@@ -42,8 +42,8 @@ public class PlayerIdleState : PlayerStateBase
             if (unit.CompareTag("Unit"))
             {
                 player.ChangeState(new PlayerContactEnemyState(player, unit));
-                GameManager.Instance.contactedFieldMonster = unit.GetComponent<Monster>().gameObject;
-            }
+                //GameManager.Instance.contactedFieldMonster = unit.GetComponent<Monster>().gameObject;
+            } 
 
             else if (unit.CompareTag("Boss"))
             {

@@ -19,6 +19,7 @@ public class NormalIdleState : IUnitState
     {
         //여기에서 일반 몬스터가 주위를 돌면서 있는 함수를 실행. 한 3초 움직였다가 2초 멈추는 움직이면 좋을듯
         //X축은 Unit의 포지션에서 +-unit.moveRange 값으로 움직인다.
+        unit.iscontactedPlayer = false;
         destination = unit.SetRandomPosition();
 
         //들어가면 일단 느낌표는 숨긴다.
@@ -46,6 +47,7 @@ public class NormalIdleState : IUnitState
             if(waitTimer <= 0)
             {
                 isWaiting = false;
+                unit.iscontactedPlayer = false;
                 destination = unit.SetRandomPosition();
             }
         }
@@ -58,7 +60,6 @@ public class NormalIdleState : IUnitState
                 //여기서 잠시 멈춰주는 함수 넣어주자.
                 Debug.Log("이동중");
                 isWaiting = true;
-                waitTimer = waitTime;
                 StopUnitMove(unit);
             }
         }
@@ -67,7 +68,7 @@ public class NormalIdleState : IUnitState
     {
         // 유닛의 이동을 멈추게 하는 로직
         Debug.Log("멈춤");
-        unit.UnitMove(unit.transform.position);
+        unit.iscontactedPlayer = true;
     }
 
     private bool DetectPlayer(Unit unit)

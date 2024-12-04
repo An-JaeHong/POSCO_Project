@@ -14,7 +14,7 @@ public class Unit : MonoBehaviour
     public List<Monster> ownedMonsterList = new List<Monster>(); //소지하고 있는 몬스터 리스트 -> 보스 : 종류가 다른 3개의 몬스터.  일반몬스터 : 종류가 같은 3개의 몬스터
     public bool isBoss; //State패턴을 위한 변수. true : 보스, false : 일반 몬스터
     public GameObject exclamationMarkPrefab; //느낌표 프리팹
-    public GameObject exclamationMark; //실제 켰다 껐다할 느낌표
+    private GameObject exclamationMark; //실제 켰다 껐다할 느낌표
     public Transform spawnPosition; //스폰되는 장소
 
     public string name; //유닛 이름
@@ -22,6 +22,7 @@ public class Unit : MonoBehaviour
     public float moveRange;   //움직임 범위 (일단은 정사각형이다)
     public float sightAngle;  //시야각
     public float detectRange; //탐지 범위
+    public bool iscontactedPlayer; //플레이어를 만났는지
 
     public CharacterController characterController;
 
@@ -64,6 +65,10 @@ public class Unit : MonoBehaviour
     //목적지를 파라미터로 넣어주자
     public void UnitMove(Vector3 destination)
     {
+        if (iscontactedPlayer)
+        {
+            return;
+        }
         //움직이는 방향 노말벡터
         Vector3 direction = (destination - transform.position).normalized;
 
@@ -72,6 +77,7 @@ public class Unit : MonoBehaviour
 
         characterController.Move(velocity * Time.deltaTime);
     }
+
 
     //느낌표를 소환해줄 함수
     public void InstantiateExclamationMark()

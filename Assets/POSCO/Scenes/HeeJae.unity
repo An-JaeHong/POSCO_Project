@@ -392,6 +392,7 @@ GameObject:
   - component: {fileID: 1264697211}
   - component: {fileID: 1264697210}
   - component: {fileID: 1264697209}
+  - component: {fileID: 1264697214}
   - component: {fileID: 1264697213}
   m_Layer: 0
   m_Name: Boss
@@ -497,14 +498,49 @@ MonoBehaviour:
   m_GameObject: {fileID: 1264697208}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50bdd115f63f4054a9f3f59de331fbf6, type: 3}
+  m_Script: {fileID: 11500000, guid: 23f2a659166cc4343b8ca2b09fccffbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossMonster:
+  ownedMonsterList:
   - {fileID: 2550734210606328456, guid: 4838d6d06bfc43f45a1c4bd9fa2c97ce, type: 3}
+  - {fileID: 4251227727141545033, guid: 4bf20e0fd4bc1854cb398f21e12d4d44, type: 3}
   - {fileID: 458603631973028805, guid: a0f3ab44ea09c4f438be8a1e86727271, type: 3}
-  - {fileID: -2471186938416619100, guid: d2a226597e2b3fd428c5d85f3e69412b, type: 3}
-  name: boss
+  isBoss: 1
+  exclamationMarkPrefab: {fileID: 8764048426798851983, guid: 5494df217f1871e459d48b337ca61ac7, type: 3}
+  spawnPosition: {fileID: 0}
+  name: Boss
+  moveSpeed: 0
+  moveRange: 0
+  sightAngle: 90
+  detectRange: 10
+  iscontactedPlayer: 0
+  characterController: {fileID: 0}
+--- !u!143 &1264697214
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1264697208}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1284754056
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -822,8 +858,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1.5616633, z: 1}
-  m_Center: {x: 0, y: 1.1351807, z: 0}
+  m_Size: {x: 1, y: 2.4881718, z: 1}
+  m_Center: {x: 0, y: 0.6719264, z: 0}
 --- !u!114 &1572859355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -836,16 +872,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23f2a659166cc4343b8ca2b09fccffbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ownedMonsterList: []
+  ownedMonsterList:
+  - {fileID: -2238023790780512043, guid: d194da323d8a12d45b3a584721936430, type: 3}
+  - {fileID: -2238023790780512043, guid: d194da323d8a12d45b3a584721936430, type: 3}
+  - {fileID: -2238023790780512043, guid: d194da323d8a12d45b3a584721936430, type: 3}
   isBoss: 0
   exclamationMarkPrefab: {fileID: 8764048426798851983, guid: 5494df217f1871e459d48b337ca61ac7, type: 3}
-  exclamationMark: {fileID: 0}
   spawnPosition: {fileID: 2095320510}
-  name: 
+  name: Dragon
   moveSpeed: 3
   moveRange: 5
   sightAngle: 30
   detectRange: 4
+  iscontactedPlayer: 0
   characterController: {fileID: 0}
 --- !u!143 &1572859356
 CharacterController:
@@ -866,13 +905,13 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.5
+  m_Height: 2.09
+  m_Radius: 0.56
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1.06, z: 0}
+  m_Center: {x: 0, y: 0.95, z: 0}
 --- !u!4 &1667497089 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6453656001437553706, guid: c08746883584b1c46bc9bbde78a7bd30, type: 3}
@@ -992,7 +1031,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9119523038293248613, guid: d194da323d8a12d45b3a584721936430, type: 3}
       propertyPath: m_TagString
-      value: Unit
+      value: Boss
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -2238023790780512043, guid: d194da323d8a12d45b3a584721936430, type: 3}
@@ -1237,7 +1276,7 @@ Transform:
   m_GameObject: {fileID: 2095320509}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 179.73, y: 4.59, z: -67.01}
+  m_LocalPosition: {x: 185.28, y: 2.86, z: -66.21}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
