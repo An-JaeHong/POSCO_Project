@@ -17,6 +17,7 @@ public class Unit : MonoBehaviour
     public GameObject exclamationMark; //실제 켰다 껐다할 느낌표
     public Transform spawnPosition; //스폰되는 장소
 
+    public string name; //유닛 이름
     public float moveSpeed;   //움직임 속도
     public float moveRange;   //움직임 범위 (일단은 정사각형이다)
     public float sightAngle;  //시야각

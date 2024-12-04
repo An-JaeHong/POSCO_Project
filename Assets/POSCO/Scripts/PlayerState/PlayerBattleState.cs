@@ -8,16 +8,16 @@ using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerBattleState : PlayerStateBase
+public class PlayerNormalBattleState : PlayerStateBase
 {
     //테스트 용
     private List<Monster> playerMonsterList = new List<Monster>();
 
-    private Monster enemyMonster;
-    public PlayerBattleState(Player player, Monster enemy) : base(player) 
+    private Unit unit;
+    public PlayerNormalBattleState(Player player, Unit unit) : base(player) 
     {
         //적 동기화
-        enemyMonster = enemy;
+        this.unit = unit;
     }
 
     //private void TmpBattleEnd()

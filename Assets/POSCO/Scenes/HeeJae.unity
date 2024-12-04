@@ -841,6 +841,7 @@ MonoBehaviour:
   exclamationMarkPrefab: {fileID: 8764048426798851983, guid: 5494df217f1871e459d48b337ca61ac7, type: 3}
   exclamationMark: {fileID: 0}
   spawnPosition: {fileID: 2095320510}
+  name: 
   moveSpeed: 3
   moveRange: 5
   sightAngle: 30
@@ -988,6 +989,10 @@ PrefabInstance:
     - target: {fileID: 9119523038293248613, guid: d194da323d8a12d45b3a584721936430, type: 3}
       propertyPath: m_Name
       value: Dragon Fire
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119523038293248613, guid: d194da323d8a12d45b3a584721936430, type: 3}
+      propertyPath: m_TagString
+      value: Unit
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -2238023790780512043, guid: d194da323d8a12d45b3a584721936430, type: 3}

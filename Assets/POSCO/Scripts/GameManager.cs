@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
     }
 
     //만난 몬스터들 정보 넘겨받는 함수
-    public void SetMonsterInformation(Player player, Monster enemyMonster)
+    public void SetMonsterInformation(Player player, Unit unit)
     {
         //플레이어 몬스터 리스트는 얕은 복사로 받아온다. -> 정보가 변하면 안되기 때문에.
         playerMonsterInBattleList = player.selectedMonsterList;
@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
         //일단 적 몬스터 리스트도 얕은 복사로 받아온 다음에 마지막에 정보를 초기화 해준다.
         for (int i = 0; i < 3; i++)
         {
-            enemyMonsterInBattleList.Add(enemyMonster);
+            enemyMonsterInBattleList.Add(unit.ownedMonsterList[i]);
         }
 
         //새로 들어온 몬스터 정보는 일단 초기화
@@ -75,12 +75,12 @@ public class GameManager : MonoBehaviour
             MonsterDeepCopy temp =
             new MonsterDeepCopy
             {
-                Name = enemyMonster.name,
-                Hp = enemyMonster.hp,
-                Damage = enemyMonster.damage,
-                Element = enemyMonster.element,
-                IsEnemy = enemyMonster.isEnemy,
-                Skills = enemyMonster.skills,
+                Name = unit.ownedMonsterList[i].name,
+                Hp = unit.ownedMonsterList[i].hp,
+                Damage = unit.ownedMonsterList[i].damage,
+                Element = unit.ownedMonsterList[i].element,
+                IsEnemy = unit.ownedMonsterList[i].isEnemy,
+                Skills = unit.ownedMonsterList[i].skills,
             };
             originEnemyMonster.Add(temp);
         }
@@ -88,12 +88,12 @@ public class GameManager : MonoBehaviour
         SetMonsterOnBattlePosition();
     }
 
-    public void SetBossInformation(Player player, Boss boss)
+    public void SetBossInformation(Player player, Unit boss)
     {
         playerMonsterInBattleList = player.selectedMonsterList;
 
         //일단 적 몬스터 리스트도 얕은 복사로 받아온 다음에 마지막에 정보를 초기화 해준다.
-        enemyMonsterInBattleList = boss.bossMonster;
+        enemyMonsterInBattleList = boss.ownedMonsterList;
 
         //새로 들어온 몬스터 정보는 일단 초기화
         originEnemyMonster.Clear();
@@ -105,12 +105,12 @@ public class GameManager : MonoBehaviour
             MonsterDeepCopy temp =
                 new MonsterDeepCopy
                 {
-                    Name = boss.bossMonster[i].name,
-                    Hp = boss.bossMonster[i].hp,
-                    Damage = boss.bossMonster[i].damage,
-                    Element = boss.bossMonster[i].element,
-                    IsEnemy = boss.bossMonster[i].isEnemy,
-                    Skills = boss.bossMonster[i].skills,
+                    Name = boss.ownedMonsterList[i].name,
+                    Hp = boss.ownedMonsterList[i].hp,
+                    Damage = boss.ownedMonsterList[i].damage,
+                    Element = boss.ownedMonsterList[i].element,
+                    IsEnemy = boss.ownedMonsterList[i].isEnemy,
+                    Skills = boss.ownedMonsterList[i].skills,
                 };
             originEnemyMonster.Add(temp);
         }

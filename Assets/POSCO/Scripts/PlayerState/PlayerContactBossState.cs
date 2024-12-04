@@ -5,8 +5,8 @@ using UnityEngine.Events;
 
 public class PlayerContactBossState : PlayerStateBase
 {
-    private Boss boss;
-    public PlayerContactBossState(Player player, Boss boss) : base(player)
+    private Unit boss;
+    public PlayerContactBossState(Player player, Unit boss) : base(player)
     {
         this.boss = boss;
     }

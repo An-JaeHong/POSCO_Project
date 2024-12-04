@@ -6,13 +6,13 @@ using UnityEngine.Events;
 
 public class PlayerContactEnemyState : PlayerStateBase
 {
-    //만난 몬스터
-    private Monster enemyMonster;
+    //만난 유닛
+    private Unit unit;
 
-    public PlayerContactEnemyState(Player player, Monster enemy) : base(player)
+    public PlayerContactEnemyState(Player player, Unit unit) : base(player)
     {
         //만난적 동기화
-        this.enemyMonster = enemy;
+        this.unit = unit;
     }
 
     public override void Enter()
@@ -44,7 +44,7 @@ public class PlayerContactEnemyState : PlayerStateBase
         };
 
         UIPopupManager.Instance.ShowPopup(
-            $"{enemyMonster.name} is appear!, what do you do?",
+            $"{unit.name} is appear!, what do you do?",
             buttons
         );
     }
@@ -52,7 +52,7 @@ public class PlayerContactEnemyState : PlayerStateBase
     private void StartBattle()
     {
         //현재 플레이어가 들고있는 몬스터와 만난 몬스터의 정보를 넘겨줌
-        gameManager.SetMonsterInformation(player, enemyMonster);
+        gameManager.SetMonsterInformation(player, unit);
         //foreach(var selectedMonster in player.selectedMonsterList)
         //{
 
@@ -60,7 +60,7 @@ public class PlayerContactEnemyState : PlayerStateBase
         //}
 
         //플레이어의 정보와, 만난적의 정보를 넘겨줌
-        player.ChangeState(new PlayerBattleState(player, enemyMonster));
+        player.ChangeState(new PlayerNormalBattleState(player, unit));
 
         Debug.Log("전투에 들어옴");
     }
