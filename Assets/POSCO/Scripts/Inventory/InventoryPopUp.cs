@@ -17,7 +17,7 @@ public class InventoryPopUp : MonoBehaviour
     public GameObject canvasTransform;
     public GameObject monsterCardPrefab;
     public GameObject inventoryPrefab;
-
+    
 
 
     public RectTransform inventoryPos;
@@ -45,6 +45,7 @@ public class InventoryPopUp : MonoBehaviour
     {
 
         uiInventory = FindObjectOfType<UIInventory>();
+        
     }
 
     private void Update()
@@ -76,9 +77,6 @@ public class InventoryPopUp : MonoBehaviour
         Button showMonsterButton = monsterButton.GetComponentInChildren<Button>();
         Button showItemItemButton = itemButton.GetComponentInChildren<Button>();
 
-        //showMonsterButton = monsterButton.GetComponentInChildren<Button>();
-        //showItemItemButton = itemButton.GetComponentInChildren<Button>();
-
         showMonsterButton.onClick.AddListener(() => InstantiateShowMonster());
         showItemItemButton.onClick.AddListener(() => InstantiateShowItem());
 
@@ -88,14 +86,19 @@ public class InventoryPopUp : MonoBehaviour
     {
         
         GameObject monsterCardBackgroundPrefab = Instantiate(showMonsterBackgoundPrefab, inventoryPos);
+        
        
         uiInventory.InstantiateMonsterCard(monsterCardBackgroundPrefab);
+        uiInventory.SetSelectButton(monsterCardBackgroundPrefab);
     }
 
     public void InstantiateSelectedMonster()
     {
+      
         GameObject selectedMonsterPrefab = Instantiate(showSelectedMonsterBackgoundPrefab, inventoryPos);
+        uiInventory.selectedMonster = selectedMonsterPrefab;
     }
+
 
 
     public void InstantiateShowItem()
@@ -103,25 +106,8 @@ public class InventoryPopUp : MonoBehaviour
         GameObject itemPrefab = Instantiate(showItemBackgoundPrefab, inventoryPos);
     }
 
-    //버튼을 소환(이미지)
-    //public void InstantiateMonsterCard()
-    //{
-    //    GameObject monsterCardprefab = Instantiate(monsterCardPrefab, monsterCardPos);
-       
-    //}
 }
 
 
 
 
-//InventoryPopUpManager inventoryManager= InventoryPrefab.GetComponent<InventoryPopUpManager>();
-////UIInventoryManager.Instance.OpenPopup(inventoryManager);
-//if (inventoryManager != null)
-//{
-//    // Call OpenPopup on the UIInventoryManager singleton
-//    UIInventoryManager.Instance.OpenPopup(inventoryManager);
-//}
-//else
-//{
-//    Debug.LogError("InventoryPopUpManager component not found on instantiated prefab.");
-//

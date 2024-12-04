@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4426391960872840806}
   - component: {fileID: 5469607016596054984}
   m_Layer: 5
-  m_Name: Choice Battle Monster
+  m_Name: ChoiceBattleMonster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
