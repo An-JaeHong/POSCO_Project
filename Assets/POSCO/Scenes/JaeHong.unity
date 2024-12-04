@@ -478,7 +478,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ivnetoryMenuBackgoundPrefab: {fileID: 6359217662149013750, guid: c482afa080b936046991bf01a7a07ab4, type: 3}
   showMonsterBackgoundPrefab: {fileID: 2111749491319834129, guid: 2249863561573c3429609137ae1ddea9, type: 3}
-  showSelectedMonsterBackgoundPrefab: {fileID: 4653028742954594884, guid: 5125e8f728e5edd4db157510148b9a01, type: 3}
+  showSelectedMonsterBackgoundPrefab: {fileID: 6531937212194726140, guid: aa76ccd942dfbc749a1b0f18319686b1, type: 3}
   showItemBackgoundPrefab: {fileID: 1931561335115128016, guid: 1376afd1994a07f42a5d6a0bdb2f8a87, type: 3}
   canvasTransform: {fileID: 1528870259}
   monsterCardPrefab: {fileID: 7834506113421134526, guid: 47e1cb5e65b51464eb1bccde9b16cf60, type: 3}
@@ -982,6 +982,7 @@ MonoBehaviour:
   emptyRenderTexture: {fileID: 8400000, guid: 9f8432d868368304e99637a8bf2b018c, type: 2}
   monsterCardPos: {fileID: 0}
   cardList: []
+  selectedMonster: {fileID: 0}
   monsterCardPrefab: {fileID: 7834506113421134526, guid: 47e1cb5e65b51464eb1bccde9b16cf60, type: 3}
 --- !u!114 &1528870265
 MonoBehaviour:
@@ -1229,7 +1230,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1396191845747034105, guid: cdc04cb26af40d942925360edeb46395, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1417245253820594632, guid: cdc04cb26af40d942925360edeb46395, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1265,11 +1266,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1577795399381002412, guid: cdc04cb26af40d942925360edeb46395, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2336289438033394925, guid: cdc04cb26af40d942925360edeb46395, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2720897660691343148, guid: cdc04cb26af40d942925360edeb46395, type: 3}
       propertyPath: m_IsActive
