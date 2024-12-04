@@ -220,129 +220,45 @@ public class UIInventory : MonoBehaviour
         }
     }
     //정보를 가지고있어
-
     public void OnMonsterCard(int number)
     {
         Transform targetButton;
         Button button;
-
         Transform targetTransform;
-        RawImage tagetRawImage;
+        RawImage targetRawImage;
         RawImage rawImage;
         Image image;
         Image targetImage;
-        if (choiceNum < 3)
+
+        if (choiceNum < 3) // 최대 3마리 선택 가능
         {
-            switch (number)
-            {
-                case 0:
-                    targetButton = cardList[0].transform.Find("MonsterCardButton");
-                    button = targetButton.GetComponent<Button>();
-                    button.interactable = false;
-                    rawImage = targetButton.GetComponent<RawImage>();
-                    
-                    image = cardList[0].GetComponent<Image>();
-                    targetTransform = selectedMonster.transform.Find("SelectedMonster1/SelectedMonsterBackGround1");
-                    targetImage=targetTransform.GetComponent<Image>();
-                    targetImage.sprite = image.sprite;
+            // 선택된 카드에 따라 처리
+            targetButton = cardList[number].transform.Find("MonsterCardButton");
+            button = targetButton.GetComponent<Button>();
+            button.interactable = false; // 버튼 비활성화
 
+            rawImage = targetButton.GetComponent<RawImage>();
+            image = cardList[number].GetComponent<Image>();
 
-                    targetTransform = selectedMonster.transform.Find("SelectedMonster1/ColectedCardTexture1");
-                    tagetRawImage = targetTransform.GetComponent<RawImage>();
-                    tagetRawImage.texture = rawImage.texture;
-                    ColorBlock colorBlock = button.colors;
-                        //selectedMonster.GetComponent<RawImage>();
+            // 선택된 몬스터 정보를 저장할 위치 결정
+            targetTransform = selectedMonster.transform.Find($"SelectedMonster{choiceNum + 1}/SelectedMonsterBackGround{choiceNum + 1}");
+            targetImage = targetTransform.GetComponent<Image>();
+            targetImage.sprite = image.sprite; // 몬스터 이미지 저장
 
-                    //TempSelectedMonsterList.Add(playerMonsterList[0]);
+            targetTransform = selectedMonster.transform.Find($"SelectedMonster{choiceNum + 1}/ColectedCardTexture{choiceNum + 1}");
+            targetRawImage = targetTransform.GetComponent<RawImage>();
+            targetRawImage.texture = rawImage.texture; // 몬스터 텍스처 저장
 
+            print($"{choiceNum + 1}번째 카드 선택"); // 선택한 카드 출력
 
-                    print("첫번째 카드선택");
-                    break;
-                case 1:
-                    targetButton = cardList[1].transform.Find("MonsterCardButton");
-                    button = targetButton.GetComponent<Button>();
-                    colorBlock = button.colors;
-                    colorBlock.colorMultiplier = 0;
-                    button.interactable = false;
-                    rawImage = targetButton.GetComponent<RawImage>();
-                    image = cardList[1].GetComponent<Image>();
-                    targetTransform = selectedMonster.transform.Find("SelectedMonster2/SelectedMonsterBackGround2");
-                    targetImage = targetTransform.GetComponent<Image>();
-                    targetImage.sprite = image.sprite;
-
-
-                    targetTransform = selectedMonster.transform.Find("SelectedMonster2/ColectedCardTexture2");
-                    tagetRawImage = targetTransform.GetComponent<RawImage>();
-                    tagetRawImage.texture = rawImage.texture;
-                    print("두번째 카드선택");
-                    break;
-                case 2:
-                    targetButton = cardList[2].transform.Find("MonsterCardButton");
-                    button = targetButton.GetComponent<Button>();
-                    button.interactable = false;
-                    rawImage = targetButton.GetComponent<RawImage>();
-
-                    image = cardList[2].GetComponent<Image>();
-                    targetTransform = selectedMonster.transform.Find("SelectedMonster3/SelectedMonsterBackGround3");
-                    targetImage = targetTransform.GetComponent<Image>();
-                    targetImage.sprite = image.sprite;
-
-
-                    targetTransform = selectedMonster.transform.Find("SelectedMonster3/ColectedCardTexture3");
-                    tagetRawImage = targetTransform.GetComponent<RawImage>();
-                    tagetRawImage.texture = rawImage.texture; ;
-                    print("3번째 카드 선택");
-
-                    break;
-                case 3:
-                    targetButton = cardList[3].transform.Find("MonsterCardButton");
-                    button = targetButton.GetComponent<Button>();
-                    button.interactable = false;
-                    rawImage = targetButton.GetComponent<RawImage>();
-
-                    image = cardList[3].GetComponent<Image>();
-                    targetTransform = selectedMonster.transform.Find("SelectedMonster4/SelectedMonsterBackGround4");
-                    targetImage = targetTransform.GetComponent<Image>();
-                    targetImage.sprite = image.sprite;
-
-
-                    targetTransform = selectedMonster.transform.Find("SelectedMonster4/ColectedCardTexture4");
-                    tagetRawImage = targetTransform.GetComponent<RawImage>();
-                    tagetRawImage.texture = rawImage.texture;
-                    print("4번째 카드 선택");
-
-                    break;
-                case 4:
-                    targetButton = cardList[4].transform.Find("MonsterCardButton");
-                    button = targetButton.GetComponent<Button>();
-                    button.interactable = false;
-                    rawImage = targetButton.GetComponent<RawImage>();
-
-                    image = cardList[4].GetComponent<Image>();
-                    targetTransform = selectedMonster.transform.Find("SelectedMonster5/SelectedMonsterBackGround5");
-                    targetImage = targetTransform.GetComponent<Image>();
-                    targetImage.sprite = image.sprite;
-
-
-                    targetTransform = selectedMonster.transform.Find("SelectedMonster5/ColectedCardTexture5");
-                    tagetRawImage = targetTransform.GetComponent<RawImage>();
-                    tagetRawImage.texture = rawImage.texture;
-                    print("5번째 카드 선택");
-
-                    break;
-            }
-
-            choiceNum++;
-
+            choiceNum++; // 선택한 카드 수 증가
         }
         else
         {
-            print("배틀 몬스터는최대 3마리 입니다.");
+            print("배틀 몬스터는 최대 3마리 입니다.");
         }
-
-        //ShowSetCelectMonster(choiceNum - 1);
-        //}
     }
+
 }
 
 

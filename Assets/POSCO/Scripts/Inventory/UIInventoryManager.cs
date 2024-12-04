@@ -26,18 +26,38 @@ public class UIInventoryManager : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
-        { 
-            
+        {
+            ClosePopup();
         }
     }
 
-    public void OpenPopup(InventoryPopUp popup)
+    public void OpenPopup(GameObject popupPrefab)
     {
-        inventoryPopup.Push(popup);
+        if (inventoryPopup.Count > 0)
+        {
+            print("이미 열린 팝업이 있음");
+            return;
+        }
+
+        InventoryPopUp popupInstance = Instantiate(popupPrefab).GetComponent<InventoryPopUp>();
+        inventoryPopup.Push(popupInstance);
+        popupInstance.gameObject.SetActive(true); // 팝업 활성화
+        print("팝업이 열림");
+    }
+
+    public void ClosePopup()
+    {
+        if (inventoryPopup.Count > 0)
+        {
+            InventoryPopUp popup = inventoryPopup.Pop(); // 가장 최근 팝업
+            Destroy(popup.gameObject); // 팝업 파괴
+        }
+    }
+    public bool IsPopupOpen()
+    {
+        return inventoryPopup.Count > 0; // 현재 열린 팝업이 있는지 확인
     }
 
 
-
-
-    //여기서 소환 정보를 가지고
+  
 }

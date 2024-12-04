@@ -56,21 +56,18 @@ public class InventoryPopUp : MonoBehaviour
         {
             isOpenInventory = true;
             print("누름");
-            
+            UIInventoryManager.Instance.OpenPopup(this.gameObject); // 팝업 열기
             InstantiateInventoryMenu();
             
 
         }
 
-        //close
-        if (isOpenInventory == true && Input.GetKeyUp(KeyCode.Escape))
-        {
-            isOpenInventory = false;
-        }
     }
     
     public void InstantiateInventoryMenu()
     {
+   
+
         inventoryPrefab = Instantiate(ivnetoryMenuBackgoundPrefab, inventoryPos);
         Transform monsterButton = inventoryPrefab.transform.Find("ShowMonsterButton");
         Transform itemButton = inventoryPrefab.transform.Find("ShowItemButton");
@@ -79,31 +76,39 @@ public class InventoryPopUp : MonoBehaviour
 
         showMonsterButton.onClick.AddListener(() => InstantiateShowMonster());
         showItemItemButton.onClick.AddListener(() => InstantiateShowItem());
-
+        //UIInventoryManager.Instance.OpenPopup(this.gameObject);
     }
 
     public void InstantiateShowMonster()
     {
-        
+  
+
+
         GameObject monsterCardBackgroundPrefab = Instantiate(showMonsterBackgoundPrefab, inventoryPos);
         
        
         uiInventory.InstantiateMonsterCard(monsterCardBackgroundPrefab);
         uiInventory.SetSelectButton(monsterCardBackgroundPrefab);
+        //UIInventoryManager.Instance.OpenPopup(this.gameObject);
     }
 
     public void InstantiateSelectedMonster()
     {
-      
+  
+
         GameObject selectedMonsterPrefab = Instantiate(showSelectedMonsterBackgoundPrefab, inventoryPos);
         uiInventory.selectedMonster = selectedMonsterPrefab;
+        //UIInventoryManager.Instance.OpenPopup(this.gameObject);
     }
 
 
 
     public void InstantiateShowItem()
     {
+    
+
         GameObject itemPrefab = Instantiate(showItemBackgoundPrefab, inventoryPos);
+        //UIInventoryManager.Instance.OpenPopup(this.gameObject);
     }
 
 }
