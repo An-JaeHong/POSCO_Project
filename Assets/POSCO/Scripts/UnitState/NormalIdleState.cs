@@ -32,7 +32,6 @@ public class NormalIdleState : IUnitState
         //여기에서 플레이어를 발견하면 느낌표가 뜨면서 NormalChaseState로 바뀌어야함
         if (DetectPlayer(unit))
         {
-            unit.ShowExclamationMark();
             unit.ChangeState(new NormalChaseState());
 
             Debug.Log("감지중");
