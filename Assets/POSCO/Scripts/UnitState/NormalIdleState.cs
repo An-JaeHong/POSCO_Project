@@ -33,6 +33,7 @@ public class NormalIdleState : IUnitState
         if (DetectPlayer(unit))
         {
             unit.ChangeState(new NormalChaseState());
+            Debug.Log("IdleState에서 ChaseState로 감");
 
             Debug.Log("감지중");
             return;
@@ -75,7 +76,7 @@ public class NormalIdleState : IUnitState
         GameObject player = GameObject.FindGameObjectWithTag("Player");
 
         //플레이어가 있으면
-        if (player != null && UnitSight(unit, player))
+        if (UnitSight(unit, player))
         {
             return true;
         }
@@ -93,9 +94,8 @@ public class NormalIdleState : IUnitState
         //각도 만족하고
         if (angle < unit.sightAngle / 2)
         {
-            RaycastHit hit;
             //방향 만족하고
-            if (Physics.Raycast(unit.transform.position, directionToPlayer, out hit, unit.detectRange))
+            if (Physics.Raycast(unit.transform.position, directionToPlayer, out RaycastHit hit, unit.detectRange))
             {
                 //플레이어 만족하면 true
                 if (hit.collider.gameObject == player)

@@ -34,7 +34,6 @@ public class NormalChaseState : IUnitState
             if (distance > unit.detectRange)
             {
                 unit.ChangeState(new NormalIdleState());
-                unit.HideExclamationMark();
             }
         }
     }
@@ -43,5 +42,4 @@ public class NormalChaseState : IUnitState
     {
         
     }
-
 }
