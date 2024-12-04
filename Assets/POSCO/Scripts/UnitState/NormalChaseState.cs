@@ -2,17 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NormalChaseState : MonoBehaviour
+public class NormalChaseState : IUnitState
 {
-    // Start is called before the first frame update
-    void Start()
+    public void Enter(Unit unit)
     {
-        
+        throw new System.NotImplementedException();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Update(Unit unit)
     {
-        
+        throw new System.NotImplementedException();
     }
+
+    public void Exit(Unit unit)
+    {
+        throw new System.NotImplementedException();
+    }
+
 }
