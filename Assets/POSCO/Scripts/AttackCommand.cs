@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using Unity.VisualScripting.FullSerializer;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -50,7 +51,7 @@ public class AttackCommand : ICommand
         //여기에 "" 가 ""를 공격했다! UI띄우기
         var buttons = new Dictionary<string, UnityAction>{};
         UIPopupManager.Instance.ShowPopup(
-            $"{attacker.name} take attack {target.name}!",
+            $"{attacker.name} Attack!",
             buttons
         );
         //기존 위치 저장
@@ -72,11 +73,21 @@ public class AttackCommand : ICommand
         moveTime = 0;
 
         //이동 후 공격애니메이션 실행
-        attacker.PlayAttackAnimation(); 
+        attacker.PlayAttackAnimation();
         //상성 확인
         //데미지 계산
         target.TakeDamage(attacker.damage);
         //피격 애니메이션 재생
+        target.PlayAttackAnimation();
+
+        AnimatorStateInfo stateInfo = attacker.animator.GetCurrentAnimatorStateInfo(0);
+        yield return new WaitForSeconds(stateInfo.length);
+
+        var button = new Dictionary<string, UnityAction> { };
+        UIPopupManager.Instance.ShowPopup(
+            $"{attacker.name} take attack {target.name}!",
+            buttons
+        );
 
         //확인 버튼 누를때 까지 대기로 바꾸자 -> OnClickCheckButton
         yield return new WaitForSeconds(2f);
@@ -106,6 +117,13 @@ public class AttackCommand : ICommand
 
     public IEnumerator EnemyAttackCoroutine()
     {
+        //여기에 "" 가 ""를 공격했다! UI띄우기
+        var buttons = new Dictionary<string, UnityAction> { };
+        UIPopupManager.Instance.ShowPopup(
+            $"{attacker.name} Attack!",
+            buttons
+        );
+
         //기존 위치 저장
         Vector3 currentPlayerPosition = attacker.transform.position;
         Vector3 targetPosition = target.transform.position;
@@ -127,6 +145,15 @@ public class AttackCommand : ICommand
         //이동 후 공격
         attacker.PlayAttackAnimation();
         target.TakeDamage(attacker.damage);
+
+        AnimatorStateInfo stateInfo = attacker.animator.GetCurrentAnimatorStateInfo(0);
+        yield return new WaitForSeconds(stateInfo.length);
+
+        var button = new Dictionary<string, UnityAction> { };
+        UIPopupManager.Instance.ShowPopup(
+            $"{attacker.name} take attack {target.name}!",
+            buttons
+        );
 
         //돌아오기까지 2초 대기
         yield return new WaitForSeconds(2f);

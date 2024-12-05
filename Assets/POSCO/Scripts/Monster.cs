@@ -59,7 +59,6 @@ public class Monster : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        animator.SetTrigger("OnTakeDamage");
         hp -= damage;
         print($"{name}가 맞았다. 남은체력 : {hp}");
         if (hp <= 0)
@@ -67,6 +66,11 @@ public class Monster : MonoBehaviour
             hp = 0;
             OnDead();
         }
+    }
+
+    public void PlayTakeDamageAnimation()
+    {
+        animator.SetTrigger("OnTakeDamage");
     }
 
     public void Heal(float healAmount)
