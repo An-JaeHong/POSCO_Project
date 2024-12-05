@@ -20,7 +20,7 @@ public class NormalIdleState : IUnitState
     {
         //여기에서 일반 몬스터가 주위를 돌면서 있는 함수를 실행. 한 3초 움직였다가 2초 멈추는 움직이면 좋을듯
         //X축은 Unit의 포지션에서 +-unit.moveRange 값으로 움직인다.
-        unit.iscontactedPlayer = false;
+        unit.isMove = true;
         destination = unit.SetRandomPosition();
         //unit.InitMoveSpeed();
         unit.moveSpeed = 1f;
@@ -32,28 +32,19 @@ public class NormalIdleState : IUnitState
 
     public void Update(Unit unit)
     {
-        //Debug.Log($"현재 NormalIdleState에 Update로 들어옴");
-        //여기에서 플레이어를 발견하면 느낌표가 뜨면서 NormalChaseState로 바뀌어야함
-        if (DetectPlayer(unit))
-        {
-            unit.ChangeState(new NormalChaseState());
-            Debug.Log("IdleState에서 ChaseState로 감");
-
-            Debug.Log("감지중");
-            return;
-        }
-
+        //2초 기다림
         if (isWaiting)
         {
             Debug.Log("다시 움직임");
             waitTimer -= Time.deltaTime;
+            //2초 후에는 다시 움직일 수 있게끔 해야한다.
             if (waitTimer <= 0)
             {
                 isWaiting = false;
-                unit.iscontactedPlayer = false;
                 destination = unit.SetRandomPosition();
             }
         }
+        //다시 움직임
         else
         {
             //처음 랜덤 찍은 위치로 움직이면 잠시 멈춘 후 다시 움직임
@@ -65,17 +56,22 @@ public class NormalIdleState : IUnitState
                 //여기서 잠시 멈춰주는 함수 넣어주자.
                 Debug.Log("이동중");
                 isWaiting = true;
-                StopUnitMove(unit);
+                waitTimer = waitTime;
             }
         }
 
+        //Debug.Log($"현재 NormalIdleState에 Update로 들어옴");
+        //여기에서 플레이어를 발견하면 느낌표가 뜨면서 NormalChaseState로 바뀌어야함
+        if (DetectPlayer(unit))
+        {
+            unit.ChangeState(new NormalChaseState());
+            Debug.Log("IdleState에서 ChaseState로 감");
+
+            Debug.Log("감지중");
+            return;
+        }
     }
-    private void StopUnitMove(Unit unit)
-    {
-        // 유닛의 이동을 멈추게 하는 로직
-        Debug.Log("멈춤");
-        unit.iscontactedPlayer = true;
-    }
+   
 
     private bool DetectPlayer(Unit unit)
     {

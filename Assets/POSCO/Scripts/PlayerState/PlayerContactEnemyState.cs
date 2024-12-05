@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.FullSerializer;
@@ -22,6 +23,7 @@ public class PlayerContactEnemyState : PlayerStateBase
 
         //적과 만나는 순간은 만날 수 없어야한다.
         player.canMove = false;
+        //unit.isMove = false;
         //적과 만나면 적과 만났다는 UI를 띄워야함
         //uiPopup.EnemyContactCanvasOpen();
         //만난 순간 GameManager에게 플레이어의 정보와 적의 정보를 동기화
@@ -69,6 +71,11 @@ public class PlayerContactEnemyState : PlayerStateBase
     {
         player.ChangeState(new PlayerIdleState(player));
         Debug.Log("도망감");
+
+        unit.ChangeState(new NormalIdleState());
+
+        unit.isMove = true;
+        Debug.Log("몬스터가 Idle 상태로 전환됨");
     }
 
     //Update에는 딱히 쓰는게 없다

@@ -23,7 +23,7 @@ public class Unit : MonoBehaviour
     public float moveRange;        //움직임 범위 (일단은 정사각형이다)
     public float sightAngle;       //시야각
     public float detectRange;      //탐지 범위
-    public bool iscontactedPlayer; //플레이어를 만났는지
+    public bool isMove;            //움직일 수 있는지
     public bool hasRandomPosition; //랜덤한 장소가 생성됐는지
 
     public CharacterController characterController;
@@ -68,7 +68,7 @@ public class Unit : MonoBehaviour
     //목적지를 파라미터로 넣어주자
     public void UnitMove(Vector3 destination)
     {
-        if (iscontactedPlayer)
+        if (!isMove)
         {
             return;
         }
@@ -78,6 +78,9 @@ public class Unit : MonoBehaviour
 
         //속도 = 방향 * 크기
         Vector3 velocity = direction * moveSpeed;
+        
+        //중력계산
+        //velocity.y = Physics.gravity.y * Time.deltaTime;
 
         characterController.Move(velocity * Time.deltaTime);
     }
@@ -127,6 +130,15 @@ public class Unit : MonoBehaviour
 
         //새로 만든 포지션을 리턴
         return randomPos;
+    }
+
+    //플레이어를 만나면 움직임을 멈춰야한다
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.TryGetComponent(out Player player))
+        {
+            isMove = false;
+        }
     }
 
     //공격범위 그리는 함수
