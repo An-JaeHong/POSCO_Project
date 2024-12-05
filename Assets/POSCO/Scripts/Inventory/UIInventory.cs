@@ -213,7 +213,7 @@ public class UIInventory : MonoBehaviour
         }
     }
 
-    public void OnCardListInteractable()
+    public void OnCardButtonInteractable()
     {
         Transform targetButton;
         foreach (var card in cardList)
@@ -223,7 +223,7 @@ public class UIInventory : MonoBehaviour
             button.interactable = true;
         }
     }
-    //정보를 가지고있어
+    //속성에 맞는 이미지 넣기, 버튼 활성비활성
     public void OnMonsterCard(int number)
     {
         Transform targetButton;
@@ -233,14 +233,21 @@ public class UIInventory : MonoBehaviour
         RawImage rawImage;
         Image image;
         Image targetImage;
-
+        ColorBlock colorBlock;
         if (choiceNum < 3) // 최대 3마리 선택 가능
         {
             
-            // 선택된 카드에 따라 처리
+            // 선택된 카드 비활성화
             targetButton = cardList[number].transform.Find("MonsterCardButton");
             button = targetButton.GetComponent<Button>();
             button.interactable = false; // 버튼 비활성화
+
+
+            //선택된 카드 색상 변경
+            
+            colorBlock = button.colors;
+            colorBlock.colorMultiplier = 1f;
+            button.colors = colorBlock;
 
             rawImage = targetButton.GetComponent<RawImage>();
             image = cardList[number].GetComponent<Image>();

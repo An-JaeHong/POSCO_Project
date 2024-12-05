@@ -54,7 +54,7 @@ public class InventoryButton : MonoBehaviour
     public void OnChioseBattleMonsterButton()
     {
 
-        uiInventory.OnCardListInteractable();
+        uiInventory.OnCardButtonInteractable();
         inventoryPopUp.InstantiateSelectedMonster();
     }
 

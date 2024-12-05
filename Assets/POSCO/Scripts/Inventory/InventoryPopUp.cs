@@ -108,6 +108,7 @@ public class InventoryPopUp : MonoBehaviour
         UIInventoryManager.Instance.OpenPopup(monsterCardBackgroundPrefab);
     }
 
+    
     public void InstantiateSelectedMonster()
     {
         if (UIInventoryManager.Instance.IsPopupOpen()>=3) // 팝업이 이미 열려 있는지 확인
@@ -116,7 +117,7 @@ public class InventoryPopUp : MonoBehaviour
             return; // 팝업이 열려 있으면 다시 열지 않음
         }
 
-
+        uiInventory.TempSelectedMonsterList.Clear();
         GameObject selectedMonsterPrefab = Instantiate(showSelectedMonsterBackgoundPrefab, inventoryPos);
         uiInventory.selectedMonster = selectedMonsterPrefab;
         Transform selectButton = selectedMonsterPrefab.transform.Find("SelectButton");
