@@ -882,8 +882,8 @@ MonoBehaviour:
   name: Dragon
   moveSpeed: 3
   moveRange: 5
-  sightAngle: 30
-  detectRange: 4
+  sightAngle: 112.5
+  detectRange: 7.54
   iscontactedPlayer: 0
   characterController: {fileID: 0}
 --- !u!143 &1572859356
