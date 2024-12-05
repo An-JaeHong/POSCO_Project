@@ -55,10 +55,11 @@ public class InventoryPopUp : MonoBehaviour
         if (isOpenInventory == false && Input.GetKeyUp(KeyCode.I))
         {
             isOpenInventory = true;
-            print("누름");
-            UIInventoryManager.Instance.OpenPopup(this.gameObject); // 팝업 열기
+            print("");
+            UIInventoryManager.Instance.OpenPopup(this.gameObject); // ? 
             InstantiateInventoryMenu();
-            
+
+
 
         }
 

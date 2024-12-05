@@ -26,7 +26,6 @@ public class InventoryButton : MonoBehaviour
         if (UIInventoryManager.Instance.IsPopupOpen())
         {
             print("Monster 팝업이 이미 열려 있습니다.");
-            // 이미 열린 팝업이 있다면 열리지 않음
             return;
         }
         inventoryPopUp.InstantiateShowMonster();
@@ -36,7 +35,7 @@ public class InventoryButton : MonoBehaviour
     {
         if (UIInventoryManager.Instance.IsPopupOpen())
         {
-            // 이미 열린 팝업이 있다면 열리지 않음
+
             return;
         }
         inventoryPopUp.InstantiateSelectedMonster();
@@ -46,7 +45,6 @@ public class InventoryButton : MonoBehaviour
     {
         if (UIInventoryManager.Instance.IsPopupOpen())
         {
-            // 이미 열린 팝업이 있다면 열리지 않음
             return;
         }
         inventoryPopUp.InstantiateShowItem();
@@ -57,7 +55,6 @@ public class InventoryButton : MonoBehaviour
     {
         if (UIInventoryManager.Instance.IsPopupOpen())
         {
-            // 이미 열린 팝업이 있다면 열리지 않음
             return;
         }
         uiInventory.OnCardListInteractable();

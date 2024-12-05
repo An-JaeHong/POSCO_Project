@@ -7,6 +7,8 @@ public class UIInventoryManager : MonoBehaviour
     private static UIInventoryManager instance;
     public static UIInventoryManager Instance {  get { return instance; } }
 
+    private Stack<GameObject> popupStack = new Stack<GameObject>();
+    private HashSet<string> activePopupTypes = new HashSet<string>();
     private void Awake()
     {
         if(instance == null)
