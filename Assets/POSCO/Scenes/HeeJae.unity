@@ -561,7 +561,7 @@ MonoBehaviour:
   moveRange: 0
   sightAngle: 90
   detectRange: 10
-  iscontactedPlayer: 0
+  isMove: 0
   hasRandomPosition: 0
   characterController: {fileID: 0}
 --- !u!143 &1264697214
@@ -933,7 +933,7 @@ MonoBehaviour:
   moveRange: 5
   sightAngle: 112.5
   detectRange: 7.54
-  iscontactedPlayer: 0
+  isMove: 0
   hasRandomPosition: 0
   characterController: {fileID: 0}
 --- !u!143 &1572859356
@@ -975,7 +975,7 @@ GameObject:
   - component: {fileID: 1664324263}
   - component: {fileID: 1664324262}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Eyes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

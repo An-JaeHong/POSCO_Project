@@ -35,6 +35,14 @@ public class PlayerIdleState : PlayerStateBase
             Debug.Log("플레이어 포켓몬이 3마리 이하입니다");
             return;
         }
+        foreach(Monster selectedMonster in player.selectedMonsterList)
+        {
+            if (selectedMonster.hp <= 0)
+            {
+                Debug.Log("체력이 0 이하인 몬스터가 있다");
+                return;
+            }
+        }
 
         //만난적의 정보가 PlayerContactEnemyState에 넘어감
         if (collision.collider.TryGetComponent<Unit>(out Unit unit))
@@ -43,7 +51,7 @@ public class PlayerIdleState : PlayerStateBase
             {
                 player.ChangeState(new PlayerContactEnemyState(player, unit));
                 //GameManager.Instance.contactedFieldMonster = unit.GetComponent<Monster>().gameObject;
-            } 
+            }
 
             else if (unit.CompareTag("Boss"))
             {
