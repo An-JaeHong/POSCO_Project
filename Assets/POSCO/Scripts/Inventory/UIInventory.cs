@@ -162,7 +162,7 @@ public class UIInventory : MonoBehaviour
         cardList.Clear();
         for (int i = 0; i < playerMonsterList.Count; i++)
         {
-            
+
             //카드 소환
             GameObject monsterCard = Instantiate(monsterCardPrefab, monsterCardPos);
 
@@ -180,7 +180,10 @@ public class UIInventory : MonoBehaviour
             Transform targetText = monsterCard.transform.Find("TextName");
             TMP_Text inputText = targetText.GetComponent<TMP_Text>();
             inputText.text = texturePlayerMonsterList[i].name;
-
+            //체력 삽입
+            targetText = monsterCard.transform.Find("Hp/Slider_Hp/Text");
+            inputText = targetText.GetComponent<TMP_Text>();
+            inputText.text = $"{playerMonsterList[i].hp}/{playerMonsterList[i].maxHp}";
             //소환된 카드에 버튼 삽입하기
 
             // 소환된 카드에 버튼 삽입하기
@@ -259,8 +262,11 @@ public class UIInventory : MonoBehaviour
                 Transform targetText = monsterCard.transform.Find("TextName");
                 TMP_Text inputText = targetText.GetComponent<TMP_Text>();
                 inputText.text = TempSelectedMonsterList[i].name;
+                //체력 삽입
+                targetText = monsterCard.transform.Find("Hp/Slider_Hp/Text");
+                inputText = targetText.GetComponent<TMP_Text>();
+                inputText.text = $"{TempSelectedMonsterList[i].hp}/{TempSelectedMonsterList[i].maxHp}";
 
-               
                 switch (TempSelectedMonsterList[i].element)
                 {
                     case Element.Fire:
