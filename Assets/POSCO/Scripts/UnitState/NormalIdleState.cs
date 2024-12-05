@@ -12,6 +12,7 @@ public class NormalIdleState : IUnitState
     private float waitTime = 2f; //대기시간
     private float waitTimer = 0;
     private bool isWaiting = false;
+    private bool hasRandomPosition = true;
 
     //public NormalChaseState(Unit unit) { }
 
@@ -21,9 +22,11 @@ public class NormalIdleState : IUnitState
         //X축은 Unit의 포지션에서 +-unit.moveRange 값으로 움직인다.
         unit.iscontactedPlayer = false;
         destination = unit.SetRandomPosition();
+        //unit.InitMoveSpeed();
+        unit.moveSpeed = 1f;
 
-        //들어가면 일단 느낌표는 숨긴다.
-        unit.HideExclamationMark();
+    //들어가면 일단 느낌표는 숨긴다.
+    unit.HideExclamationMark();
     }
 
 
@@ -40,11 +43,11 @@ public class NormalIdleState : IUnitState
             return;
         }
 
-        if(isWaiting)
+        if (isWaiting)
         {
             Debug.Log("다시 움직임");
             waitTimer -= Time.deltaTime;
-            if(waitTimer <= 0)
+            if (waitTimer <= 0)
             {
                 isWaiting = false;
                 unit.iscontactedPlayer = false;
@@ -55,6 +58,8 @@ public class NormalIdleState : IUnitState
         {
             //처음 랜덤 찍은 위치로 움직이면 잠시 멈춘 후 다시 움직임
             unit.UnitMove(destination);
+            unit.UnitRotation(destination);
+            Debug.Log($"랜덤으로 주어진 좌표 : {destination}");
             if (Vector3.Distance(unit.transform.position, destination) < 0.1f)
             {
                 //여기서 잠시 멈춰주는 함수 넣어주자.
@@ -63,6 +68,7 @@ public class NormalIdleState : IUnitState
                 StopUnitMove(unit);
             }
         }
+
     }
     private void StopUnitMove(Unit unit)
     {
@@ -92,7 +98,7 @@ public class NormalIdleState : IUnitState
         //각도 = (유닛이 앞을 보는 방향, 플레이어를 보는 방향)
         float angle = Vector3.Angle(unit.transform.forward, directionToPlayer);
 
-        //각도 만족하고
+        //시야각 안에 있고
         if (angle < unit.sightAngle / 2)
         {
             //방향 만족하고

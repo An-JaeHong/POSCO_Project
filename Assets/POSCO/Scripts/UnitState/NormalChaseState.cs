@@ -5,10 +5,12 @@ using UnityEngine;
 //Unit의 시야각에 들어오면 계속 쫓아와야함
 public class NormalChaseState : IUnitState
 {
+    private GameObject player;
     public void Enter(Unit unit)
     {
         //쫓아오는 상태가 되면 느낌표를 계속 띄워야함
         unit.ShowExclamationMark();
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     public void Update(Unit unit)
@@ -18,14 +20,14 @@ public class NormalChaseState : IUnitState
         if (player != null)
         {
             //플레이어가 있는 방향
-            Vector3 directionToPlayer = (player.transform.position - unit.transform.position).normalized;
+            //Vector3 directionToPlayer = (player.transform.position - unit.transform.position).normalized;
+            unit.UnitRotation(player.transform.position);
 
             //플레이어를 찾으면 속도가 1.5배 빨라짐
-            float followPlayerSpeed = unit.moveSpeed * 1.5f;
-            Vector3 velocity = directionToPlayer * followPlayerSpeed;
+            //unit.SetMoveSpeedFast();
+            unit.moveSpeed = 2f;
 
-
-            unit.characterController.Move(velocity * Time.deltaTime);
+            unit.UnitMove(player.transform.position);
 
             //플레이어까지와의 거리
             float distance = Vector3.Distance(unit.transform.position, player.transform.position);

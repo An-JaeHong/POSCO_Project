@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using System.Runtime.InteropServices;
 using System.Transactions;
 using System.Xml.Serialization;
@@ -17,12 +18,13 @@ public class Unit : MonoBehaviour
     private GameObject exclamationMark; //실제 켰다 껐다할 느낌표
     public Transform spawnPosition; //스폰되는 장소
 
-    public string name; //유닛 이름
-    public float moveSpeed;   //움직임 속도
-    public float moveRange;   //움직임 범위 (일단은 정사각형이다)
-    public float sightAngle;  //시야각
-    public float detectRange; //탐지 범위
+    public string name;            //유닛 이름
+    public float moveSpeed;        //움직임 속도
+    public float moveRange;        //움직임 범위 (일단은 정사각형이다)
+    public float sightAngle;       //시야각
+    public float detectRange;      //탐지 범위
     public bool iscontactedPlayer; //플레이어를 만났는지
+    public bool hasRandomPosition; //랜덤한 장소가 생성됐는지
 
     public CharacterController characterController;
 
@@ -62,6 +64,7 @@ public class Unit : MonoBehaviour
         print($"After State : {currentState}");
     }
 
+    //UnitMove, UnitRotation 둘다 계속 실행이 되서 한번만 되게끔 바꾸자
     //목적지를 파라미터로 넣어주자
     public void UnitMove(Vector3 destination)
     {
@@ -69,6 +72,7 @@ public class Unit : MonoBehaviour
         {
             return;
         }
+        print("UnitMove함수가 실행됨");
         //움직이는 방향 노말벡터
         Vector3 direction = (destination - transform.position).normalized;
 
@@ -76,6 +80,19 @@ public class Unit : MonoBehaviour
         Vector3 velocity = direction * moveSpeed;
 
         characterController.Move(velocity * Time.deltaTime);
+    }
+
+    public void UnitRotation(Vector3 target)
+    {
+        //바라볼 방향
+        print("UnitRotation함수가 실행됨");
+        Vector3 targetDirection = (target - transform.position).normalized;
+
+        print($"{targetDirection}");
+
+        Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime);
+
     }
 
 
@@ -106,8 +123,8 @@ public class Unit : MonoBehaviour
         float rangeZ = Random.Range(spawnPosition.position.z - moveRange, spawnPosition.position.z + moveRange);
 
         Vector3 randomPos = new Vector3(rangeX, 0 , rangeZ);
+        print($"랜덤으로 주어진 포지션{randomPos}");
 
-        print($"랜덤으로 제공된 포지션 : {randomPos}");
         //새로 만든 포지션을 리턴
         return randomPos;
     }
@@ -155,4 +172,5 @@ public class Unit : MonoBehaviour
             previousPoint = nextPoint;
         }
     }
+
 }
