@@ -131,6 +131,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4012500939877901966, guid: b402d2a04499d4249996ac79c8633224, type: 3}
+      propertyPath: cameraRig
+      value: 
+      objectReference: {fileID: 845898633}
+    - target: {fileID: 4012500939877901966, guid: b402d2a04499d4249996ac79c8633224, type: 3}
       propertyPath: playerMonsterPrefabList.Array.size
       value: 5
       objectReference: {fileID: 0}
@@ -521,6 +525,11 @@ Transform:
 --- !u!20 &845898630 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 2798953205497158498, guid: b402d2a04499d4249996ac79c8633224, type: 3}
+  m_PrefabInstance: {fileID: 7977817}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &845898633 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1562429292125746202, guid: b402d2a04499d4249996ac79c8633224, type: 3}
   m_PrefabInstance: {fileID: 7977817}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &915529439 stripped
@@ -947,6 +956,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMonsterList: []
   TempSelectedMonsterList: []
+  currentSelectedMonsterList: []
   textureMonsterPrefabsList: []
   texturePlayerMonsterList: []
   invetoryCameraPrefab: {fileID: 6035291490524159512, guid: 824ad36380bb14e4f82f9f4ec5a3dc0a, type: 3}

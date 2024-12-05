@@ -9,7 +9,7 @@ public class InventoryButton : MonoBehaviour
     //��ư ����
     private UIInventory uiInventory;
     private InventoryPopUp inventoryPopUp;
-
+    
 
     private void Awake()
     {
@@ -17,6 +17,7 @@ public class InventoryButton : MonoBehaviour
     }
     private void Start()
     {
+       
         uiInventory = FindObjectOfType<UIInventory>();
         inventoryPopUp = FindObjectOfType<InventoryPopUp>();
     }
@@ -48,14 +49,18 @@ public class InventoryButton : MonoBehaviour
 
     public void OnSelectCardButton(int num)
     {
-
         uiInventory.OnMonsterCard(num);
     }
 
     public void OnSelectBoutton()
     {
-        uiInventory.SetSelectMonster();
-        UIInventoryManager.Instance.ClosePopup();
+        if (uiInventory.choiceNum == 3)
+        {
+            uiInventory.SetSelectMonster();
+            UIInventoryManager.Instance.ClosePopup();
+        }
+        else
+        { print("3마리를 선택하세요"); }
     }
 
     public void OnRestButton()

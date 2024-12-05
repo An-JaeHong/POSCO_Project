@@ -122,6 +122,7 @@ public class InventoryPopUp : MonoBehaviour
         }
         uiInventory.choiceNum = 0;
         uiInventory.TempSelectedMonsterList.Clear();
+        uiInventory.currentSelectedMonsterList.Clear();
         GameObject selectedMonsterPrefab = Instantiate(showSelectedMonsterBackgoundPrefab, inventoryPos);
         uiInventory.selectedMonster = selectedMonsterPrefab;
         Transform selectButton = selectedMonsterPrefab.transform.Find("SelectButton");

@@ -13,7 +13,7 @@ public class UIInventory : MonoBehaviour
     public List<Monster> playerMonsterList = new List<Monster>();
     //선택된 몬스터가 임시로 저장되는 공간 
     public List<Monster> TempSelectedMonsterList = new List<Monster>();
-    private List<Monster> currentSelectedMonsterList = new List<Monster>();
+    public List<Monster> currentSelectedMonsterList = new List<Monster>();
 
     // 인벤토리에 띄울 몬스터 전체 리스트
     public List<GameObject> textureMonsterPrefabsList;
@@ -195,11 +195,7 @@ public class UIInventory : MonoBehaviour
             button.interactable = false;
 
             cardList.Add(monsterCard);
-
-          
-
             
-
             print(cardList[i].name);
             switch (playerMonsterList[i].element)
             {
@@ -230,60 +226,69 @@ public class UIInventory : MonoBehaviour
     {
         if (currentSelectedMonsterList.Count == 3)
         {
+            Transform target = MyBattleMonsterPrefab.transform;
+            target = MyBattleMonsterPrefab.transform.Find("MonsterCardGirdLayoutGroup");
+            monsterCardPos = target.GetComponent<RectTransform>();
+
+            Transform targetButton = MyBattleMonsterPrefab.transform.Find("ChoiceBattleMonster");
+
+        
             for (int i = 0; i < 3; i++)
             {
-                GameObject itemPrefab = Instantiate(battleCard[i], MyBattleMonsterPrefab);
-            
+
+                //카드 소환
+                GameObject monsterCard = Instantiate(monsterCardPrefab, monsterCardPos);
+
+                //소환된 카드 배경 바꾸기
+                Image backgroundImage = monsterCard.GetComponent<Image>();
+                Transform targetElementObject = monsterCard.transform.Find("RoleIcon/Icon");
+                Image elementIconObject = targetElementObject.GetComponent<Image>();
+
+                //소환된 카드 표현되는 이미지 바꾸기(몬스터 모양) 
+                for (int k = 0; k < 5; k++)
+                {
+                    if (playerMonsterList[k].name == TempSelectedMonsterList[i].name)
+                    {
+                        Transform targetTexture = monsterCard.transform.Find("MonsterCardButton");
+                        RawImage rawImage = targetTexture.GetComponent<RawImage>();
+                        rawImage.texture = renderTexture[k];
+                        break;
+                    }
+                }
+                //소환된 카드에 이름 삽입하기
+                Transform targetText = monsterCard.transform.Find("TextName");
+                TMP_Text inputText = targetText.GetComponent<TMP_Text>();
+                inputText.text = TempSelectedMonsterList[i].name;
+
+               
+                switch (TempSelectedMonsterList[i].element)
+                {
+                    case Element.Fire:
+                        //print("진입함?3");
+                        backgroundImage.sprite = elementBackground[0];
+                        elementIconObject.sprite = element[0];
+                        break;
+                    case Element.Water:
+                        //print("진입함?4");
+                        backgroundImage.sprite = elementBackground[1];
+                        elementIconObject.sprite = element[1];
+                        break;
+                    case Element.Grass:
+                        //print("진입함?5");
+                        backgroundImage.sprite = elementBackground[2];
+                        elementIconObject.sprite = element[2];
+                        break;
+
+                }
+
+
             }
-            //    Transform target = MyBattleMonsterPrefab.transform;
-            //    target = MyBattleMonsterPrefab.transform.Find("MonsterCardGirdLayoutGroup");
-            //    monsterCardPos = target.GetComponent<RectTransform>();
-            //    for (int i = 0; i < 3; i++)
-            //    {
-            //        //카드 소환
-            //        GameObject monsterCard = Instantiate(monsterCardPrefab, monsterCardPos);
-            //        Image backgroundImage = monsterCard.GetComponent<Image>();
-            //        Transform targetElementObject = monsterCard.transform.Find("RoleIcon/Icon");
-            //        Image elementIconObject = targetElementObject.GetComponent<Image>();
-
-            //        Transform targetTexture = monsterCard.transform.Find("MonsterCardButton");
-            //        RawImage rawImage = targetTexture.GetComponent<RawImage>();
-            //        rawImage.texture = renderTexture[i];
-
-            //        //소환된 카드에 이름 삽입하기
-            //        Transform targetText = monsterCard.transform.Find("TextName");
-            //        TMP_Text inputText = targetText.GetComponent<TMP_Text>();
-
-            //        print(currentSelectedMonsterList[i].name);
-            //        inputText.text = currentSelectedMonsterList[i].name;
-
-            //        print(currentSelectedMonsterList[i].element);
-            //        print(currentSelectedMonsterList[i].name);
-            //        //print(currentSelectedMonsterList[i].element);
-
-            //        switch (currentSelectedMonsterList[i].element)
-            //        {
-            //            case Element.Fire:
-
-            //                backgroundImage.sprite = elementBackground[0];
-            //                elementIconObject.sprite = element[0];
-            //                break;
-            //            case Element.Water:
-            //                //print("진입함?4");
-            //                backgroundImage.sprite = elementBackground[1];
-            //                elementIconObject.sprite = element[1];
-            //                break;
-            //            case Element.Grass:
-            //                //print("진입함?5");
-            //                backgroundImage.sprite = elementBackground[2];
-            //                elementIconObject.sprite = element[2];
-            //                break;
-
-            //        }
-
-            //    }
+         
         }
-        else { print("선택된 몬스터 없음"); }
+        else
+        {
+            print("선택된 몬스터 없음");
+        }
     }
     public void OnCardButtonInteractable()
     {
