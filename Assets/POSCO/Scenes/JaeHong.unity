@@ -484,6 +484,7 @@ MonoBehaviour:
   canvasTransform: {fileID: 1528870259}
   monsterCardPrefab: {fileID: 7834506113421134526, guid: 47e1cb5e65b51464eb1bccde9b16cf60, type: 3}
   inventoryPrefab: {fileID: 0}
+  myBattleMonsterBackgroundPrefab: {fileID: 4667084522368679115, guid: b23e53ea488c6284d82b551f68a8d2a6, type: 3}
   inventoryPos: {fileID: 1528870263}
 --- !u!4 &813658396
 Transform:

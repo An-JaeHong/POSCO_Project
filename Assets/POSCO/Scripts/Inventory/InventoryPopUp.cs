@@ -17,11 +17,11 @@ public class InventoryPopUp : MonoBehaviour
     public GameObject canvasTransform;
     public GameObject monsterCardPrefab;
     public GameObject inventoryPrefab;
-    
+    public GameObject myBattleMonsterBackgroundPrefab;
 
 
     public RectTransform inventoryPos;
-    
+
 
     private bool isOpenInventory = false;
 
@@ -49,7 +49,7 @@ public class InventoryPopUp : MonoBehaviour
         uiPopupManager = new UIPopupManager();
         inventoryButton = FindObjectOfType<InventoryButton>();
         uiInventory = FindObjectOfType<UIInventory>();
-        
+
     }
 
     private void Update()
@@ -58,7 +58,7 @@ public class InventoryPopUp : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.I))
         {
-                     //isOpenInventory = true;
+            //isOpenInventory = true;
             //UIInventoryManager.Instance.OpenPopup(this.gameObject); 
             InstantiateInventoryMenu();
         }
@@ -81,17 +81,21 @@ public class InventoryPopUp : MonoBehaviour
         inventoryPrefab = Instantiate(ivnetoryMenuBackgoundPrefab, inventoryPos);
         Transform monsterButton = inventoryPrefab.transform.Find("ShowMonsterButton");
         Transform itemButton = inventoryPrefab.transform.Find("ShowItemButton");
+        Transform battleMonster = inventoryPrefab.transform.Find("ShowBattleMonster");
         Button onMonsterButton = monsterButton.GetComponentInChildren<Button>();
         Button onItemItemButton = itemButton.GetComponentInChildren<Button>();
+        Button onBattleMonster = battleMonster.gameObject.GetComponentInChildren<Button>();
 
         onMonsterButton.onClick.AddListener(() => InstantiateShowMonster());
         onItemItemButton.onClick.AddListener(() => InstantiateShowItem());
+        onBattleMonster.onClick.AddListener(() => ShowMyBattleMonster());
+
         UIInventoryManager.Instance.OpenPopup(inventoryPrefab);
     }
 
     public void InstantiateShowMonster()
     {
-        if (UIInventoryManager.Instance.IsPopupOpen()>=2) // 팝업이 이미 열려 있는지 확인
+        if (UIInventoryManager.Instance.IsPopupOpen() >= 2) // 팝업이 이미 열려 있는지 확인
         {
             print("이미열림");
             return; // 팝업이 열려 있으면 다시 열지 않음
@@ -100,18 +104,18 @@ public class InventoryPopUp : MonoBehaviour
 
 
         GameObject monsterCardBackgroundPrefab = Instantiate(showMonsterBackgoundPrefab, inventoryPos);
-        
-       
+
+
         uiInventory.InstantiateMonsterCard(monsterCardBackgroundPrefab);
         uiInventory.SetSelectButton(monsterCardBackgroundPrefab);
 
         UIInventoryManager.Instance.OpenPopup(monsterCardBackgroundPrefab);
     }
 
-    
+
     public void InstantiateSelectedMonster()
     {
-        if (UIInventoryManager.Instance.IsPopupOpen()>=3) // 팝업이 이미 열려 있는지 확인
+        if (UIInventoryManager.Instance.IsPopupOpen() >= 3) // 팝업이 이미 열려 있는지 확인
         {
             print("이미열림");
             return; // 팝업이 열려 있으면 다시 열지 않음
@@ -126,7 +130,7 @@ public class InventoryPopUp : MonoBehaviour
         Button onresetButton = resetButton.GetComponentInChildren<Button>();
         onSelectButton.onClick.AddListener(() => inventoryButton.OnSelectBoutton());
         onresetButton.onClick.AddListener(() => inventoryButton.OnRestButton());
-       
+
         uiInventory.OnCardButtonInteractable();
         UIInventoryManager.Instance.OpenPopup(selectedMonsterPrefab);
     }
@@ -135,24 +139,38 @@ public class InventoryPopUp : MonoBehaviour
 
     public void InstantiateShowItem()
     {
-        if (UIInventoryManager.Instance.IsPopupOpen()>=1) // 팝업이 이미 열려 있는지 확인
+        if (UIInventoryManager.Instance.IsPopupOpen() >= 1) // 팝업이 이미 열려 있는지 확인
         {
-            print("이미열림"); 
+            print("이미열림");
             return; // 팝업이 열려 있으면 다시 열지 않음
         }
 
 
         GameObject itemPrefab = Instantiate(showItemBackgoundPrefab, inventoryPos);
         UIInventoryManager.Instance.OpenPopup(itemPrefab);
-
-
     }
+
+    public void ShowMyBattleMonster()
+    {
+        if (UIInventoryManager.Instance.IsPopupOpen() >= 2) // 팝업이 이미 열려 있는지 확인
+        {
+            print("이미열림");
+            return; // 팝업이 열려 있으면 다시 열지 않음
+        }
+
+        GameObject MyBattleMonsterPrefab = Instantiate(myBattleMonsterBackgroundPrefab, inventoryPos);
+        uiInventory.InstantiateMyBattleMonster(MyBattleMonsterPrefab);
+        UIInventoryManager.Instance.OpenPopup(MyBattleMonsterPrefab);
+    }
+
+
     public void ClosePopup()
     {
-     
         isOpenInventory = false;
         UIInventoryManager.Instance.ClosePopup(); // PopupManager를 사용하여 팝업 닫기
     }
+
+       
 }
 
 
