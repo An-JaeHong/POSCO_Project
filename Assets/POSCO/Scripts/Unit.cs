@@ -9,6 +9,7 @@ using UnityEngine;
 
 //보스와 일반 몬스터들을 묶을 클래스
 [RequireComponent(typeof(CharacterController))]
+//[RequireComponent(typeof(Rigidbody))]
 public class Unit : MonoBehaviour
 {
     private IUnitState currentState; //현재상태
@@ -27,10 +28,12 @@ public class Unit : MonoBehaviour
     public bool hasRandomPosition; //랜덤한 장소가 생성됐는지
 
     public CharacterController characterController;
+    //public Rigidbody rb;
 
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
+        //rb = GetComponent<Rigidbody>();
     }
 
     private void Start()
@@ -78,11 +81,12 @@ public class Unit : MonoBehaviour
 
         //속도 = 방향 * 크기
         Vector3 velocity = direction * moveSpeed;
-        
-        //중력계산
-        //velocity.y = Physics.gravity.y * Time.deltaTime;
+
+        //중력계산 -> 이거 좀 잘 해야할듯. 몬스터가 고꾸라지거나 위로 뜬다
+        velocity.y = Physics.gravity.y * Time.deltaTime;
 
         characterController.Move(velocity * Time.deltaTime);
+        //rb.velocity = new Vector3(velocity.x, rb.velocity.y, velocity.z);
     }
 
     public void UnitRotation(Vector3 target)
@@ -91,7 +95,7 @@ public class Unit : MonoBehaviour
         print("UnitRotation함수가 실행됨");
         Vector3 targetDirection = (target - transform.position).normalized;
 
-        //print($"{targetDirection}");
+        print($"{targetDirection}");
 
         Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime);

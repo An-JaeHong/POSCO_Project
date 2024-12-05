@@ -209,8 +209,10 @@ public class GameManager : MonoBehaviour
 
         //공격페이즈 돌입
         attackCommand.PlayerNormalAttackExecute();
-        UIPopupManager.Instance.ClosePopup();
+
+        //UIPopupManager.Instance.ClosePopup();
         //턴끝
+
         //isPlayerActionComplete = true;
         //StartCoroutine(PlayerAttackAnimation(attacker, target));
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting.FullSerializer;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.Events;
 
 //공격하는 행동
 public class AttackCommand : ICommand
@@ -46,6 +47,12 @@ public class AttackCommand : ICommand
 
     public IEnumerator PlayerNormalAttackCoroutine()
     {
+        //여기에 "" 가 ""를 공격했다! UI띄우기
+        var buttons = new Dictionary<string, UnityAction>{};
+        UIPopupManager.Instance.ShowPopup(
+            $"{attacker.name} take attack {target.name}!",
+            buttons
+        );
         //기존 위치 저장
         Vector3 currentPlayerPosition = attacker.transform.position;
         Vector3 targetPosition = target.transform.position;
@@ -64,11 +71,14 @@ public class AttackCommand : ICommand
         //다시 시간 초기화
         moveTime = 0;
 
-        //이동 후 공격
-        attacker.PlayAttackAnimation();
+        //이동 후 공격애니메이션 실행
+        attacker.PlayAttackAnimation(); 
+        //상성 확인
+        //데미지 계산
         target.TakeDamage(attacker.damage);
+        //피격 애니메이션 재생
 
-        //돌아오기까지 2초 대기
+        //확인 버튼 누를때 까지 대기로 바꾸자 -> OnClickCheckButton
         yield return new WaitForSeconds(2f);
         while (moveTime < moveDuration)
         {
