@@ -235,7 +235,7 @@ public class InventoryUI : MonoBehaviour
     }
 
 
-    public void OnSellectBoutton()
+    public void OnSelectButton()
     {
 
         if (choiceNum == 3)

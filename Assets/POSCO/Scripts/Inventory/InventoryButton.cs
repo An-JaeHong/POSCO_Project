@@ -17,46 +17,43 @@ public class InventoryButton : MonoBehaviour
     }
     private void Start()
     {
-        uiInventory = FindObjectOfType<UIInventory>(); // �� ���� UIInventory�� ã��
-        inventoryPopUp = FindObjectOfType<InventoryPopUp>(); // �� ���� InventoryPopUp�� ã��
+        uiInventory = FindObjectOfType<UIInventory>(); 
+        inventoryPopUp = FindObjectOfType<InventoryPopUp>(); 
     }
 
     public void OnShowMonster()
     {
-        if (UIInventoryManager.Instance.IsPopupOpen())
-        {
-            print("Monster 팝업이 이미 열려 있습니다.");
-            return;
-        }
+        //if (UIInventoryManager.Instance.IsPopupOpen())
+        //{
+        //    print("Monster 팝업이 이미 열려 있습니다.");
+        //    return;
+        //}
         inventoryPopUp.InstantiateShowMonster();
     }
 
     public void OnShowSelectedMonster()
     {
-        if (UIInventoryManager.Instance.IsPopupOpen())
-        {
+        //if (UIInventoryManager.Instance.IsPopupOpen())
+        //{
 
-            return;
-        }
+        //    return;
+        //}
         inventoryPopUp.InstantiateSelectedMonster();
     }
 
     public void OnShowItem()
     {
-        if (UIInventoryManager.Instance.IsPopupOpen())
-        {
-            return;
-        }
+        //if (UIInventoryManager.Instance.IsPopupOpen())
+        //{
+        //    return;
+        //}
         inventoryPopUp.InstantiateShowItem();
     }
 
 
     public void OnChioseBattleMonsterButton()
     {
-        if (UIInventoryManager.Instance.IsPopupOpen())
-        {
-            return;
-        }
+
         uiInventory.OnCardListInteractable();
         inventoryPopUp.InstantiateSelectedMonster();
     }
@@ -67,14 +64,16 @@ public class InventoryButton : MonoBehaviour
         uiInventory.OnMonsterCard(num);
     }
 
+    public void OnSelectBoutton()
+    {
+        uiInventory.SetSelectMonster();
 
-    //private void ShowSetCelectMonster(int num)
-    //{
-    //    targetGameObject = ShowColectedMonster[num];
-    //    rawImage = targetGameObject.GetComponent<RawImage>();
-    //    rawImage.texture = targetRawImage.texture;
-    //}
+    }
+
+    public void OnRestButton()
+    {
+        uiInventory.ResetCelectedMonster();
+    }
 
   
-
 }

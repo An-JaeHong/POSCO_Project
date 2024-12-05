@@ -46,6 +46,7 @@ public class UIInventory : MonoBehaviour
 
     private void OnEnable()
     {
+        inventoryPopUp = FindObjectOfType<InventoryPopUp>();
         cardList = new List<GameObject>(playerMonsterList.Count);
         inventoryButton = FindObjectOfType<InventoryButton>();
         LoadMonsterPrefabs();
@@ -64,7 +65,7 @@ public class UIInventory : MonoBehaviour
 
     private void BringPlaterMonsterList()
     {
-     
+        print(player.playerMonsterPrefabList[1]);
         foreach (GameObject monsterObj in player.playerMonsterPrefabList)
         {
             if (monsterObj.TryGetComponent<Monster>(out Monster monster))
@@ -99,6 +100,7 @@ public class UIInventory : MonoBehaviour
         //print(texturePlayerMonsterList.Count);
     }
 
+    //이미지를 띄울 몬스터
     public void InstantiatePlayerMonster()
     {
         //print("소환됨 2");
@@ -124,6 +126,7 @@ public class UIInventory : MonoBehaviour
         }
 
     }
+
     public void SetSelectButton(GameObject monsterCardBackgroundPrefab)
     {
         
@@ -206,6 +209,7 @@ public class UIInventory : MonoBehaviour
                     break;
 
             }
+          
         }
     }
 
@@ -214,7 +218,7 @@ public class UIInventory : MonoBehaviour
         Transform targetButton;
         foreach (var card in cardList)
         {
-            targetButton = card.transform.Find("MonsterCardButton"); ;
+            targetButton = card.transform.Find("MonsterCardButton");
             Button button = targetButton.GetComponent<Button>();
             button.interactable = true;
         }
@@ -232,6 +236,7 @@ public class UIInventory : MonoBehaviour
 
         if (choiceNum < 3) // 최대 3마리 선택 가능
         {
+            
             // 선택된 카드에 따라 처리
             targetButton = cardList[number].transform.Find("MonsterCardButton");
             button = targetButton.GetComponent<Button>();
@@ -252,11 +257,37 @@ public class UIInventory : MonoBehaviour
             print($"{choiceNum + 1}번째 카드 선택"); // 선택한 카드 출력
 
             choiceNum++; // 선택한 카드 수 증가
+            TempSelectedMonsterList.Add(playerMonsterList[number]);
         }
         else
         {
             print("배틀 몬스터는 최대 3마리 입니다.");
         }
+    }
+
+
+    public void SetSelectMonster()
+    {
+        if (choiceNum == 3)
+        {
+            player.SetSelectedMonsters(TempSelectedMonsterList);
+        }
+    }
+
+    public void ResetCelectedMonster()
+    {
+        Transform targetButton;
+        UIInventoryManager.Instance.ClosePopup();
+        foreach(var cardListButton in cardList)
+        {
+            targetButton = cardListButton.transform.Find("MonsterCardButton");
+            Button button = targetButton.GetComponent<Button>();
+            button.interactable = true;
+        }
+        
+        inventoryPopUp.InstantiateSelectedMonster();
+        TempSelectedMonsterList.Clear();
+        choiceNum = 0;
     }
 
 }

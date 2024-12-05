@@ -986,6 +986,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: dd9b78b87892c442295cf5955624e533, type: 3}
   - {fileID: 21300000, guid: 397588afa7f724588a5adb0cbc80fe56, type: 3}
   - {fileID: 21300000, guid: 6095364454bc04bdb95879a0950ebc0e, type: 3}
+  - {fileID: 21300000, guid: a0523cfd3a4e51c4da8be23990dcd151, type: 3}
   renderTexture:
   - {fileID: 8400000, guid: 94bee570d2039bc49995678dd2e91561, type: 2}
   - {fileID: 8400000, guid: 36ab6b6b94817b74f8742944b8c8b3dd, type: 2}
