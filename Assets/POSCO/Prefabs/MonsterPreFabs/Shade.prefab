@@ -1444,8 +1444,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Shade
-  hp: 3
-  damage: 3
+  hp: 31
+  damage: 9
   element: 1
   isEnemy: 0
   animator: {fileID: 8827786934772137134}

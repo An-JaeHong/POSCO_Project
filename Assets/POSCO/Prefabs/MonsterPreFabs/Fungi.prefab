@@ -230,8 +230,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Fungi
-  hp: 3
-  damage: 3
+  hp: 41
+  damage: 6
   element: 3
   isEnemy: 0
   animator: {fileID: 7543761947913141513}

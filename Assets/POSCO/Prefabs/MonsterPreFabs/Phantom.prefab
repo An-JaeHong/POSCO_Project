@@ -353,8 +353,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Phantom
-  hp: 3
-  damage: 3
+  hp: 84
+  damage: 22
   element: 2
   isEnemy: 0
   animator: {fileID: 3662885725965190992}

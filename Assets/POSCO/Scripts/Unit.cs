@@ -91,7 +91,7 @@ public class Unit : MonoBehaviour
         print("UnitRotation함수가 실행됨");
         Vector3 targetDirection = (target - transform.position).normalized;
 
-        print($"{targetDirection}");
+        //print($"{targetDirection}");
 
         Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime);

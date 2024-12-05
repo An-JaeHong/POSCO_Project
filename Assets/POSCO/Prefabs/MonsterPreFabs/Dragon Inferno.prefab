@@ -416,8 +416,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Dragon Inferno
-  hp: 3
-  damage: 3
+  hp: 78
+  damage: 26
   element: 1
   isEnemy: 0
   animator: {fileID: 0}

@@ -105,8 +105,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Blossom
-  hp: 3
-  damage: 3
+  hp: 100
+  damage: 20
   element: 3
   isEnemy: 0
   animator: {fileID: 2846566800214923948}

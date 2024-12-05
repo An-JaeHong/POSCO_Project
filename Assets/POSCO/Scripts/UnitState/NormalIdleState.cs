@@ -50,7 +50,7 @@ public class NormalIdleState : IUnitState
             //처음 랜덤 찍은 위치로 움직이면 잠시 멈춘 후 다시 움직임
             unit.UnitMove(destination);
             unit.UnitRotation(destination);
-            Debug.Log($"랜덤으로 주어진 좌표 : {destination}");
+            //Debug.Log($"랜덤으로 주어진 좌표 : {destination}");
             if (Vector3.Distance(unit.transform.position, destination) < 0.1f)
             {
                 //여기서 잠시 멈춰주는 함수 넣어주자.

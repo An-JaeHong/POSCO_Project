@@ -727,8 +727,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Sunflora Pixie
-  hp: 3
-  damage: 3
+  hp: 96
+  damage: 21
   element: 3
   isEnemy: 0
   animator: {fileID: 7052361878028357367}

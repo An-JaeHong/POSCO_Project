@@ -1794,8 +1794,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Hermit King
-  hp: 3
-  damage: 3
+  hp: 87
+  damage: 22
   element: 2
   isEnemy: 0
   animator: {fileID: 5966225356280042063}

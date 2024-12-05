@@ -522,8 +522,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Dog Bark
-  hp: 3
-  damage: 3
+  hp: 32
+  damage: 9
   element: 1
   isEnemy: 0
   animator: {fileID: 7742432004654077178}

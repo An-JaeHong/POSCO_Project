@@ -220,8 +220,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Bloom
-  hp: 3
-  damage: 3
+  hp: 50
+  damage: 4
   element: 3
   isEnemy: 0
   animator: {fileID: 3259755956480056685}

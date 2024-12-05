@@ -836,8 +836,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Dog Bowwow
-  hp: 3
-  damage: 3
+  hp: 77
+  damage: 25
   element: 1
   isEnemy: 0
   animator: {fileID: 6324982472966451383}

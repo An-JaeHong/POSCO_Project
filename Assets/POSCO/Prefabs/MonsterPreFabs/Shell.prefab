@@ -489,8 +489,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Shell
-  hp: 3
-  damage: 3
+  hp: 42
+  damage: 6
   element: 2
   isEnemy: 0
   animator: {fileID: 3644289052389791488}

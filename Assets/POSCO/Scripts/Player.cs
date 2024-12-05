@@ -14,9 +14,11 @@ public class Player : MonoBehaviour
     //현재 상태
     public PlayerStateBase currentState;
 
-    //true : 움직일 수 있음, false : 움직일 수 없음
-    public bool canMove = true;
-    public float moveSpeed;
+    public bool canMove = true;  //true : 움직일 수 있음, false : 움직일 수 없음
+    public float moveSpeed;      //이동속도
+    public float mouseSensivity; //마우스 감도
+    public Transform cameraRig;
+
     private Rigidbody rb;
 
     private void Awake()
@@ -56,6 +58,7 @@ public class Player : MonoBehaviour
 
         //상태패턴 계속 실행
         currentState.Update();
+        HandleSight();
     }
 
     //플레이어의 상태를 바꾸는 함수
@@ -76,7 +79,18 @@ public class Player : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
         Vector3 moveDir = new Vector3(x, 0, z);
-        rb.MovePosition(transform.position + moveDir * moveSpeed * Time.deltaTime);
+        rb.MovePosition(new Vector3() * moveSpeed * Time.deltaTime);
+    }
+
+    //시야 관련 함수
+    public void HandleSight()
+    {
+        float mouseX = Input.GetAxis("Mouse X");
+        float mouseY = Input.GetAxis("Mouse Y");
+
+        transform.Rotate(0, mouseX * mouseSensivity * Time.deltaTime, 0);
+
+        cameraRig.Rotate(-mouseY * mouseSensivity * Time.deltaTime, 0, 0);
     }
 
     public List<GameObject> GetMonsterPrefabList()

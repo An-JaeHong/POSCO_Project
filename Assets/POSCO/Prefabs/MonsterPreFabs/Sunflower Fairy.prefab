@@ -406,8 +406,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Sunflower Fairy
-  hp: 3
-  damage: 3
+  hp: 46
+  damage: 5
   element: 3
   isEnemy: 0
   animator: {fileID: 6903869588359764812}

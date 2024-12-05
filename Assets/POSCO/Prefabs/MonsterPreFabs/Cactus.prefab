@@ -612,8 +612,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Cactus
-  hp: 3
-  damage: 3
+  hp: 55
+  damage: 5
   element: 3
   isEnemy: 0
   animator: {fileID: 197664061109039885}

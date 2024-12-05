@@ -525,8 +525,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Spook
-  hp: 3
-  damage: 3
+  hp: 39
+  damage: 6
   element: 2
   isEnemy: 0
   animator: {fileID: 4491988692371760499}

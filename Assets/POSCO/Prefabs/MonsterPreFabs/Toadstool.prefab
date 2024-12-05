@@ -177,8 +177,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Toadstool
-  hp: 3
-  damage: 3
+  hp: 86
+  damage: 22
   element: 3
   isEnemy: 0
   animator: {fileID: 6776722359987207221}

@@ -2832,8 +2832,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Dragon Fire
-  hp: 3
-  damage: 3
+  hp: 33
+  damage: 10
   element: 1
   isEnemy: 0
   animator: {fileID: 5259391607515894101}
