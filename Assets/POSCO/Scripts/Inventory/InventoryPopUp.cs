@@ -157,9 +157,9 @@ public class InventoryPopUp : MonoBehaviour
             print("이미열림");
             return; // 팝업이 열려 있으면 다시 열지 않음
         }
-
         GameObject MyBattleMonsterPrefab = Instantiate(myBattleMonsterBackgroundPrefab, inventoryPos);
-        uiInventory.InstantiateMyBattleMonster(MyBattleMonsterPrefab);
+        RectTransform rectTransform = MyBattleMonsterPrefab.GetComponent<RectTransform>();
+        uiInventory.InstantiateMyBattleMonster(rectTransform);
         UIInventoryManager.Instance.OpenPopup(MyBattleMonsterPrefab);
     }
 
