@@ -51,7 +51,7 @@ public class UIInventory : MonoBehaviour
         inventoryButton = FindObjectOfType<InventoryButton>();
         LoadMonsterPrefabs();
         player = FindObjectOfType<Player>();
-        BringPlaterMonsterList();
+        BringPlayerMonsterList();
         FindSameMonsters();
         InstantiatePlayerMonster();
     }
@@ -63,7 +63,7 @@ public class UIInventory : MonoBehaviour
 
     //GameObject-> Monster 변환 후 playerMonster   List에 저장 
 
-    private void BringPlaterMonsterList()
+    private void BringPlayerMonsterList()
     {
         print(player.playerMonsterPrefabList[1]);
         foreach (GameObject monsterObj in player.playerMonsterPrefabList)
