@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+//using UnityEngine.UIElements;
 
 
 public class UIInventory : MonoBehaviour
@@ -286,7 +287,23 @@ public class UIInventory : MonoBehaviour
         {
             player.SetSelectedMonsters(TempSelectedMonsterList);
         }
+        Transform targetButton;
+        Button button;
+        ColorBlock colorBlock;
+        foreach (var cardListButton in cardList)
+        {
+            targetButton = cardListButton.transform.Find("MonsterCardButton");
+            button = targetButton.GetComponent<Button>();
+            button.interactable = false;
+            colorBlock = button.colors;
+            colorBlock.colorMultiplier = 5f;
+            button.colors = colorBlock;
+        }
+        
+       
+
     }
+    
 
     public void ResetCelectedMonster()
     {
@@ -305,5 +322,9 @@ public class UIInventory : MonoBehaviour
      
         choiceNum = 0;
     }
+
+
+
+   
 
 }
