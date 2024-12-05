@@ -26,13 +26,18 @@ public class CoroutineStarter : MonoBehaviour
         StartCoroutine(attackCoroutine.PlayerNormalAttackCoroutine());
     }
 
-    public void StartEnemyAttackCoroutine(AttackCommand attackCoroutine)
+    public void StartEnemyNormalAttackCoroutine(AttackCommand attackCoroutine)
     {
-        StartCoroutine(attackCoroutine.EnemyAttackCoroutine());
+        StartCoroutine(attackCoroutine.EnemyNormalAttackCoroutine());
     }
 
-    public void PlayerFirstSkillAttackCoroutine(AttackCommand attackCoroutine)
+    public void StartPlayerFirstSkillAttackCoroutine(AttackCommand attackCoroutine)
     {
-        StartCoroutine(attackCoroutine.FirstSkillAttackCoroutine());
+        StartCoroutine(attackCoroutine.PlayerFirstSkillAttackCoroutine());
+    }
+
+    public void EnemyFirstSkillAttackCoroutine(AttackCommand attackCoroutine)
+    {
+        StartCoroutine(attackCoroutine.EnemyFirstSkillAttackCoroutine());
     }
 }

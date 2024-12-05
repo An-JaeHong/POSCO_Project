@@ -54,7 +54,7 @@ public class PlayerContactEnemyState : PlayerStateBase
     private void StartBattle()
     {
         //현재 플레이어가 들고있는 몬스터와 만난 몬스터의 정보를 넘겨줌
-        gameManager.SetMonsterInformation(player, unit);
+        gameManager.SetNormalMonsterInformation(player, unit);
         //foreach(var selectedMonster in player.selectedMonsterList)
         //{
 

@@ -309,6 +309,8 @@ public class PlayerNormalBattleState : PlayerStateBase
         CameraManager.Instance.HandleCamera(CameraType.FieldMap);
         Debug.Log("Exit 3");
 
+        //전투가 끝나면 모든 UI를 닫아야한다
+        UIPopupManager.Instance.ClosePopup();
         // 이 부분때문에 무한으로 즐김
         //player.ChangeState(new PlayerIdleState(player));
         Debug.Log("Exit 4");
@@ -330,6 +332,7 @@ public class PlayerNormalBattleState : PlayerStateBase
         }
 
         //게임 끝나고나면 전투상태를 초기화 시켜줘야한다.
+        GameManager.Instance.InitializeMonsterInfo(unit);
         GameManager.Instance.InitializeBattleState();
     }
 

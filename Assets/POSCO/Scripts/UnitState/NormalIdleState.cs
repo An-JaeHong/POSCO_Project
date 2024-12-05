@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
-//일반 몬스터 Idle 상태
+//일반 몬스터 Idle 상태 -> MonoBehaviour은 객체를 만들어야해서 인터페이스로 만든다.
 public class NormalIdleState : IUnitState
 {
     Vector3 destination;

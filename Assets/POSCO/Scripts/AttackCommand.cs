@@ -38,12 +38,17 @@ public class AttackCommand : ICommand
     //스킬공격시 실행하는 함수
     public void PlayerFristSkillAttackExecute()
     {
-        CoroutineStarter.Instance.PlayerFirstSkillAttackCoroutine(this);
+        CoroutineStarter.Instance.StartPlayerFirstSkillAttackCoroutine(this);
     }
 
-    public void EnemyAttackExecute()
+    public void EnemyNormalAttackExecute()
     {
-        CoroutineStarter.Instance.StartEnemyAttackCoroutine(this);
+        CoroutineStarter.Instance.StartEnemyNormalAttackCoroutine(this);
+    }
+
+    public void EnemyFristSkillAttackExecute()
+    {
+        CoroutineStarter.Instance.StartEnemyNormalAttackCoroutine(this);
     }
 
     public IEnumerator PlayerNormalAttackCoroutine()
@@ -104,7 +109,7 @@ public class AttackCommand : ICommand
 
 
     //첫번째 애니메이션 실행하는 코루틴
-    public IEnumerator FirstSkillAttackCoroutine()
+    public IEnumerator PlayerFirstSkillAttackCoroutine()
     {
         //첫번째 스킬 실행하는 애니메이션실행
         attacker.FirstSkillAnimation();
@@ -115,7 +120,7 @@ public class AttackCommand : ICommand
     }
 
 
-    public IEnumerator EnemyAttackCoroutine()
+    public IEnumerator EnemyNormalAttackCoroutine()
     {
         //여기에 "" 가 ""를 공격했다! UI띄우기
         var buttons = new Dictionary<string, UnityAction> { };
@@ -166,6 +171,11 @@ public class AttackCommand : ICommand
 
         //공격이 끝나면 PlayerAction이 끝났다는걸 알려줘야함
         GameManager.Instance.isEnemyActionComplete = true;
+    }
+
+    public IEnumerator EnemyFirstSkillAttackCoroutine()
+    {
+        yield return null;
     }
 
     //전투 끝나면 실행할 함수

@@ -10,7 +10,7 @@ public interface ICommand
 
     public void PlayerFristSkillAttackExecute();
 
-    public void EnemyAttackExecute();
+    public void EnemyNormalAttackExecute();
 
     //뒤로 돌릴 함수인데, 쓸 이유는 없을 것 같지만 혹시 모르니 작성
     public void Undo();
