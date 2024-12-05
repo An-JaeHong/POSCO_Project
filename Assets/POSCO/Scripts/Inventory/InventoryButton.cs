@@ -53,9 +53,10 @@ public class InventoryButton : MonoBehaviour
 
     public void OnChioseBattleMonsterButton()
     {
-
-        uiInventory.OnCardButtonInteractable();
-        inventoryPopUp.InstantiateSelectedMonster();
+       
+            
+            inventoryPopUp.InstantiateSelectedMonster();
+      
     }
 
     public void OnSelectCardButton(int num)
@@ -67,7 +68,7 @@ public class InventoryButton : MonoBehaviour
     public void OnSelectBoutton()
     {
         uiInventory.SetSelectMonster();
-
+        UIInventoryManager.Instance.ClosePopup();
     }
 
     public void OnRestButton()

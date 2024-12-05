@@ -29,9 +29,11 @@ public class UIInventoryManager : MonoBehaviour
 
     public void OpenPopup(GameObject popupPrefab)
     {
+
         popupStack.Push(popupPrefab);
         print("ÆË¾÷ÀÌ ¿­¸²");
         print(popupPrefab.name);
+        print(popupStack.Count);
     }
 
     public void ClosePopup()
@@ -41,6 +43,7 @@ public class UIInventoryManager : MonoBehaviour
             print("½ÇÇàµÊ");
             GameObject popup = popupStack.Pop(); // °¡Àå ÃÖ±Ù ÆË¾÷
             Destroy(popup);
+            print(popupStack.Count);
         }
     }
     public int IsPopupOpen()

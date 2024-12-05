@@ -116,7 +116,7 @@ public class InventoryPopUp : MonoBehaviour
             print("이미열림");
             return; // 팝업이 열려 있으면 다시 열지 않음
         }
-
+        uiInventory.choiceNum = 0;
         uiInventory.TempSelectedMonsterList.Clear();
         GameObject selectedMonsterPrefab = Instantiate(showSelectedMonsterBackgoundPrefab, inventoryPos);
         uiInventory.selectedMonster = selectedMonsterPrefab;
@@ -126,6 +126,8 @@ public class InventoryPopUp : MonoBehaviour
         Button onresetButton = resetButton.GetComponentInChildren<Button>();
         onSelectButton.onClick.AddListener(() => inventoryButton.OnSelectBoutton());
         onresetButton.onClick.AddListener(() => inventoryButton.OnRestButton());
+       
+        uiInventory.OnCardButtonInteractable();
         UIInventoryManager.Instance.OpenPopup(selectedMonsterPrefab);
     }
 
