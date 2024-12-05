@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 
-[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(CharacterController))]
 public class Player : MonoBehaviour
 {
     //플레이어가 시작시 가지고 있는 몬스터
@@ -19,11 +19,11 @@ public class Player : MonoBehaviour
     public float mouseSensivity; //마우스 감도
     public Transform cameraRig;
 
-    private Rigidbody rb;
+    private CharacterController characterController;
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
+        characterController = GetComponent<CharacterController>();
     }
 
     private void Start()
@@ -76,10 +76,13 @@ public class Player : MonoBehaviour
     {
         if (!canMove) return;
 
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
-        Vector3 moveDir = new Vector3(x, 0, z);
-        rb.MovePosition(new Vector3() * moveSpeed * Time.deltaTime);
+        Vector3 inputValue = Vector3.zero;
+        inputValue.x = Input.GetAxis("Horizontal");
+        inputValue.z = Input.GetAxis("Vertical");
+
+        Vector3 inputMoveDir = inputValue * moveSpeed;
+        Vector3 actualMoveDir = transform.TransformDirection(inputMoveDir);
+        characterController.Move(actualMoveDir * Time.deltaTime);
     }
 
     //시야 관련 함수
@@ -89,7 +92,6 @@ public class Player : MonoBehaviour
         float mouseY = Input.GetAxis("Mouse Y");
 
         transform.Rotate(0, mouseX * mouseSensivity * Time.deltaTime, 0);
-
         cameraRig.Rotate(-mouseY * mouseSensivity * Time.deltaTime, 0, 0);
     }
 
