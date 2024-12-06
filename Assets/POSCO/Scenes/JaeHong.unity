@@ -488,6 +488,38 @@ PrefabInstance:
       propertyPath: inventoryPos
       value: 
       objectReference: {fileID: 1964465513}
+    - target: {fileID: 3285950053882979458, guid: 28abbb89ef595d541bc8cd184b3baef5, type: 3}
+      propertyPath: potionPrefab.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3285950053882979458, guid: 28abbb89ef595d541bc8cd184b3baef5, type: 3}
+      propertyPath: potionprefab.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3285950053882979458, guid: 28abbb89ef595d541bc8cd184b3baef5, type: 3}
+      propertyPath: potionPrefab.Array.data[0]
+      value: 
+      objectReference: {fileID: 2037540243330069275, guid: fac5dd0e9bc16af4c96e1c43bfb4177d, type: 3}
+    - target: {fileID: 3285950053882979458, guid: 28abbb89ef595d541bc8cd184b3baef5, type: 3}
+      propertyPath: potionPrefab.Array.data[1]
+      value: 
+      objectReference: {fileID: 3859310486188090486, guid: dfefc282b210a2948ae1681498242b7b, type: 3}
+    - target: {fileID: 3285950053882979458, guid: 28abbb89ef595d541bc8cd184b3baef5, type: 3}
+      propertyPath: potionPrefab.Array.data[2]
+      value: 
+      objectReference: {fileID: 6267488082356156221, guid: c13d5282a17328546b5b61189ec640d3, type: 3}
+    - target: {fileID: 3285950053882979458, guid: 28abbb89ef595d541bc8cd184b3baef5, type: 3}
+      propertyPath: potionprefab.Array.data[0]
+      value: 
+      objectReference: {fileID: 2037540243330069275, guid: fac5dd0e9bc16af4c96e1c43bfb4177d, type: 3}
+    - target: {fileID: 3285950053882979458, guid: 28abbb89ef595d541bc8cd184b3baef5, type: 3}
+      propertyPath: potionprefab.Array.data[1]
+      value: 
+      objectReference: {fileID: 3859310486188090486, guid: dfefc282b210a2948ae1681498242b7b, type: 3}
+    - target: {fileID: 3285950053882979458, guid: 28abbb89ef595d541bc8cd184b3baef5, type: 3}
+      propertyPath: potionprefab.Array.data[2]
+      value: 
+      objectReference: {fileID: 6267488082356156221, guid: c13d5282a17328546b5b61189ec640d3, type: 3}
     - target: {fileID: 3643169617423135719, guid: 28abbb89ef595d541bc8cd184b3baef5, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -1803,10 +1835,10 @@ SceneRoots:
   - {fileID: 1251373104}
   - {fileID: 1840638296}
   - {fileID: 1298288939}
-  - {fileID: 2136708012}
-  - {fileID: 1215895558}
   - {fileID: 1863706451}
   - {fileID: 639906446}
   - {fileID: 1294285309}
   - {fileID: 1915271210}
   - {fileID: 171807303}
+  - {fileID: 2136708012}
+  - {fileID: 1215895558}
