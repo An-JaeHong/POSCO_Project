@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     public List<Transform> enemyBattlePosList = new List<Transform>();
     //보스맵에서 생성될 포지션리스트
     public List<Transform> PlayerBossBattlePosList = new List<Transform>();
-    public List<Transform> BossBattlePosList = new List<Transform>();
+    public List<Transform> EnemyBossBattlePosList = new List<Transform>();
 
     //실제로 소환되는 몬스터들의 Prefab리스트
     private List<GameObject> instantiateMonsterList = new List<GameObject>();
@@ -167,7 +167,7 @@ public class GameManager : MonoBehaviour
         }
         for (int i = 0; i < enemyMonsterInBattleList.Count; i++)
         {
-            GameObject enemyMonsterObj = Instantiate(enemyMonsterInBattleList[i].gameObject, BossBattlePosList[i].transform.position, Quaternion.Euler(0, 90f, 0));
+            GameObject enemyMonsterObj = Instantiate(enemyMonsterInBattleList[i].gameObject, EnemyBossBattlePosList[i].transform.position, Quaternion.Euler(0, 90f, 0));
             Monster tempMonster = enemyMonsterObj.GetComponent<Monster>();
             spawnedEnemyMonsterList.Add(tempMonster);
 
