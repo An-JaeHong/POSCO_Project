@@ -100,6 +100,7 @@ public class InventoryUI : MonoBehaviour
         //초기화 한번 후 진행
         playerMonsterList.Clear();
 
+
         foreach (GameObject monsterObj in player.GetMonsterPrefabList())
         {
             if (monsterObj.TryGetComponent<Monster>(out Monster monster))

@@ -728,6 +728,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Sunflora Pixie
   hp: 96
+  maxHp: 96
   damage: 21
   element: 3
   isEnemy: 0
@@ -735,6 +736,7 @@ MonoBehaviour:
   skills:
   - {fileID: 11400000, guid: 75afdeb9da4e07e45bca0aa5a51a7c8c, type: 2}
   - {fileID: 11400000, guid: ba06ccaf781acb84cb1354620ef69101, type: 2}
+  selectedSkill: {fileID: 0}
   playParticleDuration: 2
   attackType: 0
 --- !u!1 &3113763400977356056

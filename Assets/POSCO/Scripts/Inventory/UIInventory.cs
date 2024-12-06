@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -79,8 +80,15 @@ public class UIInventory : MonoBehaviour
             if (monsterObj.TryGetComponent<Monster>(out Monster monster))
             {
                 playerMonsterList.Add(monster);
+
             }
+
         }
+    }
+
+    private GameObject Instantiate(Monster monster, Vector3 vector3)
+    {
+        throw new NotImplementedException();
     }
 
     private void LoadMonsterPrefabs()
@@ -182,6 +190,14 @@ public class UIInventory : MonoBehaviour
             targetText = monsterCard.transform.Find("Hp/Slider_Hp/Text");
             inputText = targetText.GetComponent<TMP_Text>();
             inputText.text = $"{playerMonsterList[i].hp}/{playerMonsterList[i].maxHp}";
+
+            //체력바 입력
+            Slider Slider;
+            Transform targetSlider;
+            targetSlider = monsterCard.transform.Find("Hp/Slider_Hp");
+            Slider = targetSlider.GetComponent<Slider>();
+            Slider.value = playerMonsterList[i].hpAmount;
+
             //소환된 카드에 버튼 삽입하기
 
             // 소환된 카드에 버튼 삽입하기
@@ -263,11 +279,19 @@ public class UIInventory : MonoBehaviour
                 Transform targetText = monsterCard.transform.Find("TextName");
                 TMP_Text inputText = targetText.GetComponent<TMP_Text>();
                 inputText.text = TempSelectedMonsterList[i].name;
+
                 //체력 삽입
+               
                 targetText = monsterCard.transform.Find("Hp/Slider_Hp/Text");
                 inputText = targetText.GetComponent<TMP_Text>();
                 inputText.text = $"{TempSelectedMonsterList[i].hp}/{TempSelectedMonsterList[i].maxHp}";
-
+                
+                //체력바 입력
+                Slider Slider;
+                Transform targetSlider;
+                targetSlider = monsterCard.transform.Find("Hp/Slider_Hp");
+                Slider = targetSlider.GetComponent<Slider>();
+                Slider.value = TempSelectedMonsterList[i].hpAmount;
                 switch (TempSelectedMonsterList[i].element)
                 {
                     case Element.Fire:
@@ -303,7 +327,6 @@ public class UIInventory : MonoBehaviour
             Transform targetButton;
             foreach (var card in cardList)
             {
-           
                 targetButton = card.transform.Find("MonsterCardButton");
                 Button button = targetButton.GetComponent<Button>();
                 button.interactable = true;
