@@ -17,7 +17,7 @@ public class PlayerBossBattleState : PlayerStateBase
 
         TurnManager.Instance.monsterTurnChange += OnMonsterTurnChange;
         //배틀 종료되면 호출하는 함수
-        TurnManager.Instance.OnBattleEnd += HandleBattleEnd;
+        TurnManager.Instance.OnBattleEnd += HandleBossBattleEnd;
         player.canMove = false;
         CameraManager.Instance.HandleCamera(CameraType.BossMap);
         TurnManager.Instance.InitializeTurnQueue();
@@ -266,7 +266,7 @@ public class PlayerBossBattleState : PlayerStateBase
         Debug.Log("Exit 1");
 
         //TurnManager.Instance.OnBattleEnd -= Exit;
-        TurnManager.Instance.OnBattleEnd -= HandleBattleEnd;
+        TurnManager.Instance.OnBattleEnd -= HandleBossBattleEnd;
         TurnManager.Instance.monsterTurnChange -= OnMonsterTurnChange;
         Debug.Log("Exit 2");
         //player.canMove = true;
@@ -274,21 +274,21 @@ public class PlayerBossBattleState : PlayerStateBase
         //uiPopup.chooseTargetCanvas.SetActive(false);
         CameraManager.Instance.HandleCamera(CameraType.FieldMap);
         Debug.Log("Exit 3");
-
+        UIPopupManager.Instance.ClosePopup();
         // 이 부분때문에 무한으로 즐김
         //player.ChangeState(new PlayerIdleState(player));
         Debug.Log("Exit 4");
     }
 
-    private void HandleBattleEnd()
+    private void HandleBossBattleEnd()
     {
         //상태 변환시키고
         player.ChangeState(new PlayerIdleState(player));
 
-        //만약 모든 적이 죽으면 밖에 있는 몬스터를 삭제시켜야한다.
+        //만약 모든 적이 죽으면 밖에 있는 몬스터를 삭제시켜야한다. -> 보스는 아님
         if (TurnManager.Instance.allEnemyMonstersDead == true)
         {
-            GameObject.Destroy(GameManager.Instance.contactedFieldMonster);
+            //GameObject.Destroy(GameManager.Instance.contactedFieldMonster);
         }
         else if (TurnManager.Instance.allPlayerMonstersDead == true)
         {
@@ -296,6 +296,7 @@ public class PlayerBossBattleState : PlayerStateBase
         }
 
         //게임 끝나고나면 전투상태를 초기화 시켜줘야한다.
+        GameManager.Instance.InitializeMonsterInfo(boss);
         GameManager.Instance.InitializeBattleState();
     }
 

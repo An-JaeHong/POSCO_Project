@@ -20,9 +20,9 @@ public class GameManager : MonoBehaviour
     public List<Transform> EnemyBossBattlePosList = new List<Transform>();
 
     //실제로 소환되는 몬스터들의 Prefab리스트
-    private List<GameObject> instantiateMonsterList = new List<GameObject>();
+    private List<GameObject> instantiatedMonsterList = new List<GameObject>();
     //깊은 복사로 저장할 원래 몬스터의 정보
-    private List<MonsterDeepCopy> originEnemyMonster = new List<MonsterDeepCopy>();
+    private List<MonsterDeepCopy> originEnemyMonsterDataList = new List<MonsterDeepCopy>();
 
     //턴이 끝났는지 알 수 있는 변수
     public bool isPlayerActionComplete = false;
@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
         }
 
         //새로 들어온 몬스터 정보는 일단 초기화
-        originEnemyMonster.Clear();
+        originEnemyMonsterDataList.Clear();
 
         //여기에서 깊은 복사로 원래 몬스터 정보를 보관해준다.
         for (int i = 0; i < 3; i++)
@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour
                 IsEnemy = unit.ownedMonsterList[i].isEnemy,
                 Skills = unit.ownedMonsterList[i].skills,
             };
-            originEnemyMonster.Add(temp);
+            originEnemyMonsterDataList.Add(temp);
         }
 
         SetMonsterOnBattlePosition();
@@ -93,10 +93,13 @@ public class GameManager : MonoBehaviour
         playerMonsterInBattleList = player.selectedMonsterList;
 
         //일단 적 몬스터 리스트도 얕은 복사로 받아온 다음에 마지막에 정보를 초기화 해준다.
-        enemyMonsterInBattleList = boss.ownedMonsterList;
+        for (int i = 0; i < 3; i++)
+        {
+            enemyMonsterInBattleList.Add(boss.ownedMonsterList[i]);
+        }
 
         //새로 들어온 몬스터 정보는 일단 초기화
-        originEnemyMonster.Clear();
+        originEnemyMonsterDataList.Clear();
 
         //여기에서 깊은 복사로 원래 몬스터 정보를 보관해준다.
 
@@ -112,7 +115,7 @@ public class GameManager : MonoBehaviour
                     IsEnemy = boss.ownedMonsterList[i].isEnemy,
                     Skills = boss.ownedMonsterList[i].skills,
                 };
-            originEnemyMonster.Add(temp);
+            originEnemyMonsterDataList.Add(temp);
         }
 
         SetMonsterOnBossMapPosition();
@@ -133,7 +136,7 @@ public class GameManager : MonoBehaviour
             spawnedPlayerMonsterList.Add(tempMonster);
 
             //나중에 한번에 삭제하기 편하게 하려고 리스트에 추가한다.
-            instantiateMonsterList.Add(playerMonsterObj);
+            instantiatedMonsterList.Add(playerMonsterObj);
         }
         for (int i = 0; i < enemyMonsterInBattleList.Count; i++)
         {
@@ -142,7 +145,7 @@ public class GameManager : MonoBehaviour
             spawnedEnemyMonsterList.Add(tempMonster);
 
             //나중에 한번에 삭제하기 편하게 하려고 리스트에 추가한다.
-            instantiateMonsterList.Add(enemyMonsterObj);
+            instantiatedMonsterList.Add(enemyMonsterObj);
         }
 
         //그 후에 소환된 Monster형태의 몬스터 리스트를 TurnManager에게 넘겨준다.
@@ -163,7 +166,7 @@ public class GameManager : MonoBehaviour
             spawnedPlayerMonsterList.Add(tempMonster);
 
             //나중에 한번에 삭제하기 편하게 하려고 리스트에 추가한다.
-            instantiateMonsterList.Add(playerMonsterObj);
+            instantiatedMonsterList.Add(playerMonsterObj);
         }
         for (int i = 0; i < enemyMonsterInBattleList.Count; i++)
         {
@@ -172,7 +175,7 @@ public class GameManager : MonoBehaviour
             spawnedEnemyMonsterList.Add(tempMonster);
 
             //나중에 한번에 삭제하기 편하게 하려고 리스트에 추가한다.
-            instantiateMonsterList.Add(enemyMonsterObj);
+            instantiatedMonsterList.Add(enemyMonsterObj);
         }
 
         //그 후에 소환된 Monster형태의 몬스터 리스트를 TurnManager에게 넘겨준다.
@@ -236,7 +239,7 @@ public class GameManager : MonoBehaviour
     {
         AttackCommand attackCommand = new AttackCommand(attacker, target);
         attackCommand.PlayerFristSkillAttackExecute();
-        UIPopupManager.Instance.ClosePopup();
+        //UIPopupManager.Instance.ClosePopup();
     }
 
     //위와 같다
@@ -257,13 +260,13 @@ public class GameManager : MonoBehaviour
     }
 
     //싸운 몬스터 오브젝트들 제거해주는 함수
-    public void ClearBattleMonsters()
+    public void ClearAllBattleMapMonsterObj()
     {
-        foreach(GameObject instantiateMonster in instantiateMonsterList)
+        foreach(GameObject instantiateMonster in instantiatedMonsterList)
         {
             Destroy(instantiateMonster);
         }
-        instantiateMonsterList.Clear();
+        instantiatedMonsterList.Clear();
     }
 
     //몬스터 정보는 저장해 놨던 처음 상태로 되돌려준다
@@ -272,12 +275,12 @@ public class GameManager : MonoBehaviour
         //담아놨던 originEnemyMonster의 정보를 담아준다.
         for(int i = 0; i < enemyMonsterInBattleList.Count; i++)
         {
-            unit.ownedMonsterList[i].hp = originEnemyMonster[i].Hp;
-            unit.ownedMonsterList[i].name = originEnemyMonster[i].Name;
-            unit.ownedMonsterList[i].damage = originEnemyMonster[i].Damage;
-            unit.ownedMonsterList[i].element = originEnemyMonster[i].Element;
-            unit.ownedMonsterList[i].isEnemy = originEnemyMonster[i].IsEnemy;
-            unit.ownedMonsterList[i].skills = originEnemyMonster[i].Skills;
+            unit.ownedMonsterList[i].hp = originEnemyMonsterDataList[i].Hp;
+            unit.ownedMonsterList[i].name = originEnemyMonsterDataList[i].Name;
+            unit.ownedMonsterList[i].damage = originEnemyMonsterDataList[i].Damage;
+            unit.ownedMonsterList[i].element = originEnemyMonsterDataList[i].Element;
+            unit.ownedMonsterList[i].isEnemy = originEnemyMonsterDataList[i].IsEnemy;
+            unit.ownedMonsterList[i].skills = originEnemyMonsterDataList[i].Skills;
 
             //enemymonsterinbattlelist[i].hp = originenemymonster[i].hp;
             //enemymonsterinbattlelist[i].name = originenemymonster[i].name;
@@ -296,7 +299,7 @@ public class GameManager : MonoBehaviour
         //playerMonsterInBattleList.Clear();
         //enemyMonsterInBattleList.Clear();
 
-        ClearBattleMonsters();
+        ClearAllBattleMapMonsterObj();
         //InitializeMonsterInfo();
 
         //행동 완료를 false로 바꿔준다.

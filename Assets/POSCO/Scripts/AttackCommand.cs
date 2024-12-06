@@ -111,19 +111,6 @@ public class AttackCommand : ICommand
         GameManager.Instance.isPlayerActionComplete = true;
     }
 
-
-    //첫번째 애니메이션 실행하는 코루틴
-    public IEnumerator PlayerFirstSkillAttackCoroutine()
-    {
-        //첫번째 스킬 실행하는 애니메이션실행
-        attacker.FirstSkillAnimation();
-
-        //2초후에 행동을 재개
-        yield return new WaitForSeconds(2f);
-        GameManager.Instance.isPlayerActionComplete = true;
-    }
-
-
     public IEnumerator EnemyNormalAttackCoroutine()
     {
         #region ""가 ~~ 행동을 했다라는 UI
@@ -163,7 +150,7 @@ public class AttackCommand : ICommand
         var button = new Dictionary<string, UnityAction> { };
         UIPopupManager.Instance.ShowPopup(
             $"{attacker.name} take attack {target.name}!",
-            buttons
+            button
         );
         #endregion
 
@@ -180,11 +167,55 @@ public class AttackCommand : ICommand
         GameManager.Instance.isEnemyActionComplete = true;
     }
 
+    //첫번째 애니메이션 실행하는 코루틴
+    public IEnumerator PlayerFirstSkillAttackCoroutine()
+    {
+        #region ""가 ""스킬을 시전했다! 라는 UI
+        var button = new Dictionary<string, UnityAction> { };
+        UIPopupManager.Instance.ShowPopup(
+            $"{attacker.name} use {attacker.selectedSkill}!",
+            button
+        );
+        #endregion
+        //첫번째 스킬 실행하는 애니메이션실행
+        attacker.FirstSkillAnimation();
+
+        AnimatorStateInfo stateInfo = attacker.animator.GetCurrentAnimatorStateInfo(0);
+        yield return new WaitForSeconds(stateInfo.length);
+        #region ""가 ""에게 ~~의 데미지를 입혔다! 라는 UI
+        var buttons = new Dictionary<string, UnityAction> { };
+        UIPopupManager.Instance.ShowPopup(
+            $"{target.name} take {attacker.selectedSkill.skillDamage}damage!",
+            buttons
+        );
+        #endregion
+
+        //2초후에 행동을 재개
+        yield return new WaitForSeconds(2f);
+        GameManager.Instance.isPlayerActionComplete = true;
+    }
+
+
     public IEnumerator EnemyFirstSkillAttackCoroutine()
     {
-        //첫번째 스킬 실행하는 애니메이션실행
+        #region ""가 ""스킬을 시전했다! 라는 UI
+        var button = new Dictionary<string, UnityAction> { };
+        UIPopupManager.Instance.ShowPopup(
+            $"{attacker.name} use {attacker.selectedSkill}!",
+            button
+        );
+        #endregion
         attacker.selectedSkill = attacker.skills[0];
         attacker.FirstSkillAnimation();
+        AnimatorStateInfo stateInfo = attacker.animator.GetCurrentAnimatorStateInfo(0);
+        yield return new WaitForSeconds(stateInfo.length);
+        #region ""가 ""에게 ~~의 데미지를 입혔다! 라는 UI
+        var buttons = new Dictionary<string, UnityAction> { };
+        UIPopupManager.Instance.ShowPopup(
+            $"{target.name} take {attacker.selectedSkill.skillDamage}damage!",
+            buttons
+        );
+        #endregion
 
         //2초후에 행동을 재개
         yield return new WaitForSeconds(2f);
