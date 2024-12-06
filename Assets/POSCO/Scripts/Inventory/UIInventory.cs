@@ -28,6 +28,8 @@ public class UIInventory : MonoBehaviour
     public RenderTexture emptyRenderTexture;
     
     public int choiceNum = 0;
+    public int[] potionNum;
+
 
     public RectTransform monsterCardPos;
 
@@ -150,13 +152,15 @@ public class UIInventory : MonoBehaviour
         Button button = targetButton.GetComponentInChildren<Button>();
         button.onClick.AddListener(() => inventoryButton.OnChioseBattleMonsterButton());
 
-     
+
 
         //UnityAction action1 = () => inventoryButton.OnChioseBattleMonsterButton();
         //button.onClick.AddListener(action1);
 
         //print(monsterCardPos.transform);
         
+        
+        //TODO: 몬스터 정보 받아와야함
         cardList.Clear();
         for (int i = 0; i < playerMonsterList.Count; i++)
         {
@@ -178,12 +182,13 @@ public class UIInventory : MonoBehaviour
             Transform targetText = monsterCard.transform.Find("TextName");
             TMP_Text inputText = targetText.GetComponent<TMP_Text>();
             inputText.text = texturePlayerMonsterList[i].name;
+
             //체력 삽입
             targetText = monsterCard.transform.Find("Hp/Slider_Hp/Text");
             inputText = targetText.GetComponent<TMP_Text>();
             inputText.text = $"{playerMonsterList[i].hp}/{playerMonsterList[i].maxHp}";
 
-            //체력바 입력
+            //체력바 입력 // 나중에 MonsterDataManager에서 정보를 받아야함.
             Slider Slider;
             Transform targetSlider;
             targetSlider = monsterCard.transform.Find("Hp/Slider_Hp");
@@ -422,6 +427,7 @@ public class UIInventory : MonoBehaviour
         choiceNum = 0;
     }
 
+  
 
 
 

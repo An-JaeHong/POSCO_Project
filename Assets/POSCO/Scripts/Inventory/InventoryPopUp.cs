@@ -18,7 +18,8 @@ public class InventoryPopUp : MonoBehaviour
     public GameObject monsterCardPrefab;
     public GameObject inventoryPrefab;
     public GameObject myBattleMonsterBackgroundPrefab;
-
+    public GameObject informationPopUpprefab;
+    public GameObject[] potionPrefab;
 
     public RectTransform inventoryPos;
 
@@ -140,7 +141,7 @@ public class InventoryPopUp : MonoBehaviour
 
     public void InstantiateShowItem()
     {
-        if (UIInventoryManager.Instance.IsPopupOpen() >= 1) // 팝업이 이미 열려 있는지 확인
+        if (UIInventoryManager.Instance.IsPopupOpen() >= 2) // 팝업이 이미 열려 있는지 확인
         {
             print("이미열림");
             return; // 팝업이 열려 있으면 다시 열지 않음
@@ -148,6 +149,13 @@ public class InventoryPopUp : MonoBehaviour
 
 
         GameObject itemPrefab = Instantiate(showItemBackgoundPrefab, inventoryPos);
+        RectTransform rectTransform = itemPrefab.transform.Find("MonsterCardGirdLayoutGroup").GetComponent<RectTransform>();
+        Button button;
+        for (int i = 0; i < potionPrefab.Length; i++)
+        {
+            GameObject potion = Instantiate(potionPrefab[i], rectTransform);
+            button = potion.GetComponent<Button>();
+        }
         UIInventoryManager.Instance.OpenPopup(itemPrefab);
     }
 
@@ -171,7 +179,14 @@ public class InventoryPopUp : MonoBehaviour
         UIInventoryManager.Instance.ClosePopup(); // PopupManager를 사용하여 팝업 닫기
     }
 
-       
+    public void ShowItemDate(RectTransform rect)
+    {
+        GameObject itemGame = Instantiate(informationPopUpprefab, rect);
+    
+    }
+
+
+
 }
 
 

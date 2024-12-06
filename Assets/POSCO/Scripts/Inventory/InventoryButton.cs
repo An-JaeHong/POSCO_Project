@@ -73,4 +73,9 @@ public class InventoryButton : MonoBehaviour
         inventoryPopUp.ShowMyBattleMonster();
     }
 
+    public void OnOpenPotionData(int number)
+    {
+        //inventoryPopUp.ShowItemDate();
+    }
+    
 }
