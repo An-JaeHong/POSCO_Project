@@ -54,6 +54,12 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  PlayerBossBattlePosList: []
+  BossBattlePosList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   isPlayerActionComplete: 0
   isEnemyActionComplete: 0
   currentTurnMonster: {fileID: 0}
+  contactedFieldMonster: {fileID: 0}
