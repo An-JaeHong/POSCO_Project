@@ -14,13 +14,10 @@ public class BossIdleState : IUnitState
     public void Update(Unit unit)
     {
         //Debug.Log($"현재 NormalIdleState에 Update로 들어옴");
-        //여기에서 플레이어를 발견하면 느낌표가 뜨면서 NormalChaseState로 바뀌어야함
+        //여기에서 플레이어를 발견하면 느낌표가 뜨면서 BossFindPlayerState로 바뀌어야함
         if (DetectPlayer(unit))
         {
             unit.ChangeState(new BossFindPlayerState());
-            Debug.Log("IdleState에서 ChaseState로 감");
-
-            Debug.Log("감지중");
             return;
         }
     }

@@ -38,7 +38,9 @@ public class Unit : MonoBehaviour
 
     private void Start()
     {
+        //느낌표 마크를 생성해둔다.
         InstantiateExclamationMark();
+
         if (isBoss)
         {
             ChangeState(new BossIdleState());
