@@ -50,7 +50,9 @@ public class PlayerIdleState : PlayerStateBase
             if (unit.CompareTag("Unit"))
             {
                 player.ChangeState(new PlayerContactEnemyState(player, unit));
-                //GameManager.Instance.contactedFieldMonster = unit.GetComponent<Monster>().gameObject;
+
+                //유닛은 지면 파괴시켜야해서 GameManager에게 연결해준다
+                GameManager.Instance.contactedFieldMonster = unit.GetComponent<Unit>().gameObject;
             }
 
             else if (unit.CompareTag("Boss"))

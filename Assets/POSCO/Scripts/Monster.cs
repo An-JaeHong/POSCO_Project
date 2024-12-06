@@ -52,7 +52,7 @@ public class Monster : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
-       
+
     }
 
     private void Start()
