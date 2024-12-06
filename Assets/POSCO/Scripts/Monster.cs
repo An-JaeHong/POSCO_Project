@@ -37,7 +37,7 @@ public class Monster : MonoBehaviour
     public SkillData[] skills;
 
     //선택된 스킬
-    private SkillData selectedSkill;
+    public SkillData selectedSkill;
 
     private GameObject playedParticle;
 

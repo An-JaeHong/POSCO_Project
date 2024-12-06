@@ -243,7 +243,17 @@ public class GameManager : MonoBehaviour
     public void ExecuteEnemyAttackAction(Monster attacker, Monster target)
     {
         AttackCommand attackCommand = new AttackCommand(attacker, target);
-        attackCommand.EnemyNormalAttackExecute();
+
+        int enemyAttackType = Random.Range(0, 2);
+        switch(enemyAttackType)
+        {
+            case 0:
+                attackCommand.EnemyNormalAttackExecute();
+                break;
+            case 1:
+                attackCommand.EnemyFristSkillAttackExecute();
+                break;
+        }
     }
 
     //싸운 몬스터 오브젝트들 제거해주는 함수

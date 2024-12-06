@@ -48,17 +48,19 @@ public class AttackCommand : ICommand
 
     public void EnemyFristSkillAttackExecute()
     {
-        CoroutineStarter.Instance.StartEnemyNormalAttackCoroutine(this);
+        CoroutineStarter.Instance.StartEnemyFirstSkillAttackCoroutine(this);
     }
 
     public IEnumerator PlayerNormalAttackCoroutine()
     {
-        //여기에 "" 가 ""를 공격했다! UI띄우기
+        #region ""가 ~~ 행동을 했다는 UI
         var buttons = new Dictionary<string, UnityAction>{};
         UIPopupManager.Instance.ShowPopup(
             $"{attacker.name} Attack!",
             buttons
         );
+        #endregion
+
         //기존 위치 저장
         Vector3 currentPlayerPosition = attacker.transform.position;
         Vector3 targetPosition = target.transform.position;
@@ -88,11 +90,13 @@ public class AttackCommand : ICommand
         AnimatorStateInfo stateInfo = attacker.animator.GetCurrentAnimatorStateInfo(0);
         yield return new WaitForSeconds(stateInfo.length);
 
+        #region ""가 ""를 공격했다는 UI
         var button = new Dictionary<string, UnityAction> { };
         UIPopupManager.Instance.ShowPopup(
             $"{attacker.name} take attack {target.name}!",
             buttons
         );
+        #endregion
 
         //확인 버튼 누를때 까지 대기로 바꾸자 -> OnClickCheckButton
         yield return new WaitForSeconds(2f);
@@ -122,12 +126,13 @@ public class AttackCommand : ICommand
 
     public IEnumerator EnemyNormalAttackCoroutine()
     {
-        //여기에 "" 가 ""를 공격했다! UI띄우기
+        #region ""가 ~~ 행동을 했다라는 UI
         var buttons = new Dictionary<string, UnityAction> { };
         UIPopupManager.Instance.ShowPopup(
             $"{attacker.name} Attack!",
             buttons
         );
+        #endregion
 
         //기존 위치 저장
         Vector3 currentPlayerPosition = attacker.transform.position;
@@ -154,11 +159,13 @@ public class AttackCommand : ICommand
         AnimatorStateInfo stateInfo = attacker.animator.GetCurrentAnimatorStateInfo(0);
         yield return new WaitForSeconds(stateInfo.length);
 
+        #region ""가 ""를 공격했다! 라는 UI
         var button = new Dictionary<string, UnityAction> { };
         UIPopupManager.Instance.ShowPopup(
             $"{attacker.name} take attack {target.name}!",
             buttons
         );
+        #endregion
 
         //돌아오기까지 2초 대기
         yield return new WaitForSeconds(2f);
@@ -175,7 +182,13 @@ public class AttackCommand : ICommand
 
     public IEnumerator EnemyFirstSkillAttackCoroutine()
     {
-        yield return null;
+        //첫번째 스킬 실행하는 애니메이션실행
+        attacker.selectedSkill = attacker.skills[0];
+        attacker.FirstSkillAnimation();
+
+        //2초후에 행동을 재개
+        yield return new WaitForSeconds(2f);
+        GameManager.Instance.isEnemyActionComplete = true;
     }
 
     //전투 끝나면 실행할 함수

@@ -228,7 +228,7 @@ public class TurnManager : MonoBehaviour
         //한마리라도 있으면 실행
         if (targetMonsterList.Count > 0)
         {
-            //살아있는 얘 중에서 Random으로 타겟을 지정
+            //살아있는 플레이어 몬스터 중에서 Random으로 타겟을 지정
             Monster targetMonster = targetMonsterList[UnityEngine.Random.Range(0, targetMonsterList.Count)];
 
             //그다음 event로 받아온 변수 초기화
@@ -236,6 +236,12 @@ public class TurnManager : MonoBehaviour
             //enemyAttack?.Invoke(actionData);
             //담겨있던 event 실행
             //enemyAttack?.Invoke(actionData);
+
+            //테스트
+            print($"현재 공격중인 적 몬스터의 이름 : {currentTurnMonster}");
+            print($"현재 타겟이 된 플레이어 몬스터의 이름 : {targetMonster}");
+            print($"현재 공격중인 적 몬스터의 스킬 : {currentTurnMonster.selectedSkill}");
+
             GameManager.Instance.ExecuteEnemyAttackAction(currentTurnMonster, targetMonster);
             yield return new WaitUntil(() => GameManager.Instance.isEnemyActionComplete);
             GameManager.Instance.isEnemyActionComplete = false;
