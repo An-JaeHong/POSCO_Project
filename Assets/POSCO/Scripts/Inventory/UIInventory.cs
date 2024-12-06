@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -80,15 +79,8 @@ public class UIInventory : MonoBehaviour
             if (monsterObj.TryGetComponent<Monster>(out Monster monster))
             {
                 playerMonsterList.Add(monster);
-
             }
-
         }
-    }
-
-    private GameObject Instantiate(Monster monster, Vector3 vector3)
-    {
-        throw new NotImplementedException();
     }
 
     private void LoadMonsterPrefabs()

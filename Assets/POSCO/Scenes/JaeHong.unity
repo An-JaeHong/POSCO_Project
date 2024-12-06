@@ -130,30 +130,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4012500939877901966, guid: b402d2a04499d4249996ac79c8633224, type: 3}
-      propertyPath: playerMonsterPrefabList.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4012500939877901966, guid: b402d2a04499d4249996ac79c8633224, type: 3}
-      propertyPath: playerMonsterPrefabList.Array.data[0]
-      value: 
-      objectReference: {fileID: 231989385600591462, guid: 1e6542a34962fb34c912952936907680, type: 3}
-    - target: {fileID: 4012500939877901966, guid: b402d2a04499d4249996ac79c8633224, type: 3}
-      propertyPath: playerMonsterPrefabList.Array.data[1]
-      value: 
-      objectReference: {fileID: 1408502971525266044, guid: 4838d6d06bfc43f45a1c4bd9fa2c97ce, type: 3}
-    - target: {fileID: 4012500939877901966, guid: b402d2a04499d4249996ac79c8633224, type: 3}
-      propertyPath: playerMonsterPrefabList.Array.data[2]
-      value: 
-      objectReference: {fileID: 8144305676402533958, guid: c622b2a4b174449448a108fc5d4f7431, type: 3}
-    - target: {fileID: 4012500939877901966, guid: b402d2a04499d4249996ac79c8633224, type: 3}
-      propertyPath: playerMonsterPrefabList.Array.data[3]
-      value: 
-      objectReference: {fileID: 2367042737099000825, guid: 4bf20e0fd4bc1854cb398f21e12d4d44, type: 3}
-    - target: {fileID: 4012500939877901966, guid: b402d2a04499d4249996ac79c8633224, type: 3}
-      propertyPath: playerMonsterPrefabList.Array.data[4]
-      value: 
-      objectReference: {fileID: 198485063038056600, guid: 8009a4e25bd48ec4da1ee0159165e4a6, type: 3}
     - target: {fileID: 8125015914943489520, guid: b402d2a04499d4249996ac79c8633224, type: 3}
       propertyPath: m_Name
       value: Player
@@ -308,6 +284,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 6920941934091903330, guid: 82703dca62acae24d9060e86ebc110dc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -370,6 +350,10 @@ PrefabInstance:
     - target: {fileID: 87251145911220903, guid: 5f1ee922b49ebba4483c164e02b5b77d, type: 3}
       propertyPath: m_Name
       value: TurnManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 87251145911220903, guid: 5f1ee922b49ebba4483c164e02b5b77d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1988537854880140989, guid: 5f1ee922b49ebba4483c164e02b5b77d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -508,6 +492,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: InventoryPopUp
       objectReference: {fileID: 0}
+    - target: {fileID: 3657973791483411734, guid: 28abbb89ef595d541bc8cd184b3baef5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8464799951076518988, guid: 28abbb89ef595d541bc8cd184b3baef5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 960
@@ -564,6 +552,10 @@ PrefabInstance:
     - target: {fileID: 496829768917361065, guid: c2098d6c2d716b24aad687c707689bf3, type: 3}
       propertyPath: m_Name
       value: CoroutineStarter
+      objectReference: {fileID: 0}
+    - target: {fileID: 496829768917361065, guid: c2098d6c2d716b24aad687c707689bf3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5025817663669962595, guid: c2098d6c2d716b24aad687c707689bf3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1012,6 +1004,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIPopupManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7169264000781864018, guid: e44bef61c41c6eb43ac73829e7713ad1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7637588173551492319, guid: e44bef61c41c6eb43ac73829e7713ad1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 878.1031
@@ -1273,6 +1269,10 @@ PrefabInstance:
     - target: {fileID: 4173547079341226341, guid: c4bb31f1f6d2b13439fb42281366c11f, type: 3}
       propertyPath: m_Name
       value: InventoryCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4173547079341226341, guid: c4bb31f1f6d2b13439fb42281366c11f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8135807591320607479, guid: c4bb31f1f6d2b13439fb42281366c11f, type: 3}
       propertyPath: m_Pivot.x

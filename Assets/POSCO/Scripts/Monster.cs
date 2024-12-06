@@ -20,7 +20,7 @@ public enum AttackType
     Skill1,
     Skill2, //-> 확장성을 위해 남겨두었지만 사용은 하지 않음
 }
-
+[Serializable]
 public class Monster : MonoBehaviour
 {
 

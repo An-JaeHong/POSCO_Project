@@ -207,10 +207,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMonsterPrefabList:
   - {fileID: 231989385600591462, guid: 1e6542a34962fb34c912952936907680, type: 3}
-  - {fileID: 3290770729582014161, guid: acb7248f187573b4396684d1a7bc0e8a, type: 3}
   - {fileID: 1408502971525266044, guid: 4838d6d06bfc43f45a1c4bd9fa2c97ce, type: 3}
-  - {fileID: 7405381491313754096, guid: 214898d0165033d4ca9228fdc277f36e, type: 3}
-  - {fileID: 7890854564002070764, guid: ff2c278d7e59ac44587cb54860b15568, type: 3}
+  - {fileID: 8144305676402533958, guid: c622b2a4b174449448a108fc5d4f7431, type: 3}
+  - {fileID: 2367042737099000825, guid: 4bf20e0fd4bc1854cb398f21e12d4d44, type: 3}
+  - {fileID: 198485063038056600, guid: 8009a4e25bd48ec4da1ee0159165e4a6, type: 3}
   selectedMonsterList: []
   canMove: 1
   moveSpeed: 10
