@@ -27,6 +27,8 @@ public class Monster : MonoBehaviour
     public string name;
     public float hp;
     public float maxHp;
+    public float hpAmount { get { return hp / maxHp; } }
+    
     public float damage;
     public Element element;
 

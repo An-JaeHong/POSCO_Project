@@ -40,9 +40,7 @@ public class UIInventory : MonoBehaviour
 
     public GameObject monsterCardPrefab;
 
-    //private List<GameObject> selectedCard;
-    private List<GameObject> battleCard;
-
+   
     private void Start()
     {
         
@@ -55,7 +53,7 @@ public class UIInventory : MonoBehaviour
         player = FindObjectOfType<Player>();
         
         cardList = new List<GameObject>(playerMonsterList.Count);
-        battleCard = new List<GameObject>(3);
+       
 
         LoadMonsterPrefabs();
         BringPlayerMonsterList();
@@ -189,6 +187,9 @@ public class UIInventory : MonoBehaviour
             // 소환된 카드에 버튼 삽입하기
             targetButton = monsterCard.transform.Find("MonsterCardButton");
             button = targetButton.GetComponentInChildren<Button>();
+
+
+            //체력바 추가
 
             int parameterValue = i;
 
@@ -354,8 +355,8 @@ public class UIInventory : MonoBehaviour
             choiceNum++; // 선택한 카드 수 증가
             TempSelectedMonsterList.Add(playerMonsterList[number]);
             currentSelectedMonsterList.Add(playerMonsterList[number]);
-            GameObject copiedCard = Instantiate(cardList[number]);
-            battleCard.Add(copiedCard);
+           
+          
             
         }
         else

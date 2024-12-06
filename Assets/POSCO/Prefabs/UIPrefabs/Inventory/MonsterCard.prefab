@@ -796,7 +796,7 @@ GameObject:
   - component: {fileID: 3745629206808326859}
   - component: {fileID: 6343878112657773581}
   m_Layer: 0
-  m_Name: CurruntHp
+  m_Name: CurrentHp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
