@@ -107,23 +107,23 @@ public class PlayerNormalBattleState : PlayerStateBase
     //기본공격
     private void DoNormalAttack()
     {
-        if (TurnManager.Instance.currentTurnMonster.selectedSkill.skillCount >= 1)
-        {
+        //if (TurnManager.Instance.currentTurnMonster.selectedSkill.skillCount >= 1)
+        //{
             //현재 공격하는 Monster의 공격 타입을 기본공격 타입으로 바꾸고
             TurnManager.Instance.currentTurnMonster.attackType = AttackType.NormalAttack;
             //타겟을 고른다
             ChooseTarget();
-        }
-        else
-        {
-            #region 스킬카운트가 부족하다는 UI가 떠야함
-            var buttons = new Dictionary<string, UnityAction> { };
-            UIPopupManager.Instance.ShowPopup(
-            $"{TurnManager.Instance.currentTurnMonster.selectedSkill} skillcount is 0",
-            buttons
-            );
-            #endregion
-        }
+        //}
+        //else
+        //{
+        //    #region 스킬카운트가 부족하다는 UI가 떠야함
+        //    var buttons = new Dictionary<string, UnityAction> { };
+        //    UIPopupManager.Instance.ShowPopup(
+        //    $"{TurnManager.Instance.currentTurnMonster.selectedSkill} skillcount is 0",
+        //    buttons
+        //    );
+        //    #endregion
+        //}
     }
 
     private void DoSkillAttack()

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -106,12 +107,16 @@ public class Player : MonoBehaviour
         return selectedMonsterList;
     }
 
+    public event Action onClickSelectButton;
     public void SetSelectedMonsters(List<Monster> selecedMonater)
     {
         //List<Monster> temp = new List<Monster>();
         //temp = selecedMonater;
         this.selectedMonsterList = selecedMonater;
         print(selectedMonsterList[1].name);
+
+        //MonsterData에 연동되는 부분임
+        onClickSelectButton?.Invoke();
     }
 
     //접촉하는 대상이 있으면 실행
