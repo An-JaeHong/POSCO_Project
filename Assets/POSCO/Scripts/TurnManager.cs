@@ -74,18 +74,18 @@ public class TurnManager : MonoBehaviour
         this.enemyMonsterList = enemyMonsterList;
 
         //테스트용
-        foreach (Monster playerMonster in this.playerMonsterList)
-        {
-            print($"TurnManager에서 실행 : {playerMonster.transform.position}");
-        }
-        //테스트용
-        for (int i = 0; i < 3; i++)
-        {
-            if (this.playerMonsterList[i].animator != null)
-            {
-                print("animator 다 붙어있구만유");
-            }
-        }
+        //foreach (Monster playerMonster in this.playerMonsterList)
+        //{
+        //    print($"TurnManager에서 실행 : {playerMonster.transform.position}");
+        //}
+        ////테스트용
+        //for (int i = 0; i < 3; i++)
+        //{
+        //    if (this.playerMonsterList[i].animator != null)
+        //    {
+        //        print("animator 다 붙어있구만유");
+        //    }
+        //}
 
         //else
         //{
@@ -165,7 +165,7 @@ public class TurnManager : MonoBehaviour
             print($"{currentTurnMonster.name}의 턴!");
 
             //테스트용 
-            print($"현재턴인 몬스터의 위치 : {currentTurnMonster.transform.position}");
+            //print($"현재턴인 몬스터의 위치 : {currentTurnMonster.transform.position}");
 
             monsterTurnChange?.Invoke(currentTurnMonster);
 

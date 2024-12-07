@@ -296,7 +296,7 @@ public class PlayerBossBattleState : PlayerStateBase
         }
 
         //게임 끝나고나면 전투상태를 초기화 시켜줘야한다.
-        GameManager.Instance.InitializeMonsterInfo(boss);
+        GameManager.Instance.InitializeUnitMonsterData(boss);
         GameManager.Instance.InitializeBattleState();
     }
 

@@ -41,7 +41,7 @@ public class PlayerContactBossState : PlayerStateBase
 
     private void StartBattle()
     {
-        gameManager.SetBossInformation(player, boss);
+        gameManager.SetBossInformation(MonsterDataManager.Instance.selectedMonsterDataList, boss);
         player.ChangeState(new PlayerBossBattleState(player, boss));
     }
 

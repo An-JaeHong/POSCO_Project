@@ -137,7 +137,7 @@ PrefabInstance:
     - target: {fileID: 4012500939877901966, guid: b402d2a04499d4249996ac79c8633224, type: 3}
       propertyPath: playerMonsterPrefabList.Array.data[0]
       value: 
-      objectReference: {fileID: 231989385600591462, guid: 1e6542a34962fb34c912952936907680, type: 3}
+      objectReference: {fileID: 429202136443674265, guid: ea126fe3b0c3abd4f9c8d1f2cbe860e6, type: 3}
     - target: {fileID: 4012500939877901966, guid: b402d2a04499d4249996ac79c8633224, type: 3}
       propertyPath: playerMonsterPrefabList.Array.data[1]
       value: 
@@ -964,6 +964,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allMonsterDataList: []
+  selectedMonsterDataList: []
 --- !u!4 &1532828388
 Transform:
   m_ObjectHideFlags: 0

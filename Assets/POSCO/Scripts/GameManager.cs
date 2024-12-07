@@ -55,10 +55,10 @@ public class GameManager : MonoBehaviour
     }
 
     //만난 몬스터들 정보 넘겨받는 함수
-    public void SetNormalMonsterInformation(Player player, Unit unit)
+    public void SetNormalMonsterInformation(List<Monster> playerselectedMonster, Unit unit)
     {
         //플레이어 몬스터 리스트는 얕은 복사로 받아온다. -> 정보가 변하면 안되기 때문에.
-        playerMonsterInBattleList = player.selectedMonsterList;
+        playerMonsterInBattleList = playerselectedMonster;
 
         //일단 적 몬스터 리스트도 얕은 복사로 받아온 다음에 마지막에 정보를 초기화 해준다.
         for (int i = 0; i < 3; i++)
@@ -88,9 +88,9 @@ public class GameManager : MonoBehaviour
         SetMonsterOnBattlePosition();
     }
 
-    public void SetBossInformation(Player player, Unit boss)
+    public void SetBossInformation(List<Monster> playerselectedMonster, Unit boss)
     {
-        playerMonsterInBattleList = player.selectedMonsterList;
+        playerMonsterInBattleList = playerselectedMonster;
 
         //일단 적 몬스터 리스트도 얕은 복사로 받아온 다음에 마지막에 정보를 초기화 해준다.
         for (int i = 0; i < 3; i++)
@@ -128,7 +128,7 @@ public class GameManager : MonoBehaviour
         //실제 소환되는 몬스터들 -> Monster형태, GameObject 형태는 instantiateMonsterList이다.
         List<Monster> spawnedPlayerMonsterList = new List<Monster>();
         List<Monster> spawnedEnemyMonsterList = new List<Monster>();
-
+        
         for (int i = 0; i < playerMonsterInBattleList.Count; i++)
         {
             GameObject playerMonsterObj = Instantiate(playerMonsterInBattleList[i].gameObject, playerBattlePosList[i].transform.position, Quaternion.Euler(0, 90f, 0));
@@ -199,16 +199,16 @@ public class GameManager : MonoBehaviour
         //print($"target의 위치 : {target.transform.position}");
         //print($"target의 이름 : {target.name}");
 
-        //테스트용
-        foreach (var playerMonster in playerBattlePosList)
-        {
-            print($"플레이어 몬스터 위치 : {playerMonster.transform.position}");
-        }
+        ////테스트용
+        //foreach (var playerMonster in playerBattlePosList)
+        //{
+        //    print($"플레이어 몬스터 위치 : {playerMonster.transform.position}");
+        //}
 
-        foreach (var enemyMonster in enemyBattlePosList)
-        {
-            print($"적 몬스터 위치 : {enemyMonster.transform.position}");
-        }
+        //foreach (var enemyMonster in enemyBattlePosList)
+        //{
+        //    print($"적 몬스터 위치 : {enemyMonster.transform.position}");
+        //}
 
         //공격페이즈 돌입
         attackCommand.PlayerNormalAttackExecute();
@@ -269,8 +269,22 @@ public class GameManager : MonoBehaviour
         instantiatedMonsterList.Clear();
     }
 
+    //플레이어의 몬스터도 데이터를 초기화 해주어야한다.
+    public void InitializePlayerMonsterData()
+    {
+        for (int i = 0; i < playerMonsterInBattleList.Count; i++)
+        {
+            MonsterDataManager.Instance.selectedMonsterDataList[i].hp = playerMonsterInBattleList[i].hp;
+            MonsterDataManager.Instance.selectedMonsterDataList[i].name = playerMonsterInBattleList[i].name;
+            MonsterDataManager.Instance.selectedMonsterDataList[i].damage = playerMonsterInBattleList[i].damage;
+            MonsterDataManager.Instance.selectedMonsterDataList[i].element = playerMonsterInBattleList[i].element;
+            MonsterDataManager.Instance.selectedMonsterDataList[i].isEnemy = playerMonsterInBattleList[i].isEnemy;
+            MonsterDataManager.Instance.selectedMonsterDataList[i].skills = playerMonsterInBattleList[i].skills;
+        }
+    }
+
     //몬스터 정보는 저장해 놨던 처음 상태로 되돌려준다
-    public void InitializeMonsterInfo(Unit unit)
+    public void InitializeUnitMonsterData(Unit unit)
     {
         //담아놨던 originEnemyMonster의 정보를 담아준다.
         for(int i = 0; i < enemyMonsterInBattleList.Count; i++)

@@ -50,11 +50,11 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.Z))
         {
-            Time.timeScale = 3f;
+            Time.timeScale *= 3f;
         }
         if (Input.GetKeyUp(KeyCode.X))
         {
-            Time.timeScale = 1f;
+            Time.timeScale /= 3f;
         }
 
         //상태패턴 계속 실행
@@ -84,7 +84,7 @@ public class Player : MonoBehaviour
         Vector3 inputMoveDir = inputValue.normalized * moveSpeed;
         Vector3 actualMoveDir = transform.TransformDirection(inputMoveDir);
         rb.velocity = new Vector3(actualMoveDir.x, rb.velocity.y, actualMoveDir.z);
-        Debug.Log($"Move Direction: {actualMoveDir}, Velocity: {rb.velocity}");
+        //Debug.Log($"Move Direction: {actualMoveDir}, Velocity: {rb.velocity}");
     }
 
     //시야 관련 함수

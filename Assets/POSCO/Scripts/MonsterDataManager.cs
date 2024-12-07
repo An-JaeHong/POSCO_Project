@@ -3,33 +3,41 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class MonsterData : MonoBehaviour
+public class MonsterDataManager : MonoBehaviour
 {
+    private static MonsterDataManager instance;
+    public static MonsterDataManager Instance { get { return instance; } }
+
     //플레이어의 모든 몬스터 데이터를 가져올 리스트
     public List<Monster> allMonsterDataList = new List<Monster>();
     //선택된 몬스터 데이터 리스트
     public List<Monster> selectedMonsterDataList = new List<Monster>();
 
     private Player player;
-    // Start is called before the first frame update
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else 
+        {
+            Destroy(gameObject);
+        }
+        DontDestroyOnLoad(gameObject);
+    }
+
     void Start()
     {
         //플레이어 연동
+        allMonsterDataList.Clear();
+        selectedMonsterDataList.Clear();
         player = FindAnyObjectByType<Player>();
-        player.onClickSelectButton += InitializeSelectedPlayerMonsterData;
         BringPlayerAllMonsterData();
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-
-            BringPlayerAllMonsterData();
-        }
-            //InitializeSelectedPlayerMonsterData();
-        
+        //플레이어가 3마리의 몬스터를 선택하면 함수가 실행된다.
+        player.onClickSelectButton += InitializeSelectedPlayerMonsterData;
     }
 
     //현재 플레이어가 들고있는 몬스터 프리팹의 정보를 다 불러온다
@@ -41,7 +49,6 @@ public class MonsterData : MonoBehaviour
             {
                 allMonsterDataList.Add(monster);
             }
-            print($"{allMonsterDataList[0]}");
         }
     }
 
@@ -64,7 +71,6 @@ public class MonsterData : MonoBehaviour
                 }
             }
         }
-
     }
 
     //selectButton 누름 -> 플레이어에 담기는 선택한 몬스터 리스트를 그대로 받아옴 (데이터만)

@@ -77,7 +77,7 @@ public class Unit : MonoBehaviour
         {
             return;
         }
-        print("UnitMove함수가 실행됨");
+        //print("UnitMove함수가 실행됨");
         //움직이는 방향 노말벡터
         Vector3 direction = (destination - transform.position).normalized;
 
@@ -94,10 +94,10 @@ public class Unit : MonoBehaviour
     public void UnitRotation(Vector3 target)
     {
         //바라볼 방향
-        print("UnitRotation함수가 실행됨");
+        //print("UnitRotation함수가 실행됨");
         Vector3 targetDirection = (target - transform.position).normalized;
 
-        print($"{targetDirection}");
+        //print($"{targetDirection}");
 
         Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime);
