@@ -28,7 +28,8 @@ public class UIInventory : MonoBehaviour
     public RenderTexture emptyRenderTexture;
     
     public int choiceNum = 0;
-    public int[] potionNum;
+    //아이템 갯수 
+    public int[] potionNum = new int[3] { 3, 3, 3 };
 
 
     public RectTransform monsterCardPos;
