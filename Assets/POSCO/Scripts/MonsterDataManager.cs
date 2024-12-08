@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization.Json;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -45,9 +46,21 @@ public class MonsterDataManager : MonoBehaviour
     {
         foreach(GameObject monsterObj in player.playerMonsterPrefabList)
         {
-            if (monsterObj.TryGetComponent<Monster>(out Monster monster))
+            if (monsterObj.TryGetComponent<Monster>(out Monster originalMonster))
             {
-                allMonsterDataList.Add(monster);
+                //게임 오브젝트를 복제한다
+                GameObject cloneObj = Instantiate(monsterObj);
+                if (cloneObj.TryGetComponent<Monster>(out Monster cloneMonster))
+                {
+                    cloneMonster.name = originalMonster.name;
+                    cloneMonster.hp = originalMonster.hp;
+                    cloneMonster.maxHp = originalMonster.maxHp;
+                    cloneMonster.damage = originalMonster.damage;
+                    cloneMonster.isEnemy = originalMonster.isEnemy;
+                    cloneMonster.skills = originalMonster.skills != null ? (SkillData[])originalMonster.skills.Clone() : null;
+
+                    allMonsterDataList.Add(cloneMonster);
+                }
             }
         }
     }

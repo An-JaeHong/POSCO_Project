@@ -62,6 +62,27 @@ public class Monster : MonoBehaviour
         attackType = AttackType.None;
     }
 
+    //Monster클래스가 MonoBehaviour를 상속받고 있어서 new로 할당 불가
+    //public Monster DeepCopy()
+    //{
+
+    //    Monster newMonster = ScriptableObject.CreateInstance<Monster>();
+    //    newMonster.name = this.name;
+    //    newMonster.hp = this.hp;
+    //    newMonster.maxHp = this.maxHp;
+    //    newMonster.damage = this.damage;
+    //    newMonster.element = this.element;
+    //    newMonster.isEnemy = this.isEnemy;
+    //    newMonster.skills = (SkillData[])this.skills.Clone();
+
+    //    return newMonster;
+    //}
+
+    public MonsterDeepCopy DeepCopy()
+    {
+        return new MonsterDeepCopy(this);
+    }
+
     public void TakeDamage(float damage)
     {
         hp -= damage;
