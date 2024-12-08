@@ -42,22 +42,23 @@ public class PlayerBossBattleState : PlayerStateBase
     //PlayerTurn일때 필요한 팝업창 띄우는 함수
     private void ShowPlayerTurnPopup(Monster currentMonster)
     {
+        SelectSkill(0);
         var buttons = new Dictionary<string, UnityAction>
         {
             {
-                "DoNormalAttack", () =>
+                "기본공격", () =>
                 {
                     DoNormalAttack();
                 }
             },
             {
-                "DoSkillAttack", () =>
+                $"{currentMonster.selectedSkill.skillName} \n 남은 횟수 : {currentMonster.selectedSkill.skillCount}", () =>
                 {
                     DoSkillAttack();
                 }
             },
             {
-                "DoHeal", () =>
+                "회복하기", () =>
                 {
                     DoHeal();
                 }
@@ -65,7 +66,7 @@ public class PlayerBossBattleState : PlayerStateBase
         };
 
         UIPopupManager.Instance.ShowPopup(
-            $"{currentMonster.name}'s Turn. What do you do?",
+            $"{currentMonster.name}의 턴이다 무엇을 할까?",
             buttons
             );
     }
@@ -149,7 +150,7 @@ public class PlayerBossBattleState : PlayerStateBase
         for (int i = 0; i < aliveTargetList.Count; i++)
         {
             int index = TurnManager.Instance.enemyMonsterList.IndexOf(aliveTargetList[i]);
-            string targetNum = $"Target{index + 1}";
+            string targetNum = $"{aliveTargetList[i].name}";
 
             buttons.Add(
                     targetNum,
@@ -182,7 +183,7 @@ public class PlayerBossBattleState : PlayerStateBase
         //};
 
         UIPopupManager.Instance.ShowPopup(
-            $"ChooseTarget!",
+            $"누굴 공격할까?",
             buttons
             );
     }

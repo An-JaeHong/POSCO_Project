@@ -20,13 +20,13 @@ public class PlayerContactBossState : PlayerStateBase
         var buttons = new Dictionary<string, UnityAction>
         {
             {
-                "Fight", () =>
+                "½Î¿î´Ù!", () =>
                 {
                     StartBattle();
                 }
             },
             {
-                "RunAway", () =>
+                "µµ¸Á°£´Ù", () =>
                 {
                     RunAway();
                 }
@@ -34,7 +34,7 @@ public class PlayerContactBossState : PlayerStateBase
         };
 
         UIPopupManager.Instance.ShowPopup(
-            $"{boss.name} is appear!, what do you do?",
+            $"{boss.name} ¿Í ½Î¿ì½Ã°Ú½À´Ï±î?",
             buttons
         );
     }

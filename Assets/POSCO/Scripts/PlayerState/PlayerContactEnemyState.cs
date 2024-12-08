@@ -32,13 +32,13 @@ public class PlayerContactEnemyState : PlayerStateBase
         var buttons = new Dictionary<string, UnityAction>
         {
             { 
-                "Fight", () =>
+                "싸운다!", () =>
                 {
                     StartBattle(); 
                 } 
             },
             { 
-                "RunAway", () =>
+                "도망간다", () =>
                 { 
                     RunAway();
                 }
@@ -46,7 +46,7 @@ public class PlayerContactEnemyState : PlayerStateBase
         };
 
         UIPopupManager.Instance.ShowPopup(
-            $"{unit.name} is appear!, what do you do?",
+            $"{unit.name} (이)가 나타났다 무엇을 할까?",
             buttons
         );
     }
