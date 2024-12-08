@@ -4,8 +4,10 @@ using System.Net.NetworkInformation;
 using System.Runtime.InteropServices;
 using System.Transactions;
 using System.Xml.Serialization;
+using TMPro;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 //보스와 일반 몬스터들을 묶을 클래스
 [RequireComponent(typeof(CharacterController))]
@@ -20,6 +22,7 @@ public class Unit : MonoBehaviour
     public Transform spawnPosition; //스폰되는 장소
 
     public string name;            //유닛 이름
+    public int level;              //유닛 레벨
     public float moveSpeed;        //움직임 속도
     public float moveRange;        //움직임 범위 (일단은 정사각형이다)
     public float sightAngle;       //시야각
@@ -28,12 +31,16 @@ public class Unit : MonoBehaviour
     public bool hasRandomPosition; //랜덤한 장소가 생성됐는지
 
     public CharacterController characterController;
-    //public Rigidbody rb;
 
+    public GameObject canvasPrefab;
+    private TextMeshProUGUI unitInfoText;
+
+    public Vector3 velocity;
+    public Rigidbody rb;
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
-        //rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
     }
 
     private void Start()
@@ -41,13 +48,46 @@ public class Unit : MonoBehaviour
         //느낌표 마크를 생성해둔다.
         InstantiateExclamationMark();
 
+        GameObject canvasObject = Instantiate(canvasPrefab, transform);
+        unitInfoText = canvasObject.GetComponentInChildren<TextMeshProUGUI>();
+
+        float monsterHeight = 3f;
+        Renderer childRenderer = GetComponentInChildren<Renderer>();
+
+        if (childRenderer != null)
+        {
+            print("자식 컴포넌트에 renderer 가 붙어있습니다.");
+            monsterHeight = childRenderer.bounds.size.y;
+        }
+
+        canvasObject.transform.localPosition = new Vector3(0, monsterHeight + 0.5f, 0);
+
         if (isBoss)
         {
+            level = 16;
             ChangeState(new BossIdleState());
         }
         else
         {
+            level = Random.Range(0, 15);
+
             ChangeState(new NormalIdleState());
+        }
+
+        //생성되는 몬스터의 레벨이 그대로 가져가게 해야한다
+        foreach (Monster ownedMonster in ownedMonsterList)
+        {
+            //ownedMonster.level = level;
+            ownedMonster.InitializeLevelInfo(level);
+            //이거 또 값이 복사되는 일이 생김 수정하자
+            //여기에다가 소환되는 몬스터들의 정보를 초기화 해야하나
+        }
+
+        UpdateUnitInfoText();
+
+        if (rb != null)
+        {
+            rb.constraints = RigidbodyConstraints.FreezeRotation;
         }
     }
 
@@ -55,6 +95,11 @@ public class Unit : MonoBehaviour
     private void Update()
     {
         currentState?.Update(this);
+    }
+
+    private void UpdateUnitInfoText()
+    {
+        unitInfoText.text = $"{name}\n레벨 : {level}";
     }
 
     //상태를 바꾸는 함수
@@ -82,12 +127,18 @@ public class Unit : MonoBehaviour
         Vector3 direction = (destination - transform.position).normalized;
 
         //속도 = 방향 * 크기
-        Vector3 velocity = direction * moveSpeed;
+        Vector3 moveVelocity = direction * moveSpeed;
 
         //중력계산 -> 이거 좀 잘 해야할듯. 몬스터가 고꾸라지거나 위로 뜬다
-        velocity.y = Physics.gravity.y * Time.deltaTime;
+        //moveVelocity.y = Physics.gravity.y * Time.deltaTime;
 
-        characterController.Move(velocity * Time.deltaTime);
+        if (characterController.isGrounded && velocity.y < 0)
+        {
+            moveVelocity.y = 0;
+        }
+        moveVelocity.y += Physics.gravity.y * Time.deltaTime;
+        //Vector3 finalVelocity = moveVelocity + velocity;
+        characterController.Move(moveVelocity * Time.deltaTime);
         //rb.velocity = new Vector3(velocity.x, rb.velocity.y, velocity.z);
     }
 
@@ -95,7 +146,7 @@ public class Unit : MonoBehaviour
     {
         //바라볼 방향
         //print("UnitRotation함수가 실행됨");
-        Vector3 targetDirection = (target - transform.position).normalized;
+        Vector3 targetDirection = new Vector3(target.x - transform.position.x, 0, target.z - transform.position.z).normalized;
 
         //print($"{targetDirection}");
 
@@ -131,7 +182,9 @@ public class Unit : MonoBehaviour
         float rangeX = Random.Range(spawnPosition.position.x - moveRange, spawnPosition.position.x + moveRange);
         float rangeZ = Random.Range(spawnPosition.position.z - moveRange, spawnPosition.position.z + moveRange);
 
-        Vector3 randomPos = new Vector3(rangeX, 0 , rangeZ);
+        float currentY = transform.position.y;
+
+        Vector3 randomPos = new Vector3(rangeX, currentY, rangeZ);
         print($"랜덤으로 주어진 포지션{randomPos}");
 
         //새로 만든 포지션을 리턴

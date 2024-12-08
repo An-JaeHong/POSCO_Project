@@ -71,6 +71,8 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             enemyMonsterInBattleList.Add(unit.ownedMonsterList[i]);
+            //테스트 용
+            print($"맵에 생성된 적 몬스터들의 레벨 : {enemyMonsterInBattleList[i].level}");
         }
 
         //새로 들어온 몬스터 정보는 일단 초기화
@@ -187,6 +189,7 @@ public class GameManager : MonoBehaviour
             GameObject enemyMonsterObj = Instantiate(enemyMonsterInBattleList[i].gameObject, EnemyBossBattlePosList[i].transform.position, Quaternion.Euler(0, 90f, 0));
             Monster tempMonster = enemyMonsterObj.GetComponent<Monster>();
             spawnedEnemyMonsterList.Add(tempMonster);
+
 
             //나중에 한번에 삭제하기 편하게 하려고 리스트에 추가한다.
             instantiatedMonsterList.Add(enemyMonsterObj);

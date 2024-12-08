@@ -68,7 +68,6 @@ public class Monster : MonoBehaviour
         //hp += level * 2;
         //damage += level * 1;
         animator = GetComponent<Animator>();
-        maxHp = hp;
         selectedSkill = null;
         attackType = AttackType.None;
         //레벨당 경험치는 시작할때 초기화
@@ -76,6 +75,16 @@ public class Monster : MonoBehaviour
         print($"{levelPerExp}");
 
         //레벨당 경험치는 어짜피 적만 주는거기 때문에 처음부터 설정해두면 좋을 듯
+    }
+
+    //레벨에 맞는 정보를 입력해야한다.
+    public void InitializeLevelInfo(int level)
+    {
+        this.level = level;
+        hp += level * 2;
+        damage += level * 1;
+        maxHp = hp;
+        levelPerExp = expArr[level - 1];
     }
 
     public void OnEnable()
