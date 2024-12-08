@@ -181,10 +181,16 @@ public class UIInventory : MonoBehaviour
             Transform targetElementObject = monsterCard.transform.Find("RoleIcon/Icon");
             Image elementIconObject = targetElementObject.GetComponent<Image>();
 
+
             //소환된 카드 표현되는 이미지 바꾸기(몬스터 모양) 
             Transform targetTexture = monsterCard.transform.Find("MonsterCardButton");
             RawImage rawImage = targetTexture.GetComponent<RawImage>();
             rawImage.texture = renderTexture[i];
+            if (monsterDataManager.allMonsterDataList[i].hp == 0)
+            {
+                print(monsterDataManager.allMonsterDataList[i].hp);
+                rawImage.color = new Color(0.25f,0.25f,0.25f);
+            }
 
             //소환된 카드에 이름 삽입하기
             Transform targetText = monsterCard.transform.Find("TextName");
@@ -203,7 +209,6 @@ public class UIInventory : MonoBehaviour
             Slider = targetSlider.GetComponent<Slider>();
             Slider.value = playerMonsterList[i].hpAmount;
 
-            //소환된 카드에 버튼 삽입하기
 
             // 소환된 카드에 버튼 삽입하기
             targetButton = monsterCard.transform.Find("MonsterCardButton");
@@ -216,7 +221,7 @@ public class UIInventory : MonoBehaviour
 
             // UnityAction을 사용하여 버튼 클릭 이벤트 추가
             UnityAction action = () => inventoryButton.OnSelectCardButton(parameterValue);
-            button.onClick.AddListener(action);
+            button.onClick.AddListener(action);        
             button.interactable = false;
 
 
@@ -338,13 +343,22 @@ public class UIInventory : MonoBehaviour
     {
         
             Transform targetButton;
-            foreach (var card in cardList)
+            Button button;
+        for (int i = 0; i < cardList.Count; i++)
+        {
+            targetButton = cardList[i].transform.Find("MonsterCardButton");
+            button = targetButton.GetComponent<Button>();
+            if (monsterDataManager.allMonsterDataList[i].hp > 0)
             {
-                targetButton = card.transform.Find("MonsterCardButton");
-                Button button = targetButton.GetComponent<Button>();
                 button.interactable = true;
             }
-        
+            else
+            {
+                button.interactable = false;
+            }
+            
+        }
+
     }
     //속성에 맞는 이미지 넣기, 버튼 활성비활성
     public void OnMonsterCard(int number)
