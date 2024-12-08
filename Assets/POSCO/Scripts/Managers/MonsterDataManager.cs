@@ -41,14 +41,14 @@ public class MonsterDataManager : MonoBehaviour
         player.onClickSelectButton += InitializeSelectedPlayerMonsterData;
     }
 
-    //현재 플레이어가 들고있는 몬스터 프리팹의 정보를 다 불러온다
+    //현재 플레이어가 들고있는 몬스터 프리팹의 정보를 다 불러온다 -> 그 후에 깊은 복사로 받아준다 
     private void BringPlayerAllMonsterData()
     {
         foreach(GameObject monsterObj in player.playerMonsterPrefabList)
         {
             if (monsterObj.TryGetComponent<Monster>(out Monster originalMonster))
             {
-                //게임 오브젝트를 복제한다
+                //게임 오브젝트를 복제한다 -> 왜냐하면 Monster는 MonoBehaviour를 상속 받아서 객체가 필요하다
                 GameObject cloneObj = Instantiate(monsterObj);
                 if (cloneObj.TryGetComponent<Monster>(out Monster cloneMonster))
                 {
@@ -66,6 +66,7 @@ public class MonsterDataManager : MonoBehaviour
     }
 
     //select하는 버튼을 누를때 이벤트로 추가해주면 좋을 듯 -> 이걸 allMonsterDataList에서 가져와야함
+    //나중에 select버튼은 3마리가 체력이 0 이상일때 누를 수 있게 끔 해야한다.
     public void InitializeSelectedPlayerMonsterData()
     {
         //기존 선택된건 일단 지우고 -> 근데 이건 버튼을 누르는 방식에서 좋은듯.

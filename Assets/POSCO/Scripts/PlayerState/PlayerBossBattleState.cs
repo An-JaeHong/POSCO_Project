@@ -275,6 +275,18 @@ public class PlayerBossBattleState : PlayerStateBase
         CameraManager.Instance.HandleCamera(CameraType.FieldMap);
         Debug.Log("Exit 3");
         UIPopupManager.Instance.ClosePopup();
+
+        GameManager.Instance.InitializePlayerMonsterData();
+
+        //테스트 용
+        foreach (Monster temp in MonsterDataManager.Instance.selectedMonsterDataList)
+        {
+            Debug.Log($"선택된 플레이어 몬스터의 {temp.name}의 남은 체력 : {temp.hp}");
+        }
+        foreach (Monster temp in MonsterDataManager.Instance.allMonsterDataList)
+        {
+            Debug.Log($"모든 플레이어 몬스터의 {temp.name}의 남은 체력 : {temp.hp}");
+        }
         // 이 부분때문에 무한으로 즐김
         //player.ChangeState(new PlayerIdleState(player));
         Debug.Log("Exit 4");

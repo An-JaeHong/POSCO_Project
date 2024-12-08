@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 //공격하는 행동
-public class AttackCommand : ICommand
+public class AttackCommand
 {
     private Monster attacker;
     private Monster target;

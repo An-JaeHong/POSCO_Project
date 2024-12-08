@@ -327,6 +327,7 @@ public class PlayerNormalBattleState : PlayerStateBase
 
         GameManager.Instance.InitializePlayerMonsterData();
 
+        //테스트 용
         foreach (Monster temp in MonsterDataManager.Instance.selectedMonsterDataList)
         {
             Debug.Log($"선택된 플레이어 몬스터의 {temp.name}의 남은 체력 : {temp.hp}");

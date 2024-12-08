@@ -163,8 +163,8 @@ public class GameManager : MonoBehaviour
     public void SetMonsterOnBossMapPosition()
     {
         //실제 소환되는 몬스터들 -> Monster형태, GameObject 형태는 instantiateMonsterList이다.
-        List<Monster> spawnedPlayerMonsterList = new List<Monster>();
-        List<Monster> spawnedEnemyMonsterList = new List<Monster>();
+        spawnedPlayerMonsterList = new List<Monster>();
+        spawnedEnemyMonsterList = new List<Monster>();
 
         for (int i = 0; i < playerMonsterInBattleList.Count; i++)
         {
