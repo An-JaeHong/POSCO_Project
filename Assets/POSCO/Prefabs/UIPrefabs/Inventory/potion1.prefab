@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3670569949354008069}
   - component: {fileID: 3396128468762677689}
   - component: {fileID: 7002771377841530209}
-  - component: {fileID: 3834683806679854657}
   m_Layer: 0
   m_Name: potion1
   m_TagString: Untagged
@@ -91,20 +90,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 1
---- !u!114 &3834683806679854657
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2037540243330069275}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a42f18fbc4358b148ab9b7fdf4103098, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemName: potion1
-  healingAmount: 20
 --- !u!1 &7441981199296008752
 GameObject:
   m_ObjectHideFlags: 0
