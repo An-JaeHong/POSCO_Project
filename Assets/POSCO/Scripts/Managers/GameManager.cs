@@ -86,6 +86,7 @@ public class GameManager : MonoBehaviour
                 Hp = unit.ownedMonsterList[i].hp,
                 MaxHp = unit.ownedMonsterList[i].maxHp,
                 Level = unit.ownedMonsterList[i].level,
+                LevelPerExp = unit.ownedMonsterList[i].levelPerExp,
                 Damage = unit.ownedMonsterList[i].damage,
                 Element = unit.ownedMonsterList[i].element,
                 IsEnemy = unit.ownedMonsterList[i].isEnemy,
@@ -122,6 +123,7 @@ public class GameManager : MonoBehaviour
                     Hp = boss.ownedMonsterList[i].hp,
                     MaxHp = boss.ownedMonsterList[i].maxHp,
                     Level = boss.ownedMonsterList[i].level,
+                    LevelPerExp = boss.ownedMonsterList[i].levelPerExp,
                     Damage = boss.ownedMonsterList[i].damage,
                     Element = boss.ownedMonsterList[i].element,
                     IsEnemy = boss.ownedMonsterList[i].isEnemy,
@@ -292,7 +294,7 @@ public class GameManager : MonoBehaviour
             MonsterDataManager.Instance.selectedMonsterDataList[i].element = spawnedPlayerMonsterList[i].element;
             MonsterDataManager.Instance.selectedMonsterDataList[i].isEnemy = spawnedPlayerMonsterList[i].isEnemy;
             MonsterDataManager.Instance.selectedMonsterDataList[i].skills = spawnedPlayerMonsterList[i].skills;
-            MonsterDataManager.Instance.selectedMonsterDataList[i].selectedSkill.skillCount = spawnedPlayerMonsterList[i].selectedSkill.skillCount;
+            //MonsterDataManager.Instance.selectedMonsterDataList[i].selectedSkill.skillCount = spawnedPlayerMonsterList[i].selectedSkill.skillCount;
             MonsterDataManager.Instance.selectedMonsterDataList[i].level = spawnedPlayerMonsterList[i].level;
             MonsterDataManager.Instance.selectedMonsterDataList[i].currentExp = spawnedPlayerMonsterList[i].currentExp;
         }

@@ -29,7 +29,7 @@ public class MonsterDataManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    void Start()
+    private void Start()
     {
         //플레이어 연동
         allMonsterDataList.Clear();

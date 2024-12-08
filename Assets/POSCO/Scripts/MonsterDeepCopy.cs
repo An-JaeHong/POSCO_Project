@@ -9,7 +9,7 @@ public class MonsterDeepCopy
     public float Hp { get; set; }
     public float MaxHp { get; set; }
     public int Level { get; set; }
-    public int Exp { get; set; }
+    public int LevelPerExp { get; set; }
     public float Damage { get; set; }
     public Element Element { get; set; }
     public bool IsEnemy { get; set; }

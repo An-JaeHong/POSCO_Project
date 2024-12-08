@@ -370,7 +370,7 @@ public class PlayerNormalBattleState : PlayerStateBase
         Debug.Log("Exit 3");
 
         //전투가 끝나면 모든 UI를 닫아야한다
-        UIPopupManager.Instance.ClosePopup();
+        //UIPopupManager.Instance.ClosePopup();
 
         GameManager.Instance.InitializePlayerMonsterData();
 
@@ -393,9 +393,15 @@ public class PlayerNormalBattleState : PlayerStateBase
         //상태 변환시키고
         player.ChangeState(new PlayerIdleState(player));
 
+        CalculateExperience();
         //만약 모든 적이 죽으면 밖에 있는 몬스터를 삭제시켜야한다.
         if (TurnManager.Instance.allEnemyMonstersDead == true)
         {
+            foreach (Monster playerMonster in MonsterDataManager.Instance.selectedMonsterDataList)
+            {
+                playerMonster.GetExp(totalExperience);
+            }
+            //밖에있는 몬스터는 삭제
             GameObject.Destroy(GameManager.Instance.contactedFieldMonster);
         }
         else if (TurnManager.Instance.allPlayerMonstersDead == true)
@@ -406,6 +412,16 @@ public class PlayerNormalBattleState : PlayerStateBase
         //게임 끝나고나면 전투상태를 초기화 시켜줘야한다.
         GameManager.Instance.InitializeUnitMonsterData(unit);
         GameManager.Instance.InitializeBattleState();
+    }
+
+    public int totalExperience;
+    public int CalculateExperience()
+    {
+        for (int i = 0; i < TurnManager.Instance.enemyMonsterList.Count; i++)
+        {
+            totalExperience += TurnManager.Instance.enemyMonsterList[i].levelPerExp;
+        }
+        return totalExperience;
     }
 
     //여기서는 필요없다.

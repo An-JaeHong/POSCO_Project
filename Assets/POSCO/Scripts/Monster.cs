@@ -30,13 +30,13 @@ public class Monster : MonoBehaviour
     public float maxHp;
     public int level;
     //이게 주는 경험치량
-    [SerializeField] public int[] exp = { 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95};
+    [SerializeField] public int[] expArr = { 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95};
     //레벨 당 경험치
     public int levelPerExp;
     //이게 현재 경험치량
     public int currentExp;
     //100얻으면 2렙, 220얻으면 3렙 이런식임. 그래서 17렙까지 진화해서 진화한얘들도 레벨업을 하려면 이런식으로 해야할듯 -> 16칸
-    public int[] expToNextLevelArr = { 100, 120, 140, 160, 180, 200, 220, 240, 260, 280, 300, 320, 340, 360, 380, 400};
+    public int[] expToNextLevelArr = { 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200 };
     
        // if(currentExp > expToNextLevelArr[level])
     //여기있는 참조를 MonsterData에서 해야함
@@ -64,11 +64,15 @@ public class Monster : MonoBehaviour
     
     private void Awake()
     {
+        //레벨당 체력과 데미지는 늘어난다.
+        //hp += level * 2;
+        //damage += level * 1;
         animator = GetComponent<Animator>();
         maxHp = hp;
         selectedSkill = null;
         attackType = AttackType.None;
-        levelPerExp = exp[level - 1];
+        //레벨당 경험치는 시작할때 초기화
+        levelPerExp = expArr[level - 1];
         print($"{levelPerExp}");
 
         //레벨당 경험치는 어짜피 적만 주는거기 때문에 처음부터 설정해두면 좋을 듯
@@ -83,6 +87,7 @@ public class Monster : MonoBehaviour
         //maxHp = hp;
         //selectedSkill = null;
         //attackType = AttackType.None;
+
     }
 
     //Monster클래스가 MonoBehaviour를 상속받고 있어서 new로 할당 불가
@@ -220,6 +225,62 @@ public class Monster : MonoBehaviour
     {
         currentExp -= expToNextLevelArr[level - 1];
         level += 1;
-        print($"{name}이 레벨업을 했습니다. 현재레벨 {level}");
+        maxHp += 2;
+        //레벨업 하면 체력 회복
+        hp = maxHp;
+        damage += 1;
+        print($"{name}이 레벨업을 했습니다. 현재레벨: {level}, 체력: {hp}, 데미지: {damage}");
+        PopupQueueManager.Instance.EnqueuePopup(
+            $"{name}이 레벨업을 했습니다! 현재레벨 : {level}, 체력 : {hp}, 데미지 {damage}.");
+
+        //var button = new Dictionary<string, UnityAction>
+        //{
+        //    {
+        //        "확인", () =>
+        //        {
+        //            UIPopupManager.Instance.ClosePopup();
+        //        }
+        //    }
+        //};
+        //UIPopupManager.Instance.ShowPopup(
+        //    $"{name}이 레벨업을 했습니다! 현재레벨 : {level}, 체력 : {hp}, 데미지 {damage}.",
+        //    button
+        //    );
     }
+
+    public void ShowLevelUpPanel()
+    {
+        var button = new Dictionary<string, UnityAction>
+        {
+            {
+                "확인", () =>
+                {
+                    UIPopupManager.Instance.ClosePopup();
+                }
+            }
+        };
+        UIPopupManager.Instance.ShowPopup(
+            $"{name}이 레벨업을 했습니다! 현재레벨 : {level}, 체력 : {hp}, 데미지 {damage}.",
+            button
+            );
+    }
+
+    //private void ShowSkillCountNotEnough(Monster currentMonster)
+    //{
+    //    Debug.Log("스킬이 부족합니다");
+    //    var button = new Dictionary<string, UnityAction>
+    //    {
+    //        {
+    //            "확인", () =>
+    //            {
+    //                UIPopupManager.Instance.ClosePopup();
+    //                ShowPlayerTurnPopup(currentMonster);
+    //            }
+    //        }
+    //    };
+    //    UIPopupManager.Instance.ShowPopup(
+    //        "스킬 사용 가능 횟수가 부족합니다.",
+    //        button
+    //        );
+    //}
 }

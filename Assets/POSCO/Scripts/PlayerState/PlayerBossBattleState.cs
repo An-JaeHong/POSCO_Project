@@ -304,7 +304,8 @@ public class PlayerBossBattleState : PlayerStateBase
         //uiPopup.chooseTargetCanvas.SetActive(false);
         CameraManager.Instance.HandleCamera(CameraType.FieldMap);
         Debug.Log("Exit 3");
-        UIPopupManager.Instance.ClosePopup();
+
+        //UIPopupManager.Instance.ClosePopup();
 
         GameManager.Instance.InitializePlayerMonsterData();
 
@@ -327,9 +328,15 @@ public class PlayerBossBattleState : PlayerStateBase
         //상태 변환시키고
         player.ChangeState(new PlayerIdleState(player));
 
-        //만약 모든 적이 죽으면 밖에 있는 몬스터를 삭제시켜야한다. -> 보스는 아님
+        CalculateExperience();
+        //만약 모든 적이 죽으면 밖에 있는 몬스터를 삭제시켜야한다.
         if (TurnManager.Instance.allEnemyMonstersDead == true)
         {
+            foreach (Monster playerMonster in MonsterDataManager.Instance.selectedMonsterDataList)
+            {
+                playerMonster.GetExp(totalExperience);
+            }
+            //밖에있는 몬스터는 삭제안함
             //GameObject.Destroy(GameManager.Instance.contactedFieldMonster);
         }
         else if (TurnManager.Instance.allPlayerMonstersDead == true)
@@ -340,6 +347,16 @@ public class PlayerBossBattleState : PlayerStateBase
         //게임 끝나고나면 전투상태를 초기화 시켜줘야한다.
         GameManager.Instance.InitializeUnitMonsterData(boss);
         GameManager.Instance.InitializeBattleState();
+    }
+
+    public int totalExperience;
+    public int CalculateExperience()
+    {
+        for (int i = 0; i < TurnManager.Instance.enemyMonsterList.Count; i++)
+        {
+            totalExperience += TurnManager.Instance.enemyMonsterList[i].levelPerExp;
+        }
+        return totalExperience;
     }
 
     //여기서는 필요없다.
