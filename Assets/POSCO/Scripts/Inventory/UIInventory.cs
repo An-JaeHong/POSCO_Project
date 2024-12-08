@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 //using UnityEngine.UIElements;
 
 
@@ -43,25 +44,28 @@ public class UIInventory : MonoBehaviour
 
     public GameObject monsterCardPrefab;
 
+
+    private Item item;
    
     private void Start()
-    {
-        
-    }
-
-    private void OnEnable()
     {
         inventoryPopUp = FindObjectOfType<InventoryPopUp>();
         inventoryButton = FindObjectOfType<InventoryButton>();
         player = FindObjectOfType<Player>();
-        
+        item = FindObjectOfType<Item>();
+
         cardList = new List<GameObject>(playerMonsterList.Count);
-       
+
 
         LoadMonsterPrefabs();
         BringPlayerMonsterList();
         FindSameMonsters();
         InstantiatePlayerMonster();
+    }
+
+    private void OnEnable()
+    {
+       
 
         
     }
@@ -428,10 +432,14 @@ public class UIInventory : MonoBehaviour
         choiceNum = 0;
     }
 
-  
+
+    //아이템 정보 불러오기
+    public void UpdateItemInfo(int index)
+    {
+        string result = $"아이템 이름 : {item.itemInfo.name}\n";
+        result += $"회복량 : {item.items[index].itemName}";
+    }
 
 
-
-   
 
 }

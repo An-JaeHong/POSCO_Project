@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 
@@ -22,7 +23,8 @@ public class ItemInfo
 public class Item : MonoBehaviour
 {
     // 아이템 목록
-    public List<ItemInfo> items; 
+    public List<ItemInfo> items;
+    public Text itemInfo;
 
     private UIInventory uiInventory;
 
@@ -48,7 +50,6 @@ public class Item : MonoBehaviour
     
         print($"{itemToUse.itemName} 사용, 현재 HP: {monster.hp}");
     }
-
 
 
 }
