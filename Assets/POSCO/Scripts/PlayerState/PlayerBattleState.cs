@@ -76,7 +76,24 @@ public class PlayerNormalBattleState : PlayerStateBase
     //PlayerTurn일때 필요한 팝업창 띄우는 함수
     private void ShowPlayerTurnPopup(Monster currentMonster)
     {
-        SelectSkill(0);
+        //스킬은 하나라서 이렇게 먼저 정해준다
+        currentMonster.SetSkillNum(0);
+
+        if (currentMonster == null)
+        {
+            Debug.LogError("currentMonster is null");
+            return;
+        }
+
+        if (currentMonster.selectedSkill == null)
+        {
+            Debug.LogError("currentMonster.selectedSkill is null");
+            return;
+        }
+        Debug.Log($"Current Monster: {currentMonster.name}, Skill: {currentMonster.selectedSkill.skillName}, Skill Count: {currentMonster.selectedSkill.skillCount}");
+    
+
+
         var buttons = new Dictionary<string, UnityAction>
         {
             {
@@ -88,7 +105,17 @@ public class PlayerNormalBattleState : PlayerStateBase
             {
                 $"{currentMonster.selectedSkill.skillName} \n 남은 횟수 : {currentMonster.selectedSkill.skillCount}", () =>
                 {
-                    DoSkillAttack();
+                    //만약 스킬개수가 0보다 작으면 숫자 부족하다고 말해줘야함
+                    if (currentMonster.selectedSkill.skillCount <= 0)
+                    {
+                        ShowSkillCountNotEnough(currentMonster);
+                    }
+                    else
+                    {
+                    TurnManager.Instance.currentTurnMonster.attackType = AttackType.Skill1;
+                    currentMonster.selectedSkill.skillCount -= 1;
+                    ChooseTarget();
+                    }
                 }
             },
             {
@@ -102,6 +129,25 @@ public class PlayerNormalBattleState : PlayerStateBase
         UIPopupManager.Instance.ShowPopup(
             $"{currentMonster.name}의 턴이다 무엇을 할까?",
             buttons
+            );
+    }
+
+    private void ShowSkillCountNotEnough(Monster currentMonster)
+    {
+        Debug.Log("스킬이 부족합니다");
+        var button = new Dictionary<string, UnityAction>
+        {
+            {
+                "확인", () =>
+                {
+                    UIPopupManager.Instance.ClosePopup();
+                    ShowPlayerTurnPopup(currentMonster);
+                }
+            }
+        };
+        UIPopupManager.Instance.ShowPopup(
+            "스킬 사용 가능 횟수가 부족합니다.",
+            button
             );
     }
 
@@ -150,7 +196,7 @@ public class PlayerNormalBattleState : PlayerStateBase
         //    $"Choose Skill",
         //    buttons
         //    );
-        SelectSkill(0);
+        ChooseTarget();
     }
 
     private void SelectSkill(int skillNum)
@@ -197,10 +243,10 @@ public class PlayerNormalBattleState : PlayerStateBase
         for (int i = 0; i < aliveTargetList.Count; i++)
         {
             int index = TurnManager.Instance.enemyMonsterList.IndexOf(aliveTargetList[i]);
-            string targetNum = $"{aliveTargetList[i].name}";
+            string targetName = $"{aliveTargetList[i].name}({index + 1})";
 
             buttons.Add(
-                    targetNum,
+                    targetName,
                     () =>
                     {
                         DoAttackTarget(index);

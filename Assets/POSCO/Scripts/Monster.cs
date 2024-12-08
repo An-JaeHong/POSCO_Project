@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using static UnityEngine.ParticleSystem;
 
 [Serializable]
@@ -52,14 +53,17 @@ public class Monster : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        maxHp = hp;
+        selectedSkill = null;
+        attackType = AttackType.None;
 
     }
 
     private void Start()
     {
-        maxHp = hp;
-        selectedSkill = null;
-        attackType = AttackType.None;
+        //maxHp = hp;
+        //selectedSkill = null;
+        //attackType = AttackType.None;
     }
 
     //Monster클래스가 MonoBehaviour를 상속받고 있어서 new로 할당 불가
@@ -180,5 +184,17 @@ public class Monster : MonoBehaviour
         print($"{name}가 죽었다.");
     }
 
+    public void ShowSkillCountNotEnough()
+    {
+        Invoke("Temp", 2f);
+    }
 
+    public void Temp()
+    {
+        var button = new Dictionary<string, UnityAction> { };
+        UIPopupManager.Instance.ShowPopup(
+            $"스킬 개수가 부족합니다",
+            button
+            );
+    }
 }

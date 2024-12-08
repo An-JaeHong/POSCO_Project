@@ -42,7 +42,7 @@ public class PlayerBossBattleState : PlayerStateBase
     //PlayerTurn일때 필요한 팝업창 띄우는 함수
     private void ShowPlayerTurnPopup(Monster currentMonster)
     {
-        SelectSkill(0);
+        currentMonster.SetSkillNum(0);
         var buttons = new Dictionary<string, UnityAction>
         {
             {
@@ -54,7 +54,17 @@ public class PlayerBossBattleState : PlayerStateBase
             {
                 $"{currentMonster.selectedSkill.skillName} \n 남은 횟수 : {currentMonster.selectedSkill.skillCount}", () =>
                 {
-                    DoSkillAttack();
+                    //만약 스킬개수가 0보다 작으면 숫자 부족하다고 말해줘야함
+                    if (currentMonster.selectedSkill.skillCount <= 0)
+                    {
+                        ShowSkillCountNotEnough(currentMonster);
+                    }
+                    else
+                    {
+                    TurnManager.Instance.currentTurnMonster.attackType = AttackType.Skill1;
+                    currentMonster.selectedSkill.skillCount -= 1;
+                    ChooseTarget();
+                    }
                 }
             },
             {
@@ -68,6 +78,25 @@ public class PlayerBossBattleState : PlayerStateBase
         UIPopupManager.Instance.ShowPopup(
             $"{currentMonster.name}의 턴이다 무엇을 할까?",
             buttons
+            );
+    }
+
+    private void ShowSkillCountNotEnough(Monster currentMonster)
+    {
+        Debug.Log("스킬이 부족합니다");
+        var button = new Dictionary<string, UnityAction>
+        {
+            {
+                "확인", () =>
+                {
+                    UIPopupManager.Instance.ClosePopup();
+                    ShowPlayerTurnPopup(currentMonster);
+                }
+            }
+        };
+        UIPopupManager.Instance.ShowPopup(
+            "스킬 사용 가능 횟수가 부족합니다.",
+            button
             );
     }
 
@@ -150,10 +179,10 @@ public class PlayerBossBattleState : PlayerStateBase
         for (int i = 0; i < aliveTargetList.Count; i++)
         {
             int index = TurnManager.Instance.enemyMonsterList.IndexOf(aliveTargetList[i]);
-            string targetNum = $"{aliveTargetList[i].name}";
+            string targetName = $"{aliveTargetList[i].name}";
 
             buttons.Add(
-                    targetNum,
+                    targetName,
                     () =>
                     {
                         DoAttackTarget(index);

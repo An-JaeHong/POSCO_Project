@@ -56,7 +56,7 @@ public class AttackCommand
         #region ""가 ~~ 행동을 했다는 UI
         var buttons = new Dictionary<string, UnityAction>{};
         UIPopupManager.Instance.ShowPopup(
-            $"{attacker.name} Attack!",
+            $"{attacker.name} 의 기본공격!",
             buttons
         );
         #endregion
@@ -93,7 +93,7 @@ public class AttackCommand
         #region ""가 ""를 공격했다는 UI
         var button = new Dictionary<string, UnityAction> { };
         UIPopupManager.Instance.ShowPopup(
-            $"{attacker.name} take attack {target.name}!",
+            $"{attacker.name}(이)가 {target.name}에게 {attacker.damage}의 데미지를 주었다!",
             buttons
         );
         #endregion
@@ -116,7 +116,7 @@ public class AttackCommand
         #region ""가 ~~ 행동을 했다라는 UI
         var buttons = new Dictionary<string, UnityAction> { };
         UIPopupManager.Instance.ShowPopup(
-            $"{attacker.name} Attack!",
+            $"{attacker.name} 의 기본공격!",
             buttons
         );
         #endregion
@@ -149,7 +149,7 @@ public class AttackCommand
         #region ""가 ""를 공격했다! 라는 UI
         var button = new Dictionary<string, UnityAction> { };
         UIPopupManager.Instance.ShowPopup(
-            $"{attacker.name} take attack {target.name}!",
+            $"{target.name}에게 {attacker.damage}만큼의 데미지를 입혔다!",
             button
         );
         #endregion
@@ -173,7 +173,7 @@ public class AttackCommand
         #region ""가 ""스킬을 시전했다! 라는 UI
         var button = new Dictionary<string, UnityAction> { };
         UIPopupManager.Instance.ShowPopup(
-            $"{attacker.name} use {attacker.selectedSkill}!",
+            $"{attacker.name}(이)가 {attacker.selectedSkill}(을)를 시전했다!",
             button
         );
         #endregion
@@ -185,7 +185,7 @@ public class AttackCommand
         #region ""가 ""에게 ~~의 데미지를 입혔다! 라는 UI
         var buttons = new Dictionary<string, UnityAction> { };
         UIPopupManager.Instance.ShowPopup(
-            $"{target.name} take {attacker.selectedSkill.skillDamage}damage!",
+            $"{target.name}에게 {attacker.selectedSkill.skillDamage}만큼의 데미지를 입혔다!",
             buttons
         );
         #endregion
@@ -201,7 +201,7 @@ public class AttackCommand
         #region ""가 ""스킬을 시전했다! 라는 UI
         var button = new Dictionary<string, UnityAction> { };
         UIPopupManager.Instance.ShowPopup(
-            $"{attacker.name} use {attacker.selectedSkill}!",
+            $"{attacker.name}(이)가 {attacker.selectedSkill}(을)를 시전했다!",
             button
         );
         #endregion
@@ -212,7 +212,7 @@ public class AttackCommand
         #region ""가 ""에게 ~~의 데미지를 입혔다! 라는 UI
         var buttons = new Dictionary<string, UnityAction> { };
         UIPopupManager.Instance.ShowPopup(
-            $"{target.name} take {attacker.selectedSkill.skillDamage}damage!",
+            $"{target.name}에게 {attacker.selectedSkill.skillDamage}만큼의 데미지를 입혔다!",
             buttons
         );
         #endregion

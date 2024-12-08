@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b637d75395ac0a48bbb6a7d99cfae65, type: 3}
   m_Name: Temp1
   m_EditorClassIdentifier: 
-  skillName: Temp1
+  skillName: "\uC784\uC2DC\uC2A4\uD0AC"
   particle: {fileID: 4559769962135713255, guid: ee3d9d70dabace843b872ccb2163d2df, type: 3}
-  skillDamage: 0
+  skillDamage: 20
   skillCount: 0
