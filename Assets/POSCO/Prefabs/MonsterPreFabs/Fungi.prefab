@@ -231,7 +231,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Fungi
   hp: 40
-  maxHp: 0
+  maxHp: 40
   damage: 6
   element: 3
   isEnemy: 0

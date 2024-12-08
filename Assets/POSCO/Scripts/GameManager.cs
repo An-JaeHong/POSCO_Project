@@ -12,17 +12,24 @@ public class GameManager : MonoBehaviour
     public List<Monster> playerMonsterInBattleList = new List<Monster>();
     public List<Monster> enemyMonsterInBattleList = new List<Monster>();
 
+    #region 전투에서 생성될 포지션 리스트
     //전투에서 몬스터가 생성될 포지션리스트
     public List<Transform> playerBattlePosList = new List<Transform>();
     public List<Transform> enemyBattlePosList = new List<Transform>();
     //보스맵에서 생성될 포지션리스트
     public List<Transform> PlayerBossBattlePosList = new List<Transform>();
     public List<Transform> EnemyBossBattlePosList = new List<Transform>();
+    #endregion
 
-    //실제로 소환되는 몬스터들의 Prefab리스트
+    //실제로 소환되는 몬스터들의 Prefab리스트 -> 나중에 한번에 삭제하기 쉽게 하기 위한 리스트
     private List<GameObject> instantiatedMonsterList = new List<GameObject>();
+
     //깊은 복사로 저장할 원래 몬스터의 정보
     private List<MonsterDeepCopy> originEnemyMonsterDataList = new List<MonsterDeepCopy>();
+
+    //실제 소환되는 몬스터들 -> Monster형태, GameObject 형태는 instantiateMonsterList이다.
+    List<Monster> spawnedPlayerMonsterList = new List<Monster>();
+    List<Monster> spawnedEnemyMonsterList = new List<Monster>();
 
     //턴이 끝났는지 알 수 있는 변수
     public bool isPlayerActionComplete = false;
@@ -126,8 +133,8 @@ public class GameManager : MonoBehaviour
     public void SetMonsterOnBattlePosition()
     {
         //실제 소환되는 몬스터들 -> Monster형태, GameObject 형태는 instantiateMonsterList이다.
-        List<Monster> spawnedPlayerMonsterList = new List<Monster>();
-        List<Monster> spawnedEnemyMonsterList = new List<Monster>();
+        spawnedPlayerMonsterList = new List<Monster>();
+        spawnedEnemyMonsterList = new List<Monster>();
         
         for (int i = 0; i < playerMonsterInBattleList.Count; i++)
         {
@@ -272,14 +279,14 @@ public class GameManager : MonoBehaviour
     //플레이어의 몬스터도 데이터를 초기화 해주어야한다.
     public void InitializePlayerMonsterData()
     {
-        for (int i = 0; i < playerMonsterInBattleList.Count; i++)
+        for (int i = 0; i < spawnedPlayerMonsterList.Count; i++)
         {
-            MonsterDataManager.Instance.selectedMonsterDataList[i].hp = playerMonsterInBattleList[i].hp;
-            MonsterDataManager.Instance.selectedMonsterDataList[i].name = playerMonsterInBattleList[i].name;
-            MonsterDataManager.Instance.selectedMonsterDataList[i].damage = playerMonsterInBattleList[i].damage;
-            MonsterDataManager.Instance.selectedMonsterDataList[i].element = playerMonsterInBattleList[i].element;
-            MonsterDataManager.Instance.selectedMonsterDataList[i].isEnemy = playerMonsterInBattleList[i].isEnemy;
-            MonsterDataManager.Instance.selectedMonsterDataList[i].skills = playerMonsterInBattleList[i].skills;
+            MonsterDataManager.Instance.selectedMonsterDataList[i].hp = spawnedPlayerMonsterList[i].hp;
+            MonsterDataManager.Instance.selectedMonsterDataList[i].name = spawnedPlayerMonsterList[i].name;
+            MonsterDataManager.Instance.selectedMonsterDataList[i].damage = spawnedPlayerMonsterList[i].damage;
+            MonsterDataManager.Instance.selectedMonsterDataList[i].element = spawnedPlayerMonsterList[i].element;
+            MonsterDataManager.Instance.selectedMonsterDataList[i].isEnemy = spawnedPlayerMonsterList[i].isEnemy;
+            MonsterDataManager.Instance.selectedMonsterDataList[i].skills = spawnedPlayerMonsterList[i].skills;
         }
     }
 

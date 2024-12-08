@@ -11,4 +11,12 @@ public class SkillData : ScriptableObject
 
     //스킬 사용가능 횟수
     public int skillCount;
+
+    public SkillData(SkillData original)
+    {
+        skillName = original.skillName;
+        particle = original.particle;
+        skillDamage = original.skillDamage;
+        skillCount = original.skillCount;
+    }
 }
