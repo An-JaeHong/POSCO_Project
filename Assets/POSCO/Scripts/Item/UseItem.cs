@@ -1,19 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class UseItem : MonoBehaviour
 {
-    public Monster monster; // 플레이어 스크립트 참조
     public Item item; // 사용할 아이템
-    public int number;
-    // 버튼 클릭 시 호출되는 메서드
-    public void OnUseItem()
+    private MonsterDataManager monsterDataManager;
+
+
+    private void Start()
     {
-        if (item != null)
-        {
-            item.Use(number,monster);
-        }
+        monsterDataManager = MonsterDataManager.Instance;
+    }
+    // 버튼 클릭 시 호출되는 메서드
+    public void OnUseItem(int monsterIndex, int itemIndex)
+    {
+        Monster selectedMonster = monsterDataManager.selectedMonsterDataList[monsterIndex];
+        item.Use(itemIndex, selectedMonster);
+
     }
 
 }

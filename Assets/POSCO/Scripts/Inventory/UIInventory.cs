@@ -52,7 +52,7 @@ public class UIInventory : MonoBehaviour
         inventoryPopUp = FindObjectOfType<InventoryPopUp>();
         inventoryButton = FindObjectOfType<InventoryButton>();
         player = FindObjectOfType<Player>();
-        item = FindObjectOfType<Item>();
+ 
 
         cardList = new List<GameObject>(playerMonsterList.Count);
 
