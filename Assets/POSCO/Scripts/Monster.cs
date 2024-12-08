@@ -30,7 +30,7 @@ public class Monster : MonoBehaviour
     public float maxHp;
     public int level;
     //이게 주는 경험치량
-    public int[] exp = { 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95};
+    [SerializeField] public int[] exp = { 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95};
     //레벨 당 경험치
     public int levelPerExp;
     //이게 현재 경험치량
