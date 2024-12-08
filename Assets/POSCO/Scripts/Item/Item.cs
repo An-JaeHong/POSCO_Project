@@ -53,7 +53,20 @@ public class Item
     // 아이템 사용 메서드
     public void Use(int number, Monster monster)
     {
+
         ItemInfo itemToUse = items[number];
+        int healingAmount;
+
+        // 회복량 계산
+        if (itemToUse.healingAmount > 0)
+        {
+            healingAmount = itemToUse.healingAmount; // 고정 회복량 사용
+        }
+        else
+        {
+            healingAmount = Mathf.FloorToInt(monster.maxHp * itemToUse.healingPercentage); // 비율에 따라 회복량 계산
+        }
+
         monster.hp += itemToUse.healingAmount;
         monster.hp = Mathf.Clamp(monster.hp, 0, monster.maxHp); // 최대 HP를 초과하지 않도록 클램프
     
