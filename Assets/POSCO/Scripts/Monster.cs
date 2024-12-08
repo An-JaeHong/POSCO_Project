@@ -28,6 +28,18 @@ public class Monster : MonoBehaviour
     public string name;
     public float hp;
     public float maxHp;
+    public int level;
+    //이게 주는 경험치량
+    public int[] exp = { 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95};
+    //레벨 당 경험치
+    public int levelPerExp;
+    //이게 현재 경험치량
+    public int currentExp;
+    //100얻으면 2렙, 220얻으면 3렙 이런식임. 그래서 17렙까지 진화해서 진화한얘들도 레벨업을 하려면 이런식으로 해야할듯 -> 16칸
+    public int[] expToNextLevelArr = { 100, 120, 140, 160, 180, 200, 220, 240, 260, 280, 300, 320, 340, 360, 380, 400};
+    
+       // if(currentExp > expToNextLevelArr[level])
+    //여기있는 참조를 MonsterData에서 해야함
     public float hpAmount { get { return hp / maxHp; } }
     
     public float damage;
@@ -56,7 +68,14 @@ public class Monster : MonoBehaviour
         maxHp = hp;
         selectedSkill = null;
         attackType = AttackType.None;
+        levelPerExp = exp[level - 1];
+        print($"{levelPerExp}");
 
+        //레벨당 경험치는 어짜피 적만 주는거기 때문에 처음부터 설정해두면 좋을 듯
+    }
+
+    public void OnEnable()
+    {
     }
 
     private void Start()
@@ -184,17 +203,23 @@ public class Monster : MonoBehaviour
         print($"{name}가 죽었다.");
     }
 
-    public void ShowSkillCountNotEnough()
+    //경험치를 얻는 함수 -> 게임이 끝나면 할거임.
+    public void GetExp(int exp)
     {
-        Invoke("Temp", 2f);
+        currentExp += exp;
+        print($"{name}이 {exp}의 경험치를 얻었습니다."); 
+
+        //경험치를 많이 얻으면 계속 레벨업이 되어야함
+        while (currentExp >= expToNextLevelArr[level - 1])
+        {
+            LevelUp();
+        }
     }
 
-    public void Temp()
+    public void LevelUp()
     {
-        var button = new Dictionary<string, UnityAction> { };
-        UIPopupManager.Instance.ShowPopup(
-            $"스킬 개수가 부족합니다",
-            button
-            );
+        currentExp -= expToNextLevelArr[level - 1];
+        level += 1;
+        print($"{name}이 레벨업을 했습니다. 현재레벨 {level}");
     }
 }

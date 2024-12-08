@@ -8,6 +8,8 @@ public class MonsterDeepCopy
     public string Name { get; set; }
     public float Hp { get; set; }
     public float MaxHp { get; set; }
+    public int Level { get; set; }
+    public int Exp { get; set; }
     public float Damage { get; set; }
     public Element Element { get; set; }
     public bool IsEnemy { get; set; }
@@ -19,6 +21,8 @@ public class MonsterDeepCopy
     {
         Name = original.name;
         Hp = original.hp;
+        MaxHp = original.maxHp;
+        Level = original.level;
         Damage = original.damage;
         Element = original.element;
         IsEnemy =  original.isEnemy;
@@ -39,6 +43,8 @@ public class MonsterDeepCopy
         Name = original.Name;
         Hp = original.Hp;
         MaxHp = original.MaxHp;
+        MaxHp = original.MaxHp;
+        Level = original.Level;
         Damage = original.Damage;
         Element = original.Element;
         IsEnemy = original.IsEnemy;

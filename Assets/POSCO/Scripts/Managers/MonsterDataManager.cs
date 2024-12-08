@@ -55,6 +55,9 @@ public class MonsterDataManager : MonoBehaviour
                     cloneMonster.name = originalMonster.name;
                     cloneMonster.hp = originalMonster.hp;
                     cloneMonster.maxHp = originalMonster.maxHp;
+                    cloneMonster.level = originalMonster.level;
+                    cloneMonster.currentExp = originalMonster.currentExp;
+                    cloneMonster.expToNextLevelArr = originalMonster.expToNextLevelArr != null ? (int[])originalMonster.expToNextLevelArr.Clone() : null;
                     //cloneMonster.hpAmount = originalMonster.hpAmount;
                     cloneMonster.damage = originalMonster.damage;
                     cloneMonster.isEnemy = originalMonster.isEnemy;

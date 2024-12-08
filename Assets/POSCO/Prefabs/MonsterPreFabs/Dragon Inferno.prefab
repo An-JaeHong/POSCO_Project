@@ -418,6 +418,10 @@ MonoBehaviour:
   name: Dragon Inferno
   hp: 78
   maxHp: 78
+  level: 15
+  exp: 40
+  currentExp: 0
+  expToNextLevelArr: 64000000780000008c000000a0000000b4000000c8000000dc000000f000000004010000180100002c0100004001000054010000680100007c01000090010000
   damage: 26
   element: 1
   isEnemy: 0
