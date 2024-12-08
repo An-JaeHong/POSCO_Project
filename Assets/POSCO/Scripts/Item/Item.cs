@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 
 
 
 [Serializable]
-public class ItemInfo
+public class ItemInfo 
 {
     public string itemName;
     public int healingAmount;//고정 
@@ -29,7 +30,7 @@ public class ItemInfo
     }
 
 }
-public class Item
+public class Item : MonoBehaviour
 {
     // 아이템 목록
     public List<ItemInfo> items;
@@ -46,32 +47,43 @@ public class Item
             new ItemInfo("Potion2", 40),
             new ItemInfo("Potion3", 0.5f)
         };
+
     }
 
- 
+
 
     // 아이템 사용 메서드
     public void Use(int number, Monster monster)
     {
-
-        ItemInfo itemToUse = items[number];
-        int healingAmount;
-
-        // 회복량 계산
-        if (itemToUse.healingAmount > 0)
-        {
-            healingAmount = itemToUse.healingAmount; // 고정 회복량 사용
-        }
+        if (uiInventory.potionNum[number] == 0)
+        { print("포션이 부족함"); }
         else
         {
-            healingAmount = Mathf.FloorToInt(monster.maxHp * itemToUse.healingPercentage); // 비율에 따라 회복량 계산
+            ItemInfo itemToUse = items[number];
+            int healingAmount;
+
+            // 회복량 계산
+            if (itemToUse.healingAmount > 0)
+            {
+                healingAmount = itemToUse.healingAmount; // 고정 회복량 사용
+            }
+            else
+            {
+                healingAmount = Mathf.FloorToInt(monster.maxHp * itemToUse.healingPercentage); // 비율에 따라 회복량 계산
+            }
+
+
+            monster.hp += itemToUse.healingAmount;
+            monster.hp = Mathf.Clamp(monster.hp, 0, monster.maxHp); // 최대 HP를 초과하지 않도록 클램프
+
+            Debug.Log($"{itemToUse.itemName} 사용, 현재 HP: {monster.hp}");
+            uiInventory.potionNum[number]--;
         }
+    }
 
-        monster.hp += itemToUse.healingAmount;
-        monster.hp = Mathf.Clamp(monster.hp, 0, monster.maxHp); // 최대 HP를 초과하지 않도록 클램프
-    
-        Debug.Log($"{itemToUse.itemName} 사용, 현재 HP: {monster.hp}");
-
+    public ItemInfo GetItemInfo(int index)
+    {
+        return items[index];
     }
 
 }

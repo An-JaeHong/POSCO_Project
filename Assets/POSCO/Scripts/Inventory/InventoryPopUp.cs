@@ -1,8 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.GraphicsBuffer;
 
 public class InventoryPopUp : MonoBehaviour
 {
@@ -121,6 +124,7 @@ public class InventoryPopUp : MonoBehaviour
             print("이미열림");
             return; // 팝업이 열려 있으면 다시 열지 않음
         }
+
         uiInventory.choiceNum = 0;
         uiInventory.TempSelectedMonsterList.Clear();
         uiInventory.currentSelectedMonsterList.Clear();
@@ -149,12 +153,15 @@ public class InventoryPopUp : MonoBehaviour
 
 
         GameObject itemPrefab = Instantiate(showItemBackgoundPrefab, inventoryPos);
-        RectTransform rectTransform = itemPrefab.transform.Find("MonsterCardGirdLayoutGroup").GetComponent<RectTransform>();
+        Transform targetbutton;
         Button button;
-        for (int i = 0; i < potionPrefab.Length; i++)
+        for (int i = 0; i < 3; i++)
         {
-            GameObject potion = Instantiate(potionPrefab[i], rectTransform);
-            button = potion.GetComponent<Button>();
+            targetbutton = itemPrefab.transform.Find($"MonsterCardGirdLayoutGroup/Potion{i + 1}");
+ 
+            button = targetbutton.GetComponent<Button>();
+            int parameterValue = i;
+            button.onClick.AddListener(() => inventoryButton.OnOpenItemData(parameterValue));
         }
         UIInventoryManager.Instance.OpenPopup(itemPrefab);
     }
@@ -172,6 +179,10 @@ public class InventoryPopUp : MonoBehaviour
         UIInventoryManager.Instance.OpenPopup(MyBattleMonsterPrefab);
     }
 
+    public void ShowItemInfo()
+    {
+        
+    }
 
     public void ClosePopup()
     {
@@ -179,10 +190,44 @@ public class InventoryPopUp : MonoBehaviour
         UIInventoryManager.Instance.ClosePopup(); // PopupManager를 사용하여 팝업 닫기
     }
 
-    public void ShowItemDate(RectTransform rect)
+    public void ShowItemDate(int number)
     {
-        GameObject itemGame = Instantiate(informationPopUpprefab, rect);
-    
+        if (UIInventoryManager.Instance.IsPopupOpen() >= 3) // 팝업이 이미 열려 있는지 확인
+        {
+            print("이미열림");
+            return; // 팝업이 열려 있으면 다시 열지 않음
+        }
+        GameObject itemBackground = Instantiate(informationPopUpprefab, inventoryPos);
+        Transform target = itemBackground.transform.Find("ImagePos");
+        RectTransform rect = target.GetComponent<RectTransform>();
+        GameObject potion = Instantiate(potionPrefab[number], rect);
+        target = itemBackground.transform.Find("InfoText");
+        TextMeshProUGUI text = target.GetComponent<TextMeshProUGUI>();
+        text.text = uiInventory.UpdateItemInfo(number);
+
+        UIInventoryManager.Instance.OpenPopup(itemBackground);
+    }
+
+    public void ShowMonsterData(int number)
+    {
+        if (UIInventoryManager.Instance.IsPopupOpen() >= 3) // 팝업이 이미 열려 있는지 확인
+        {
+            print("이미열림");
+            return; // 팝업이 열려 있으면 다시 열지 않음
+        }
+
+        GameObject itemBackground = Instantiate(informationPopUpprefab, inventoryPos);
+        Transform target = itemBackground.transform.Find("RawImage");
+        RawImage rawImage = target.GetComponent<RawImage>();
+        rawImage.texture = uiInventory.renderTexture[number];
+        
+        target = itemBackground.transform.Find("InfoText");
+        TextMeshProUGUI text = target.GetComponent<TextMeshProUGUI>();
+        text.text = uiInventory.UpdateMOnsterInfo(number);
+
+
+        UIInventoryManager.Instance.OpenPopup(itemBackground);
+        
     }
 
 

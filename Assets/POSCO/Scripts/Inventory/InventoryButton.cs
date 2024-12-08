@@ -52,6 +52,12 @@ public class InventoryButton : MonoBehaviour
         uiInventory.OnMonsterCard(num);
     }
 
+    public void OnShowMonsterInfoButton(int num)
+    {
+        
+        inventoryPopUp.ShowMonsterData(num);
+    }
+
     public void OnSelectBoutton()
     {
         if (uiInventory.choiceNum == 3)
@@ -73,9 +79,14 @@ public class InventoryButton : MonoBehaviour
         inventoryPopUp.ShowMyBattleMonster();
     }
 
-    public void OnOpenPotionData(int number)
-    {
-        //inventoryPopUp.ShowItemDate();
+    public void OnOpenItemData(int number)
+    {print (number);
+        inventoryPopUp.ShowItemDate(number);
     }
     
+    public void OnOpenMonsterData(int number)
+    {
+        inventoryPopUp.ShowMonsterData(number);
+    }
+
 }

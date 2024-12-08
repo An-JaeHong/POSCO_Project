@@ -38,6 +38,8 @@ public class UIInventory : MonoBehaviour
     private Player player;
     private InventoryPopUp inventoryPopUp;
     private InventoryButton inventoryButton;
+    private MonsterDataManager monsterDataManager;
+    
     public List<GameObject> cardList;
 
     public GameObject selectedMonster;
@@ -52,10 +54,11 @@ public class UIInventory : MonoBehaviour
         inventoryPopUp = FindObjectOfType<InventoryPopUp>();
         inventoryButton = FindObjectOfType<InventoryButton>();
         player = FindObjectOfType<Player>();
- 
-
+        item = FindObjectOfType<Item>();
+        monsterDataManager = FindObjectOfType<MonsterDataManager>();
         cardList = new List<GameObject>(playerMonsterList.Count);
-
+        
+        Debug.Log($"Items Count: {item.items.Count}");
 
         LoadMonsterPrefabs();
         BringPlayerMonsterList();
@@ -72,7 +75,7 @@ public class UIInventory : MonoBehaviour
 
     private void Update()
     {
-      
+     
     }
 
 
@@ -191,7 +194,7 @@ public class UIInventory : MonoBehaviour
             //체력 삽입
             targetText = monsterCard.transform.Find("Hp/Slider_Hp/Text");
             inputText = targetText.GetComponent<TMP_Text>();
-            inputText.text = $"{playerMonsterList[i].hp}/{playerMonsterList[i].maxHp}";
+            inputText.text = $"{monsterDataManager.allMonsterDataList[i].hp}/{monsterDataManager.allMonsterDataList[i].maxHp}";
 
             //체력바 입력 // 나중에 MonsterDataManager에서 정보를 받아야함.
             Slider Slider;
@@ -215,6 +218,14 @@ public class UIInventory : MonoBehaviour
             UnityAction action = () => inventoryButton.OnSelectCardButton(parameterValue);
             button.onClick.AddListener(action);
             button.interactable = false;
+
+
+            targetButton = monsterCard.transform.Find("InfoButton");
+            button = targetButton.GetComponentInChildren<Button>();
+            action = () => inventoryButton.OnShowMonsterInfoButton(parameterValue);
+            button.onClick.AddListener(action);
+            button.interactable =true;
+
 
             cardList.Add(monsterCard);
             
@@ -286,7 +297,7 @@ public class UIInventory : MonoBehaviour
                
                 targetText = monsterCard.transform.Find("Hp/Slider_Hp/Text");
                 inputText = targetText.GetComponent<TMP_Text>();
-                inputText.text = $"{TempSelectedMonsterList[i].hp}/{TempSelectedMonsterList[i].maxHp}";
+                inputText.text = $"{monsterDataManager.selectedMonsterDataList[i].hp}/{monsterDataManager.selectedMonsterDataList[i].maxHp}";
                 
                 //체력바 입력
                 Slider Slider;
@@ -390,6 +401,8 @@ public class UIInventory : MonoBehaviour
         }
     }
 
+
+
     public void SetSelectMonster()
     {
         if (choiceNum == 3)
@@ -434,12 +447,31 @@ public class UIInventory : MonoBehaviour
 
 
     //아이템 정보 불러오기
-    public void UpdateItemInfo(int index)
+    public string UpdateItemInfo(int index)
     {
-        string result = $"아이템 이름 : {item.itemInfo.name}\n";
-        result += $"회복량 : {item.items[index].itemName}";
+        ItemInfo itemInfo = item.GetItemInfo(index);
+        string result = $"아이템 이름 : {itemInfo.itemName}\n";
+        if (itemInfo.healingAmount > 0)
+        {
+            result += $"회복량 : {itemInfo.healingAmount}"; // 고정 회복량
+        }
+        else
+        {
+            result += $"회복 비율 : {itemInfo.healingPercentage * 100}%"; // 비율 회복량
+        }
+        return result;
     }
 
+    public string UpdateMOnsterInfo(int index)
+    {
+        Monster selectedMonster = monsterDataManager.allMonsterDataList[index];
+     
+        string result = $"몬스터 이름 : {selectedMonster.name}\n";
+        result += $"체력 : {selectedMonster.hp}/{selectedMonster.maxHp}\n";
+        result += $"레벨 : {selectedMonster.level}\n";
+        result += $"공격력 : {selectedMonster.damage}\n";
 
+        return result;
+    }
 
 }
