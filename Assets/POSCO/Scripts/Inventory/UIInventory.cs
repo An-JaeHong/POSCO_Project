@@ -31,7 +31,7 @@ public class UIInventory : MonoBehaviour
     
     public int choiceNum = 0;
     //아이템 갯수 
-    public int[] potionNum = new int[3] { 3, 3, 3 };
+    public int[] potionNum;
 
 
     public RectTransform monsterCardPos;
@@ -69,6 +69,7 @@ public class UIInventory : MonoBehaviour
         BringPlayerMonsterList();
         FindSameMonsters();
         InstantiatePlayerMonster();
+        potionNum = new int[3] { 3, 3, 3 };
     }
 
     private void OnEnable()
