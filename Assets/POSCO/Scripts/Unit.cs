@@ -20,6 +20,7 @@ public class Unit : MonoBehaviour
     public GameObject exclamationMarkPrefab; //´À³¦Ç¥ ÇÁ¸®ÆÕ
     private GameObject exclamationMark; //½ÇÁ¦ Ä×´Ù ²°´ÙÇÒ ´À³¦Ç¥
     public Transform spawnPosition; //½ºÆùµÇ´Â Àå¼Ò
+    public Player player;
 
     public string name;            //À¯´Ö ÀÌ¸§
     public int level;              //À¯´Ö ·¹º§
@@ -41,6 +42,7 @@ public class Unit : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         rb = GetComponent<Rigidbody>();
+        player = FindAnyObjectByType<Player>();
     }
 
     private void Start()
@@ -95,6 +97,7 @@ public class Unit : MonoBehaviour
     private void Update()
     {
         currentState?.Update(this);
+
     }
 
     private void UpdateUnitInfoText()
