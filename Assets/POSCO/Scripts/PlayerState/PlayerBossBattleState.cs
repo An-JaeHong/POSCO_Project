@@ -42,7 +42,11 @@ public class PlayerBossBattleState : PlayerStateBase
     //PlayerTurn일때 필요한 팝업창 띄우는 함수
     private void ShowPlayerTurnPopup(Monster currentMonster)
     {
-        currentMonster.SetSkillNum(0);
+        if (currentMonster.selectedSkill == null)
+        {
+            currentMonster.SetSkillNum(0);
+        }
+
         var buttons = new Dictionary<string, UnityAction>
         {
             {
@@ -70,13 +74,13 @@ public class PlayerBossBattleState : PlayerStateBase
             {
                 "회복하기", () =>
                 {
-                    DoHeal();
+                    DoHeal(currentMonster);
                 }
             }
         };
 
         UIPopupManager.Instance.ShowPopup(
-            $"Lv : {currentMonster.level}. {currentMonster.name}의 턴이다 무엇을 할까?\n현재 체력 : {currentMonster.hp}, 공격력 : {currentMonster.damage}",
+            $"Lv : {currentMonster.level}. {currentMonster.name}의 턴이다 무엇을 할까?\n현재 체력 : {currentMonster.hp} / {currentMonster.maxHp}, 공격력 : {currentMonster.damage}",
             buttons
             );
     }
@@ -96,6 +100,25 @@ public class PlayerBossBattleState : PlayerStateBase
         };
         UIPopupManager.Instance.ShowPopup(
             "스킬 사용 가능 횟수가 부족합니다.",
+            button
+            );
+    }
+
+    private void ShowHealItemCountNotEnough(Monster currentMonster)
+    {
+        Debug.Log("아이템 개수가 부족합니다");
+        var button = new Dictionary<string, UnityAction>
+        {
+            {
+                "확인", () =>
+                {
+                    UIPopupManager.Instance.ClosePopup();
+                    ShowPlayerTurnPopup(currentMonster);
+                }
+            }
+        };
+        UIPopupManager.Instance.ShowPopup(
+            "아이템 개수가 부족합니다.",
             button
             );
     }
@@ -132,7 +155,7 @@ public class PlayerBossBattleState : PlayerStateBase
         //    $"Choose Skill",
         //    buttons
         //    );
-        SelectSkill(0);
+        ChooseTarget();
     }
 
     private void SelectSkill(int skillNum)
@@ -279,15 +302,85 @@ public class PlayerBossBattleState : PlayerStateBase
     //    UIPopupManager.Instance.ClosePopup();
     //}
 
-    private void DoHeal()
+    private void DoHeal(Monster currentTurnMonster)
     {
-
+        var buttons = new Dictionary<string, UnityAction>
+        {
+            {
+                $"하급 체력물약 ({player.uiInventory.potionNum[0]}개)\n체력의 20을 회복합니다", () =>
+                {
+                    if (player.uiInventory.potionNum[0] <= 0)
+                    {
+                        ShowHealItemCountNotEnough(currentTurnMonster);
+                    }
+                    else
+                    {
+                    player.UseItem(0, currentTurnMonster);
+                    HealActionIsDone(currentTurnMonster);
+                    }
+                }
+            },
+            {
+                $"중급 체력물약 ({player.uiInventory.potionNum[1]}개)\n체력의 40을 회복합니다", () =>
+                {
+                    if (player.uiInventory.potionNum[1] <= 0)
+                    {
+                        ShowHealItemCountNotEnough(currentTurnMonster);
+                    }
+                    else
+                    {
+                    player.UseItem(1, currentTurnMonster);
+                    HealActionIsDone(currentTurnMonster);
+                    }
+                }
+            },
+            {
+                $"고급 엘릭서 ({player.uiInventory.potionNum[2]}개)\n체력의 절반을 회복합니다", () =>
+                {
+                    if (player.uiInventory.potionNum[2] <= 0)
+                    {
+                        ShowHealItemCountNotEnough(currentTurnMonster);
+                    }
+                    else
+                    {
+                    player.UseItem(2, currentTurnMonster);
+                    HealActionIsDone(currentTurnMonster);
+                    }
+                }
+            }
+        };
+        //UI생성
+        UIPopupManager.Instance.ShowPopup(
+            $"어떤 물약을 사용하시겠습니까?",
+            buttons
+            );
     }
 
     //update는 아직까진 필요없다.
     public override void Update()
     {
 
+    }
+
+    //힐이 끝나면 확인을 해야한다.
+    public void HealActionIsDone(Monster currentTurnMonster)
+    {
+
+        var buttons = new Dictionary<string, UnityAction>
+        {
+            {
+                "확인", () =>
+                {
+                    UIPopupManager.Instance.ClosePopup();
+                    GameManager.Instance.isPlayerActionComplete = true;
+                }
+            }
+        };
+
+        UIPopupManager.Instance.ShowPopup(
+            $"{currentTurnMonster.name}의 체력이 회복되었습니다.\n현재 체력 : {currentTurnMonster.hp}",
+            buttons
+            );
     }
 
 

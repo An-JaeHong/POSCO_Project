@@ -8,7 +8,7 @@ public class SkillData : ScriptableObject
     public string skillName;
     public GameObject particle;
     public float skillDamage;
-
+    public Element skillElement;
     //스킬 사용가능 횟수
     public int skillCount;
 

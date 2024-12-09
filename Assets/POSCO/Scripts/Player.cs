@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     public Transform cameraRig;
 
     private Item item;
+    public UIInventory uiInventory;
 
     private Rigidbody rb;
 
@@ -28,6 +29,7 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         item = FindAnyObjectByType<Item>(); // 같은 GameObject에 Item 컴포넌트가 있는지 확인
+        uiInventory = FindAnyObjectByType<UIInventory>(); 
         if (item == null)
         {
             Debug.LogError("Item 컴포넌트가 Player 객체에 없습니다.");

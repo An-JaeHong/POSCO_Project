@@ -119,14 +119,59 @@ public class Monster : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        //float finalDamage = damage;
+        //bool isEffectIsGreat = false;
+
+        //if (isSkillAttack)
+        //{
+        //    if((attackerElement == Element.Fire && element == Element.Grass) ||
+        //        (attackerElement == Element.Grass && element == Element.Water) ||
+        //        (attackerElement == Element.Water && element == Element.Fire))
+        //    {
+        //        finalDamage *= 1.5f;
+        //        isEffectIsGreat = true;
+        //        //여기에 들어오면 효과가 굉장했다 UI가 뜨게 하면 좋겠다
+        //    }
+        //}
+
         hp -= damage;
         print($"{name}가 맞았다. 남은체력 : {hp}");
+
+        //if (isEffectIsGreat)
+        //{
+        //    ShowEffectIsGreatPopup();
+        //}
+
         if (hp <= 0)
         {
             hp = 0;
             OnDead();
         }
     }
+
+    //private void ShowEffectIsGreatPopup()
+    //{
+    //    Debug.Log("ShowEffectivePopup called");
+    //    GameManager.Instance.isPlayerActionComplete = false;
+    //    var button = new Dictionary<string, UnityAction>()
+    //    {
+    //        {
+    //            "확인", () =>
+    //            {
+    //                UIPopupManager.Instance.ClosePopup();
+    //                GameManager.Instance.isPlayerActionComplete = true;
+    //            }
+
+    //        }
+    //    };
+
+    //    UIPopupManager.Instance.ShowPopup(
+    //        "효과가 굉장했다!",
+    //        button
+    //        );
+
+    //    Debug.Log("이미 버튼이 지나감");
+    //}
 
     public void PlayTakeDamageAnimation()
     {

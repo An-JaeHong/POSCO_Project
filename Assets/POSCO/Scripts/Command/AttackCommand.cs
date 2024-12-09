@@ -182,6 +182,27 @@ public class AttackCommand
 
         AnimatorStateInfo stateInfo = attacker.animator.GetCurrentAnimatorStateInfo(0);
         yield return new WaitForSeconds(stateInfo.length);
+
+        float skillDamage = attacker.selectedSkill.skillDamage;
+        //효과가 굉장했다는 일단 false
+        bool isEffectIsGreat = false;
+
+        if ((attacker.element == Element.Fire && target.element == Element.Grass) ||
+            (attacker.element == Element.Grass && target.element == Element.Water) ||
+            (attacker.element == Element.Water && target.element == Element.Fire))
+        {
+            skillDamage *= 1.5f;
+            isEffectIsGreat = true;
+        }
+
+        target.TakeDamage(skillDamage);
+
+        if(isEffectIsGreat)
+        {
+            ShowEffectIsGreatPopup();
+            //GameManager.Instance.isEnemyActionComplete = true;
+        }
+
         #region ""가 ""에게 ~~의 데미지를 입혔다! 라는 UI
         var buttons = new Dictionary<string, UnityAction> { };
         UIPopupManager.Instance.ShowPopup(
@@ -211,6 +232,26 @@ public class AttackCommand
         AnimatorStateInfo stateInfo = attacker.animator.GetCurrentAnimatorStateInfo(0);
         yield return new WaitForSeconds(stateInfo.length);
 
+        float skillDamage = attacker.selectedSkill.skillDamage;
+        //효과가 굉장했다는 일단 false
+        bool isEffectIsGreat = false;
+
+        if ((attacker.element == Element.Fire && target.element == Element.Grass) ||
+            (attacker.element == Element.Grass && target.element == Element.Water) ||
+            (attacker.element == Element.Water && target.element == Element.Fire))
+        {
+            skillDamage *= 1.5f;
+            isEffectIsGreat = true;
+        }
+
+        target.TakeDamage(skillDamage);
+
+        if (isEffectIsGreat)
+        {
+            ShowEffectIsGreatPopup();
+            //GameManager.Instance.isEnemyActionComplete = true;
+        }
+
         #region ""가 ""에게 ~~의 데미지를 입혔다! 라는 UI
         var buttons = new Dictionary<string, UnityAction> { };
         UIPopupManager.Instance.ShowPopup(
@@ -222,6 +263,29 @@ public class AttackCommand
         //2초후에 행동을 재개
         yield return new WaitForSeconds(2f);
         GameManager.Instance.isEnemyActionComplete = true;
+    }
+
+    private void ShowEffectIsGreatPopup()
+    {
+        Debug.Log("ShowEffectivePopup called");
+        var button = new Dictionary<string, UnityAction>()
+        {
+            {
+                "확인", () =>
+                {
+                    UIPopupManager.Instance.ClosePopup();
+                    GameManager.Instance.isPlayerActionComplete = true;
+                }
+
+            }
+        };
+
+        UIPopupManager.Instance.ShowPopup(
+            "효과가 굉장했다!",
+            button
+            );
+
+        Debug.Log("이미 버튼이 지나감");
     }
 
     //전투 끝나면 실행할 함수

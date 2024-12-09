@@ -15,4 +15,5 @@ MonoBehaviour:
   skillName: "\uC784\uC2DC\uC2A4\uD0AC"
   particle: {fileID: 4559769962135713255, guid: ee3d9d70dabace843b872ccb2163d2df, type: 3}
   skillDamage: 20
-  skillCount: 0
+  skillElement: 0
+  skillCount: 20

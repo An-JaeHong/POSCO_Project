@@ -77,14 +77,17 @@ public class PlayerNormalBattleState : PlayerStateBase
     private void ShowPlayerTurnPopup(Monster currentMonster)
     {
         //스킬은 하나라서 이렇게 먼저 정해준다
-        currentMonster.SetSkillNum(0);
-
+        if (currentMonster.selectedSkill == null)
+        {
+            currentMonster.SetSkillNum(0);
+        }
+        
+        //테스트
         if (currentMonster == null)
         {
             Debug.LogError("currentMonster is null");
             return;
         }
-
         if (currentMonster.selectedSkill == null)
         {
             Debug.LogError("currentMonster.selectedSkill is null");
@@ -112,8 +115,11 @@ public class PlayerNormalBattleState : PlayerStateBase
                     }
                     else
                     {
+                        //스킬 타입 정해주고
                     TurnManager.Instance.currentTurnMonster.attackType = AttackType.Skill1;
+                        //스킬 사용횟수 줄여주고
                     currentMonster.selectedSkill.skillCount -= 1;
+                        //타겟 고르기
                     ChooseTarget();
                     }
                 }
@@ -121,13 +127,13 @@ public class PlayerNormalBattleState : PlayerStateBase
             {
                 "회복하기", () =>
                 {
-                    DoHeal();
+                    DoHeal(currentMonster);
                 }
             }
         };
 
         UIPopupManager.Instance.ShowPopup(
-            $"{currentMonster.level}. {currentMonster.name}의 턴이다 무엇을 할까?\n현재 체력 : {currentMonster.hp}, 공격력 : {currentMonster.damage}",
+            $"Lv : {currentMonster.level}. {currentMonster.name}의 턴이다 무엇을 할까?\n현재 체력 : {currentMonster.hp} / {currentMonster.maxHp}, 공격력 : {currentMonster.damage}",
             buttons
             );
     }
@@ -147,6 +153,25 @@ public class PlayerNormalBattleState : PlayerStateBase
         };
         UIPopupManager.Instance.ShowPopup(
             "스킬 사용 가능 횟수가 부족합니다.",
+            button
+            );
+    }
+
+    private void ShowHealItemCountNotEnough(Monster currentMonster)
+    {
+        Debug.Log("아이템 개수가 부족합니다");
+        var button = new Dictionary<string, UnityAction>
+        {
+            {
+                "확인", () =>
+                {
+                    UIPopupManager.Instance.ClosePopup();
+                    ShowPlayerTurnPopup(currentMonster);
+                }
+            }
+        };
+        UIPopupManager.Instance.ShowPopup(
+            "아이템 개수가 부족합니다.",
             button
             );
     }
@@ -223,20 +248,6 @@ public class PlayerNormalBattleState : PlayerStateBase
     {
         //살아있는 적을 리스트로 받는다
         List<Monster> aliveTargetList = TurnManager.Instance.enemyMonsterList.Where(m => m.hp > 0).ToList();
-            //List<string> targetNum = new List<string> { "First", "Second", "Third" };
-
-            //switch (aliveTargetList.Count())
-            //{
-            //    case 1:
-            //        targetNum = "First";
-            //        break;
-            //    case 2:
-            //        targetNum = "Second";
-            //        break;
-            //    case 3:
-            //        targetNum = "Third";
-            //        break;
-            //}
 
             var buttons = new Dictionary<string, UnityAction>();
 
@@ -253,28 +264,6 @@ public class PlayerNormalBattleState : PlayerStateBase
                     }
             );
         }
-        //var buttons = new Dictionary<string, UnityAction>
-        //{
-        //    {
-        //        $"{targetNum}", () =>
-        //        {
-        //            DoAttackTarget(0);
-        //        }
-        //    },
-        //    {
-        //        $"{targetNum}", () =>
-        //        {
-        //            DoAttackTarget(1);
-        //        }
-        //    },
-        //    {
-        //        $"{targetNum}", () =>
-        //        {
-        //            DoAttackTarget(2);
-        //        }
-        //    }
-        //};
-
         UIPopupManager.Instance.ShowPopup(
             $"누굴 공격할까?",
             buttons
@@ -343,27 +332,51 @@ public class PlayerNormalBattleState : PlayerStateBase
     //    UIPopupManager.Instance.ClosePopup();
     //}
 
-    private void DoHeal()
+    private void DoHeal(Monster currentTurnMonster)
     {
         //버튼 생성
         var buttons = new Dictionary<string, UnityAction>
         {
             {
-                "하급 체력물약\n체력의 20을 회복합니다", () =>
+                $"하급 체력물약 ({player.uiInventory.potionNum[0]}개)\n체력의 20을 회복합니다", () =>
                 {
-                    player.UseItem(0, TurnManager.Instance.currentTurnMonster);
+                    if (player.uiInventory.potionNum[0] <= 0)
+                    {
+                        ShowHealItemCountNotEnough(currentTurnMonster);
+                    }
+                    else
+                    {
+                    player.UseItem(0, currentTurnMonster);
+                    HealActionIsDone(currentTurnMonster);
+                    }
                 }
             },
             {
-                "중급 체력물약\n체력의 40을 회복합니다", () =>
+                $"중급 체력물약 ({player.uiInventory.potionNum[1]}개)\n체력의 40을 회복합니다", () =>
                 {
-                    player.UseItem(1, TurnManager.Instance.currentTurnMonster);
+                    if (player.uiInventory.potionNum[1] <= 0)
+                    {
+                        ShowHealItemCountNotEnough(currentTurnMonster);
+                    }
+                    else
+                    {
+                    player.UseItem(1, currentTurnMonster);
+                    HealActionIsDone(currentTurnMonster);
+                    }
                 }
             },
             {
-                "고급 엘릭서\n체력의 절반을 회복합니다", () =>
+                $"고급 엘릭서 ({player.uiInventory.potionNum[2]}개)\n체력의 절반을 회복합니다", () =>
                 {
-                    player.UseItem(2, TurnManager.Instance.currentTurnMonster);
+                    if (player.uiInventory.potionNum[2] <= 0)
+                    {
+                        ShowHealItemCountNotEnough(currentTurnMonster);
+                    }
+                    else
+                    {
+                    player.UseItem(2, currentTurnMonster);
+                    HealActionIsDone(currentTurnMonster);
+                    }
                 }
             }
         };
@@ -378,6 +391,27 @@ public class PlayerNormalBattleState : PlayerStateBase
     public override void Update()
     {
         
+    }
+
+    //힐이 끝나면 확인을 해야한다.
+    public void HealActionIsDone(Monster currentTurnMonster)
+    {
+
+        var buttons = new Dictionary<string, UnityAction>
+        {
+            {
+                "확인", () =>
+                {
+                    UIPopupManager.Instance.ClosePopup();
+                    GameManager.Instance.isPlayerActionComplete = true;
+                }
+            }
+        };
+
+        UIPopupManager.Instance.ShowPopup(
+            $"{currentTurnMonster.name}의 체력이 회복되었습니다.\n현재 체력 : {currentTurnMonster.hp}",
+            buttons
+            );
     }
 
     

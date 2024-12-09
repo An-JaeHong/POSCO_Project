@@ -1729,6 +1729,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4693079851222035319, guid: fbb8513dc16346349aa37684ab2d4846, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4803982659617120648, guid: fbb8513dc16346349aa37684ab2d4846, type: 3}
       propertyPath: m_Name
       value: unitychan
@@ -1962,6 +1966,7 @@ MonoBehaviour:
   moveSpeed: 10
   mouseSensivity: 20
   cameraRig: {fileID: 1562429292123017027}
+  uiInventory: {fileID: 0}
 --- !u!1001 &4489410075130654511
 PrefabInstance:
   m_ObjectHideFlags: 0
