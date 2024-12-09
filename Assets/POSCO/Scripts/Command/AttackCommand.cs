@@ -167,9 +167,12 @@ public class AttackCommand
         GameManager.Instance.isEnemyActionComplete = true;
     }
 
+    private bool isClickCheckButton = false;
     //첫번째 애니메이션 실행하는 코루틴
     public IEnumerator PlayerFirstSkillAttackCoroutine()
     {
+        isClickCheckButton = false; // 확인했다는 버튼을 눌렀는가
+
         #region ""가 ""스킬을 시전했다! 라는 UI
         var button = new Dictionary<string, UnityAction> { };
         UIPopupManager.Instance.ShowPopup(
@@ -197,28 +200,41 @@ public class AttackCommand
 
         target.TakeDamage(skillDamage);
 
-        if(isEffectIsGreat)
+        if (isEffectIsGreat)
         {
             ShowEffectIsGreatPopup();
             //GameManager.Instance.isEnemyActionComplete = true;
         }
-
-        #region ""가 ""에게 ~~의 데미지를 입혔다! 라는 UI
-        var buttons = new Dictionary<string, UnityAction> { };
-        UIPopupManager.Instance.ShowPopup(
-            $"{target.name}에게 {attacker.selectedSkill.skillDamage}만큼의 데미지를 입혔다!",
-            buttons
-        );
+        else
+        {
+            #region ""가 ""에게 ~~의 데미지를 입혔다! 라는 UI
+            var buttons = new Dictionary<string, UnityAction>
+        {
+            {
+                "확인", ()=>
+                {
+                    UIPopupManager.Instance.ClosePopup();
+                    isClickCheckButton = true;
+                }
+            }
+        };
+            UIPopupManager.Instance.ShowPopup(
+                $"{target.name}에게 {skillDamage}만큼의 데미지를 입혔다!",
+                buttons
+            );
+        }
         #endregion
+        //isClickCheckButton = true;
 
         //2초후에 행동을 재개
-        yield return new WaitForSeconds(2f);
+        yield return new WaitUntil(() => isClickCheckButton == true);
         GameManager.Instance.isPlayerActionComplete = true;
     }
 
 
     public IEnumerator EnemyFirstSkillAttackCoroutine()
     {
+        isClickCheckButton = false; // 확인했다는 버튼을 눌렀는가
         #region ""가 ""스킬을 시전했다! 라는 UI
         var button = new Dictionary<string, UnityAction> { };
         UIPopupManager.Instance.ShowPopup(
@@ -227,9 +243,14 @@ public class AttackCommand
         );
         #endregion
 
+        //스킬 선택하고
         attacker.selectedSkill = attacker.skills[0];
+        //스킬 애니메이션 재생
         attacker.FirstSkillAnimation();
+        //애니메이션 재생하는 변수
         AnimatorStateInfo stateInfo = attacker.animator.GetCurrentAnimatorStateInfo(0);
+        //애니메이션 재생하는 변수의 길이만큼 기다려준다 즉, 애니메이션이 끝날때 까지 기다림
+        //여기에다가 투사체가 타겟에게 가는 것 까지 하면 될 듯
         yield return new WaitForSeconds(stateInfo.length);
 
         float skillDamage = attacker.selectedSkill.skillDamage;
@@ -252,16 +273,29 @@ public class AttackCommand
             //GameManager.Instance.isEnemyActionComplete = true;
         }
 
-        #region ""가 ""에게 ~~의 데미지를 입혔다! 라는 UI
-        var buttons = new Dictionary<string, UnityAction> { };
-        UIPopupManager.Instance.ShowPopup(
-            $"{target.name}에게 {attacker.selectedSkill.skillDamage}만큼의 데미지를 입혔다!",
-            buttons
-        );
-        #endregion
+        else
+        {
+            #region ""가 ""에게 ~~의 데미지를 입혔다! 라는 UI
+            var buttons = new Dictionary<string, UnityAction> 
+            {
+                {
+                    "확인", ()=>
+                    {
+                        UIPopupManager.Instance.ClosePopup();
+                        isClickCheckButton = true;
+                    }
+                }
+            };
+            UIPopupManager.Instance.ShowPopup(
+                $"{target.name}에게 {skillDamage}만큼의 데미지를 입혔다!",
+                buttons
+            );
+            #endregion
+        }
 
         //2초후에 행동을 재개
-        yield return new WaitForSeconds(2f);
+        yield return new WaitUntil(() => isClickCheckButton == true);
+        //isClickCheckButton = false;
         GameManager.Instance.isEnemyActionComplete = true;
     }
 
@@ -274,14 +308,14 @@ public class AttackCommand
                 "확인", () =>
                 {
                     UIPopupManager.Instance.ClosePopup();
-                    GameManager.Instance.isPlayerActionComplete = true;
+                    isClickCheckButton = true;
                 }
 
             }
         };
 
         UIPopupManager.Instance.ShowPopup(
-            "효과가 굉장했다!",
+            $"효과가 굉장했다!\n{target.name}에게 {attacker.selectedSkill.skillDamage * 1.5f}만큼의 데미지를 입혔다!",
             button
             );
 
