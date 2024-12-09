@@ -138,6 +138,7 @@ MonoBehaviour:
   - {fileID: 8400000, guid: 526e2ab04ef3b3e4aa22918a3dae07fd, type: 2}
   emptyRenderTexture: {fileID: 8400000, guid: 9f8432d868368304e99637a8bf2b018c, type: 2}
   choiceNum: 0
+  potionNum: 030000000300000003000000
   monsterCardPos: {fileID: 0}
   cardList: []
   selectedMonster: {fileID: 0}

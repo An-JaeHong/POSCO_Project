@@ -53,6 +53,11 @@ MonoBehaviour:
   monsterCardPrefab: {fileID: 7834506113421134526, guid: 47e1cb5e65b51464eb1bccde9b16cf60, type: 3}
   inventoryPrefab: {fileID: 0}
   myBattleMonsterBackgroundPrefab: {fileID: 4667084522368679115, guid: b23e53ea488c6284d82b551f68a8d2a6, type: 3}
+  informationPopUpprefab: {fileID: 75564938378631127, guid: 9f9e42c8fdee91249b596f16bf822a8f, type: 3}
+  potionPrefab:
+  - {fileID: 4970517085583002921, guid: fac5dd0e9bc16af4c96e1c43bfb4177d, type: 3}
+  - {fileID: 4555281449025698998, guid: dfefc282b210a2948ae1681498242b7b, type: 3}
+  - {fileID: 7403681830985946085, guid: c13d5282a17328546b5b61189ec640d3, type: 3}
   inventoryPos: {fileID: 0}
 --- !u!114 &3643169617423135719
 MonoBehaviour:
