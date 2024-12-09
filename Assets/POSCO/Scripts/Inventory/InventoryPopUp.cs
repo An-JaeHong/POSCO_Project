@@ -223,7 +223,7 @@ public class InventoryPopUp : MonoBehaviour
         
         target = itemBackground.transform.Find("InfoText");
         TextMeshProUGUI text = target.GetComponent<TextMeshProUGUI>();
-        text.text = uiInventory.UpdateMOnsterInfo(number);
+        text.text = uiInventory.UpdateMonsterInfo(number);
 
 
         UIInventoryManager.Instance.OpenPopup(itemBackground);

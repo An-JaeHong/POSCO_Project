@@ -477,10 +477,11 @@ public class UIInventory : MonoBehaviour
         {
             result += $"회복 비율 : {itemInfo.healingPercentage * 100}%"; // 비율 회복량
         }
+        result += $"보유량 : {potionNum[index]} 개";
         return result;
     }
 
-    public string UpdateMOnsterInfo(int index)
+    public string UpdateMonsterInfo(int index)
     {
         Monster selectedMonster = monsterDataManager.allMonsterDataList[index];
         print(potionNum[index]);
@@ -488,7 +489,7 @@ public class UIInventory : MonoBehaviour
         result += $"체력 : {selectedMonster.hp} / {selectedMonster.maxHp}\n";
         result += $"레벨 : {selectedMonster.level}\n";
         result += $"공격력 : {selectedMonster.damage}\n";
-        result += $"보유량 : {potionNum[index]} 개";
+        
         return result;
     }
 
