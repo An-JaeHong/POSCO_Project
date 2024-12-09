@@ -10,13 +10,22 @@ public class NormalChaseState : IUnitState
     {
         //쫓아오는 상태가 되면 느낌표를 계속 띄워야함
         unit.ShowExclamationMark();
-        player = GameObject.FindGameObjectWithTag("Player");
+        //player = GameObject.FindGameObjectWithTag("Player");
+        //if (player == null)
+        //{
+        //    Debug.LogError("플레이어를 찾을 수 없습니다.");
+        //}
     }
 
     public void Update(Unit unit)
     {
+        player = GameObject.FindGameObjectWithTag("Player");
+        if (player == null)
+        {
+            Debug.LogError("플레이어를 찾을 수 없습니다.");
+        }
         //player 찾기
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        //GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
             //플레이어가 있는 방향

@@ -5986,15 +5986,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 795473318272143937, guid: 78d0ec51cf10de242b9368a5f6f859e5, type: 3}
       propertyPath: m_Center.y
-      value: 0.97
+      value: 0.51
       objectReference: {fileID: 0}
     - target: {fileID: 795473318272143937, guid: 78d0ec51cf10de242b9368a5f6f859e5, type: 3}
       propertyPath: m_SlopeLimit
-      value: 60
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 2412724443317891720, guid: 78d0ec51cf10de242b9368a5f6f859e5, type: 3}
       propertyPath: isMove
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2412724443317891720, guid: 78d0ec51cf10de242b9368a5f6f859e5, type: 3}
       propertyPath: spawnPosition
@@ -6789,6 +6789,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 8892453290980969745, guid: e632724bcb7b78049a932dbe60939a3d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6912026823793570928, guid: e632724bcb7b78049a932dbe60939a3d, type: 3}
     m_RemovedGameObjects: []
@@ -7014,8 +7018,8 @@ GameObject:
   - component: {fileID: 6945153661831830854}
   - component: {fileID: 1031635177771493469}
   - component: {fileID: 6669654668800897354}
-  m_Layer: 0
-  m_Name: unitychan
+  m_Layer: 8
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8372,6 +8376,10 @@ PrefabInstance:
     - target: {fileID: 8469475861246925351, guid: 4be6f8ba0bdadf54bb418e6cf3f7ef1e, type: 3}
       propertyPath: m_Name
       value: Bloom
+      objectReference: {fileID: 0}
+    - target: {fileID: 8469475861246925351, guid: 4be6f8ba0bdadf54bb418e6cf3f7ef1e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
