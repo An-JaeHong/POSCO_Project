@@ -315,18 +315,19 @@ public class UIInventory : MonoBehaviour
                 Slider Slider;
                 Transform targetSlider;
                 targetSlider = monsterCard.transform.Find("Hp/Slider_Hp");
-                Button button;
-                Transform targetbutton;
-
-
-                int parameterValue = i;
-
-                targetbutton = monsterCard.transform.Find("InfoButton");
-                button = targetButton.GetComponent<Button>();
-                button.onClick.AddListener(() => inventoryButton.OnOpenCelectedMonsterData(parameterValue));
-
                 Slider = targetSlider.GetComponent<Slider>();
                 Slider.value = monsterDataManager.selectedMonsterDataList[i].hpAmount;
+
+                int parameterValue = i;
+                Button button;
+               
+
+                targetButton = monsterCard.transform.Find("InfoButton");
+                button = targetButton.GetComponentInChildren<Button>();
+
+                button.onClick.AddListener(() => inventoryButton.OnOpenCelectedMonsterData(parameterValue));
+
+
                 switch (TempSelectedMonsterList[i].element)
                 {
                     case Element.Fire:

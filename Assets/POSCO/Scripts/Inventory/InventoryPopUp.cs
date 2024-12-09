@@ -217,14 +217,20 @@ public class InventoryPopUp : MonoBehaviour
         }
 
         GameObject itemBackground = Instantiate(informationPopUpprefab, inventoryPos);
-        Transform target = itemBackground.transform.Find("RawImage");
-        RawImage rawImage = target.GetComponent<RawImage>();
-        rawImage.texture = uiInventory.renderTexture[number];
-        
-        target = itemBackground.transform.Find("InfoText");
-        TextMeshProUGUI text = target.GetComponent<TextMeshProUGUI>();
-        text.text = uiInventory.UpdateMonsterInfo(number);
+        for (int i = 0; i < 5; i++)
+        {
+            if (uiInventory.playerMonsterList[i].name == uiInventory.TempSelectedMonsterList[number].name)
+            {
+               
+                Transform target = itemBackground.transform.Find("RawImage");
+                RawImage rawImage = target.GetComponent<RawImage>();
+                rawImage.texture = uiInventory.renderTexture[i];
 
+                target = itemBackground.transform.Find("InfoText");
+                TextMeshProUGUI text = target.GetComponent<TextMeshProUGUI>();
+                text.text = uiInventory.UpdateMonsterInfo(i);
+            }
+        }
 
         UIInventoryManager.Instance.OpenPopup(itemBackground);
         
