@@ -75,7 +75,7 @@ public class Unit : MonoBehaviour
         }
         else
         {
-            level = Random.Range(0, 15);
+            level = Random.Range(1, 16);
 
             ChangeState(new NormalIdleState());
         }
