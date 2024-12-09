@@ -56,6 +56,10 @@ public class UIInventory : MonoBehaviour
         player = FindObjectOfType<Player>();
         item = FindObjectOfType<Item>();
         monsterDataManager = FindObjectOfType<MonsterDataManager>();
+        if (monsterDataManager == null)
+        {
+            Debug.Log("monsterDataManager가 없습니다");
+        }
         cardList = new List<GameObject>(playerMonsterList.Count);
         
         Debug.Log($"Items Count: {item.items.Count}");
