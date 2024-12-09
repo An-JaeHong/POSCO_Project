@@ -211,7 +211,7 @@ public class UIInventory : MonoBehaviour
             Transform targetSlider;
             targetSlider = monsterCard.transform.Find("Hp/Slider_Hp");
             Slider = targetSlider.GetComponent<Slider>();
-            Slider.value = playerMonsterList[i].hpAmount;
+            Slider.value = monsterDataManager.allMonsterDataList[i].hpAmount;
 
 
             // 소환된 카드에 버튼 삽입하기
@@ -313,7 +313,7 @@ public class UIInventory : MonoBehaviour
                 Transform targetSlider;
                 targetSlider = monsterCard.transform.Find("Hp/Slider_Hp");
                 Slider = targetSlider.GetComponent<Slider>();
-                Slider.value = TempSelectedMonsterList[i].hpAmount;
+                Slider.value = monsterDataManager.selectedMonsterDataList[i].hpAmount;
                 switch (TempSelectedMonsterList[i].element)
                 {
                     case Element.Fire:
@@ -483,12 +483,12 @@ public class UIInventory : MonoBehaviour
     public string UpdateMOnsterInfo(int index)
     {
         Monster selectedMonster = monsterDataManager.allMonsterDataList[index];
-     
+        print(potionNum[index]);
         string result = $"몬스터 이름 : {selectedMonster.name}\n";
-        result += $"체력 : {selectedMonster.hp}/{selectedMonster.maxHp}\n";
+        result += $"체력 : {selectedMonster.hp} / {selectedMonster.maxHp}\n";
         result += $"레벨 : {selectedMonster.level}\n";
         result += $"공격력 : {selectedMonster.damage}\n";
-
+        result += $"보유량 : {potionNum[index]} 개";
         return result;
     }
 
