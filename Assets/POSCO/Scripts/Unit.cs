@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using System.Transactions;
 using System.Xml.Serialization;
 using TMPro;
+using UnityEditor.Animations;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
@@ -15,7 +16,10 @@ using UnityEngine.TextCore.Text;
 public class Unit : MonoBehaviour
 {
     private IUnitState currentState; //현재상태
+
+    public List<GameObject> monsterPrefabs = new List<GameObject>(); //프리팹을 받을 리스트
     public List<Monster> ownedMonsterList = new List<Monster>(); //소지하고 있는 몬스터 리스트 -> 보스 : 종류가 다른 3개의 몬스터.  일반몬스터 : 종류가 같은 3개의 몬스터
+
     public bool isBoss; //State패턴을 위한 변수. true : 보스, false : 일반 몬스터
     public GameObject exclamationMarkPrefab; //느낌표 프리팹
     private GameObject exclamationMark; //실제 켰다 껐다할 느낌표
@@ -77,13 +81,36 @@ public class Unit : MonoBehaviour
         }
 
         //생성되는 몬스터의 레벨이 그대로 가져가게 해야한다
-        foreach (Monster ownedMonster in ownedMonsterList)
+
+        foreach(GameObject monsterPrefab in monsterPrefabs)
         {
-            //ownedMonster.level = level;
-            ownedMonster.InitializeLevelInfo(level);
-            //이거 또 값이 복사되는 일이 생김 수정하자
-            //여기에다가 소환되는 몬스터들의 정보를 초기화 해야하나
+            //내가 들고 있는 몬스터를 소환한다
+            GameObject monsterObject = Instantiate(monsterPrefab);
+            //그 소환된 몬스터의 정보를 들고있는 Monster
+            Monster originalMonster = monsterObject.GetComponent<Monster>();
+            if (originalMonster != null)
+            {
+                Monster newMonster = monsterObject.GetComponent<Monster>();
+                //소환된 몬스터 정보를 복사할 newMonster
+                newMonster.InitializeFrom(originalMonster);
+                //복사 한 후에 레벨에 따른 능력치 초기화
+                newMonster.InitializeLevelInfo(level);
+                //모든 후처리 기능 후에 더해주기
+                ownedMonsterList.Add(newMonster);
+            }
         }
+        //for (int i = 0; i < monsterPrefab.Count; i++)
+        //{
+        //    //인스펙터에서 참조하는 몬스터프리팹
+        //    GameObject monsterObject = Instantiate(monsterPrefab[i]);
+        //    //그 몬스터 프리팹의 Monster컴포넌트
+        //    Monster newMonster = monsterObject.GetComponent<Monster>();
+        //    //ownedMonster.level = level;
+        //    newMonster.InitializeLevelInfo(level);
+        //    ownedMonsterList.Add(newMonster);
+        //    //이거 또 값이 복사되는 일이 생김 수정하자
+        //    //여기에다가 소환되는 몬스터들의 정보를 초기화 해야하나
+        //}
 
         UpdateUnitInfoText();
 

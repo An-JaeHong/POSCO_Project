@@ -99,21 +99,18 @@ public class Monster : MonoBehaviour
 
     }
 
-    //Monster클래스가 MonoBehaviour를 상속받고 있어서 new로 할당 불가
-    //public Monster DeepCopy()
-    //{
-
-    //    Monster newMonster = ScriptableObject.CreateInstance<Monster>();
-    //    newMonster.name = this.name;
-    //    newMonster.hp = this.hp;
-    //    newMonster.maxHp = this.maxHp;
-    //    newMonster.damage = this.damage;
-    //    newMonster.element = this.element;
-    //    newMonster.isEnemy = this.isEnemy;
-    //    newMonster.skills = (SkillData[])this.skills.Clone();
-
-    //    return newMonster;
-    //}
+    public void InitializeFrom(Monster source)
+    {
+        this.name = source.name;
+        this.hp = source.hp;
+        this.maxHp = source.maxHp;
+        this.level = source.level;
+        this.damage = source.damage;
+        this.element = source.element;
+        this.isEnemy = source.isEnemy;
+        this.levelPerExp = source.levelPerExp;
+        this.skills = (SkillData[])source.skills.Clone();
+    }
 
     public MonsterDeepCopy DeepCopy()
     {
