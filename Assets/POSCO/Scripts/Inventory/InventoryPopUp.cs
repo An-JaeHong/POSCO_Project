@@ -5,6 +5,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static System.Net.Mime.MediaTypeNames;
 using static UnityEngine.GraphicsBuffer;
 
 public class InventoryPopUp : MonoBehaviour
@@ -241,22 +242,27 @@ public class InventoryPopUp : MonoBehaviour
         }
 
         GameObject itemBackground = Instantiate(informationPopUpprefab, inventoryPos);
-
+        Transform target = itemBackground.transform.Find("RawImage");
+        RawImage rawImage = target.GetComponent<RawImage>();
+        target = itemBackground.transform.Find("InfoText");
+        TextMeshProUGUI targetText = target.GetComponent<TextMeshProUGUI>();
+        
         for (int i = 0; i < 5; i++)
         {
             if (uiInventory.playerMonsterList[i].name == uiInventory.tempSelectedMonsterList[number].name)
             {
-                Transform target = itemBackground.transform.Find("RawImage");
-                RawImage rawImage = target.GetComponent<RawImage>();
+                print($"i={i}");
                 rawImage.texture = uiInventory.renderTexture[i];
-
-                target = itemBackground.transform.Find("InfoText");
-                TextMeshProUGUI text = target.GetComponent<TextMeshProUGUI>();
-                text.text = uiInventory.UpdateSelectedMonsterInfo(number);
-
+                
+                print(target);
+                targetText.text = uiInventory.UpdateMonsterInfo(i);
+                break;
             }
-            UIInventoryManager.Instance.OpenPopup(itemBackground);
+            
         }
+        
+
+        UIInventoryManager.Instance.OpenPopup(itemBackground);
     }
 
 

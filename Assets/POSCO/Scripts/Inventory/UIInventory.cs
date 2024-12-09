@@ -71,6 +71,8 @@ public class UIInventory : MonoBehaviour
         FindSameMonsters();
         InstantiatePlayerMonster();
         potionNum = new int[3] { 3, 3, 3 };
+
+        Debug.Log($"Items Count: {item.items.Count}");
     }
 
     private void OnEnable()
@@ -502,12 +504,16 @@ public class UIInventory : MonoBehaviour
 
     public string UpdateSelectedMonsterInfo(int index)
     {
+        print(index);
+       
         Monster selectedMonster = monsterDataManager.selectedMonsterDataList[index];
 
         string result = $"몬스터 이름 : {selectedMonster.name}\n";
         result += $"체력 : {selectedMonster.hp} / {selectedMonster.maxHp}\n";
         result += $"레벨 : {selectedMonster.level}\n";
         result += $"공격력 : {selectedMonster.damage}\n";
+
+        print(result);
 
         return result;
     }
