@@ -18,6 +18,7 @@ public class NormalIdleState : IUnitState
 
     public void Enter(Unit unit)
     {
+        Debug.Log("Idle상태로 들어옴");
         //여기에서 일반 몬스터가 주위를 돌면서 있는 함수를 실행. 한 3초 움직였다가 2초 멈추는 움직이면 좋을듯
         //X축은 Unit의 포지션에서 +-unit.moveRange 값으로 움직인다.
         unit.isMove = true;
@@ -78,9 +79,17 @@ public class NormalIdleState : IUnitState
         //플레이어의 태그가 Player로 되어있어야 한다
         GameObject player = GameObject.FindGameObjectWithTag("Player");
 
+        //테스트
+        if (player == null)
+        {
+            Debug.LogError("플레이어를 찾을 수 없습니다.");
+            return false;
+        }
+
         //플레이어가 있으면
         if (UnitSight(unit, player))
         {
+            Debug.Log("플레이어 감지됨");
             return true;
         }
 

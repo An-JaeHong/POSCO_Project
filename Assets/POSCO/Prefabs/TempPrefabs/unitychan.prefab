@@ -4461,6 +4461,7 @@ MonoBehaviour:
   moveSpeed: 10
   mouseSensivity: 20
   cameraRig: {fileID: 303902764264134476}
+  uiInventory: {fileID: 0}
 --- !u!136 &5192407524971090806
 CapsuleCollider:
   m_ObjectHideFlags: 0

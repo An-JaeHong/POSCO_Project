@@ -24,7 +24,7 @@ public class Unit : MonoBehaviour
     public GameObject exclamationMarkPrefab; //´À³¦Ç¥ ÇÁ¸®ÆÕ
     private GameObject exclamationMark; //½ÇÁ¦ Ä×´Ù ²°´ÙÇÒ ´À³¦Ç¥
     public Transform spawnPosition; //½ºÆùµÇ´Â Àå¼Ò
-    public Player player;
+    private Player player;
 
     public string name;            //À¯´Ö ÀÌ¸§
     public int level;              //À¯´Ö ·¹º§
@@ -41,7 +41,7 @@ public class Unit : MonoBehaviour
     private TextMeshProUGUI unitInfoText;
 
     public Vector3 velocity;
-    public Rigidbody rb;
+    private Rigidbody rb;
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
@@ -76,7 +76,7 @@ public class Unit : MonoBehaviour
         else
         {
             level = Random.Range(1, 16);
-
+            print($"{level}·Î ·¹º§ Á¤ÇØÁü");
             ChangeState(new NormalIdleState());
         }
 
