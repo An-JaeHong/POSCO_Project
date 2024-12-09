@@ -76,7 +76,7 @@ public class PlayerBossBattleState : PlayerStateBase
         };
 
         UIPopupManager.Instance.ShowPopup(
-            $"{currentMonster.name}의 턴이다 무엇을 할까?",
+            $"Lv : {currentMonster.level}. {currentMonster.name}의 턴이다 무엇을 할까?\n현재 체력 : {currentMonster.hp}, 공격력 : {currentMonster.damage}",
             buttons
             );
     }
@@ -179,7 +179,7 @@ public class PlayerBossBattleState : PlayerStateBase
         for (int i = 0; i < aliveTargetList.Count; i++)
         {
             int index = TurnManager.Instance.enemyMonsterList.IndexOf(aliveTargetList[i]);
-            string targetName = $"{aliveTargetList[i].name}";
+            string targetName = $"{aliveTargetList[i].name}, 체력 {aliveTargetList[i].hp}";
 
             buttons.Add(
                     targetName,

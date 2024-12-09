@@ -205,10 +205,12 @@ public class AttackCommand
             button
         );
         #endregion
+
         attacker.selectedSkill = attacker.skills[0];
         attacker.FirstSkillAnimation();
         AnimatorStateInfo stateInfo = attacker.animator.GetCurrentAnimatorStateInfo(0);
         yield return new WaitForSeconds(stateInfo.length);
+
         #region ""가 ""에게 ~~의 데미지를 입혔다! 라는 UI
         var buttons = new Dictionary<string, UnityAction> { };
         UIPopupManager.Instance.ShowPopup(

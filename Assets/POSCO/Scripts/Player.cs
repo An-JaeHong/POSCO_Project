@@ -20,17 +20,34 @@ public class Player : MonoBehaviour
     public float mouseSensivity; //마우스 감도
     public Transform cameraRig;
 
+    private Item item;
+
     private Rigidbody rb;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        item = FindAnyObjectByType<Item>(); // 같은 GameObject에 Item 컴포넌트가 있는지 확인
+        if (item == null)
+        {
+            Debug.LogError("Item 컴포넌트가 Player 객체에 없습니다.");
+        }
     }
 
     private void Start()
     {
         currentState = new PlayerIdleState(this);
         currentState.Enter();
+        //item = GetComponent<Item>(); // 같은 GameObject에 Item 컴포넌트가 있는지 확인
+        //if (item == null)
+        //{
+        //    Debug.LogError("Item 컴포넌트가 Player 객체에 없습니다.");
+        //}
+    }
+
+    public void UseItem(int itemIndex, Monster targetMonster)
+    {
+        item.Use(itemIndex, targetMonster);
     }
 
     private void Update()

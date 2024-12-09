@@ -127,7 +127,7 @@ public class PlayerNormalBattleState : PlayerStateBase
         };
 
         UIPopupManager.Instance.ShowPopup(
-            $"{currentMonster.name}의 턴이다 무엇을 할까?",
+            $"{currentMonster.level}. {currentMonster.name}의 턴이다 무엇을 할까?\n현재 체력 : {currentMonster.hp}, 공격력 : {currentMonster.damage}",
             buttons
             );
     }
@@ -243,7 +243,7 @@ public class PlayerNormalBattleState : PlayerStateBase
         for (int i = 0; i < aliveTargetList.Count; i++)
         {
             int index = TurnManager.Instance.enemyMonsterList.IndexOf(aliveTargetList[i]);
-            string targetName = $"{aliveTargetList[i].name}({index + 1})";
+            string targetName = $"{aliveTargetList[i].name}({index + 1}), 체력 {aliveTargetList[i].hp}";
 
             buttons.Add(
                     targetName,
@@ -345,7 +345,33 @@ public class PlayerNormalBattleState : PlayerStateBase
 
     private void DoHeal()
     {
-
+        //버튼 생성
+        var buttons = new Dictionary<string, UnityAction>
+        {
+            {
+                "하급 체력물약\n체력의 20을 회복합니다", () =>
+                {
+                    player.UseItem(0, TurnManager.Instance.currentTurnMonster);
+                }
+            },
+            {
+                "중급 체력물약\n체력의 40을 회복합니다", () =>
+                {
+                    player.UseItem(1, TurnManager.Instance.currentTurnMonster);
+                }
+            },
+            {
+                "고급 엘릭서\n체력의 절반을 회복합니다", () =>
+                {
+                    player.UseItem(2, TurnManager.Instance.currentTurnMonster);
+                }
+            }
+        };
+        //UI생성
+        UIPopupManager.Instance.ShowPopup(
+            $"어떤 물약을 사용하시겠습니까?",
+            buttons
+            );
     }
 
     //update는 아직까진 필요없다.
