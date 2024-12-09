@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3328323894884817227
+--- !u!1 &8892453290980969745
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,13 +8,13 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2655114177310194164}
-  - component: {fileID: 5337036137481742751}
-  - component: {fileID: 8817340216591566931}
-  - component: {fileID: 4348568747853035385}
-  - component: {fileID: 1731720627421309886}
-  - component: {fileID: 4198659627710858337}
-  - component: {fileID: 4637867850238391186}
+  - component: {fileID: 6109726749753007163}
+  - component: {fileID: 635698332988388426}
+  - component: {fileID: 1025232845918307631}
+  - component: {fileID: 8281323803036115180}
+  - component: {fileID: 129597678265445901}
+  - component: {fileID: 4876392144620853064}
+  - component: {fileID: 6912026823793570928}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Boss
@@ -22,36 +22,36 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2655114177310194164
+--- !u!4 &6109726749753007163
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3328323894884817227}
+  m_GameObject: {fileID: 8892453290980969745}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 177.69531, y: 1, z: -59.11}
+  m_LocalPosition: {x: 178.12979, y: -0.0000038146973, z: -55.57225}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &5337036137481742751
+--- !u!33 &635698332988388426
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3328323894884817227}
+  m_GameObject: {fileID: 8892453290980969745}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &8817340216591566931
+--- !u!23 &1025232845918307631
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3328323894884817227}
+  m_GameObject: {fileID: 8892453290980969745}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -87,13 +87,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &4348568747853035385
+--- !u!136 &8281323803036115180
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3328323894884817227}
+  m_GameObject: {fileID: 8892453290980969745}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -110,13 +110,13 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!143 &1731720627421309886
+--- !u!143 &129597678265445901
 CharacterController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3328323894884817227}
+  m_GameObject: {fileID: 8892453290980969745}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -136,26 +136,27 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4198659627710858337
+--- !u!114 &4876392144620853064
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3328323894884817227}
+  m_GameObject: {fileID: 8892453290980969745}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 23f2a659166cc4343b8ca2b09fccffbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ownedMonsterList:
+  - {fileID: 7231072328102715926, guid: 1e6542a34962fb34c912952936907680, type: 3}
+  - {fileID: -2694613558643139336, guid: 563384e2a390e0a4192b13842809cb62, type: 3}
   - {fileID: 2550734210606328456, guid: 4838d6d06bfc43f45a1c4bd9fa2c97ce, type: 3}
-  - {fileID: 4251227727141545033, guid: 4bf20e0fd4bc1854cb398f21e12d4d44, type: 3}
-  - {fileID: 458603631973028805, guid: a0f3ab44ea09c4f438be8a1e86727271, type: 3}
   isBoss: 1
   exclamationMarkPrefab: {fileID: 8764048426798851983, guid: 5494df217f1871e459d48b337ca61ac7, type: 3}
-  spawnPosition: {fileID: 0}
+  spawnPosition: {fileID: 3369698236401120304, guid: df03634e83ff0424faf0ce48d0e6bae1, type: 3}
   name: Boss
+  level: 0
   moveSpeed: 0
   moveRange: 0
   sightAngle: 90
@@ -163,13 +164,16 @@ MonoBehaviour:
   isMove: 0
   hasRandomPosition: 0
   characterController: {fileID: 0}
---- !u!54 &4637867850238391186
+  canvasPrefab: {fileID: 5154029528745985802, guid: 955a36e8b92674e4fb12f8926647dbb8, type: 3}
+  velocity: {x: 0, y: 0, z: 0}
+  rb: {fileID: 0}
+--- !u!54 &6912026823793570928
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3328323894884817227}
+  m_GameObject: {fileID: 8892453290980969745}
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 0

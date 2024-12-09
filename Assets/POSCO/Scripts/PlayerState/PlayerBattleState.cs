@@ -370,7 +370,7 @@ public class PlayerNormalBattleState : PlayerStateBase
         Debug.Log("Exit 3");
 
         //전투가 끝나면 모든 UI를 닫아야한다
-        //UIPopupManager.Instance.ClosePopup();
+        UIPopupManager.Instance.ClosePopup();
 
         GameManager.Instance.InitializePlayerMonsterData();
 
@@ -415,6 +415,8 @@ public class PlayerNormalBattleState : PlayerStateBase
     }
 
     public int totalExperience;
+
+    //총 경험치를 계산하는 함수
     public int CalculateExperience()
     {
         for (int i = 0; i < TurnManager.Instance.enemyMonsterList.Count; i++)

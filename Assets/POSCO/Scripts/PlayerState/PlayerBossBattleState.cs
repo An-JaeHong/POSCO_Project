@@ -305,7 +305,7 @@ public class PlayerBossBattleState : PlayerStateBase
         CameraManager.Instance.HandleCamera(CameraType.FieldMap);
         Debug.Log("Exit 3");
 
-        //UIPopupManager.Instance.ClosePopup();
+        UIPopupManager.Instance.ClosePopup();
 
         GameManager.Instance.InitializePlayerMonsterData();
 
