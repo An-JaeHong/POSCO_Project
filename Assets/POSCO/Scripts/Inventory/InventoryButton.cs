@@ -84,9 +84,9 @@ public class InventoryButton : MonoBehaviour
         inventoryPopUp.ShowItemDate(number);
     }
     
-    public void OnOpenMonsterData(int number)
-    {
-        inventoryPopUp.ShowMonsterData(number);
-    }
+    //public void OnOpenMonsterData(int number)
+    //{
+    //    inventoryPopUp.ShowMonsterData(number);
+    //}
 
 }
