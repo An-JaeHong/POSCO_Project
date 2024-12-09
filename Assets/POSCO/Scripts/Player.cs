@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.Playables;
 
@@ -19,6 +20,11 @@ public class Player : MonoBehaviour
     public float moveSpeed;      //이동속도
     public float mouseSensivity; //마우스 감도
     public Transform cameraRig;
+
+    //[Range(2f, 10f)]
+    //public float zoomSpeed = 2f;
+    //public float minZoom = 2f;
+    //public float maxZoom = 10f;
 
     private Item item;
     public UIInventory uiInventory;
@@ -45,6 +51,9 @@ public class Player : MonoBehaviour
         //{
         //    Debug.LogError("Item 컴포넌트가 Player 객체에 없습니다.");
         //}
+
+        //시작하면 커서 잠금
+        LockCursor();
     }
 
     public void UseItem(int itemIndex, Monster targetMonster)
@@ -79,6 +88,28 @@ public class Player : MonoBehaviour
         //상태패턴 계속 실행
         currentState.Update();
         HandleSight();
+        //HandleZoom();
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            UnlockCursor();
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            LockCursor();
+        }
+
+        //if (Input.GetKeyDown(KeyCode.I))
+        //{
+        //    ToggleInventory();
+        //}
+
+
+        //if (Input.GetMouseButtonDown(0) && Cursor.lockState == CursorLockMode.None)
+        //{
+        //    LockCursor();
+        //}
     }
 
     //플레이어의 상태를 바꾸는 함수
@@ -114,6 +145,44 @@ public class Player : MonoBehaviour
 
         transform.Rotate(0, mouseX * mouseSensivity * Time.deltaTime, 0);
         cameraRig.Rotate(-mouseY * mouseSensivity * Time.deltaTime, 0, 0);
+    }
+
+    //public void HandleZoom()
+    //{
+    //    float scroll = Input.GetAxis("Mouse ScrollWheel");
+    //    Vector3 zoomDirection = cameraRig.forward * scroll * zoomSpeed;
+    //    cameraRig.localPosition = Vector3.ClampMagnitude(cameraRig.localPosition + zoomDirection, maxZoom);
+    //    cameraRig.localPosition = new Vector3(cameraRig.localPosition.x, Mathf.Clamp(cameraRig.localPosition.y, minZoom, maxZoom), cameraRig.localPosition.z);
+    //}
+
+    //커서 잠금
+    private void LockCursor()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
+    //커서 잠금해제
+    private void UnlockCursor()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+    private void ToggleInventory()
+    {
+        //if (uiInventory != null)
+        //{
+        //    uiInventory.Toggle(); // 인벤토리 UI를 토글하는 메서드가 있다고 가정
+        //    if (uiInventory.IsOpen()) // 인벤토리가 열려 있는지 확인하는 메서드가 있다고 가정
+        //    {
+        //        UnlockCursor();
+        //    }
+        //    else
+        //    {
+        //        LockCursor();
+        //    }
+        //}
     }
 
     public List<GameObject> GetMonsterPrefabList()

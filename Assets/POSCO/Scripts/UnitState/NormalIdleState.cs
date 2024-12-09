@@ -7,7 +7,7 @@ using UnityEngine;
 using static UnityEngine.UI.CanvasScaler;
 
 //일반 몬스터 Idle 상태 -> MonoBehaviour은 객체를 만들어야해서 인터페이스로 만든다.
-public class NormalIdleState : MonoBehaviour, IUnitState
+public class NormalIdleState : IUnitState
 {
     Vector3 destination;
     private float waitTime = 2f; //대기시간
@@ -147,11 +147,12 @@ public class NormalIdleState : MonoBehaviour, IUnitState
 
         return false;
     }
-    Vector3 directionToPlayer = Vector3.zero;
+    
+    //Vector3 directionToPlayer = Vector3.zero;
     private bool UnitSight(Unit unit, GameObject player)
     {
         //플레이어쪽을 보는 방향
-        directionToPlayer = (player.transform.position + new Vector3(0, 0.5f, 0) - unit.transform.position).normalized;
+        Vector3 directionToPlayer = (player.transform.position + new Vector3(0, 0.5f, 0) - unit.transform.position).normalized;
         //각도 = (유닛이 앞을 보는 방향, 플레이어를 보는 방향)
         float angle = Vector3.Angle(unit.transform.forward, directionToPlayer);
 
@@ -175,12 +176,7 @@ public class NormalIdleState : MonoBehaviour, IUnitState
         }
         return false;
     }
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        // directionToPlayer에 적절한 길이를 곱하여 선이 보이도록 합니다.
-        Gizmos.DrawLine(transform.position, transform.position + directionToPlayer * 5f);
-    }
+    
 
     public void Exit(Unit unit)
     {

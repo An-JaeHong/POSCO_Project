@@ -154,21 +154,35 @@ public class Unit : MonoBehaviour
         }
         //print("UnitMove함수가 실행됨");
         //움직이는 방향 노말벡터
-        Vector3 direction = (destination - transform.position).normalized;
+        float distanceToDestination = Vector3.Distance(transform.position, destination);
+        if (distanceToDestination > 0.1f)
+        {
+            Vector3 direction = (destination - transform.position).normalized;
+            Vector3 moveVelocity = direction * moveSpeed;
+
+            if (characterController.isGrounded && velocity.y < 0)
+            {
+                moveVelocity.y = 0;
+            }
+            moveVelocity.y += Physics.gravity.y * Time.deltaTime;
+            //Vector3 finalVelocity = moveVelocity + velocity;
+            characterController.Move(moveVelocity * Time.deltaTime);
+        }
+        //Vector3 direction = (destination - transform.position).normalized;
 
         //속도 = 방향 * 크기
-        Vector3 moveVelocity = direction * moveSpeed;
+        //Vector3 moveVelocity = direction * moveSpeed;
 
         //중력계산 -> 이거 좀 잘 해야할듯. 몬스터가 고꾸라지거나 위로 뜬다
         //moveVelocity.y = Physics.gravity.y * Time.deltaTime;
 
-        if (characterController.isGrounded && velocity.y < 0)
-        {
-            moveVelocity.y = 0;
-        }
-        moveVelocity.y += Physics.gravity.y * Time.deltaTime;
-        //Vector3 finalVelocity = moveVelocity + velocity;
-        characterController.Move(moveVelocity * Time.deltaTime);
+        //if (characterController.isGrounded && velocity.y < 0)
+        //{
+        //    moveVelocity.y = 0;
+        //}
+        //moveVelocity.y += Physics.gravity.y * Time.deltaTime;
+        ////Vector3 finalVelocity = moveVelocity + velocity;
+        //characterController.Move(moveVelocity * Time.deltaTime);
         //rb.velocity = new Vector3(velocity.x, rb.velocity.y, velocity.z);
     }
 

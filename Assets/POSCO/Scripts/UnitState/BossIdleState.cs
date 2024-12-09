@@ -38,8 +38,8 @@ public class BossIdleState : IUnitState
 
     private bool UnitSight(Unit unit, GameObject player)
     {
-        //플레이어쪽을 보는 방향
-        Vector3 directionToPlayer = (player.transform.position - unit.transform.position).normalized;
+        //플레이어쪽을 보는 방향 -> 0.5를 안더해줬더니 기즈모 방향이 아래를 바라봐서 플레이어를 감지하지 못했습니다.
+        Vector3 directionToPlayer = (player.transform.position + new Vector3(0, 0.5f, 0) - unit.transform.position).normalized;
         //각도 = (유닛이 앞을 보는 방향, 플레이어를 보는 방향)
         float angle = Vector3.Angle(unit.transform.forward, directionToPlayer);
 
