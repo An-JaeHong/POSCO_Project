@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -172,7 +173,7 @@ public class UIInventory : MonoBehaviour
         //print(monsterCardPos.transform);
         
         
-        //TODO: 몬스터 정보 받아와야함
+    
         cardList.Clear();
         for (int i = 0; i < playerMonsterList.Count; i++)
         {
@@ -228,10 +229,11 @@ public class UIInventory : MonoBehaviour
             button.onClick.AddListener(action);        
             button.interactable = false;
 
-
             targetButton = monsterCard.transform.Find("InfoButton");
             button = targetButton.GetComponentInChildren<Button>();
-            print (i);
+           
+
+           
             action = () => inventoryButton.OnShowMonsterInfoButton(parameterValue);
             button.onClick.AddListener(action);
             button.interactable =true;
@@ -278,7 +280,7 @@ public class UIInventory : MonoBehaviour
         
             for (int i = 0; i < 3; i++)
             {
-
+                
                 //카드 소환
                 GameObject monsterCard = Instantiate(monsterCardPrefab, monsterCardPos);
 
@@ -313,6 +315,16 @@ public class UIInventory : MonoBehaviour
                 Slider Slider;
                 Transform targetSlider;
                 targetSlider = monsterCard.transform.Find("Hp/Slider_Hp");
+                Button button;
+                Transform targetbutton;
+
+
+                int parameterValue = i;
+
+                targetbutton = monsterCard.transform.Find("InfoButton");
+                button = targetButton.GetComponent<Button>();
+                button.onClick.AddListener(() => inventoryButton.OnOpenCelectedMonsterData(parameterValue));
+
                 Slider = targetSlider.GetComponent<Slider>();
                 Slider.value = monsterDataManager.selectedMonsterDataList[i].hpAmount;
                 switch (TempSelectedMonsterList[i].element)
