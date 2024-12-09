@@ -14,7 +14,7 @@ public class UIInventory : MonoBehaviour
     //플레이어가 들고있는 몬스터정보 복사 
     public List<Monster> playerMonsterList = new List<Monster>();
     //선택된 몬스터가 임시로 저장되는 공간 
-    public List<Monster> TempSelectedMonsterList = new List<Monster>();
+    public List<Monster> tempSelectedMonsterList = new List<Monster>();
     public List<Monster> currentSelectedMonsterList = new List<Monster>();
 
     // 인벤토리에 띄울 몬스터 전체 리스트
@@ -52,6 +52,7 @@ public class UIInventory : MonoBehaviour
    
     private void Start()
     {
+
         inventoryPopUp = FindObjectOfType<InventoryPopUp>();
         inventoryButton = FindObjectOfType<InventoryButton>();
         player = FindObjectOfType<Player>();
@@ -166,15 +167,6 @@ public class UIInventory : MonoBehaviour
         Button button = targetButton.GetComponentInChildren<Button>();
         button.onClick.AddListener(() => inventoryButton.OnChioseBattleMonsterButton());
 
-
-
-        //UnityAction action1 = () => inventoryButton.OnChioseBattleMonsterButton();
-        //button.onClick.AddListener(action1);
-
-        //print(monsterCardPos.transform);
-        
-        
-    
         cardList.Clear();
         for (int i = 0; i < playerMonsterList.Count; i++)
         {
@@ -208,7 +200,7 @@ public class UIInventory : MonoBehaviour
             inputText = targetText.GetComponent<TMP_Text>();
             inputText.text = $"{monsterDataManager.allMonsterDataList[i].hp}/{monsterDataManager.allMonsterDataList[i].maxHp}";
 
-            //체력바 입력 // 나중에 MonsterDataManager에서 정보를 받아야함.
+            //체력바 입력 
             Slider Slider;
             Transform targetSlider;
             targetSlider = monsterCard.transform.Find("Hp/Slider_Hp");
@@ -220,8 +212,6 @@ public class UIInventory : MonoBehaviour
             targetButton = monsterCard.transform.Find("MonsterCardButton");
             button = targetButton.GetComponentInChildren<Button>();
 
-
-            //체력바 추가
 
             int parameterValue = i;
 
@@ -293,7 +283,7 @@ public class UIInventory : MonoBehaviour
                 //소환된 카드 표현되는 이미지 바꾸기(몬스터 모양) 
                 for (int k = 0; k < 5; k++)
                 {
-                    if (playerMonsterList[k].name == TempSelectedMonsterList[i].name)
+                    if (playerMonsterList[k].name == tempSelectedMonsterList[i].name)
                     {
                         Transform targetTexture = monsterCard.transform.Find("MonsterCardButton");
                         RawImage rawImage = targetTexture.GetComponent<RawImage>();
@@ -304,7 +294,7 @@ public class UIInventory : MonoBehaviour
                 //소환된 카드에 이름 삽입하기
                 Transform targetText = monsterCard.transform.Find("TextName");
                 TMP_Text inputText = targetText.GetComponent<TMP_Text>();
-                inputText.text = TempSelectedMonsterList[i].name;
+                inputText.text = tempSelectedMonsterList[i].name;
 
                 //체력 삽입
                
@@ -325,11 +315,11 @@ public class UIInventory : MonoBehaviour
 
                 targetButton = monsterCard.transform.Find("InfoButton");
                 button = targetButton.GetComponentInChildren<Button>();
-
+                button.onClick.RemoveAllListeners();
                 button.onClick.AddListener(() => inventoryButton.OnOpenCelectedMonsterData(parameterValue));
 
 
-                switch (TempSelectedMonsterList[i].element)
+                switch (tempSelectedMonsterList[i].element)
                 {
                     case Element.Fire:
                         //print("진입함?3");
@@ -382,7 +372,7 @@ public class UIInventory : MonoBehaviour
     //속성에 맞는 이미지 넣기, 버튼 활성비활성
     public void OnMonsterCard(int number)
     {
-        
+       
         Transform targetButton;
         Button button;
         Transform targetTransform;
@@ -392,6 +382,7 @@ public class UIInventory : MonoBehaviour
         Image targetImage;
         ColorBlock colorBlock;
         print(cardList[1]);
+        
         if (choiceNum < 3) // 최대 3마리 선택 가능
         {
             
@@ -422,7 +413,7 @@ public class UIInventory : MonoBehaviour
             print($"{choiceNum + 1}번째 카드 선택"); // 선택한 카드 출력
 
             choiceNum++; // 선택한 카드 수 증가
-            TempSelectedMonsterList.Add(playerMonsterList[number]);
+            tempSelectedMonsterList.Add(playerMonsterList[number]);
             currentSelectedMonsterList.Add(playerMonsterList[number]);
            
           
@@ -440,7 +431,7 @@ public class UIInventory : MonoBehaviour
     {
         if (choiceNum == 3)
         {
-            player.SetSelectedMonsters(TempSelectedMonsterList);
+            player.SetSelectedMonsters(tempSelectedMonsterList);
         }
         Transform targetButton;
         Button button;
@@ -473,7 +464,7 @@ public class UIInventory : MonoBehaviour
         }
         
         inventoryPopUp.InstantiateSelectedMonster();
-        TempSelectedMonsterList.Clear();
+        tempSelectedMonsterList.Clear();
      
         choiceNum = 0;
     }
@@ -506,6 +497,18 @@ public class UIInventory : MonoBehaviour
         result += $"레벨 : {selectedMonster.level}\n";
         result += $"공격력 : {selectedMonster.damage}\n";
         
+        return result;
+    }
+
+    public string UpdateSelectedMonsterInfo(int index)
+    {
+        Monster selectedMonster = monsterDataManager.selectedMonsterDataList[index];
+
+        string result = $"몬스터 이름 : {selectedMonster.name}\n";
+        result += $"체력 : {selectedMonster.hp} / {selectedMonster.maxHp}\n";
+        result += $"레벨 : {selectedMonster.level}\n";
+        result += $"공격력 : {selectedMonster.damage}\n";
+
         return result;
     }
 

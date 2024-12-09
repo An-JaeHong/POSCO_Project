@@ -79,6 +79,11 @@ public class InventoryButton : MonoBehaviour
         inventoryPopUp.ShowMyBattleMonster();
     }
 
+    public void OnShowBattleMonster(int number)
+    {
+        inventoryPopUp.ShowBattleMonsterData(number);
+    }
+
     public void OnOpenItemData(int number)
     {print (number);
         inventoryPopUp.ShowItemDate(number);
@@ -88,7 +93,7 @@ public class InventoryButton : MonoBehaviour
 
     public void OnOpenCelectedMonsterData(int number)
     {
-        inventoryPopUp.ShowMonsterData(number);
+        inventoryPopUp.ShowBattleMonsterData(number);
     }
 
 }

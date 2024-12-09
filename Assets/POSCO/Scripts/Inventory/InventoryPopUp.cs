@@ -126,7 +126,7 @@ public class InventoryPopUp : MonoBehaviour
         }
 
         uiInventory.choiceNum = 0;
-        uiInventory.TempSelectedMonsterList.Clear();
+        uiInventory.tempSelectedMonsterList.Clear();
         uiInventory.currentSelectedMonsterList.Clear();
         GameObject selectedMonsterPrefab = Instantiate(showSelectedMonsterBackgoundPrefab, inventoryPos);
         uiInventory.selectedMonster = selectedMonsterPrefab;
@@ -158,7 +158,7 @@ public class InventoryPopUp : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             targetbutton = itemPrefab.transform.Find($"MonsterCardGirdLayoutGroup/Potion{i + 1}");
- 
+
             button = targetbutton.GetComponent<Button>();
             int parameterValue = i;
             button.onClick.AddListener(() => inventoryButton.OnOpenItemData(parameterValue));
@@ -181,7 +181,7 @@ public class InventoryPopUp : MonoBehaviour
 
     public void ShowItemInfo()
     {
-        
+
     }
 
     public void ClosePopup()
@@ -217,28 +217,53 @@ public class InventoryPopUp : MonoBehaviour
         }
 
         GameObject itemBackground = Instantiate(informationPopUpprefab, inventoryPos);
+
+
+
+        Transform target = itemBackground.transform.Find("RawImage");
+        RawImage rawImage = target.GetComponent<RawImage>();
+        rawImage.texture = uiInventory.renderTexture[number];
+
+        target = itemBackground.transform.Find("InfoText");
+        TextMeshProUGUI text = target.GetComponent<TextMeshProUGUI>();
+        text.text = uiInventory.UpdateMonsterInfo(number);
+
+
+        UIInventoryManager.Instance.OpenPopup(itemBackground);
+
+    }
+    public void ShowBattleMonsterData(int number)
+    {
+        if (UIInventoryManager.Instance.IsPopupOpen() >= 3) // 팝업이 이미 열려 있는지 확인
+        {
+            print("이미열림");
+            return; // 팝업이 열려 있으면 다시 열지 않음
+        }
+
+        GameObject itemBackground = Instantiate(informationPopUpprefab, inventoryPos);
+
         for (int i = 0; i < 5; i++)
         {
-            if (uiInventory.playerMonsterList[i].name == uiInventory.TempSelectedMonsterList[number].name)
+            if (uiInventory.playerMonsterList[i].name == uiInventory.tempSelectedMonsterList[number].name)
             {
-               
                 Transform target = itemBackground.transform.Find("RawImage");
                 RawImage rawImage = target.GetComponent<RawImage>();
                 rawImage.texture = uiInventory.renderTexture[i];
 
                 target = itemBackground.transform.Find("InfoText");
                 TextMeshProUGUI text = target.GetComponent<TextMeshProUGUI>();
-                text.text = uiInventory.UpdateMonsterInfo(i);
-            }
-        }
+                text.text = uiInventory.UpdateSelectedMonsterInfo(number);
 
-        UIInventoryManager.Instance.OpenPopup(itemBackground);
-        
+            }
+            UIInventoryManager.Instance.OpenPopup(itemBackground);
+        }
     }
 
 
-
 }
+
+
+
 
 
 

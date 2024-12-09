@@ -251,7 +251,7 @@ public class InventoryUI : MonoBehaviour
         inventory.SetActive(false);
         monsterCardBackground.SetActive(false);
         showSelectMonsterBackground.SetActive(false);
-
+        
     }
 
     public void OnRestetButton()
