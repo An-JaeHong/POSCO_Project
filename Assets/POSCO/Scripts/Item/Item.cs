@@ -40,7 +40,7 @@ public class Item : MonoBehaviour
 
     private void Start()
     {
-
+        uiInventory = FindAnyObjectByType<UIInventory>();
         items = new List<ItemInfo>
         {
             new ItemInfo("Potion1", 20),
