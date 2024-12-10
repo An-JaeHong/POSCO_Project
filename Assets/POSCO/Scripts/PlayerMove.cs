@@ -19,7 +19,7 @@ public class PlayerMove : MonoBehaviour
         float vertical = Input.GetAxis("Vertical");
         Vector3 direction = new Vector3(horizontal, 0, vertical).normalized;
         dir = 0;
-        if (horizontal>0|| vertical>0)
+        if (horizontal!=0|| vertical>0)
         {
             animator.SetBool("isMoving", true); // ∞»±‚ Ω√¿€
         }
