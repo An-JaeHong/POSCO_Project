@@ -2846,3 +2846,4 @@ MonoBehaviour:
   skillDataArr:
   - {fileID: 11400000, guid: a02f1fced600a4742854cad10530bab2, type: 2}
   attackType: 0
+  damageTextPrefab: {fileID: 653353192101513035, guid: 3db04e6a5540220489ae053c437c6e7d, type: 3}

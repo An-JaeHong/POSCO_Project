@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     private static GameManager instance;
     public static GameManager Instance { get { return instance; } }
 
+    public GameObject damageTextPrefab;
 
     //전투에 들어가는 몬스터 리스트
     public List<Monster> playerMonsterInBattleList = new List<Monster>();
@@ -151,14 +152,30 @@ public class GameManager : MonoBehaviour
             Monster tempMonster = playerMonsterObj.GetComponent<Monster>();
             spawnedPlayerMonsterList.Add(tempMonster);
 
+            #region
+            DamageDisPlay damageDisplay = playerMonsterObj.AddComponent<DamageDisPlay>();
+            damageDisplay.damageTextPrefab = damageTextPrefab;
+
+            Canvas canvas = damageDisplay.GetComponentInChildren<Canvas>();
+            CameraManager.Instance.SetCanvasEventCamera(canvas);
+            #endregion
+
             //나중에 한번에 삭제하기 편하게 하려고 리스트에 추가한다.
             instantiatedMonsterList.Add(playerMonsterObj);
         }
         for (int i = 0; i < enemyMonsterInBattleList.Count; i++)
         {
-            GameObject enemyMonsterObj = Instantiate(enemyMonsterInBattleList[i].gameObject, enemyBattlePosList[i].transform.position, Quaternion.Euler(0, 90f, 0));
+            GameObject enemyMonsterObj = Instantiate(enemyMonsterInBattleList[i].gameObject, enemyBattlePosList[i].transform.position, Quaternion.Euler(0, -90f, 0));
             Monster tempMonster = enemyMonsterObj.GetComponent<Monster>();
             spawnedEnemyMonsterList.Add(tempMonster);
+
+            #region
+            DamageDisPlay damageDisplay = enemyMonsterObj.AddComponent<DamageDisPlay>();
+            damageDisplay.damageTextPrefab = damageTextPrefab;
+
+            Canvas canvas = damageDisplay.GetComponentInChildren<Canvas>();
+            CameraManager.Instance.SetCanvasEventCamera(canvas);
+            #endregion
 
             //나중에 한번에 삭제하기 편하게 하려고 리스트에 추가한다.
             instantiatedMonsterList.Add(enemyMonsterObj);
@@ -181,6 +198,14 @@ public class GameManager : MonoBehaviour
             Monster tempMonster = playerMonsterObj.GetComponent<Monster>();
             spawnedPlayerMonsterList.Add(tempMonster);
 
+            #region
+            DamageDisPlay damageDisplay = playerMonsterObj.AddComponent<DamageDisPlay>();
+            damageDisplay.damageTextPrefab = damageTextPrefab;
+            //playerMonsterObj.AddComponent<DamageDisPlay>();
+            Canvas canvas = damageDisplay.GetComponentInChildren<Canvas>();
+            CameraManager.Instance.SetCanvasEventCamera(canvas);
+            #endregion
+
             //나중에 한번에 삭제하기 편하게 하려고 리스트에 추가한다.
             instantiatedMonsterList.Add(playerMonsterObj);
         }
@@ -190,6 +215,15 @@ public class GameManager : MonoBehaviour
             Monster tempMonster = enemyMonsterObj.GetComponent<Monster>();
             spawnedEnemyMonsterList.Add(tempMonster);
 
+            #region
+            DamageDisPlay damageDisplay = enemyMonsterObj.AddComponent<DamageDisPlay>();
+            damageDisplay.damageTextPrefab = damageTextPrefab;
+
+            Canvas canvas = damageDisplay.GetComponentInChildren<Canvas>();
+            CameraManager.Instance.SetCanvasEventCamera(canvas);
+            #endregion
+
+            //enemyMonsterObj.AddComponent<DamageDisPlay>();
 
             //나중에 한번에 삭제하기 편하게 하려고 리스트에 추가한다.
             instantiatedMonsterList.Add(enemyMonsterObj);

@@ -90,4 +90,12 @@ public class CameraManager : MonoBehaviour
         //    player.CameraSetting();
         //}
     }
+    
+    public void SetCanvasEventCamera(Canvas canvas)
+    {
+        if (canvas != null)
+        {
+            canvas.worldCamera = currentCamera;
+        }
+    }
 }

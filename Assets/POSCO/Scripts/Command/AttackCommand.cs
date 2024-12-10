@@ -89,6 +89,10 @@ public class AttackCommand
         //상성 확인
         //데미지 계산
         target.TakeDamage(attacker.damage);
+
+        //테스트
+        ShowDamageInBattleMap(target, attacker.damage);
+
         //피격 애니메이션 재생
         target.PlayTakeDamageAnimation();
 
@@ -114,6 +118,20 @@ public class AttackCommand
 
         //공격이 끝나면 PlayerAction이 끝났다는걸 알려줘야함
         GameManager.Instance.isPlayerActionComplete = true;
+    }
+
+    private void ShowDamageInBattleMap(Monster target, float damage)
+    {
+        //Monster -> battleObject
+        GameObject battleObject = target.gameObject;
+        if (battleObject != null)
+        {
+            DamageDisPlay damageDisplay = battleObject.GetComponent<DamageDisPlay>();
+            if (damageDisplay != null)
+            {
+                damageDisplay.ShowDamage(damage);
+            }
+        }
     }
 
     public IEnumerator EnemyNormalAttackCoroutine()

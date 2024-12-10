@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using static UnityEngine.ParticleSystem;
@@ -62,6 +63,9 @@ public class Monster : MonoBehaviour
 
     //공격 타입 -> 나중에 기본경격인지, 스킬인지 확인하게끔 필요한 변수
     public AttackType attackType;
+
+    //데미지 텍스트 프리팹
+    public GameObject damageTextPrefab;
     
     private void Awake()
     {
@@ -149,6 +153,7 @@ public class Monster : MonoBehaviour
         //}
 
         hp -= damage;
+        ShowDamageText(damage);
         print($"{name}가 맞았다. 남은체력 : {hp}");
 
         //if (isEffectIsGreat)
@@ -160,6 +165,22 @@ public class Monster : MonoBehaviour
         {
             hp = 0;
             OnDead();
+        }
+    }
+
+    private void ShowDamageText(float damage)
+    {
+        print("데미지 보여줘어");
+        if (damageTextPrefab != null)
+        {
+            GameObject damageTextObj = Instantiate(damageTextPrefab, transform.position + Vector3.up * 2, Quaternion.identity);
+            TextMeshProUGUI damageText = damageTextObj.GetComponentInChildren<TextMeshProUGUI>();
+            if (damageText != null)
+            {
+                damageText.text = damage.ToString();
+                print($"{damage}의 데미지 텍스트가 들어와야함");
+            }
+            Destroy(damageText, 1.5f);
         }
     }
 
