@@ -50,7 +50,7 @@ public class MonsterRespawn : MonoBehaviour
             int random =Random.Range(0, 18);
             
             SpawnPrefab(prefabToSpawn[random], respawnPos[i % respawnPos.Count], i % respawnPos.Count);
-            print(i);
+            //print(i);
         }
 
 
