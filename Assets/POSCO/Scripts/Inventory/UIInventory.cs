@@ -452,6 +452,16 @@ public class UIInventory : MonoBehaviour
 
     }
     
+    public void AllCardbuttonStop()
+    {
+        Transform targetButton;
+        foreach (var cardListButton in cardList)
+        {
+            targetButton = cardListButton.transform.Find("MonsterCardButton");
+            Button button = targetButton.GetComponent<Button>();
+            button.interactable = false;
+        }
+    }
 
     public void ResetCelectedMonster()
     {
