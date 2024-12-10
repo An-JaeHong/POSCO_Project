@@ -193,34 +193,36 @@ public class AttackCommand
         #endregion
         //첫번째 스킬 실행하는 애니메이션실행
         attacker.PlayFirstSkillAnimation();
-        attacker.UseSkill(target);
+        bool isEffectIsGreat = false;
+        attacker.UseSkill(target, out isEffectIsGreat);
 
         AnimatorStateInfo stateInfo = attacker.animator.GetCurrentAnimatorStateInfo(0);
         yield return new WaitForSeconds(stateInfo.length);
 
-        float skillDamage = attacker.selectedSkill.skillDamage;
-        //효과가 굉장했다는 일단 false
-        bool isEffectIsGreat = false;
+        //float skillDamage = attacker.selectedSkill.skillDamage;
+        ////효과가 굉장했다는 일단 false
+        ////bool isEffectIsGreat = false;
 
-        if ((attacker.element == Element.Fire && target.element == Element.Grass) ||
-            (attacker.element == Element.Grass && target.element == Element.Water) ||
-            (attacker.element == Element.Water && target.element == Element.Fire))
-        {
-            skillDamage *= 1.5f;
-            isEffectIsGreat = true;
-        }
+        //if ((attacker.element == Element.Fire && target.element == Element.Grass) ||
+        //    (attacker.element == Element.Grass && target.element == Element.Water) ||
+        //    (attacker.element == Element.Water && target.element == Element.Fire))
+        //{
+        //    skillDamage *= 1.5f;
+        //    isEffectIsGreat = true;
+        //}
 
-        target.TakeDamage(skillDamage);
-
-        if (isEffectIsGreat)
+        //target.TakeDamage(skillDamage);
+        attacker.StartParticleMovement(attacker.selectedSkill.particle, target.transform.position, attacker.selectedSkill.particleDuration, () =>
         {
-            ShowEffectIsGreatPopup();
-            //GameManager.Instance.isEnemyActionComplete = true;
-        }
-        else
-        {
-            #region ""가 ""에게 ~~의 데미지를 입혔다! 라는 UI
-            var buttons = new Dictionary<string, UnityAction>
+            if (isEffectIsGreat)
+            {
+                ShowEffectIsGreatPopup();
+                //GameManager.Instance.isEnemyActionComplete = true;
+            }
+            else
+            {
+                #region ""가 ""에게 ~~의 데미지를 입혔다! 라는 UI
+                var buttons = new Dictionary<string, UnityAction>
         {
             {
                 "확인", ()=>
@@ -230,12 +232,38 @@ public class AttackCommand
                 }
             }
         };
-            UIPopupManager.Instance.ShowPopup(
-                $"{target.name}에게 {skillDamage}만큼의 데미지를 입혔다!",
-                buttons
-            );
-        }
-        #endregion
+                UIPopupManager.Instance.ShowPopup(
+                    $"{target.name}에게 {attacker.selectedSkill.skillDamage}만큼의 데미지를 입혔다!",
+                    buttons
+                );
+            }
+            #endregion
+            //isClickCheckButton = true;
+        });
+        //if (isEffectIsGreat)
+        //{
+        //    ShowEffectIsGreatPopup();
+        //    //GameManager.Instance.isEnemyActionComplete = true;
+        //}
+        //else
+        //{
+        //    #region ""가 ""에게 ~~의 데미지를 입혔다! 라는 UI
+        //    var buttons = new Dictionary<string, UnityAction>
+        //{
+        //    {
+        //        "확인", ()=>
+        //        {
+        //            UIPopupManager.Instance.ClosePopup();
+        //            isClickCheckButton = true;
+        //        }
+        //    }
+        //};
+        //    UIPopupManager.Instance.ShowPopup(
+        //        $"{target.name}에게 {attacker.selectedSkill.skillDamage}만큼의 데미지를 입혔다!",
+        //        buttons
+        //    );
+        //}
+        //#endregion
         //isClickCheckButton = true;
 
         //2초후에 행동을 재개
@@ -260,26 +288,27 @@ public class AttackCommand
         //attacker.selectedSkill = attacker.skillDataArr[0];
         //스킬 애니메이션 재생
         attacker.PlayFirstSkillAnimation();
-        attacker.UseSkill(target);
+        bool isEffectIsGreat;
+        attacker.UseSkill(target, out isEffectIsGreat);
         //애니메이션 재생하는 변수
         AnimatorStateInfo stateInfo = attacker.animator.GetCurrentAnimatorStateInfo(0);
         //애니메이션 재생하는 변수의 길이만큼 기다려준다 즉, 애니메이션이 끝날때 까지 기다림
         //여기에다가 투사체가 타겟에게 가는 것 까지 하면 될 듯
         yield return new WaitForSeconds(stateInfo.length);
 
-        float skillDamage = attacker.selectedSkill.skillDamage;
-        //효과가 굉장했다는 일단 false
-        bool isEffectIsGreat = false;
+        //float skillDamage = attacker.selectedSkill.skillDamage;
+        ////효과가 굉장했다는 일단 false
+        ////bool isEffectIsGreat = false;
 
-        if ((attacker.element == Element.Fire && target.element == Element.Grass) ||
-            (attacker.element == Element.Grass && target.element == Element.Water) ||
-            (attacker.element == Element.Water && target.element == Element.Fire))
-        {
-            skillDamage *= 1.5f;
-            isEffectIsGreat = true;
-        }
+        //if ((attacker.element == Element.Fire && target.element == Element.Grass) ||
+        //    (attacker.element == Element.Grass && target.element == Element.Water) ||
+        //    (attacker.element == Element.Water && target.element == Element.Fire))
+        //{
+        //    skillDamage *= 1.5f;
+        //    isEffectIsGreat = true;
+        //}
 
-        target.TakeDamage(skillDamage);
+        //target.TakeDamage(skillDamage);
 
         if (isEffectIsGreat)
         {
@@ -301,7 +330,7 @@ public class AttackCommand
                 }
             };
             UIPopupManager.Instance.ShowPopup(
-                $"{target.name}에게 {skillDamage}만큼의 데미지를 입혔다!",
+                $"{target.name}에게 {attacker.selectedSkill.skillDamage}만큼의 데미지를 입혔다!",
                 buttons
             );
             #endregion

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public enum SkillType
@@ -38,8 +39,9 @@ public class Skill
         particleDuration = skillData.particleDuration;
     }
 
-    public bool UseSkill(Monster attacker, Monster target)
+    public bool UseSkill(Monster attacker, Monster target, out bool isEffectGreat)
     {
+        isEffectGreat = false;
         if (skillCount > 0)
         {
             skillCount--;
@@ -47,16 +49,26 @@ public class Skill
             if (skillType == SkillType.Ranged)
             {
                 instantiatedParticle = GameObject.Instantiate(particle, attacker.transform.position, Quaternion.identity);
-                attacker.StartParticleMovement(instantiatedParticle, target.transform.position, particleDuration);
-                
+                attacker.StartParticleMovement(instantiatedParticle, target.transform.position, particleDuration, () =>
+                {
+                    attacker.PlayFirstSkillAnimation();
+                    float finalDamage = CalculateDamage(attacker, target, out bool localIsEffectGreat);
+                    target.TakeDamage(finalDamage);
+                    target.PlayTakeDamageAnimation();
+                }
+                );
             }
             else if (skillType == SkillType.Melee)
             {
                 instantiatedParticle= GameObject.Instantiate(particle, target.transform.position, Quaternion.identity);
                 attacker.PlayFirstSkillAnimation();
+                float finalDamage = CalculateDamage(attacker, target, out isEffectGreat);
+                target.TakeDamage(finalDamage);
+                target.PlayTakeDamageAnimation();
             }
 
-            if (instantiatedParticle != null)
+            //근접 공격 파티클은 여기서 삭제, 원거리 공격은 코루틴에서 삭제해준다
+            if (instantiatedParticle != null && skillType == SkillType.Melee)
             {
                 GameObject.Destroy(instantiatedParticle, particleDuration);
             }
@@ -71,5 +83,17 @@ public class Skill
         }
     }
 
-    //private float CalculateDamage(Monster attacker, Mons)
+    private float CalculateDamage(Monster attacker, Monster target, out bool isEffectGreat)
+    {
+        float finalDamage = skillDamage;
+        isEffectGreat = false;
+        if ((attacker.element == Element.Fire && target.element == Element.Grass) ||
+            (attacker.element == Element.Grass && target.element == Element.Water) ||
+            (attacker.element == Element.Water && target.element == Element.Fire))
+        {
+            finalDamage *= 1.5f;
+            isEffectGreat = true;
+        }
+        return finalDamage;
+    }
 }

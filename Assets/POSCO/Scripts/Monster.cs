@@ -211,23 +211,27 @@ public class Monster : MonoBehaviour
         selectedSkill = new Skill(skillDataArr[skillNum]);
     }
 
-    public void UseSkill(Monster target)
+    public void UseSkill(Monster target, out bool isEffectGreat)
     {
-        if (selectedSkill != null && selectedSkill.UseSkill(this, target))
+        isEffectGreat = false;
+        if (selectedSkill != null)
         {
-            print($"{name}이 {selectedSkill.skillName}을 사용했습니다");
+            if (selectedSkill.UseSkill(this, target, out isEffectGreat))
+            {
+                print($"{name}이 {selectedSkill.skillName}을 사용했습니다");
+            }
         }
     }
 
-    public void StartParticleMovement(GameObject particle, Vector3 targetPosition, float duration)
+    public void StartParticleMovement(GameObject particle, Vector3 targetPosition, float duration, Action onComplete)
     {
         if (particle != null)
         {
-            StartCoroutine(MoveParticle(particle, targetPosition, duration));
+            StartCoroutine(MoveParticle(particle, targetPosition, duration, onComplete));
         }
     }
 
-    private IEnumerator MoveParticle(GameObject particle, Vector3 targetPosition, float duration)
+    private IEnumerator MoveParticle(GameObject particle, Vector3 targetPosition, float duration, Action onComplete)
     {
         if (particle == null)
         {
@@ -255,6 +259,9 @@ public class Monster : MonoBehaviour
 
             GameObject.Destroy(particle);
         }
+
+        //투사체가 다 도달하고 Invoke해준다
+        onComplete?.Invoke();
     }
 
     //첫번째 스킬 애니메이션 실행하는 함수

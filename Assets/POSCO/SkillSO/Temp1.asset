@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Temp1
   m_EditorClassIdentifier: 
   skillName: "\uC784\uC2DC\uC2A4\uD0AC"
-  particle: {fileID: 4559769962135713255, guid: ee3d9d70dabace843b872ccb2163d2df, type: 3}
+  particle: {fileID: 165220, guid: 9fe8a4211838aa744900561a4b1853c2, type: 3}
   skillDamage: 20
   skillElement: 1
   skillCount: 20
