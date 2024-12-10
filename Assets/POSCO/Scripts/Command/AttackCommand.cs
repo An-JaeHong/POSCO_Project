@@ -126,7 +126,7 @@ public class AttackCommand
         GameObject battleObject = target.gameObject;
         if (battleObject != null)
         {
-            DamageDisPlay damageDisplay = battleObject.GetComponent<DamageDisPlay>();
+            DamageDisplay damageDisplay = battleObject.GetComponent<DamageDisplay>();
             if (damageDisplay != null)
             {
                 damageDisplay.ShowDamage(damage);

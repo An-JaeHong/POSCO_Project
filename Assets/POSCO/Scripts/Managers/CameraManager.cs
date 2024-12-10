@@ -52,7 +52,8 @@ public class CameraManager : MonoBehaviour
         bossMapCamera.enabled = false;
 
         //현재 카메라 세팅
-        currentCamera = fieldSceneCamera.GetComponent<Camera>();
+        //currentCamera = fieldSceneCamera.GetComponent<Camera>();
+        currentCamera = fieldSceneCamera;
         currentCameraType = CameraType.FieldMap;
         HandleCamera(currentCameraType);
     }
@@ -72,14 +73,17 @@ public class CameraManager : MonoBehaviour
         switch (cameraType)
         {
             case CameraType.BattleMap:
-                currentCamera = battleMapCamera.GetComponent<Camera>();
+                //currentCamera = battleMapCamera.GetComponent<Camera>();
+                currentCamera = battleMapCamera;
                 Time.timeScale = 1;
                 break;
             case CameraType.FieldMap:
-                currentCamera = fieldSceneCamera.GetComponent<Camera>();
+                //currentCamera = fieldSceneCamera.GetComponent<Camera>();
+                currentCamera = fieldSceneCamera;
                 break;
             case CameraType.BossMap:
-                currentCamera = bossMapCamera.GetComponent<Camera>();
+                //currentCamera = bossMapCamera.GetComponent<Camera>();
+                currentCamera = bossMapCamera;
                 break;
         }
 

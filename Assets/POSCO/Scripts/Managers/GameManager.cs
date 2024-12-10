@@ -148,16 +148,23 @@ public class GameManager : MonoBehaviour
         
         for (int i = 0; i < playerMonsterInBattleList.Count; i++)
         {
-            GameObject playerMonsterObj = Instantiate(playerMonsterInBattleList[i].gameObject, playerBattlePosList[i].transform.position, Quaternion.Euler(0, 90f, 0));
+            GameObject playerMonsterObj = Instantiate(playerMonsterInBattleList[i].gameObject, playerBattlePosList[i].transform.position, Quaternion.Euler(0, -90f, 0));
             Monster tempMonster = playerMonsterObj.GetComponent<Monster>();
             spawnedPlayerMonsterList.Add(tempMonster);
 
             #region
-            DamageDisPlay damageDisplay = playerMonsterObj.AddComponent<DamageDisPlay>();
-            damageDisplay.damageTextPrefab = damageTextPrefab;
+            //DamageDisplay damageDisplay = playerMonsterObj.AddComponent<DamageDisplay>();
+            //damageDisplay.damageTextPrefab = damageTextPrefab;
 
-            Canvas canvas = damageDisplay.GetComponentInChildren<Canvas>();
-            CameraManager.Instance.SetCanvasEventCamera(canvas);
+            //Canvas canvas = damageDisplay.GetComponentInChildren<Canvas>();
+            //CameraManager.Instance.SetCanvasEventCamera(canvas);
+
+            //if (canvas != null)
+            //{
+            //    Camera mainCamera = CameraManager.Instance.currentCamera;
+            //    canvas.transform.LookAt(mainCamera.transform);
+            //    canvas.transform.Rotate(0, 180, 0); // LookAt으로 인해 뒤집힌 경우 보정
+            //}
             #endregion
 
             //나중에 한번에 삭제하기 편하게 하려고 리스트에 추가한다.
@@ -165,16 +172,23 @@ public class GameManager : MonoBehaviour
         }
         for (int i = 0; i < enemyMonsterInBattleList.Count; i++)
         {
-            GameObject enemyMonsterObj = Instantiate(enemyMonsterInBattleList[i].gameObject, enemyBattlePosList[i].transform.position, Quaternion.Euler(0, -90f, 0));
+            GameObject enemyMonsterObj = Instantiate(enemyMonsterInBattleList[i].gameObject, enemyBattlePosList[i].transform.position, Quaternion.Euler(0, 90f, 0));
             Monster tempMonster = enemyMonsterObj.GetComponent<Monster>();
             spawnedEnemyMonsterList.Add(tempMonster);
 
             #region
-            DamageDisPlay damageDisplay = enemyMonsterObj.AddComponent<DamageDisPlay>();
-            damageDisplay.damageTextPrefab = damageTextPrefab;
+            //DamageDisplay damageDisplay = enemyMonsterObj.AddComponent<DamageDisplay>();
+            //damageDisplay.damageTextPrefab = damageTextPrefab;
 
-            Canvas canvas = damageDisplay.GetComponentInChildren<Canvas>();
-            CameraManager.Instance.SetCanvasEventCamera(canvas);
+            //Canvas canvas = damageDisplay.GetComponentInChildren<Canvas>();
+            //CameraManager.Instance.SetCanvasEventCamera(canvas);
+
+            //if (canvas != null)
+            //{
+            //    Camera mainCamera = CameraManager.Instance.currentCamera;
+            //    canvas.transform.LookAt(mainCamera.transform);
+            //    canvas.transform.Rotate(0, 180, 0); // LookAt으로 인해 뒤집힌 경우 보정
+            //}
             #endregion
 
             //나중에 한번에 삭제하기 편하게 하려고 리스트에 추가한다.
@@ -194,12 +208,12 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < playerMonsterInBattleList.Count; i++)
         {
-            GameObject playerMonsterObj = Instantiate(playerMonsterInBattleList[i].gameObject, PlayerBossBattlePosList[i].transform.position, Quaternion.Euler(0, -90f, 0));
+            GameObject playerMonsterObj = Instantiate(playerMonsterInBattleList[i].gameObject, PlayerBossBattlePosList[i].transform.position, Quaternion.Euler(0, -80f, 0));
             Monster tempMonster = playerMonsterObj.GetComponent<Monster>();
             spawnedPlayerMonsterList.Add(tempMonster);
 
             #region
-            DamageDisPlay damageDisplay = playerMonsterObj.AddComponent<DamageDisPlay>();
+            DamageDisplay damageDisplay = playerMonsterObj.AddComponent<DamageDisplay>();
             damageDisplay.damageTextPrefab = damageTextPrefab;
             //playerMonsterObj.AddComponent<DamageDisPlay>();
             Canvas canvas = damageDisplay.GetComponentInChildren<Canvas>();
@@ -211,12 +225,12 @@ public class GameManager : MonoBehaviour
         }
         for (int i = 0; i < enemyMonsterInBattleList.Count; i++)
         {
-            GameObject enemyMonsterObj = Instantiate(enemyMonsterInBattleList[i].gameObject, EnemyBossBattlePosList[i].transform.position, Quaternion.Euler(0, 90f, 0));
+            GameObject enemyMonsterObj = Instantiate(enemyMonsterInBattleList[i].gameObject, EnemyBossBattlePosList[i].transform.position, Quaternion.Euler(0, 97f, 0));
             Monster tempMonster = enemyMonsterObj.GetComponent<Monster>();
             spawnedEnemyMonsterList.Add(tempMonster);
 
             #region
-            DamageDisPlay damageDisplay = enemyMonsterObj.AddComponent<DamageDisPlay>();
+            DamageDisplay damageDisplay = enemyMonsterObj.AddComponent<DamageDisplay>();
             damageDisplay.damageTextPrefab = damageTextPrefab;
 
             Canvas canvas = damageDisplay.GetComponentInChildren<Canvas>();
