@@ -18,52 +18,42 @@ public class PlayerMove : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
         Vector3 direction = new Vector3(horizontal, 0, vertical).normalized;
-        dir = 0;
-        if (horizontal!=0|| vertical>0)
+        if (Input.GetKey(KeyCode.LeftShift) && (horizontal != 0 || vertical > 0))
         {
-            animator.SetBool("isMoving", true); // ∞»±‚ Ω√¿€
+            animator.SetBool("isRunning", true);
+            //moveSpeed = direction.magnitude;
+            //animator.SetFloat("Speed", moveSpeed);
+            animator.SetBool("isMoving", false);
+        }
+        else 
+        {
+            animator.SetBool("isRunning", false); // øÚ¡˜¿” ∏ÿ√„
+        }
+
+        dir = 0;
+        if (!Input.GetKey(KeyCode.LeftShift) &&( horizontal != 0 || vertical > 0))
+        {
+            animator.SetBool("isMoving", true); // øÚ¡˜¿” Ω√¿€
+            animator.SetBool("isRunning", false);
         }
         else
         {
-            animator.SetBool("isMoving", false); // ∞»±‚ ∏ÿ√„
+            animator.SetBool("isMoving", false); // øÚ¡˜¿” ∏ÿ√„
         }
 
-        
+        if (vertical < 0)
+        {
+     
+            animator.SetBool("isWalkBack", true); // øÚ¡˜¿” Ω√¿€
+        }
+        else
+        {
+            animator.SetBool("isWalkBack", false); // øÚ¡˜¿” ∏ÿ√„
+        }
 
-        moveSpeed = direction.magnitude;
-        animator.SetFloat("Speed", moveSpeed);
-       
-        dir = horizontal;
-        
 
-      
-
-        //if (dir<0)
-        //{
-        //    animator.SetBool("isLeft", true); // ∞»±‚ Ω√¿€
-        //}
-        //else
-        //{
-        //    animator.SetBool("isLeft", false); // ∞»±‚ ∏ÿ√„
-        //}
-        
-        //if (dir>0)
-        //{
-        //    animator.SetBool("isRight", true); // ∞»±‚ Ω√¿€
-        //}
-        //else
-        //{
-        //    animator.SetBool("isRight", false); // ∞»±‚ ∏ÿ√„
-        //}
-        //if (Input.GetKey(KeyCode.S))
-        //{
-        //    animator.SetBool("isWalkBack", true); // ∞»±‚ Ω√¿€
-        //}
-        //else
-        //{
-        //    animator.SetBool("isWalkBack", false); // ∞»±‚ ∏ÿ√„
-        //}
-        animator.SetFloat("Direction", dir);
+                
+        animator.SetFloat("Direction", horizontal);
         if (moveSpeed > 0)
         {
             transform.Translate(direction * moveSpeed * Time.deltaTime);
