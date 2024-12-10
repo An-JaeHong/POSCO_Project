@@ -1,7 +1,9 @@
+using EasyTransition;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 //카메라 상태를 나타내는 Enum
 [Serializable]
@@ -29,6 +31,14 @@ public class CameraManager : MonoBehaviour
 
     private Player player;
 
+    public Canvas fadeCanvas;
+    private Image fadeImage;
+
+    //public TransitionSettings transition;
+    //public float loadDelay;
+
+    
+
     private void Awake()
     {
         if (instance == null)
@@ -42,6 +52,13 @@ public class CameraManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         player = FindObjectOfType<Player>();
+
+        //Canvas 자식으로 Image 컴포넌트를 들고있는 프리팹 넣기
+        fadeImage = fadeCanvas.GetComponentInChildren<Image>();
+
+        fadeCanvas.sortingOrder = 100;
+
+        fadeImage.raycastTarget = false;
     }
 
     private void Start()
@@ -62,9 +79,15 @@ public class CameraManager : MonoBehaviour
 
     }
 
-    //여기에서 카메라의 상태는 하나만 존재하게끔 한다.
     public void HandleCamera(CameraType cameraType)
     {
+        StartCoroutine(SwitchCameraWithFade(cameraType));
+    }
+
+    //여기에서 카메라의 상태는 하나만 존재하게끔 한다.
+    private IEnumerator SwitchCameraWithFade(CameraType cameraType)
+    {
+        yield return StartCoroutine(Fade(1f));
         //계속 카메라는 꺼진 상태로 초기화
         battleMapCamera.enabled = false;
         fieldSceneCamera.enabled = false;
@@ -89,12 +112,36 @@ public class CameraManager : MonoBehaviour
 
         currentCamera.enabled = true;
 
+        AdjustCanvasDirection();
+        yield return StartCoroutine(Fade(0f));
+
         //if (player != null)
         //{
         //    player.CameraSetting();
         //}
     }
-    
+
+    private void AdjustCanvasDirection()
+    {
+        if (fadeCanvas.renderMode == RenderMode.WorldSpace)
+        {
+            fadeCanvas.transform.LookAt(currentCamera.transform);
+            fadeCanvas.transform.Rotate(0, 180f, 0);
+        }
+    }
+
+    private IEnumerator Fade(float targetAlpha)
+    {
+        float fadeSpeed = 1f;
+        Color color = fadeImage.color;
+        while (!Mathf.Approximately(color.a, targetAlpha))
+        {
+            color.a = Mathf.MoveTowards(color.a, targetAlpha, fadeSpeed * Time.deltaTime);
+            fadeImage.color = color;
+            yield return null;
+        }
+    }
+
     public void SetCanvasEventCamera(Canvas canvas)
     {
         if (canvas != null)

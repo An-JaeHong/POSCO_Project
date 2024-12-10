@@ -93,7 +93,7 @@ public class MonsterDataManager : MonoBehaviour
                     //    cloneMonster.selectedSkill = new Skill(cloneMonster.skillDataArr[0]);
                     //}
 
-                    allMonsterDataList.Add(cloneMonster);
+                    //allMonsterDataList.Add(cloneMonster);
                 }
             }
         }
