@@ -66,7 +66,6 @@ public class PlayerBossBattleState : PlayerStateBase
                     else
                     {
                     TurnManager.Instance.currentTurnMonster.attackType = AttackType.Skill1;
-                    currentMonster.selectedSkill.skillCount -= 1;
                     ChooseTarget();
                     }
                 }
@@ -80,7 +79,7 @@ public class PlayerBossBattleState : PlayerStateBase
         };
 
         UIPopupManager.Instance.ShowPopup(
-            $"Lv : {currentMonster.level}. {currentMonster.name}의 턴이다 무엇을 할까?\n현재 체력 : {currentMonster.hp} / {currentMonster.maxHp}, 공격력 : {currentMonster.damage}",
+            $"Lv : {currentMonster.level}. {currentMonster.name}의 턴이다 무엇을 할까?\n현재 체력 : {currentMonster.hp} / {currentMonster.maxHp}, 공격력 : {currentMonster.damage}. 속성 : {currentMonster.element}",
             buttons
             );
     }
@@ -202,7 +201,7 @@ public class PlayerBossBattleState : PlayerStateBase
         for (int i = 0; i < aliveTargetList.Count; i++)
         {
             int index = TurnManager.Instance.enemyMonsterList.IndexOf(aliveTargetList[i]);
-            string targetName = $"{aliveTargetList[i].name}, 체력 {aliveTargetList[i].hp}";
+            string targetName = $"{aliveTargetList[i].name}({i+1}), 속성 : {aliveTargetList[i].element}\n체력 {aliveTargetList[i].hp}";
 
             buttons.Add(
                     targetName,

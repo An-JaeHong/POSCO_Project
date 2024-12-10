@@ -211,12 +211,11 @@ public class Monster : MonoBehaviour
         selectedSkill = new Skill(skillDataArr[skillNum]);
     }
 
-    public void UseSkill(Monster target, out bool isEffectGreat)
+    public void UseSkill(Monster target)
     {
-        isEffectGreat = false;
         if (selectedSkill != null)
         {
-            if (selectedSkill.UseSkill(this, target, out isEffectGreat))
+            if (selectedSkill.UseSkill(this, target))
             {
                 print($"{name}이 {selectedSkill.skillName}을 사용했습니다");
             }
@@ -233,6 +232,7 @@ public class Monster : MonoBehaviour
 
     private IEnumerator MoveParticle(GameObject particle, Vector3 targetPosition, float duration, Action onComplete)
     {
+        print("MoveParticle이 실행됨");
         if (particle == null)
         {
             yield break;
@@ -257,11 +257,26 @@ public class Monster : MonoBehaviour
         {
             particle.transform.position = targetPosition;
 
-            GameObject.Destroy(particle);
+            //GameObject.Destroy(particle);
         }
 
+        if (Application.isPlaying)
+        {
+
+            GameObject.Destroy(particle);
+        }
+        else
+        {
+            GameObject.DestroyImmediate(particle, true);
+        }
         //투사체가 다 도달하고 Invoke해준다
-        onComplete?.Invoke();
+        onComplete?.Invoke(); // 콜백 호출
+    }
+
+    //AttackCommand에서 Instantiate를 못해서 여기서 만드는 함수를 생성했다
+    public GameObject CreateParticleInstance()
+    {
+        return Instantiate(selectedSkill.particle, transform.position, Quaternion.identity);
     }
 
     //첫번째 스킬 애니메이션 실행하는 함수

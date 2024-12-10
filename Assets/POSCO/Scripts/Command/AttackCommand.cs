@@ -193,78 +193,60 @@ public class AttackCommand
         #endregion
         //첫번째 스킬 실행하는 애니메이션실행
         attacker.PlayFirstSkillAnimation();
-        bool isEffectIsGreat = false;
-        attacker.UseSkill(target, out isEffectIsGreat);
+        //bool isEffectIsGreat = false;
+        attacker.UseSkill(target);
 
-        AnimatorStateInfo stateInfo = attacker.animator.GetCurrentAnimatorStateInfo(0);
-        yield return new WaitForSeconds(stateInfo.length);
+        //AnimatorStateInfo stateInfo = attacker.animator.GetCurrentAnimatorStateInfo(0);
+        //yield return new WaitForSeconds(stateInfo.length);
+        //yield return new WaitForSeconds(2f);
 
-        //float skillDamage = attacker.selectedSkill.skillDamage;
-        ////효과가 굉장했다는 일단 false
-        ////bool isEffectIsGreat = false;
+        //파티클 지속시간동안 기달
+        yield return new WaitForSeconds(attacker.selectedSkill.particleDuration);
 
-        //if ((attacker.element == Element.Fire && target.element == Element.Grass) ||
-        //    (attacker.element == Element.Grass && target.element == Element.Water) ||
-        //    (attacker.element == Element.Water && target.element == Element.Fire))
-        //{
-        //    skillDamage *= 1.5f;
-        //    isEffectIsGreat = true;
-        //}
+        float finalDamage = attacker.selectedSkill.skillDamage;
+        bool isEffectGreat = false;
 
-        //target.TakeDamage(skillDamage);
-        attacker.StartParticleMovement(attacker.selectedSkill.particle, target.transform.position, attacker.selectedSkill.particleDuration, () =>
+        if ((attacker.element == Element.Fire && target.element == Element.Grass) ||
+           (attacker.element == Element.Grass && target.element == Element.Water) ||
+           (attacker.element == Element.Water && target.element == Element.Fire))
         {
-            if (isEffectIsGreat)
+            finalDamage *= 1.5f;
+            isEffectGreat = true;
+        }
+
+        if (attacker.selectedSkill.skillType == SkillType.Ranged)
+        {
+            //GameObject instantiatedParticle = attacker.CreateParticleInstance();
+            //attacker.StartParticleMovement(instantiatedParticle, target.transform.position, attacker.selectedSkill.particleDuration, () =>
+            //{
+                target.TakeDamage(finalDamage);
+                target.PlayTakeDamageAnimation();
+
+                if (isEffectGreat)
+                {
+                    ShowEffectIsGreatPopup(finalDamage);
+                }
+                else
+                {
+                    ShowDamagePopup(finalDamage);
+                }
+            //});
+        }
+
+        else if (attacker.selectedSkill.skillType == SkillType.Melee)
+        {
+            target.TakeDamage(finalDamage);
+            target.PlayTakeDamageAnimation();
+
+            if (isEffectGreat)
             {
-                ShowEffectIsGreatPopup();
-                //GameManager.Instance.isEnemyActionComplete = true;
+                ShowEffectIsGreatPopup(finalDamage);
             }
             else
             {
-                #region ""가 ""에게 ~~의 데미지를 입혔다! 라는 UI
-                var buttons = new Dictionary<string, UnityAction>
-        {
-            {
-                "확인", ()=>
-                {
-                    UIPopupManager.Instance.ClosePopup();
-                    isClickCheckButton = true;
-                }
+                ShowDamagePopup(finalDamage);
             }
-        };
-                UIPopupManager.Instance.ShowPopup(
-                    $"{target.name}에게 {attacker.selectedSkill.skillDamage}만큼의 데미지를 입혔다!",
-                    buttons
-                );
-            }
-            #endregion
-            //isClickCheckButton = true;
-        });
-        //if (isEffectIsGreat)
-        //{
-        //    ShowEffectIsGreatPopup();
-        //    //GameManager.Instance.isEnemyActionComplete = true;
-        //}
-        //else
-        //{
-        //    #region ""가 ""에게 ~~의 데미지를 입혔다! 라는 UI
-        //    var buttons = new Dictionary<string, UnityAction>
-        //{
-        //    {
-        //        "확인", ()=>
-        //        {
-        //            UIPopupManager.Instance.ClosePopup();
-        //            isClickCheckButton = true;
-        //        }
-        //    }
-        //};
-        //    UIPopupManager.Instance.ShowPopup(
-        //        $"{target.name}에게 {attacker.selectedSkill.skillDamage}만큼의 데미지를 입혔다!",
-        //        buttons
-        //    );
-        //}
-        //#endregion
-        //isClickCheckButton = true;
+        }
 
         //2초후에 행동을 재개
         yield return new WaitUntil(() => isClickCheckButton == true);
@@ -288,61 +270,85 @@ public class AttackCommand
         //attacker.selectedSkill = attacker.skillDataArr[0];
         //스킬 애니메이션 재생
         attacker.PlayFirstSkillAnimation();
-        bool isEffectIsGreat;
-        attacker.UseSkill(target, out isEffectIsGreat);
+        attacker.UseSkill(target);
         //애니메이션 재생하는 변수
         AnimatorStateInfo stateInfo = attacker.animator.GetCurrentAnimatorStateInfo(0);
         //애니메이션 재생하는 변수의 길이만큼 기다려준다 즉, 애니메이션이 끝날때 까지 기다림
         //여기에다가 투사체가 타겟에게 가는 것 까지 하면 될 듯
-        yield return new WaitForSeconds(stateInfo.length);
+        yield return new WaitForSeconds(attacker.selectedSkill.particleDuration);
 
-        //float skillDamage = attacker.selectedSkill.skillDamage;
-        ////효과가 굉장했다는 일단 false
-        ////bool isEffectIsGreat = false;
+        float finalDamage = attacker.selectedSkill.skillDamage;
+        bool isEffectIsGreat = false;
 
-        //if ((attacker.element == Element.Fire && target.element == Element.Grass) ||
-        //    (attacker.element == Element.Grass && target.element == Element.Water) ||
-        //    (attacker.element == Element.Water && target.element == Element.Fire))
-        //{
-        //    skillDamage *= 1.5f;
-        //    isEffectIsGreat = true;
-        //}
-
-        //target.TakeDamage(skillDamage);
-
-        if (isEffectIsGreat)
+        if ((attacker.element == Element.Fire && target.element == Element.Grass) ||
+            (attacker.element == Element.Grass && target.element == Element.Water) ||
+            (attacker.element == Element.Water && target.element == Element.Fire))
         {
-            ShowEffectIsGreatPopup();
-            //GameManager.Instance.isEnemyActionComplete = true;
+            finalDamage *= 1.5f;
+            isEffectIsGreat = true;
         }
 
-        else
+        // 원거리 스킬: 파티클 이동
+        if (attacker.selectedSkill.skillType == SkillType.Ranged)
         {
-            #region ""가 ""에게 ~~의 데미지를 입혔다! 라는 UI
-            var buttons = new Dictionary<string, UnityAction> 
-            {
+            //GameObject instantiatedParticle = attacker.CreateParticleInstance();
+            //attacker.StartParticleMovement(instantiatedParticle, target.transform.position, attacker.selectedSkill.particleDuration, () =>
+            //{
+            //    target.TakeDamage(finalDamage);
+            //    target.PlayTakeDamageAnimation();
+
+                if (isEffectIsGreat)
                 {
-                    "확인", ()=>
-                    {
-                        UIPopupManager.Instance.ClosePopup();
-                        isClickCheckButton = true;
-                    }
+                    ShowEffectIsGreatPopup(finalDamage);
                 }
-            };
-            UIPopupManager.Instance.ShowPopup(
-                $"{target.name}에게 {attacker.selectedSkill.skillDamage}만큼의 데미지를 입혔다!",
-                buttons
-            );
-            #endregion
+                else
+                {
+                    ShowDamagePopup(finalDamage);
+                }
+           // });
         }
+        else if (attacker.selectedSkill.skillType == SkillType.Melee)
+        {
+            // 근거리 스킬: 즉시 데미지 적용
+            target.TakeDamage(finalDamage);
+            target.PlayTakeDamageAnimation();
 
+            if (isEffectIsGreat)
+            {
+                ShowEffectIsGreatPopup(finalDamage);
+            }
+            else
+            {
+                ShowDamagePopup(finalDamage);
+            }
+        }
         //2초후에 행동을 재개
         yield return new WaitUntil(() => isClickCheckButton == true);
         //isClickCheckButton = false;
         GameManager.Instance.isEnemyActionComplete = true;
     }
 
-    private void ShowEffectIsGreatPopup()
+    private void ShowDamagePopup(float finalDamage)
+    {
+        var button = new Dictionary<string, UnityAction>()
+        {
+            {
+                "확인", () =>
+                {
+                    UIPopupManager.Instance.ClosePopup();
+                    isClickCheckButton = true;
+                }
+
+            }
+        };
+
+        UIPopupManager.Instance.ShowPopup(
+            $"{target.name}에게 {finalDamage}만큼의 데미지를 입혔다!",
+            button
+            );
+    }
+
+    private void ShowEffectIsGreatPopup(float finalDamage)
     {
         Debug.Log("ShowEffectivePopup called");
         var button = new Dictionary<string, UnityAction>()
@@ -358,7 +364,7 @@ public class AttackCommand
         };
 
         UIPopupManager.Instance.ShowPopup(
-            $"효과가 굉장했다!\n{target.name}에게 {attacker.selectedSkill.skillDamage * 1.5f}만큼의 데미지를 입혔다!",
+            $"효과가 굉장했다!!\n{target.name}에게 {finalDamage}만큼의 데미지를 입혔다!",
             button
             );
 

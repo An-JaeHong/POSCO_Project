@@ -238,12 +238,11 @@ MonoBehaviour:
   currentExp: 0
   expToNextLevelArr: 320000003c00000046000000500000005a000000640000006e00000078000000820000008c00000096000000a0000000aa000000b4000000be000000c8000000
   damage: 6
-  element: 3
+  element: 2
   isEnemy: 0
   animator: {fileID: 7543761947913141513}
   skillDataArr:
   - {fileID: 11400000, guid: 75afdeb9da4e07e45bca0aa5a51a7c8c, type: 2}
-  selectedSkill: {fileID: 0}
   attackType: 0
 --- !u!1 &3326659279661230053
 GameObject:

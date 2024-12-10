@@ -106,7 +106,7 @@ public class PlayerNormalBattleState : PlayerStateBase
                 }
             },
             {
-                $"{currentMonster.selectedSkill.skillName} \n 남은 횟수 : {currentMonster.selectedSkill.skillCount}", () =>
+                $"{currentMonster.selectedSkill.skillName}\n남은 횟수 : {currentMonster.selectedSkill.skillCount}\n스킬 데미지 : {currentMonster.selectedSkill.skillDamage}", () =>
                 {
                     //만약 스킬개수가 0보다 작으면 숫자 부족하다고 말해줘야함
                     if (currentMonster.selectedSkill.skillCount <= 0)
@@ -118,7 +118,7 @@ public class PlayerNormalBattleState : PlayerStateBase
                         //스킬 타입 정해주고
                     TurnManager.Instance.currentTurnMonster.attackType = AttackType.Skill1;
                         //스킬 사용횟수 줄여주고
-                    currentMonster.selectedSkill.skillCount -= 1;
+                    //currentMonster.selectedSkill.skillCount -= 1;
                         //타겟 고르기
                     ChooseTarget();
                     }
@@ -133,7 +133,7 @@ public class PlayerNormalBattleState : PlayerStateBase
         };
 
         UIPopupManager.Instance.ShowPopup(
-            $"Lv : {currentMonster.level}. {currentMonster.name}의 턴이다 무엇을 할까?\n현재 체력 : {currentMonster.hp} / {currentMonster.maxHp}, 공격력 : {currentMonster.damage}",
+            $"Lv : {currentMonster.level}. {currentMonster.name}의 턴이다 무엇을 할까?\n현재 체력 : {currentMonster.hp} / {currentMonster.maxHp}, 공격력 : {currentMonster.damage}, 속성 : {currentMonster.element}",
             buttons
             );
     }
@@ -254,7 +254,7 @@ public class PlayerNormalBattleState : PlayerStateBase
         for (int i = 0; i < aliveTargetList.Count; i++)
         {
             int index = TurnManager.Instance.enemyMonsterList.IndexOf(aliveTargetList[i]);
-            string targetName = $"{aliveTargetList[i].name}({index + 1}), 체력 {aliveTargetList[i].hp}";
+            string targetName = $"{aliveTargetList[i].name}({i+1}), 속성 : {aliveTargetList[i].element}\n체력 {aliveTargetList[i].hp}";
 
             buttons.Add(
                     targetName,
