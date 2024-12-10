@@ -22,7 +22,7 @@ public class DamageDisPlay : MonoBehaviour
             //damageTextInstance.transform.LookAt(damageTextInstance.transform.position + mainCamera.transform.rotation * Vector3.forward, mainCamera.transform.rotation * Vector3.up);
 
             damageTextInstance.transform.LookAt(mainCamera.transform);
-            damageTextInstance.transform.Rotate(0, 30f, 0); // LookAt으로 인해 뒤집힌 경우 보정
+            damageTextInstance.transform.Rotate(0, -150f, 0); // LookAt으로 인해 뒤집힌 경우 보정
             TextMeshPro textMesh = damageTextInstance.GetComponentInChildren<TextMeshPro>();
             if (textMesh != null)
             {
