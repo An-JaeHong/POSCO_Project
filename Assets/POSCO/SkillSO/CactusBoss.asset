@@ -10,9 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b637d75395ac0a48bbb6a7d99cfae65, type: 3}
-  m_Name: Temp2
+  m_Name: CactusBoss
   m_EditorClassIdentifier: 
-  skillName: Temp2
-  particle: {fileID: 5917079532746496764, guid: 11c0aba7803514a4089c4b503304740b, type: 3}
-  skillDamage: 0
-  skillCount: 0
+  skillName: CactusBoss
+  particle: {fileID: 149536, guid: c5b210ba7ca1fba4793dce74a5f12a42, type: 3}
+  skillDamage: 24
+  skillElement: 3
+  skillCount: 3
+  skillType: 1
+  particleDuration: 2

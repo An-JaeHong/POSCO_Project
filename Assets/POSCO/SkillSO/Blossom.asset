@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b637d75395ac0a48bbb6a7d99cfae65, type: 3}
-  m_Name: Temp1
+  m_Name: Blossom
   m_EditorClassIdentifier: 
-  skillName: "\uC784\uC2DC\uC2A4\uD0AC"
-  particle: {fileID: 165220, guid: 9fe8a4211838aa744900561a4b1853c2, type: 3}
-  skillDamage: 20
-  skillElement: 0
-  skillCount: 20
+  skillName: Blossom
+  particle: {fileID: 149536, guid: bf974382206c6c144a8df7b1b678f0ce, type: 3}
+  skillDamage: 26
+  skillElement: 3
+  skillCount: 3
   skillType: 2
   particleDuration: 2

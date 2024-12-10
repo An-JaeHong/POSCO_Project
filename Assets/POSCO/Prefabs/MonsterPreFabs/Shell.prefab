@@ -501,8 +501,7 @@ MonoBehaviour:
   isEnemy: 0
   animator: {fileID: 3644289052389791488}
   skillDataArr:
-  - {fileID: 11400000, guid: 75afdeb9da4e07e45bca0aa5a51a7c8c, type: 2}
-  selectedSkill: {fileID: 0}
+  - {fileID: 11400000, guid: 39170dc13e96d7547be3dce87772d14f, type: 2}
   attackType: 0
 --- !u!1 &3336267759989954419
 GameObject:

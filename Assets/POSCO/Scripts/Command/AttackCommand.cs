@@ -294,8 +294,8 @@ public class AttackCommand
             //GameObject instantiatedParticle = attacker.CreateParticleInstance();
             //attacker.StartParticleMovement(instantiatedParticle, target.transform.position, attacker.selectedSkill.particleDuration, () =>
             //{
-            //    target.TakeDamage(finalDamage);
-            //    target.PlayTakeDamageAnimation();
+            target.TakeDamage(finalDamage);
+            target.PlayTakeDamageAnimation();
 
                 if (isEffectIsGreat)
                 {
