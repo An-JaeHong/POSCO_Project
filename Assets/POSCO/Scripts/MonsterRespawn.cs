@@ -8,6 +8,7 @@ public class MonsterRespawn : MonoBehaviour
     private static MonsterRespawn instance;
     public static MonsterRespawn Instance { get { return instance; } }
 
+    private Unit unit;
 
     public List<Vector3> respawnPos;
 
@@ -64,6 +65,7 @@ public class MonsterRespawn : MonoBehaviour
             int random2 = Random.Range(0, 18);
             if (spawnMonsterList[random] == null)
             {
+
                 SpawnPrefab(prefabToSpawn[random2], respawnPos[random], random);
                 print("생성됨");
             }
@@ -77,7 +79,10 @@ public class MonsterRespawn : MonoBehaviour
             // 프리팹을 특정 위치에 소환
             GameObject monster = Instantiate(monsterPrefab, position, Quaternion.identity);
             monsterCount++;
-            
+            Unit unitScript = monster.GetComponent<Unit>();
+            int random= Random.Range(1, 3);
+            unitScript.Setlevel(number + random);
+
             spawnMonsterList[number] = monster;
             //Unit unitScript = monster.GetComponent<Unit>();
             //if (unitScript != null)

@@ -1670,7 +1670,7 @@ MonoBehaviour:
   exclamationMarkPrefab: {fileID: 8764048426798851983, guid: 5494df217f1871e459d48b337ca61ac7, type: 3}
   spawnPosition: {fileID: 0}
   name: 
-  level: 0
+  level: 1
   moveSpeed: 1
   moveRange: 5
   sightAngle: 80

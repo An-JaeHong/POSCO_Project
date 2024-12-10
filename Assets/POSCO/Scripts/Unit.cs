@@ -85,10 +85,12 @@ public class Unit : MonoBehaviour
         }
         else
         {
-            level = Random.Range(1, 16);
-            print($"{level}로 레벨 정해짐");
+            //level = Random.Range(1, 16);
+            //print($"{level}로 레벨 정해짐");
             ChangeState(new NormalIdleState());
         }
+
+   
 
         //생성되는 몬스터의 레벨이 그대로 가져가게 해야한다
 
@@ -127,6 +129,14 @@ public class Unit : MonoBehaviour
         if (rb != null)
         {
             rb.constraints = RigidbodyConstraints.FreezeRotation;
+        }
+    }
+
+    public void Setlevel(int value)
+    {
+        if (!isBoss)
+        {
+            level = value;
         }
     }
 
