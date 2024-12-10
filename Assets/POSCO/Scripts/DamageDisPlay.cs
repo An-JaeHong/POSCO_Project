@@ -19,8 +19,10 @@ public class DamageDisPlay : MonoBehaviour
             damageTextInstance.transform.SetParent(transform, false); // 부모를 설정하여 위치를 상대적으로 유지
 
             Camera mainCamera = CameraManager.Instance.currentCamera;
-            damageTextInstance.transform.LookAt(damageTextInstance.transform.position + mainCamera.transform.rotation * Vector3.forward, mainCamera.transform.rotation * Vector3.up);
+            //damageTextInstance.transform.LookAt(damageTextInstance.transform.position + mainCamera.transform.rotation * Vector3.forward, mainCamera.transform.rotation * Vector3.up);
 
+            damageTextInstance.transform.LookAt(mainCamera.transform);
+            damageTextInstance.transform.Rotate(0, 30f, 0); // LookAt으로 인해 뒤집힌 경우 보정
             TextMeshPro textMesh = damageTextInstance.GetComponentInChildren<TextMeshPro>();
             if (textMesh != null)
             {
