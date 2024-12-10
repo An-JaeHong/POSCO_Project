@@ -28,6 +28,17 @@ public class Skill
     //스킬 지속시간
     public float particleDuration;
 
+    public Skill(Skill original)
+    {
+        skillName = original.skillName;
+        particle = original.particle;
+        skillDamage = original.skillDamage;
+        skillCount = original.skillCount;
+        particleDuration = original.particleDuration;
+        skillType = original.skillType;
+        skillElement = original.skillElement;
+    }
+
     public Skill(SkillData skillData)
     {
         skillName = skillData.skillName;

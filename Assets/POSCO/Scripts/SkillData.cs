@@ -18,7 +18,7 @@ public class SkillData : ScriptableObject
     //스킬타입
     public SkillType skillType;
     //스킬 지속시간
-    public float particleDuration; 
+    public float particleDuration;
 
     //public SkillData(SkillData original)
     //{
@@ -27,4 +27,15 @@ public class SkillData : ScriptableObject
     //    skillDamage = original.skillDamage;
     //    skillCount = original.skillCount;
     //}
+
+    public SkillData(SkillData original)
+    {
+        skillName = original.skillName;
+        particle = original.particle; // GameObject는 참조형이므로 필요에 따라 복사 방법을 결정
+        skillDamage = original.skillDamage;
+        skillCount = original.skillCount;
+        particleDuration = original.particleDuration;
+        skillType = original.skillType;
+        skillElement = original.skillElement;
+    }
 }

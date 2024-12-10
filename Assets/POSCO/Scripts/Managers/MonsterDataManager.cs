@@ -65,15 +65,33 @@ public class MonsterDataManager : MonoBehaviour
                     //cloneMonster.selectedSkill = originalMonster.skillDataArr[0];
                     //cloneMonster.selectedSkill.skillCount = originalMonster.skillDataArr[0].skillCount;
                     cloneMonster.animator = originalMonster.animator;
-                    cloneMonster.selectedSkill = originalMonster.selectedSkill;
                     //cloneMonster.playParticleDuration = originalMonster.playParticleDuration;
                     cloneMonster.attackType = originalMonster.attackType;
 
                     if (originalMonster.skillDataArr != null && originalMonster.skillDataArr.Length > 0)
                     {
-                        cloneMonster.skillDataArr = (SkillData[])originalMonster.skillDataArr.Clone();
-                        cloneMonster.selectedSkill = new Skill(cloneMonster.skillDataArr[0]);
+                        // SkillData 배열을 얕은 복사하여 원본을 참조하도록 설정
+                        cloneMonster.skillDataArr = originalMonster.skillDataArr;
+
+                        // Skill 객체를 깊은 복사하여 skillCount가 독립적으로 관리되도록 설정
+                        cloneMonster.selectedSkill = new Skill(originalMonster.skillDataArr[0]);
                     }
+
+                    allMonsterDataList.Add(cloneMonster);
+
+                    //if (originalMonster.skillDataArr != null && originalMonster.skillDataArr.Length > 0)
+                    //{
+                    //    //cloneMonster.skillDataArr = (SkillData[])originalMonster.skillDataArr.Clone();
+                    //    //cloneMonster.selectedSkill = new Skill(cloneMonster.skillDataArr[0]);
+                    //    //cloneMonster.selectedSkill.skillCount = cloneMonster.skillDataArr[0].skillCount;
+                    //    cloneMonster.skillDataArr = new SkillData[originalMonster.skillDataArr.Length];
+                    //    for (int i = 0; i < originalMonster.skillDataArr.Length; i++)
+                    //    {
+                    //        // SkillData를 깊은 복사
+                    //        cloneMonster.skillDataArr[i] = new SkillData(originalMonster.skillDataArr[i]);
+                    //    }
+                    //    cloneMonster.selectedSkill = new Skill(cloneMonster.skillDataArr[0]);
+                    //}
 
                     allMonsterDataList.Add(cloneMonster);
                 }
