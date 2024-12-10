@@ -24,13 +24,12 @@ public enum AttackType
 [Serializable]
 public class Monster : MonoBehaviour
 {
-
     public string name;
     public float hp;
     public float maxHp;
     public int level;
     //이게 주는 경험치량
-    [SerializeField] public int[] expArr = { 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95};
+    public int[] expArr = { 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95};
     //레벨 당 경험치
     public int levelPerExp;
     //이게 현재 경험치량
@@ -43,21 +42,23 @@ public class Monster : MonoBehaviour
     public float hpAmount { get { return hp / maxHp; } }
     
     public float damage;
+
+    //속성
     public Element element;
 
     public bool isEnemy;
     public Animator animator;
 
-    //가지고 있는 스킬 배열
-    public SkillData[] skills;
+    //가지고 있는 스킬 배열 -> 인스펙터상에서 스크립터블 오브젝트인 SkillData를 넣어준다.
+    public SkillData[] skillDataArr;
 
     //선택된 스킬
-    public SkillData selectedSkill;
+    public Skill selectedSkill;
 
-    private GameObject playedParticle;
+    //private GameObject playedParticle;
 
     //몇초동안 파티클 실행할껀지
-    public float playParticleDuration;
+    //public float playParticleDuration;
 
     //공격 타입 -> 나중에 기본경격인지, 스킬인지 확인하게끔 필요한 변수
     public AttackType attackType;
@@ -73,10 +74,21 @@ public class Monster : MonoBehaviour
         //레벨당 경험치는 시작할때 초기화
         levelPerExp = expArr[level - 1];
         print($"{levelPerExp}");
-        selectedSkill = skills[0];
+        //selectedSkill = skillDataArr[0];
+        InitializeSkills();
 
         //레벨당 경험치는 어짜피 적만 주는거기 때문에 처음부터 설정해두면 좋을 듯
     }
+
+    //일단은 스킬이 하나라서 이렇게 해둠
+    private void InitializeSkills()
+    {
+        if (skillDataArr.Length > 0)
+        {
+            //여기에서 스킬을 깊은복사 해줘야한다
+            selectedSkill = new Skill(skillDataArr[0]);
+        }
+    }    
 
     //레벨에 맞는 정보를 입력해야한다.
     public void InitializeLevelInfo(int level)
@@ -110,7 +122,7 @@ public class Monster : MonoBehaviour
         this.element = source.element;
         this.isEnemy = source.isEnemy;
         this.levelPerExp = source.levelPerExp;
-        this.skills = (SkillData[])source.skills.Clone();
+        this.skillDataArr = (SkillData[])source.skillDataArr.Clone();
         this.selectedSkill.skillCount = source.selectedSkill.skillCount;
     }
 
@@ -189,38 +201,84 @@ public class Monster : MonoBehaviour
     public void SetSkillNum(int skillNum)
     {
         //입력된 숫자가 0보다 작거나, 입력된 숫자가 보유한 스킬의 숫자보다 크면 return
-        if (skillNum < 0 || skillNum >= skills.Length)
+        if (skillNum < 0 || skillNum >= skillDataArr.Length)
         {
             print("스킬 입력이 잘못되었습니다");
             return;
         }
 
         //스킬이 선택됨
-        selectedSkill = skills[skillNum];
+        selectedSkill = new Skill(skillDataArr[skillNum]);
+    }
+
+    public void UseSkill(Monster target)
+    {
+        if (selectedSkill != null && selectedSkill.UseSkill(this, target))
+        {
+            print($"{name}이 {selectedSkill.skillName}을 사용했습니다");
+        }
+    }
+
+    public void StartParticleMovement(GameObject particle, Vector3 targetPosition, float duration)
+    {
+        if (particle != null)
+        {
+            StartCoroutine(MoveParticle(particle, targetPosition, duration));
+        }
+    }
+
+    private IEnumerator MoveParticle(GameObject particle, Vector3 targetPosition, float duration)
+    {
+        if (particle == null)
+        {
+            yield break;
+        }
+        float currentTime = 0f;
+        Vector3 startingPosition = particle.transform.position;
+
+        //기간동안 시간 실행이된다
+        while (currentTime < duration)
+        {
+            if (particle == null)
+            {
+                yield break;
+            }
+
+            particle.transform.position = Vector3.Lerp(startingPosition, targetPosition, currentTime / duration);
+            currentTime += Time.deltaTime;
+            yield return null;
+        }
+
+        if (particle != null)
+        {
+            particle.transform.position = targetPosition;
+
+            GameObject.Destroy(particle);
+        }
     }
 
     //첫번째 스킬 애니메이션 실행하는 함수
-    public void FirstSkillAnimation()
+    public void PlayFirstSkillAnimation()
     {
-        //파티클이 존재하면
-        if (selectedSkill.particle != null)
-        {
-            //공격하는 애니메이션이랑 파티클 소환은 따로따로
-            animator.SetTrigger("OnSkill1");
+        ////파티클이 존재하면
+        //if (selectedSkill.particle != null)
+        //{
+        //공격하는 애니메이션이랑 파티클 소환은 따로따로
+        animator.SetTrigger("OnSkill1");
 
-            //공격 타입에 따라 파티클 소환되는 위치를 바꿔야한다. 예를들면 근접공격 -> 공격할위치, 원거리 공격 -> 본인위치
-            playedParticle = Instantiate(selectedSkill.particle, transform.position, Quaternion.identity);
+        //    //공격 타입에 따라 파티클 소환되는 위치를 바꿔야한다. 예를들면 근접공격 -> 공격할위치, 원거리 공격 -> 본인위치
+        //    playedParticle = Instantiate(selectedSkill.particle, transform.position, Quaternion.identity);
 
-            //여기에서 파티클을 몇초간 실행할지 정해준다.
-            Invoke("DestroySkillParticle", playParticleDuration);
-        }
+        //    //여기에서 파티클을 몇초간 실행할지 정해준다.
+        //    Invoke("DestroySkillParticle", playParticleDuration);
+        //}
 
-        print($"{name}이(가) 스킬 {selectedSkill.name}를 사용했습니다!");
+        //print($"{name}이(가) 스킬 {selectedSkill.name}를 사용했습니다!");
     }
 
     public void DestroySkillParticle()
     {
-        Destroy(playedParticle);
+        //Destroy(playedParticle);
     }
 
     public void SecondSkillAniamtion()
@@ -336,4 +394,5 @@ public class Monster : MonoBehaviour
     //        button
     //        );
     //}
+
 }

@@ -13,9 +13,8 @@ public class MonsterDeepCopy
     public float Damage { get; set; }
     public Element Element { get; set; }
     public bool IsEnemy { get; set; }
-    public SkillData[] Skills { get; set; }
-
-    public SkillData SelectedSkill { get; set; }
+    public SkillData[] SkillDataArr { get; set; }
+    public Skill SelectedSkill { get; set; }
 
     public MonsterDeepCopy() { }
 
@@ -28,8 +27,13 @@ public class MonsterDeepCopy
         Damage = original.damage;
         Element = original.element;
         IsEnemy =  original.isEnemy;
-        Skills = original.skills != null? (SkillData[])original.skills.Clone() : null;
-        SelectedSkill.skillCount = original.selectedSkill.skillCount;
+        SkillDataArr = original.skillDataArr != null ? (SkillData[])original.skillDataArr.Clone() : null;
+        if (original.skillDataArr != null)
+        {
+            SelectedSkill = new Skill(original.skillDataArr[0]);
+        }
+        //SkillDataArr = original.skillDataArr != null? (SkillData[])original.skillDataArr.Clone() : null;
+        //SelectedSkill.skillCount = original.selectedSkill.skillCount;
 
         //if (original.Skills != null)
         //{
@@ -46,11 +50,14 @@ public class MonsterDeepCopy
         Name = original.Name;
         Hp = original.Hp;
         MaxHp = original.MaxHp;
-        MaxHp = original.MaxHp;
         Level = original.Level;
         Damage = original.Damage;
         Element = original.Element;
         IsEnemy = original.IsEnemy;
-        Skills = original.Skills != null ? (SkillData[])original.Skills.Clone() : null;
+        SkillDataArr = original.SkillDataArr != null ? (SkillData[])original.SkillDataArr.Clone() : null;
+        if (original.SelectedSkill != null)
+        {
+            SelectedSkill = new Skill(original.SkillDataArr[0]);
+        }
     }
 }

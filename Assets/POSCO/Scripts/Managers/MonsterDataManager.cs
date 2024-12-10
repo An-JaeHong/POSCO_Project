@@ -61,13 +61,19 @@ public class MonsterDataManager : MonoBehaviour
                     //cloneMonster.hpAmount = originalMonster.hpAmount;
                     cloneMonster.damage = originalMonster.damage;
                     cloneMonster.isEnemy = originalMonster.isEnemy;
-                    cloneMonster.skills = originalMonster.skills != null ? (SkillData[])originalMonster.skills.Clone() : null;
-                    cloneMonster.selectedSkill = originalMonster.skills[0];
-                    cloneMonster.selectedSkill.skillCount = originalMonster.skills[0].skillCount;
+                    //cloneMonster.skillDataArr = originalMonster.skillDataArr != null ? (SkillData[])originalMonster.skillDataArr.Clone() : null;
+                    //cloneMonster.selectedSkill = originalMonster.skillDataArr[0];
+                    //cloneMonster.selectedSkill.skillCount = originalMonster.skillDataArr[0].skillCount;
                     cloneMonster.animator = originalMonster.animator;
                     cloneMonster.selectedSkill = originalMonster.selectedSkill;
-                    cloneMonster.playParticleDuration = originalMonster.playParticleDuration;
+                    //cloneMonster.playParticleDuration = originalMonster.playParticleDuration;
                     cloneMonster.attackType = originalMonster.attackType;
+
+                    if (originalMonster.skillDataArr != null && originalMonster.skillDataArr.Length > 0)
+                    {
+                        cloneMonster.skillDataArr = (SkillData[])originalMonster.skillDataArr.Clone();
+                        cloneMonster.selectedSkill = new Skill(cloneMonster.skillDataArr[0]);
+                    }
 
                     allMonsterDataList.Add(cloneMonster);
                 }

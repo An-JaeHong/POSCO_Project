@@ -65,13 +65,18 @@ public class AttackCommand
         Vector3 currentPlayerPosition = attacker.transform.position;
         Vector3 targetPosition = target.transform.position;
 
+        float stopDistance = 3.3f; //멈추는 거리
+
+        Vector3 directionToTarget = (targetPosition - currentPlayerPosition).normalized;
+        Vector3 stopPosition = targetPosition - directionToTarget * stopDistance;
+
         //시간 더해줄 변수
         float moveTime = 0;
         //움직이는 시간
         float moveDuration = 1f;
         while (moveTime < moveDuration)
         {
-            attacker.transform.position = Vector3.Lerp(currentPlayerPosition, targetPosition, moveTime / moveDuration);
+            attacker.transform.position = Vector3.Lerp(currentPlayerPosition, stopPosition, moveTime / moveDuration);
             moveTime += Time.deltaTime;
             yield return null;
         }
@@ -85,7 +90,7 @@ public class AttackCommand
         //데미지 계산
         target.TakeDamage(attacker.damage);
         //피격 애니메이션 재생
-        target.PlayAttackAnimation();
+        target.PlayTakeDamageAnimation();
 
         AnimatorStateInfo stateInfo = attacker.animator.GetCurrentAnimatorStateInfo(0);
         yield return new WaitForSeconds(stateInfo.length);
@@ -102,7 +107,7 @@ public class AttackCommand
         yield return new WaitForSeconds(2f);
         while (moveTime < moveDuration)
         {
-            attacker.transform.position = Vector3.Lerp(targetPosition, currentPlayerPosition, moveTime / moveDuration);
+            attacker.transform.position = Vector3.Lerp(stopPosition, currentPlayerPosition, moveTime / moveDuration);
             moveTime += Time.deltaTime;
             yield return null;
         }
@@ -125,13 +130,18 @@ public class AttackCommand
         Vector3 currentPlayerPosition = attacker.transform.position;
         Vector3 targetPosition = target.transform.position;
 
+        float stopDistance = 3.3f; //멈추는 거리
+
+        Vector3 directionToTarget = (targetPosition - currentPlayerPosition).normalized;
+        Vector3 stopPosition = targetPosition - directionToTarget * stopDistance;
+
         //시간 더해줄 변수
         float moveTime = 0;
         //움직이는 시간
         float moveDuration = 1f;
         while (moveTime < moveDuration)
         {
-            attacker.transform.position = Vector3.Lerp(currentPlayerPosition, targetPosition, moveTime / moveDuration);
+            attacker.transform.position = Vector3.Lerp(currentPlayerPosition, stopPosition, moveTime / moveDuration);
             moveTime += Time.deltaTime;
             yield return null;
         }
@@ -142,6 +152,7 @@ public class AttackCommand
         //이동 후 공격
         attacker.PlayAttackAnimation();
         target.TakeDamage(attacker.damage);
+        target.PlayTakeDamageAnimation();
 
         AnimatorStateInfo stateInfo = attacker.animator.GetCurrentAnimatorStateInfo(0);
         yield return new WaitForSeconds(stateInfo.length);
@@ -158,7 +169,7 @@ public class AttackCommand
         yield return new WaitForSeconds(2f);
         while (moveTime < moveDuration)
         {
-            attacker.transform.position = Vector3.Lerp(targetPosition, currentPlayerPosition, moveTime / moveDuration);
+            attacker.transform.position = Vector3.Lerp(stopPosition, currentPlayerPosition, moveTime / moveDuration);
             moveTime += Time.deltaTime;
             yield return null;
         }
@@ -181,7 +192,8 @@ public class AttackCommand
         );
         #endregion
         //첫번째 스킬 실행하는 애니메이션실행
-        attacker.FirstSkillAnimation();
+        attacker.PlayFirstSkillAnimation();
+        attacker.UseSkill(target);
 
         AnimatorStateInfo stateInfo = attacker.animator.GetCurrentAnimatorStateInfo(0);
         yield return new WaitForSeconds(stateInfo.length);
@@ -243,10 +255,12 @@ public class AttackCommand
         );
         #endregion
 
-        //스킬 선택하고
-        attacker.selectedSkill = attacker.skills[0];
+        //스킬 선택하고 -> 이미 생성되는걸로 바꿔서 상관 없을듯
+
+        //attacker.selectedSkill = attacker.skillDataArr[0];
         //스킬 애니메이션 재생
-        attacker.FirstSkillAnimation();
+        attacker.PlayFirstSkillAnimation();
+        attacker.UseSkill(target);
         //애니메이션 재생하는 변수
         AnimatorStateInfo stateInfo = attacker.animator.GetCurrentAnimatorStateInfo(0);
         //애니메이션 재생하는 변수의 길이만큼 기다려준다 즉, 애니메이션이 끝날때 까지 기다림

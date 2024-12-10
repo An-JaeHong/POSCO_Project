@@ -417,11 +417,9 @@ MonoBehaviour:
   element: 3
   isEnemy: 0
   animator: {fileID: 6903869588359764812}
-  skills:
+  skillDataArr:
   - {fileID: 11400000, guid: 75afdeb9da4e07e45bca0aa5a51a7c8c, type: 2}
-  - {fileID: 11400000, guid: ba06ccaf781acb84cb1354620ef69101, type: 2}
   selectedSkill: {fileID: 0}
-  playParticleDuration: 2
   attackType: 0
 --- !u!1 &2699880621368654181
 GameObject:

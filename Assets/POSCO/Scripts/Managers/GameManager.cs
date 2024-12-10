@@ -92,7 +92,7 @@ public class GameManager : MonoBehaviour
                 Damage = unit.ownedMonsterList[i].damage,
                 Element = unit.ownedMonsterList[i].element,
                 IsEnemy = unit.ownedMonsterList[i].isEnemy,
-                Skills = unit.ownedMonsterList[i].skills,
+                SkillDataArr = unit.ownedMonsterList[i].skillDataArr,
                 
             };
             originEnemyMonsterDataList.Add(temp);
@@ -129,7 +129,7 @@ public class GameManager : MonoBehaviour
                     Damage = boss.ownedMonsterList[i].damage,
                     Element = boss.ownedMonsterList[i].element,
                     IsEnemy = boss.ownedMonsterList[i].isEnemy,
-                    Skills = boss.ownedMonsterList[i].skills,
+                    SkillDataArr = boss.ownedMonsterList[i].skillDataArr,
                 };
             originEnemyMonsterDataList.Add(temp);
         }
@@ -296,7 +296,7 @@ public class GameManager : MonoBehaviour
             MonsterDataManager.Instance.selectedMonsterDataList[i].damage = spawnedPlayerMonsterList[i].damage;
             MonsterDataManager.Instance.selectedMonsterDataList[i].element = spawnedPlayerMonsterList[i].element;
             MonsterDataManager.Instance.selectedMonsterDataList[i].isEnemy = spawnedPlayerMonsterList[i].isEnemy;
-            MonsterDataManager.Instance.selectedMonsterDataList[i].skills = spawnedPlayerMonsterList[i].skills;
+            MonsterDataManager.Instance.selectedMonsterDataList[i].skillDataArr = spawnedPlayerMonsterList[i].skillDataArr;
             //MonsterDataManager.Instance.selectedMonsterDataList[i].selectedSkill.skillCount = spawnedPlayerMonsterList[i].selectedSkill.skillCount;
             MonsterDataManager.Instance.selectedMonsterDataList[i].level = spawnedPlayerMonsterList[i].level;
             MonsterDataManager.Instance.selectedMonsterDataList[i].currentExp = spawnedPlayerMonsterList[i].currentExp;
@@ -314,7 +314,7 @@ public class GameManager : MonoBehaviour
             unit.ownedMonsterList[i].damage = originEnemyMonsterDataList[i].Damage;
             unit.ownedMonsterList[i].element = originEnemyMonsterDataList[i].Element;
             unit.ownedMonsterList[i].isEnemy = originEnemyMonsterDataList[i].IsEnemy;
-            unit.ownedMonsterList[i].skills = originEnemyMonsterDataList[i].Skills;
+            unit.ownedMonsterList[i].skillDataArr = originEnemyMonsterDataList[i].SkillDataArr;
 
             //enemymonsterinbattlelist[i].hp = originenemymonster[i].hp;
             //enemymonsterinbattlelist[i].name = originenemymonster[i].name;
