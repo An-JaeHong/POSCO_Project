@@ -936,7 +936,7 @@ GameObject:
   - component: {fileID: -8564147359224111851}
   m_Layer: 0
   m_Name: Cactus Boss
-  m_TagString: Enemy
+  m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

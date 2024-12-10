@@ -160,7 +160,7 @@ public class NormalIdleState : IUnitState
         //시야각 안에 있고
         if (angle < unit.sightAngle / 2)
         {
-            Debug.Log($"2 : {directionToPlayer}, {unit.detectRange}");
+            //Debug.Log($"2 : {directionToPlayer}, {unit.detectRange}");
             //방향 만족하고
             if (Physics.Raycast(unit.transform.position, directionToPlayer, out RaycastHit hit, unit.detectRange, LayerMask.GetMask("Player")))
             {

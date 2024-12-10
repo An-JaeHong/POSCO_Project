@@ -54,7 +54,7 @@ public class Unit : MonoBehaviour
     private void OnEnable()
     {
         pos= transform.position;
-        print(pos);
+        //print(pos);
         //spawnPosition.position = new Vector3(pos.x, pos.y, pos.z);
     }
 
@@ -242,7 +242,7 @@ public class Unit : MonoBehaviour
         float currentY = pos.y;
 
         Vector3 randomPos = new Vector3(rangeX, currentY, rangeZ);
-        print($"랜덤으로 주어진 포지션{randomPos}");
+        //print($"랜덤으로 주어진 포지션{randomPos}");
 
         //새로 만든 포지션을 리턴
         return randomPos;
