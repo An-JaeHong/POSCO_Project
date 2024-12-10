@@ -1421,10 +1421,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1189548432040171746, guid: 90636d377fd2e4e4ebc2e890faacaf65, type: 3}
-      propertyPath: prefabToSpawn.Array.data[17]
-      value: 
-      objectReference: {fileID: 767066440092162339, guid: 7c2cc4336e021c9479c1bbed505f35f6, type: 3}
     - target: {fileID: 7100639782777098620, guid: 90636d377fd2e4e4ebc2e890faacaf65, type: 3}
       propertyPath: m_Name
       value: MonsterRespawn
@@ -1582,6 +1578,10 @@ PrefabInstance:
     - target: {fileID: 4418365355972547961, guid: c4ae9da1ead94f8498b8c264790e91e1, type: 3}
       propertyPath: m_Name
       value: HealArea
+      objectReference: {fileID: 0}
+    - target: {fileID: 4418365355972547961, guid: c4ae9da1ead94f8498b8c264790e91e1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2555,63 +2555,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c60b3b38eb726d498d07f453a2c604e, type: 3}
---- !u!1001 &2717958867432187670
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 767066440092162339, guid: 7c2cc4336e021c9479c1bbed505f35f6, type: 3}
-      propertyPath: m_Name
-      value: UnitDragon Inferno
-      objectReference: {fileID: 0}
-    - target: {fileID: 2054792244053529017, guid: 7c2cc4336e021c9479c1bbed505f35f6, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2054792244053529017, guid: 7c2cc4336e021c9479c1bbed505f35f6, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.12
-      objectReference: {fileID: 0}
-    - target: {fileID: 2054792244053529017, guid: 7c2cc4336e021c9479c1bbed505f35f6, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2054792244053529017, guid: 7c2cc4336e021c9479c1bbed505f35f6, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.35266215
-      objectReference: {fileID: 0}
-    - target: {fileID: 2054792244053529017, guid: 7c2cc4336e021c9479c1bbed505f35f6, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.010020323
-      objectReference: {fileID: 0}
-    - target: {fileID: 2054792244053529017, guid: 7c2cc4336e021c9479c1bbed505f35f6, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.93531966
-      objectReference: {fileID: 0}
-    - target: {fileID: 2054792244053529017, guid: 7c2cc4336e021c9479c1bbed505f35f6, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.026575575
-      objectReference: {fileID: 0}
-    - target: {fileID: 2054792244053529017, guid: 7c2cc4336e021c9479c1bbed505f35f6, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 3.255
-      objectReference: {fileID: 0}
-    - target: {fileID: 2054792244053529017, guid: 7c2cc4336e021c9479c1bbed505f35f6, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -138.682
-      objectReference: {fileID: 0}
-    - target: {fileID: 2054792244053529017, guid: 7c2cc4336e021c9479c1bbed505f35f6, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 7c2cc4336e021c9479c1bbed505f35f6, type: 3}
 --- !u!1001 &3389706583950484411
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2783,6 +2726,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1984468d1385e2a45a008999b3531793, type: 3}
+--- !u!1001 &6645787067717797306
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7651080617601632290, guid: ece8163c08cd65d44b1a0580e4879f91, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 155.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 7651080617601632290, guid: ece8163c08cd65d44b1a0580e4879f91, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7651080617601632290, guid: ece8163c08cd65d44b1a0580e4879f91, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -58.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 7651080617601632290, guid: ece8163c08cd65d44b1a0580e4879f91, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7651080617601632290, guid: ece8163c08cd65d44b1a0580e4879f91, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7651080617601632290, guid: ece8163c08cd65d44b1a0580e4879f91, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7651080617601632290, guid: ece8163c08cd65d44b1a0580e4879f91, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7651080617601632290, guid: ece8163c08cd65d44b1a0580e4879f91, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7651080617601632290, guid: ece8163c08cd65d44b1a0580e4879f91, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7651080617601632290, guid: ece8163c08cd65d44b1a0580e4879f91, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7723877287635786427, guid: ece8163c08cd65d44b1a0580e4879f91, type: 3}
+      propertyPath: m_Name
+      value: HealArea
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ece8163c08cd65d44b1a0580e4879f91, type: 3}
 --- !u!1001 &7827845587693031978
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2855,7 +2855,6 @@ SceneRoots:
   - {fileID: 459187773}
   - {fileID: 1508080496}
   - {fileID: 106404248}
-  - {fileID: 2717958867432187670}
   - {fileID: 1251373104}
   - {fileID: 1840638296}
   - {fileID: 1298288939}
@@ -2877,3 +2876,4 @@ SceneRoots:
   - {fileID: 1827283806}
   - {fileID: 2127760990}
   - {fileID: 1023355293}
+  - {fileID: 6645787067717797306}

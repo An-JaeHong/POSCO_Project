@@ -332,7 +332,7 @@ GameObject:
   - component: {fileID: 9144008738768890122}
   m_Layer: 0
   m_Name: UnitDragon Inferno
-  m_TagString: Enemy
+  m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -459,7 +459,7 @@ MonoBehaviour:
   isMove: 0
   hasRandomPosition: 0
   characterController: {fileID: 0}
-  canvasPrefab: {fileID: 0}
+  canvasPrefab: {fileID: 5154029528745985802, guid: f94f6e1beba2c794285e9e3c404448fa, type: 3}
   velocity: {x: 0, y: 0, z: 0}
 --- !u!1 &821653323387529525
 GameObject:
