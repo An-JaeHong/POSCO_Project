@@ -24,6 +24,8 @@ public class Unit : MonoBehaviour
     public GameObject exclamationMarkPrefab; //느낌표 프리팹
     private GameObject exclamationMark; //실제 켰다 껐다할 느낌표
     public Transform spawnPosition; //스폰되는 장소
+    private Vector3 pos;
+    
     private Player player;
 
     public string name;            //유닛 이름
@@ -48,6 +50,14 @@ public class Unit : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         player = FindAnyObjectByType<Player>();
     }
+
+    private void OnEnable()
+    {
+        pos= transform.position;
+        print(pos);
+        //spawnPosition.position = new Vector3(pos.x, pos.y, pos.z);
+    }
+
 
     private void Start()
     {
@@ -223,10 +233,13 @@ public class Unit : MonoBehaviour
     public Vector3 SetRandomPosition()
     {
         //함수 실행될때 마다 랜덤한 x,z값 생성하고 새로운 벡터를 생성
-        float rangeX = Random.Range(spawnPosition.position.x - moveRange, spawnPosition.position.x + moveRange);
-        float rangeZ = Random.Range(spawnPosition.position.z - moveRange, spawnPosition.position.z + moveRange);
+        float rangeX = Random.Range(pos.x - moveRange, pos.x + moveRange);
+        float rangeZ = Random.Range(pos.z - moveRange, pos.z + moveRange);
+        //float rangeX = Random.Range(spawnPosition.position.x - moveRange, spawnPosition.position.x + moveRange);
+        //float rangeZ = Random.Range(spawnPosition.position.z - moveRange, spawnPosition.position.z + moveRange);
 
-        float currentY = transform.position.y;
+        //float currentY = transform.position.y;
+        float currentY = pos.y;
 
         Vector3 randomPos = new Vector3(rangeX, currentY, rangeZ);
         print($"랜덤으로 주어진 포지션{randomPos}");
