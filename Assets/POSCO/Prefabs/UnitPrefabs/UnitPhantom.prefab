@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1292346598384386075}
   - component: {fileID: -3484275985158304085}
   m_Layer: 0
-  m_Name: Phantom
+  m_Name: UnitPhantom
   m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

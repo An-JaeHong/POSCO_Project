@@ -486,7 +486,7 @@ GameObject:
   - component: {fileID: 5566835614778674735}
   - component: {fileID: 2800959058056702043}
   m_Layer: 0
-  m_Name: Dragon Fire
+  m_Name: UnitDragon Fire
   m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

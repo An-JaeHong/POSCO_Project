@@ -869,7 +869,7 @@ GameObject:
   - component: {fileID: -1876261308442610011}
   - component: {fileID: -9196657595904564033}
   m_Layer: 0
-  m_Name: Shell
+  m_Name: UnitShell
   m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

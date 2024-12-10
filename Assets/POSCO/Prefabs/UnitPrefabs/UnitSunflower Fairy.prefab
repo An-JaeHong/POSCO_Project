@@ -1581,7 +1581,7 @@ GameObject:
   - component: {fileID: -7370918594733455877}
   - component: {fileID: -8253391461201111085}
   m_Layer: 0
-  m_Name: Sunflower Fairy
+  m_Name: UnitSunflower Fairy
   m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

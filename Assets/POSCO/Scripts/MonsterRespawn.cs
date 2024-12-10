@@ -5,6 +5,10 @@ using UnityEngine.UIElements;
 
 public class MonsterRespawn : MonoBehaviour
 {
+    private static MonsterRespawn instance;
+    public static MonsterRespawn Instance { get { return instance; } }
+
+
     public List<Vector3> respawnPos;
 
     public List<GameObject> prefabToSpawn; // 소환할 프리팹
@@ -17,20 +21,27 @@ public class MonsterRespawn : MonoBehaviour
 
     private void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        DontDestroyOnLoad(gameObject);
+    }
+    private void Start()
+    {
         respawnPos = new List<Vector3>();
-        
+
 
         foreach (Transform pos in transform)
         {
             respawnPos.Add(pos.position);
         }
-    }
-    private void Start()
-    {
-        
-        spawnMonsterList = new List<GameObject>(new GameObject[maxMonsterCount]);
 
-        
+        spawnMonsterList = new List<GameObject>(new GameObject[maxMonsterCount]);
 
         //초기몬스터
         for (int i = 0; i < maxMonsterCount; i++)
@@ -54,7 +65,7 @@ public class MonsterRespawn : MonoBehaviour
             if (spawnMonsterList[random] == null)
             {
                 SpawnPrefab(prefabToSpawn[random2], respawnPos[random], random);
-                
+                print("생성됨");
             }
             else { print("이미 몬스터 있음"); }
         }
@@ -62,8 +73,7 @@ public class MonsterRespawn : MonoBehaviour
 
     private void SpawnPrefab(GameObject monsterPrefab,Vector3 position, int number)
     {
-         if (monsterCount < 8)
-         {
+        
             // 프리팹을 특정 위치에 소환
             GameObject monster = Instantiate(monsterPrefab, position, Quaternion.identity);
             monsterCount++;
@@ -75,7 +85,7 @@ public class MonsterRespawn : MonoBehaviour
             //    unitScript.
             //}
          
-        }
+       
     }
 
     

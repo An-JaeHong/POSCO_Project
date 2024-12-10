@@ -751,7 +751,7 @@ GameObject:
   - component: {fileID: -2680901829472361447}
   - component: {fileID: 587306893501305764}
   m_Layer: 0
-  m_Name: Fungi
+  m_Name: UnitFungi
   m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

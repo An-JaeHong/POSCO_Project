@@ -298,7 +298,7 @@ GameObject:
   - component: {fileID: -6259257002048227341}
   - component: {fileID: 3258502403280005264}
   m_Layer: 0
-  m_Name: Toadstool
+  m_Name: UnitToadstool
   m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

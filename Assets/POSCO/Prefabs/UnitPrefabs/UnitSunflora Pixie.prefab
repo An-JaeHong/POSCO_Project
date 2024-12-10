@@ -1554,7 +1554,7 @@ GameObject:
   - component: {fileID: 6319273055812266195}
   - component: {fileID: 5857333540565094623}
   m_Layer: 0
-  m_Name: Sunflora Pixie
+  m_Name: UnitSunflora Pixie
   m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

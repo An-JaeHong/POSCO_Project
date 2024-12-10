@@ -1354,7 +1354,7 @@ GameObject:
   - component: {fileID: 952433345995795895}
   - component: {fileID: 1008060623340977499}
   m_Layer: 0
-  m_Name: Shadow
+  m_Name: UnitShadow
   m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

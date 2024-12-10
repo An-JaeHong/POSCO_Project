@@ -787,7 +787,7 @@ GameObject:
   - component: {fileID: 4597795018726696597}
   - component: {fileID: -6426073675495872412}
   m_Layer: 0
-  m_Name: Cactus
+  m_Name: UnitCactus
   m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

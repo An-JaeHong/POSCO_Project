@@ -463,6 +463,9 @@ public class PlayerNormalBattleState : PlayerStateBase
             }
             //밖에있는 몬스터는 삭제
             GameObject.Destroy(GameManager.Instance.contactedFieldMonster);
+
+            MonsterRespawn.Instance.monsterCount--;
+            Debug.Log(MonsterRespawn.Instance.monsterCount);
         }
         else if (TurnManager.Instance.allPlayerMonstersDead == true)
         {

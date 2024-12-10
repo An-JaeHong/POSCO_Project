@@ -172,7 +172,7 @@ GameObject:
   - component: {fileID: -1714029465665832476}
   - component: {fileID: 1247094133222188583}
   m_Layer: 0
-  m_Name: Spook
+  m_Name: UnitSpook
   m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
