@@ -68,11 +68,12 @@ public class Monster : MonoBehaviour
         //hp += level * 2;
         //damage += level * 1;
         animator = GetComponent<Animator>();
-        selectedSkill = null;
+        //selectedSkill = null;
         attackType = AttackType.None;
         //레벨당 경험치는 시작할때 초기화
         levelPerExp = expArr[level - 1];
         print($"{levelPerExp}");
+        selectedSkill = skills[0];
 
         //레벨당 경험치는 어짜피 적만 주는거기 때문에 처음부터 설정해두면 좋을 듯
     }
@@ -110,6 +111,7 @@ public class Monster : MonoBehaviour
         this.isEnemy = source.isEnemy;
         this.levelPerExp = source.levelPerExp;
         this.skills = (SkillData[])source.skills.Clone();
+        this.selectedSkill.skillCount = source.selectedSkill.skillCount;
     }
 
     public MonsterDeepCopy DeepCopy()

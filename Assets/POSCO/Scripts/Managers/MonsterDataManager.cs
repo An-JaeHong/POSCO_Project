@@ -62,6 +62,8 @@ public class MonsterDataManager : MonoBehaviour
                     cloneMonster.damage = originalMonster.damage;
                     cloneMonster.isEnemy = originalMonster.isEnemy;
                     cloneMonster.skills = originalMonster.skills != null ? (SkillData[])originalMonster.skills.Clone() : null;
+                    cloneMonster.selectedSkill = originalMonster.skills[0];
+                    cloneMonster.selectedSkill.skillCount = originalMonster.skills[0].skillCount;
                     cloneMonster.animator = originalMonster.animator;
                     cloneMonster.selectedSkill = originalMonster.selectedSkill;
                     cloneMonster.playParticleDuration = originalMonster.playParticleDuration;

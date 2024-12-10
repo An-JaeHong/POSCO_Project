@@ -15,6 +15,8 @@ public class MonsterDeepCopy
     public bool IsEnemy { get; set; }
     public SkillData[] Skills { get; set; }
 
+    public SkillData SelectedSkill { get; set; }
+
     public MonsterDeepCopy() { }
 
     public MonsterDeepCopy(Monster original)
@@ -27,6 +29,7 @@ public class MonsterDeepCopy
         Element = original.element;
         IsEnemy =  original.isEnemy;
         Skills = original.skills != null? (SkillData[])original.skills.Clone() : null;
+        SelectedSkill.skillCount = original.selectedSkill.skillCount;
 
         //if (original.Skills != null)
         //{
