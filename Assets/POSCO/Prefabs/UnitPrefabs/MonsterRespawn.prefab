@@ -418,7 +418,7 @@ MonoBehaviour:
   - {fileID: 6952103276176678071, guid: 90efb912d824b3d4e82b0c022ee6730f, type: 3}
   - {fileID: 8241602052757903469, guid: eff4e5d8ea4800f4b9aec9962727849d, type: 3}
   - {fileID: 1269098103848168546, guid: 8e01c15a58f75c247a524ab4703ceb50, type: 3}
-  - {fileID: 2980432840837551727, guid: 3cbac39a83789c848876f462b7d9a05e, type: 3}
+  - {fileID: 767066440092162339, guid: 7c2cc4336e021c9479c1bbed505f35f6, type: 3}
   spawnPosition: {x: 0, y: 0, z: 0}
   monsterCount: 0
 --- !u!1 &7370137423015425289
