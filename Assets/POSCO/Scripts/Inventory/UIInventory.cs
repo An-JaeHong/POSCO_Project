@@ -138,8 +138,9 @@ public class UIInventory : MonoBehaviour
        
         for (int i = 0; i < playerMonsterList.Count; i++)
         {
+            print(i);
             float posNum = i * 10f;
-      
+            
             newTextureMonster = Instantiate(texturePlayerMonsterList[i]).GetComponent<UIMonster>();
             newTextureMonster.transform.position = new Vector3(100 - posNum, 0, 0);
             newMonsterCamera = Instantiate(invetoryCameraPrefab);
