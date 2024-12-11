@@ -8,7 +8,7 @@ public class UIInventoryManager : MonoBehaviour
     private static UIInventoryManager instance;
     public static UIInventoryManager Instance {  get { return instance; } }
 
-    private Stack<GameObject> popupStack = new Stack<GameObject>();
+    public Stack<GameObject> popupStack = new Stack<GameObject>();
 
     private UIInventory inventory;
     private void Awake()
