@@ -31,6 +31,8 @@ public class Player : MonoBehaviour
 
     private Rigidbody rb;
 
+    private bool isMouseMove;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -100,6 +102,25 @@ public class Player : MonoBehaviour
             LockCursor();
         }
 
+        if (UIInventoryManager.Instance.popupStack.Count > 0)
+        {
+            isMouseMove = false;
+        }
+        else 
+        {
+            isMouseMove = true;
+        }
+
+        if (UIPopupManager.Instance.isPopupUIOpen)
+        {
+            isMouseMove = false;
+        }
+        else
+        {
+
+            isMouseMove = true;
+        }
+
         //if (Input.GetKeyDown(KeyCode.I))
         //{
         //    ToggleInventory();
@@ -140,6 +161,10 @@ public class Player : MonoBehaviour
     //시야 관련 함수
     public void HandleSight()
     {
+        if (!isMouseMove)
+        {
+            return;
+        }
         float mouseX = Input.GetAxis("Mouse X");
         float mouseY = Input.GetAxis("Mouse Y");
 
@@ -159,14 +184,14 @@ public class Player : MonoBehaviour
     private void LockCursor()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        //Cursor.visible = false;
     }
 
     //커서 잠금해제
     private void UnlockCursor()
     {
         Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        //Cursor.visible = true;
     }
 
     private void ToggleInventory()

@@ -19,6 +19,8 @@ public class UIPopupManager : MonoBehaviour
     private GameObject currentPopup;
     private Dictionary<string, UIButton> activeButton = new Dictionary<string, UIButton>();
 
+    public bool isPopupUIOpen;
+
     private void Awake()
     {
         if (instance == null)
@@ -65,6 +67,8 @@ public class UIPopupManager : MonoBehaviour
             var uiButton = buttonObj.GetComponent<UIButton>();
 
             uiButton.ButtonPrefabSetup(button.Key, button.Value);
+
+            isPopupUIOpen = true;
         }
     }
 
@@ -78,5 +82,7 @@ public class UIPopupManager : MonoBehaviour
             Destroy(currentPopup);
             activeButton.Clear();
         }
+
+        isPopupUIOpen = false;
     }
 }
