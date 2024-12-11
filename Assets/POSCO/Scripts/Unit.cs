@@ -44,11 +44,14 @@ public class Unit : MonoBehaviour
 
     public Vector3 velocity;
     private Rigidbody rb;
+
+    public Animator animator;
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
         rb = GetComponent<Rigidbody>();
         player = FindAnyObjectByType<Player>();
+        animator = GetComponent<Animator>();    
     }
 
     private void OnEnable()
@@ -172,6 +175,7 @@ public class Unit : MonoBehaviour
         {
             return;
         }
+        animator.SetBool("isMoving", true);
         //print("UnitMove함수가 실행됨");
         //움직이는 방향 노말벡터
         float distanceToDestination = Vector3.Distance(transform.position, destination);
