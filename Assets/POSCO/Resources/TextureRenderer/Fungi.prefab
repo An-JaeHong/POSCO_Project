@@ -186,8 +186,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.66, y: 1.66, z: 1.66}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7562266925686909265}
   - {fileID: 6780092224735517391}
@@ -231,6 +231,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   element: 0
   name: Fungi
+  hp: 0
+  maxHp: 0
 --- !u!1 &3326659279661230053
 GameObject:
   m_ObjectHideFlags: 0

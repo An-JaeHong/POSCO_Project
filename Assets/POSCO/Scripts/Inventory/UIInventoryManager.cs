@@ -37,19 +37,19 @@ public class UIInventoryManager : MonoBehaviour
     {
 
         popupStack.Push(popupPrefab);
-        print("ÆË¾÷ÀÌ ¿­¸²");
         print(popupPrefab.name);
-        //print(popupStack.Count);
+        print("ÆË¾÷ÀÌ ¿­¸²");
+        print(popupStack.Count);
     }
 
     public void ClosePopup()
     {
         if (popupStack.Count > 0)
         {
-            print("½ÇÇàµÊ");
+            print("´ÝÈû");
             GameObject popup = popupStack.Pop(); // °¡Àå ÃÖ±Ù ÆË¾÷
             Destroy(popup);
-            //print(popupStack.Count);
+            print(popupStack.Count);
         }
         //if (inventory.cardList != null)
         //{

@@ -102,24 +102,27 @@ public class Player : MonoBehaviour
             LockCursor();
         }
 
-        if (UIInventoryManager.Instance.popupStack.Count > 0)
+        if (UIInventoryManager.Instance.popupStack.Count > 0 || UIPopupManager.Instance.isPopupUIOpen)
         {
             isMouseMove = false;
-        }
-        else 
-        {
-            isMouseMove = true;
+            print(isMouseMove);
         }
 
-        if (UIPopupManager.Instance.isPopupUIOpen)
-        {
-            isMouseMove = false;
-        }
         else
         {
-
             isMouseMove = true;
         }
+
+        //if (UIPopupManager.Instance.isPopupUIOpen)
+        //{
+        //    isMouseMove = false;
+        //}
+        //else
+        //{
+           
+        //    isMouseMove = true;
+        //    print(isMouseMove);
+        //}
 
         //if (Input.GetKeyDown(KeyCode.I))
         //{
@@ -163,8 +166,10 @@ public class Player : MonoBehaviour
     {
         if (!isMouseMove)
         {
+            print("∏ÿ√„");
             return;
         }
+        print("æ»∏ÿ√„");
         float mouseX = Input.GetAxis("Mouse X");
         float mouseY = Input.GetAxis("Mouse Y");
 

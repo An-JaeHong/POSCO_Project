@@ -661,8 +661,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2.01, y: 2.01, z: 2.01}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 124714242302587015}
   - {fileID: 7544243762648410274}
@@ -728,6 +728,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   element: 0
   name: Sunflora Pixie
+  hp: 0
+  maxHp: 0
 --- !u!1 &3113763400977356056
 GameObject:
   m_ObjectHideFlags: 0

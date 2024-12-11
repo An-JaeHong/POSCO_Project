@@ -321,7 +321,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4895124167229439119, guid: 1984468d1385e2a45a008999b3531793, type: 3}
       propertyPath: m_Name
-      value: BattleMap
+      value: GameEndMap
       objectReference: {fileID: 0}
     - target: {fileID: 6064065286209762833, guid: 1984468d1385e2a45a008999b3531793, type: 3}
       propertyPath: m_LocalPosition.x
@@ -365,7 +365,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7537905149614973138, guid: 1984468d1385e2a45a008999b3531793, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -2.98
       objectReference: {fileID: 0}
     - target: {fileID: 7537905149614973138, guid: 1984468d1385e2a45a008999b3531793, type: 3}
       propertyPath: m_LocalPosition.y

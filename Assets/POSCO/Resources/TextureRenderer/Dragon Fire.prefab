@@ -2764,8 +2764,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.91, y: 0.91, z: 0.91}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 482129747989994121}
   - {fileID: 171564998338288915}
@@ -2833,3 +2833,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   element: 0
   name: Dragon Fire
+  hp: 0
+  maxHp: 0
