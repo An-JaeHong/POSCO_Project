@@ -175,7 +175,7 @@ public class Unit : MonoBehaviour
         {
             return;
         }
-        animator.SetBool("isMoving", true);
+        animator.SetBool("IsMoving", true);
         //print("UnitMove함수가 실행됨");
         //움직이는 방향 노말벡터
         float distanceToDestination = Vector3.Distance(transform.position, destination);
