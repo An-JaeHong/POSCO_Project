@@ -1,170 +1,170 @@
 fileFormatVersion: 2
-guid: 797ce6dfa07722b449fc58a58b27db4d
+guid: 6c3033875e8f97a43b8792ad32211712
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable:
   - first:
       1: 100000
-    second: //RootNode
-  - first:
-      1: 100002
     second: f
   - first:
-      1: 100004
+      1: 100002
     second: fFeelerL1
   - first:
-      1: 100006
+      1: 100004
     second: fFeelerL2
   - first:
-      1: 100008
+      1: 100006
     second: fFeelerL3
   - first:
-      1: 100010
+      1: 100008
     second: fFeelerL4
   - first:
-      1: 100012
+      1: 100010
     second: fFeelerR1
   - first:
-      1: 100014
+      1: 100012
     second: fFeelerR2
   - first:
-      1: 100016
+      1: 100014
     second: fFeelerR3
   - first:
-      1: 100018
+      1: 100016
     second: fFeelerR4
   - first:
-      1: 100020
+      1: 100018
     second: fHead
   - first:
-      1: 100022
+      1: 100020
     second: fLArm1
   - first:
-      1: 100024
+      1: 100022
     second: fLArm2
   - first:
-      1: 100026
+      1: 100024
     second: fLArmFinger1
   - first:
-      1: 100028
+      1: 100026
     second: fLArmPalm
   - first:
-      1: 100030
+      1: 100028
     second: fLLeg1
   - first:
-      1: 100032
+      1: 100030
     second: fLLeg2
   - first:
-      1: 100034
+      1: 100032
     second: fLLegAnkle
   - first:
-      1: 100036
+      1: 100034
     second: fLLegPlatform
   - first:
-      1: 100038
+      1: 100036
     second: fNeck
   - first:
-      1: 100040
+      1: 100038
     second: fPelvis
   - first:
-      1: 100042
+      1: 100040
     second: fRArm1
   - first:
-      1: 100044
+      1: 100042
     second: fRArm2
   - first:
-      1: 100046
+      1: 100044
     second: fRArmFinger1
   - first:
-      1: 100048
+      1: 100046
     second: fRArmPalm
   - first:
-      1: 100050
+      1: 100048
     second: fRibcage
   - first:
-      1: 100052
+      1: 100050
     second: fRLeg1
   - first:
-      1: 100054
+      1: 100052
     second: fRLeg2
   - first:
-      1: 100056
+      1: 100054
     second: fRLegAnkle
   - first:
-      1: 100058
+      1: 100056
     second: fRLegPlatform
   - first:
-      1: 100060
+      1: 100058
     second: fSpine1
   - first:
-      1: 100062
+      1: 100060
     second: fSpine2
   - first:
-      1: 100064
+      1: 100062
     second: fWingL
   - first:
-      1: 100066
+      1: 100064
     second: fWingR
   - first:
-      1: 100068
+      1: 100066
     second: RigFeelerL1Gizmo
   - first:
-      1: 100070
+      1: 100068
     second: RigFeelerL2Gizmo
   - first:
-      1: 100072
+      1: 100070
     second: RigFeelerL3Gizmo
   - first:
-      1: 100074
+      1: 100072
     second: RigFeelerL4Gizmo
   - first:
-      1: 100076
+      1: 100074
     second: RigFeelerR1Gizmo
   - first:
-      1: 100078
+      1: 100076
     second: RigFeelerR2Gizmo
   - first:
-      1: 100080
+      1: 100078
     second: RigFeelerR3Gizmo
   - first:
-      1: 100082
+      1: 100080
     second: RigFeelerR4Gizmo
   - first:
-      1: 100084
+      1: 100082
     second: RigHead
   - first:
-      1: 100086
+      1: 100084
     second: RigLArm1Gizmo
   - first:
-      1: 100088
+      1: 100086
     second: RigLArm2Gizmo
   - first:
-      1: 100090
+      1: 100088
     second: RigLArmPalmGizmo
   - first:
-      1: 100092
+      1: 100090
     second: RigPelvisGizmo
   - first:
-      1: 100094
+      1: 100092
     second: RigRArm1Gizmo
   - first:
-      1: 100096
+      1: 100094
     second: RigRArm2Gizmo
   - first:
-      1: 100098
+      1: 100096
     second: RigRArmPalmGizmo
   - first:
-      1: 100100
+      1: 100098
     second: RigRibcageGizmo
   - first:
-      1: 100102
+      1: 100100
     second: RigWingLGizmo
   - first:
-      1: 100104
+      1: 100102
     second: RigWingRGizmo
   - first:
-      1: 100106
+      1: 100104
     second: Sunflower Fairy
+  - first:
+      1: 100106
+    second: //RootNode
   - first:
       1: 100108
     second: Rig
@@ -265,167 +265,266 @@ ModelImporter:
       1: 100172
     second: RigWingR
   - first:
-      4: 400000
-    second: //RootNode
+      1: 100174
+    second: w
   - first:
-      4: 400002
+      1: 100176
+    second: wFeelerL1
+  - first:
+      1: 100178
+    second: wFeelerL2
+  - first:
+      1: 100180
+    second: wFeelerL3
+  - first:
+      1: 100182
+    second: wFeelerL4
+  - first:
+      1: 100184
+    second: wFeelerR1
+  - first:
+      1: 100186
+    second: wFeelerR2
+  - first:
+      1: 100188
+    second: wFeelerR3
+  - first:
+      1: 100190
+    second: wFeelerR4
+  - first:
+      1: 100192
+    second: wHead
+  - first:
+      1: 100194
+    second: wLArm1
+  - first:
+      1: 100196
+    second: wLArm2
+  - first:
+      1: 100198
+    second: wLArmFinger1
+  - first:
+      1: 100200
+    second: wLArmPalm
+  - first:
+      1: 100202
+    second: wLLeg1
+  - first:
+      1: 100204
+    second: wLLeg2
+  - first:
+      1: 100206
+    second: wLLegAnkle
+  - first:
+      1: 100208
+    second: wLLegPlatform
+  - first:
+      1: 100210
+    second: wNeck
+  - first:
+      1: 100212
+    second: wPelvis
+  - first:
+      1: 100214
+    second: wRArm1
+  - first:
+      1: 100216
+    second: wRArm2
+  - first:
+      1: 100218
+    second: wRArmFinger1
+  - first:
+      1: 100220
+    second: wRArmPalm
+  - first:
+      1: 100222
+    second: wRibcage
+  - first:
+      1: 100224
+    second: wRLeg1
+  - first:
+      1: 100226
+    second: wRLeg2
+  - first:
+      1: 100228
+    second: wRLegAnkle
+  - first:
+      1: 100230
+    second: wRLegPlatform
+  - first:
+      1: 100232
+    second: wSpine1
+  - first:
+      1: 100234
+    second: wSpine2
+  - first:
+      1: 100236
+    second: wWingL
+  - first:
+      1: 100238
+    second: wWingR
+  - first:
+      4: 400000
     second: f
   - first:
-      4: 400004
+      4: 400002
     second: fFeelerL1
   - first:
-      4: 400006
+      4: 400004
     second: fFeelerL2
   - first:
-      4: 400008
+      4: 400006
     second: fFeelerL3
   - first:
-      4: 400010
+      4: 400008
     second: fFeelerL4
   - first:
-      4: 400012
+      4: 400010
     second: fFeelerR1
   - first:
-      4: 400014
+      4: 400012
     second: fFeelerR2
   - first:
-      4: 400016
+      4: 400014
     second: fFeelerR3
   - first:
-      4: 400018
+      4: 400016
     second: fFeelerR4
   - first:
-      4: 400020
+      4: 400018
     second: fHead
   - first:
-      4: 400022
+      4: 400020
     second: fLArm1
   - first:
-      4: 400024
+      4: 400022
     second: fLArm2
   - first:
-      4: 400026
+      4: 400024
     second: fLArmFinger1
   - first:
-      4: 400028
+      4: 400026
     second: fLArmPalm
   - first:
-      4: 400030
+      4: 400028
     second: fLLeg1
   - first:
-      4: 400032
+      4: 400030
     second: fLLeg2
   - first:
-      4: 400034
+      4: 400032
     second: fLLegAnkle
   - first:
-      4: 400036
+      4: 400034
     second: fLLegPlatform
   - first:
-      4: 400038
+      4: 400036
     second: fNeck
   - first:
-      4: 400040
+      4: 400038
     second: fPelvis
   - first:
-      4: 400042
+      4: 400040
     second: fRArm1
   - first:
-      4: 400044
+      4: 400042
     second: fRArm2
   - first:
-      4: 400046
+      4: 400044
     second: fRArmFinger1
   - first:
-      4: 400048
+      4: 400046
     second: fRArmPalm
   - first:
-      4: 400050
+      4: 400048
     second: fRibcage
   - first:
-      4: 400052
+      4: 400050
     second: fRLeg1
   - first:
-      4: 400054
+      4: 400052
     second: fRLeg2
   - first:
-      4: 400056
+      4: 400054
     second: fRLegAnkle
   - first:
-      4: 400058
+      4: 400056
     second: fRLegPlatform
   - first:
-      4: 400060
+      4: 400058
     second: fSpine1
   - first:
-      4: 400062
+      4: 400060
     second: fSpine2
   - first:
-      4: 400064
+      4: 400062
     second: fWingL
   - first:
-      4: 400066
+      4: 400064
     second: fWingR
   - first:
-      4: 400068
+      4: 400066
     second: RigFeelerL1Gizmo
   - first:
-      4: 400070
+      4: 400068
     second: RigFeelerL2Gizmo
   - first:
-      4: 400072
+      4: 400070
     second: RigFeelerL3Gizmo
   - first:
-      4: 400074
+      4: 400072
     second: RigFeelerL4Gizmo
   - first:
-      4: 400076
+      4: 400074
     second: RigFeelerR1Gizmo
   - first:
-      4: 400078
+      4: 400076
     second: RigFeelerR2Gizmo
   - first:
-      4: 400080
+      4: 400078
     second: RigFeelerR3Gizmo
   - first:
-      4: 400082
+      4: 400080
     second: RigFeelerR4Gizmo
   - first:
-      4: 400084
+      4: 400082
     second: RigHead
   - first:
-      4: 400086
+      4: 400084
     second: RigLArm1Gizmo
   - first:
-      4: 400088
+      4: 400086
     second: RigLArm2Gizmo
   - first:
-      4: 400090
+      4: 400088
     second: RigLArmPalmGizmo
   - first:
-      4: 400092
+      4: 400090
     second: RigPelvisGizmo
   - first:
-      4: 400094
+      4: 400092
     second: RigRArm1Gizmo
   - first:
-      4: 400096
+      4: 400094
     second: RigRArm2Gizmo
   - first:
-      4: 400098
+      4: 400096
     second: RigRArmPalmGizmo
   - first:
-      4: 400100
+      4: 400098
     second: RigRibcageGizmo
   - first:
-      4: 400102
+      4: 400100
     second: RigWingLGizmo
   - first:
-      4: 400104
+      4: 400102
     second: RigWingRGizmo
   - first:
-      4: 400106
+      4: 400104
     second: Sunflower Fairy
+  - first:
+      4: 400106
+    second: //RootNode
   - first:
       4: 400108
     second: Rig
@@ -526,23 +625,113 @@ ModelImporter:
       4: 400172
     second: RigWingR
   - first:
+      4: 400174
+    second: w
+  - first:
+      4: 400176
+    second: wFeelerL1
+  - first:
+      4: 400178
+    second: wFeelerL2
+  - first:
+      4: 400180
+    second: wFeelerL3
+  - first:
+      4: 400182
+    second: wFeelerL4
+  - first:
+      4: 400184
+    second: wFeelerR1
+  - first:
+      4: 400186
+    second: wFeelerR2
+  - first:
+      4: 400188
+    second: wFeelerR3
+  - first:
+      4: 400190
+    second: wFeelerR4
+  - first:
+      4: 400192
+    second: wHead
+  - first:
+      4: 400194
+    second: wLArm1
+  - first:
+      4: 400196
+    second: wLArm2
+  - first:
+      4: 400198
+    second: wLArmFinger1
+  - first:
+      4: 400200
+    second: wLArmPalm
+  - first:
+      4: 400202
+    second: wLLeg1
+  - first:
+      4: 400204
+    second: wLLeg2
+  - first:
+      4: 400206
+    second: wLLegAnkle
+  - first:
+      4: 400208
+    second: wLLegPlatform
+  - first:
+      4: 400210
+    second: wNeck
+  - first:
+      4: 400212
+    second: wPelvis
+  - first:
+      4: 400214
+    second: wRArm1
+  - first:
+      4: 400216
+    second: wRArm2
+  - first:
+      4: 400218
+    second: wRArmFinger1
+  - first:
+      4: 400220
+    second: wRArmPalm
+  - first:
+      4: 400222
+    second: wRibcage
+  - first:
+      4: 400224
+    second: wRLeg1
+  - first:
+      4: 400226
+    second: wRLeg2
+  - first:
+      4: 400228
+    second: wRLegAnkle
+  - first:
+      4: 400230
+    second: wRLegPlatform
+  - first:
+      4: 400232
+    second: wSpine1
+  - first:
+      4: 400234
+    second: wSpine2
+  - first:
+      4: 400236
+    second: wWingL
+  - first:
+      4: 400238
+    second: wWingR
+  - first:
       21: 2100000
     second: Material #27
   - first:
-      23: 2300000
-    second: //RootNode
-  - first:
-      23: 2300002
-    second: Sunflower Fairy
-  - first:
-      33: 3300000
-    second: //RootNode
-  - first:
-      33: 3300002
-    second: Sunflower Fairy
-  - first:
       43: 4300000
     second: Sunflower Fairy
+  - first:
+      74: 7400000
+    second: Idle
   - first:
       95: 9500000
     second: //RootNode
@@ -570,14 +759,43 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 3
+    animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Idle
+      takeName: Take 001
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -623,23 +841,7 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
-  referencedClips:
-  - 16b767a385449b74d821deeda21c1021
-  - 2f8e361002595b7458d2d2bef774adc6
-  - 7963fe47187a7e74ca9afb74daee6b6b
-  - f63bddf4f5c2a6a4eb7569d8f7cfb91c
-  - 33257f4fa2a2e63478a510c193368f27
-  - f7ac38cdb15673e4bb3087990ef9dc42
-  - 6c3033875e8f97a43b8792ad32211712
-  - b19a15e30fcf6c84b99be2d8515c6dfe
-  - 27c523a40e3b8e54f8e38a6a064221c8
-  - 2a8db8698852e3041828005d9c90525c
-  - 6a82ff9c38ce4854b8c03d662335a01d
-  - 6855d2bf3b7e07f40bcf37f2bfce24c2
-  - d9da34afcce88fd44910d37498401611
-  - 3c3113530774c404cb11c272bfba797b
-  - f187a7de8fc187b4faa7bb4ba3275509
-  - e270b34c0d21af942b74806377b43c8d
+  referencedClips: []
   importAnimation: 1
   humanDescription:
     serializedVersion: 3
@@ -655,7 +857,7 @@ ModelImporter:
     globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 1
+    hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
