@@ -121,6 +121,7 @@ public class CameraManager : MonoBehaviour
         //}
     }
 
+    //카메라 조정
     private void AdjustCanvasDirection()
     {
         if (fadeCanvas.renderMode == RenderMode.WorldSpace)
@@ -132,7 +133,7 @@ public class CameraManager : MonoBehaviour
 
     private IEnumerator Fade(float targetAlpha)
     {
-        float fadeSpeed = 0.5f;
+        float fadeSpeed = 0.3f;
         Color color = fadeImage.color;
         while (!Mathf.Approximately(color.a, targetAlpha))
         {
