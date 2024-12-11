@@ -443,9 +443,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterPrefabs:
-  - {fileID: 1408502971525266044, guid: bf1b444b156f75c439be369b005db68f, type: 3}
-  - {fileID: 1408502971525266044, guid: bf1b444b156f75c439be369b005db68f, type: 3}
-  - {fileID: 1408502971525266044, guid: bf1b444b156f75c439be369b005db68f, type: 3}
+  - {fileID: 1408502971525266044, guid: 4838d6d06bfc43f45a1c4bd9fa2c97ce, type: 3}
+  - {fileID: 1408502971525266044, guid: 4838d6d06bfc43f45a1c4bd9fa2c97ce, type: 3}
+  - {fileID: 1408502971525266044, guid: 4838d6d06bfc43f45a1c4bd9fa2c97ce, type: 3}
   ownedMonsterList: []
   isBoss: 0
   exclamationMarkPrefab: {fileID: 8764048426798851983, guid: 5494df217f1871e459d48b337ca61ac7, type: 3}

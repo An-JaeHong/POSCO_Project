@@ -98,7 +98,7 @@ public class CameraManager : MonoBehaviour
             case CameraType.BattleMap:
                 //currentCamera = battleMapCamera.GetComponent<Camera>();
                 currentCamera = battleMapCamera;
-                Time.timeScale = 1;
+                //Time.timeScale = 1;
                 break;
             case CameraType.FieldMap:
                 //currentCamera = fieldSceneCamera.GetComponent<Camera>();
@@ -132,7 +132,7 @@ public class CameraManager : MonoBehaviour
 
     private IEnumerator Fade(float targetAlpha)
     {
-        float fadeSpeed = 1f;
+        float fadeSpeed = 0.5f;
         Color color = fadeImage.color;
         while (!Mathf.Approximately(color.a, targetAlpha))
         {

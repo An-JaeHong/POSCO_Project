@@ -51,9 +51,12 @@ public class UIInventoryManager : MonoBehaviour
             Destroy(popup);
             //print(popupStack.Count);
         }
-        if(inventory.cardList != null)
-        { inventory.AllCardbuttonStop(); }
-                }
+        //if (inventory.cardList != null)
+        //{
+        //    inventory.AllCardbuttonStop();
+        //}
+    }
+
     public int IsPopupOpen()
     {
         return popupStack.Count; // 현재 열린 팝업이 있는지 확인
