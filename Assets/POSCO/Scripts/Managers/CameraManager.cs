@@ -133,7 +133,7 @@ public class CameraManager : MonoBehaviour
 
     private IEnumerator Fade(float targetAlpha)
     {
-        float fadeSpeed = 0.3f;
+        float fadeSpeed = 1f;
         Color color = fadeImage.color;
         while (!Mathf.Approximately(color.a, targetAlpha))
         {

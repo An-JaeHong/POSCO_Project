@@ -47,7 +47,7 @@ public class NormalIdleState : IUnitState
         {
             Debug.Log("다시 움직임");
             waitTimer -= Time.deltaTime;
-            unit.animator.SetBool("isMoving", false);
+            unit.animator.SetBool("IsMoving", false);
             //2초 후에는 다시 움직일 수 있게끔 해야한다.
             if (waitTimer <= 0)
             {
