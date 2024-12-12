@@ -17,6 +17,8 @@ public class PlayerMove : MonoBehaviour
     {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
+
+
         Vector3 direction = new Vector3(horizontal, 0, vertical).normalized;
         if (Input.GetKey(KeyCode.LeftShift) && (horizontal != 0 || vertical > 0))
         {

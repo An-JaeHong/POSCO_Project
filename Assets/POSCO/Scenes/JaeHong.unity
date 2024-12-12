@@ -8448,6 +8448,8 @@ MonoBehaviour:
   mouseSensivity: 20
   cameraRig: {fileID: 1132995285}
   uiInventory: {fileID: 0}
+  transition: {fileID: 11400000, guid: 3ad3e86dc386e60458fda4c93a2c3d62, type: 2}
+  loadDelay: 0
 --- !u!54 &1873107082
 Rigidbody:
   m_ObjectHideFlags: 0
