@@ -6068,6 +6068,7 @@ MonoBehaviour:
   - {fileID: 8144305676402533958, guid: c622b2a4b174449448a108fc5d4f7431, type: 3}
   - {fileID: 2367042737099000825, guid: 4bf20e0fd4bc1854cb398f21e12d4d44, type: 3}
   - {fileID: 198485063038056600, guid: 8009a4e25bd48ec4da1ee0159165e4a6, type: 3}
+  - {fileID: 198485063038056600, guid: 8009a4e25bd48ec4da1ee0159165e4a6, type: 3}
   selectedMonsterList: []
   canMove: 1
   moveSpeed: 10

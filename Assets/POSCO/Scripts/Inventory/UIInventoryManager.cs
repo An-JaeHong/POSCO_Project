@@ -48,6 +48,16 @@ public class UIInventoryManager : MonoBehaviour
         {
             print("´ÝÈû");
             GameObject popup = popupStack.Pop(); // °¡Àå ÃÖ±Ù ÆË¾÷
+            
+            if (popup.name.Contains("ShowSellectMonsterBackground"))
+            {
+                if (inventory != null)
+                {
+                    print("½ÇÇàµÊ"); 
+                    inventory.AllCardbuttonStop();
+                }
+            }
+
             Destroy(popup);
             print(popupStack.Count);
         }

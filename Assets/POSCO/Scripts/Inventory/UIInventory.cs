@@ -28,7 +28,7 @@ public class UIInventory : MonoBehaviour
 
     public RenderTexture[] renderTexture;
     public RenderTexture emptyRenderTexture;
-    
+
     public int choiceNum = 0;
     //아이템 갯수 
     public int[] potionNum;
@@ -40,7 +40,7 @@ public class UIInventory : MonoBehaviour
     private InventoryPopUp inventoryPopUp;
     private InventoryButton inventoryButton;
     private MonsterDataManager monsterDataManager;
-    
+
     public List<GameObject> cardList;
 
     public GameObject selectedMonster;
@@ -49,7 +49,7 @@ public class UIInventory : MonoBehaviour
 
 
     private Item item;
-   
+
     private void Start()
     {
 
@@ -63,7 +63,7 @@ public class UIInventory : MonoBehaviour
             Debug.Log("monsterDataManager가 없습니다");
         }
         cardList = new List<GameObject>(playerMonsterList.Count);
-        
+
         Debug.Log($"Items Count: {item.items.Count}");
 
         LoadMonsterPrefabs();
@@ -77,14 +77,14 @@ public class UIInventory : MonoBehaviour
 
     private void OnEnable()
     {
-       
 
-        
+
+
     }
 
     private void Update()
     {
-     
+
     }
 
 
@@ -109,14 +109,14 @@ public class UIInventory : MonoBehaviour
 
     public void FindSameMonsters()
     {
-       
-   
+
+
         for (int i = 0; i < playerMonsterList.Count; i++)
         {
-              
+
             foreach (var monster in textureMonsterPrefabsList)
             {
-                   
+
                 if (monster.name == playerMonsterList[i].name)
                 {
                     //print("있다");
@@ -135,12 +135,12 @@ public class UIInventory : MonoBehaviour
         UIMonster newTextureMonster;
         GameObject newMonsterCamera;
 
-       
+
         for (int i = 0; i < playerMonsterList.Count; i++)
         {
             print(i);
             float posNum = i * 10f;
-            
+
             newTextureMonster = Instantiate(texturePlayerMonsterList[i]).GetComponent<UIMonster>();
             newTextureMonster.transform.position = new Vector3(100 - posNum, 0, 0);
             newMonsterCamera = Instantiate(invetoryCameraPrefab);
@@ -154,14 +154,14 @@ public class UIInventory : MonoBehaviour
 
     public void SetSelectButton(GameObject monsterCardBackgroundPrefab)
     {
-        
+
     }
 
 
     //생성된 몬스터 카드 속성에 맞게 생성
     public void InstantiateMonsterCard(GameObject monsterCardBackgroundPrefab)
     {
-       
+
         Transform target = monsterCardBackgroundPrefab.transform;
         target = monsterCardBackgroundPrefab.transform.Find("MonsterCardGirdLayoutGroup");
         monsterCardPos = target.GetComponent<RectTransform>();
@@ -187,11 +187,24 @@ public class UIInventory : MonoBehaviour
             Transform targetTexture = monsterCard.transform.Find("MonsterCardButton");
             RawImage rawImage = targetTexture.GetComponent<RawImage>();
             rawImage.texture = renderTexture[i];
+            
             if (monsterDataManager.allMonsterDataList[i].hp == 0)
             {
-                print(monsterDataManager.allMonsterDataList[i].hp);
-                rawImage.color = new Color(0.25f,0.25f,0.25f);
+                Transform targetButton1;
+                Button button1;
+                ColorBlock colorBlock;
+
+                button1 = targetTexture.GetComponent<Button>();
+                button1.interactable = false;
+                colorBlock = button.colors;
+                colorBlock.colorMultiplier = 1f;
+                button1.colors = colorBlock;
             }
+
+
+
+
+
 
             //소환된 카드에 이름 삽입하기
             Transform targetText = monsterCard.transform.Find("TextName");
@@ -220,21 +233,21 @@ public class UIInventory : MonoBehaviour
 
             // UnityAction을 사용하여 버튼 클릭 이벤트 추가
             UnityAction action = () => inventoryButton.OnSelectCardButton(parameterValue);
-            button.onClick.AddListener(action);        
+            button.onClick.AddListener(action);
             button.interactable = false;
 
             targetButton = monsterCard.transform.Find("InfoButton");
             button = targetButton.GetComponentInChildren<Button>();
-           
 
-           
+
+
             action = () => inventoryButton.OnShowMonsterInfoButton(parameterValue);
             button.onClick.AddListener(action);
-            button.interactable =true;
+            button.interactable = true;
 
 
             cardList.Add(monsterCard);
-            
+
             print(cardList[i].name);
             switch (playerMonsterList[i].element)
             {
@@ -256,7 +269,7 @@ public class UIInventory : MonoBehaviour
 
             }
 
-         
+
         }
     }
 
@@ -271,10 +284,10 @@ public class UIInventory : MonoBehaviour
 
             Transform targetButton = MyBattleMonsterPrefab.transform.Find("ChoiceBattleMonster");
 
-        
+
             for (int i = 0; i < 3; i++)
             {
-                
+
                 //카드 소환
                 GameObject monsterCard = Instantiate(monsterCardPrefab, monsterCardPos);
 
@@ -300,11 +313,11 @@ public class UIInventory : MonoBehaviour
                 inputText.text = tempSelectedMonsterList[i].name;
 
                 //체력 삽입
-               
+
                 targetText = monsterCard.transform.Find("Hp/Slider_Hp/Text");
                 inputText = targetText.GetComponent<TMP_Text>();
                 inputText.text = $"{monsterDataManager.selectedMonsterDataList[i].hp}/{monsterDataManager.selectedMonsterDataList[i].maxHp}";
-                
+
                 //체력바 입력
                 Slider Slider;
                 Transform targetSlider;
@@ -314,7 +327,7 @@ public class UIInventory : MonoBehaviour
 
                 int parameterValue = i;
                 Button button;
-               
+
 
                 targetButton = monsterCard.transform.Find("InfoButton");
                 button = targetButton.GetComponentInChildren<Button>();
@@ -344,7 +357,7 @@ public class UIInventory : MonoBehaviour
 
 
             }
-         
+
         }
         else
         {
@@ -353,9 +366,9 @@ public class UIInventory : MonoBehaviour
     }
     public void OnCardButtonInteractable()
     {
-        
-            Transform targetButton;
-            Button button;
+
+        Transform targetButton;
+        Button button;
         for (int i = 0; i < cardList.Count; i++)
         {
             targetButton = cardList[i].transform.Find("MonsterCardButton");
@@ -368,14 +381,14 @@ public class UIInventory : MonoBehaviour
             {
                 button.interactable = false;
             }
-            
+
         }
 
     }
     //속성에 맞는 이미지 넣기, 버튼 활성비활성
     public void OnMonsterCard(int number)
     {
-       
+
         Transform targetButton;
         Button button;
         Transform targetTransform;
@@ -385,10 +398,10 @@ public class UIInventory : MonoBehaviour
         Image targetImage;
         ColorBlock colorBlock;
         print(cardList[1]);
-        
+
         if (choiceNum < 3) // 최대 3마리 선택 가능
         {
-            
+
             // 선택된 카드 비활성화
             targetButton = cardList[number].transform.Find("MonsterCardButton");
             button = targetButton.GetComponent<Button>();
@@ -396,7 +409,7 @@ public class UIInventory : MonoBehaviour
 
 
             //선택된 카드 색상 변경
-            
+
             colorBlock = button.colors;
             colorBlock.colorMultiplier = 1f;
             button.colors = colorBlock;
@@ -418,9 +431,9 @@ public class UIInventory : MonoBehaviour
             choiceNum++; // 선택한 카드 수 증가
             tempSelectedMonsterList.Add(playerMonsterList[number]);
             currentSelectedMonsterList.Add(playerMonsterList[number]);
-           
-          
-            
+
+
+
         }
         else
         {
@@ -448,20 +461,25 @@ public class UIInventory : MonoBehaviour
             colorBlock.colorMultiplier = 5f;
             button.colors = colorBlock;
         }
-        
-       
+
+
 
     }
-    
+
     public void AllCardbuttonStop()
     {
         Transform targetButton;
+        RawImage rawImage;
         foreach (var cardListButton in cardList)
         {
             targetButton = cardListButton.transform.Find("MonsterCardButton");
             Button button = targetButton.GetComponent<Button>();
             button.interactable = false;
+            ColorBlock colorBlock = button.colors;
+            colorBlock.colorMultiplier = 5f;
+            button.colors = colorBlock;
         }
+
     }
 
     public void ResetCelectedMonster()
@@ -475,10 +493,10 @@ public class UIInventory : MonoBehaviour
             Button button = targetButton.GetComponent<Button>();
             button.interactable = true;
         }
-        
+
         inventoryPopUp.InstantiateSelectedMonster();
         tempSelectedMonsterList.Clear();
-     
+
         choiceNum = 0;
     }
 
@@ -504,19 +522,19 @@ public class UIInventory : MonoBehaviour
     public string UpdateMonsterInfo(int index)
     {
         Monster selectedMonster = monsterDataManager.allMonsterDataList[index];
-       
+
         string result = $"몬스터 이름 : {selectedMonster.name}\n";
         result += $"체력 : {selectedMonster.hp} / {selectedMonster.maxHp}\n";
         result += $"레벨 : {selectedMonster.level}\n";
         result += $"공격력 : {selectedMonster.damage}\n";
-        
+
         return result;
     }
 
     public string UpdateSelectedMonsterInfo(int index)
     {
         print(index);
-       
+
         Monster selectedMonster = monsterDataManager.selectedMonsterDataList[index];
 
         string result = $"몬스터 이름 : {selectedMonster.name}\n";

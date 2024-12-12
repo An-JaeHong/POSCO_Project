@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMonsterList: []
-  TempSelectedMonsterList: []
+  tempSelectedMonsterList: []
   currentSelectedMonsterList: []
   textureMonsterPrefabsList: []
   texturePlayerMonsterList: []
@@ -136,6 +136,7 @@ MonoBehaviour:
   - {fileID: 8400000, guid: 44e512d6d2d25c543bb5806846e0c617, type: 2}
   - {fileID: 8400000, guid: ed3fc2cfc2426004fa5b5426ed345d33, type: 2}
   - {fileID: 8400000, guid: 526e2ab04ef3b3e4aa22918a3dae07fd, type: 2}
+  - {fileID: 8400000, guid: 424d23006db1f05468423bc30421d6f2, type: 2}
   emptyRenderTexture: {fileID: 8400000, guid: 9f8432d868368304e99637a8bf2b018c, type: 2}
   choiceNum: 0
   potionNum: 030000000300000003000000

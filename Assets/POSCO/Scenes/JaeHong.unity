@@ -8441,6 +8441,7 @@ MonoBehaviour:
   - {fileID: 8144305676402533958, guid: c622b2a4b174449448a108fc5d4f7431, type: 3}
   - {fileID: 1253295355508366670, guid: a0f3ab44ea09c4f438be8a1e86727271, type: 3}
   - {fileID: 198485063038056600, guid: 8009a4e25bd48ec4da1ee0159165e4a6, type: 3}
+  - {fileID: 3290770729582014161, guid: acb7248f187573b4396684d1a7bc0e8a, type: 3}
   selectedMonsterList: []
   canMove: 1
   moveSpeed: 10
@@ -10391,6 +10392,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2966662814886914895, guid: c4bb31f1f6d2b13439fb42281366c11f, type: 3}
+      propertyPath: renderTexture.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2966662814886914895, guid: c4bb31f1f6d2b13439fb42281366c11f, type: 3}
+      propertyPath: renderTexture.Array.data[5]
+      value: 
+      objectReference: {fileID: 8400000, guid: 424d23006db1f05468423bc30421d6f2, type: 2}
     - target: {fileID: 4173547079341226341, guid: c4bb31f1f6d2b13439fb42281366c11f, type: 3}
       propertyPath: m_Name
       value: InventoryCanvas
@@ -11636,6 +11645,9 @@ MonoBehaviour:
   canvasPrefab: {fileID: 5154029528745985802, guid: 955a36e8b92674e4fb12f8926647dbb8, type: 3}
   velocity: {x: 0, y: 0, z: 0}
   animator: {fileID: 0}
+  bossSayCanvasPrefab: {fileID: 0}
+  bossSayCanvas: {fileID: 0}
+  bossSayText: {fileID: 0}
 --- !u!143 &7844239400557232598
 CharacterController:
   m_ObjectHideFlags: 0
