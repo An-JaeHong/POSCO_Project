@@ -205,7 +205,7 @@ public class AttackCommand
         #region ""가 ""스킬을 시전했다! 라는 UI
         var button = new Dictionary<string, UnityAction> { };
         UIPopupManager.Instance.ShowPopup(
-            $"{attacker.name}(이)가 {attacker.selectedSkill}(을)를 시전했다!",
+            $"{attacker.name}의 {attacker.selectedSkill.skillName}!!",
             button
         );
         #endregion
@@ -278,7 +278,7 @@ public class AttackCommand
         #region ""가 ""스킬을 시전했다! 라는 UI
         var button = new Dictionary<string, UnityAction> { };
         UIPopupManager.Instance.ShowPopup(
-            $"{attacker.name}(이)가 {attacker.selectedSkill}(을)를 시전했다!",
+            $"{attacker.name}의 {attacker.selectedSkill.skillName}!!",
             button
         );
         #endregion

@@ -84,13 +84,16 @@ public class CameraManager : MonoBehaviour
 
     }
 
+    //카메라 바뀔때
     public void HandleCamera(CameraType cameraType)
     {
+        //일단 모든걸 다 끄고
         battleMapCamera.enabled = false;
         fieldSceneCamera.enabled = false;
         bossMapCamera.enabled = false;
         OpenSettingMenu();
 
+        //현재 카메라가 뭔지 정해준다
         switch (cameraType)
         {
             case CameraType.BattleMap:
@@ -108,8 +111,10 @@ public class CameraManager : MonoBehaviour
                 break;
         }
         //OpenSettingMenu();
-        currentCamera.enabled = true;
+        //currentCamera.enabled = true;
         InActiveSettingMenuPanel();
+        Invoke("Temp", 1.2f);
+        //InActiveSettingMenuPanel();
 
         //AdjustCanvasDirection();
         //yield return StartCoroutine(Fade(0f));
@@ -119,6 +124,12 @@ public class CameraManager : MonoBehaviour
         //    player.CameraSetting();
         //}
         //yield return null;
+    }
+
+    private void Temp()
+    {
+        currentCamera.enabled = true;
+
     }
 
     //여기에서 카메라의 상태는 하나만 존재하게끔 한다.

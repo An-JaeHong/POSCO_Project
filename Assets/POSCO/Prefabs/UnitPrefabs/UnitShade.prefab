@@ -624,9 +624,9 @@ MonoBehaviour:
   name: Shade
   level: 1
   moveSpeed: 1
-  moveRange: 5
+  moveRange: 6
   sightAngle: 80
-  detectRange: 8
+  detectRange: 12
   isMove: 0
   hasRandomPosition: 0
   characterController: {fileID: 0}

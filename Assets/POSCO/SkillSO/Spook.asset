@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b637d75395ac0a48bbb6a7d99cfae65, type: 3}
   m_Name: Spook
   m_EditorClassIdentifier: 
-  skillName: Spook
+  skillName: "\uD574\uC77C \uCDA9\uACA9"
   particle: {fileID: 180850, guid: 3a7dc38b871a40e4992e01a02225f384, type: 3}
   skillDamage: 8
   skillElement: 2

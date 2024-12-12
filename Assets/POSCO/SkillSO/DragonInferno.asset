@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b637d75395ac0a48bbb6a7d99cfae65, type: 3}
   m_Name: DragonInferno
   m_EditorClassIdentifier: 
-  skillName: DragonInferno
+  skillName: "\uD654\uC5FC\uC804\uCC28"
   particle: {fileID: 150382, guid: 608e1134c60a61a469686d3fe942ee96, type: 3}
   skillDamage: 33
   skillElement: 1

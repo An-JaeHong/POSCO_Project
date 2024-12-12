@@ -1461,10 +1461,10 @@ MonoBehaviour:
   spawnPosition: {fileID: 0}
   name: Shadow
   level: 1
-  moveSpeed: 1
-  moveRange: 5
-  sightAngle: 80
-  detectRange: 8
+  moveSpeed: 1.1
+  moveRange: 7
+  sightAngle: 100
+  detectRange: 12
   isMove: 0
   hasRandomPosition: 0
   characterController: {fileID: 0}

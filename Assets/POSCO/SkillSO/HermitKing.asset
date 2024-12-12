@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b637d75395ac0a48bbb6a7d99cfae65, type: 3}
   m_Name: HermitKing
   m_EditorClassIdentifier: 
-  skillName: HermitKing
+  skillName: "\uBB3C\uC758 \uCC3D"
   particle: {fileID: 130090, guid: c89f79686d89e7841a3386694fb086e1, type: 3}
   skillDamage: 28
   skillElement: 2

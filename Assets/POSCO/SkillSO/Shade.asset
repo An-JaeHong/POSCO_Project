@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b637d75395ac0a48bbb6a7d99cfae65, type: 3}
   m_Name: Shade
   m_EditorClassIdentifier: 
-  skillName: Shade
+  skillName: "\uBD88\uAF43\uC7A5\uB9C9"
   particle: {fileID: 102950, guid: 66b3f3691d33da24faee7aa8cf98d9c2, type: 3}
   skillDamage: 12
   skillElement: 1

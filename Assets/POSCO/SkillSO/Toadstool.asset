@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b637d75395ac0a48bbb6a7d99cfae65, type: 3}
   m_Name: Toadstool
   m_EditorClassIdentifier: 
-  skillName: Toadstool
+  skillName: "\uD30C\uB3C4 \uC4F0\uB098\uBBF8"
   particle: {fileID: 131054, guid: 578f86e92b13d3549a975a00931f4ffc, type: 3}
   skillDamage: 28
   skillElement: 2

@@ -419,9 +419,9 @@ MonoBehaviour:
   name: Bloom
   level: 1
   moveSpeed: 1
-  moveRange: 7
-  sightAngle: 90.4
-  detectRange: 8
+  moveRange: 4
+  sightAngle: 90
+  detectRange: 12
   isMove: 0
   hasRandomPosition: 0
   characterController: {fileID: 0}

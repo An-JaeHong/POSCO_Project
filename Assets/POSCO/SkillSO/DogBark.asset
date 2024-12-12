@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b637d75395ac0a48bbb6a7d99cfae65, type: 3}
   m_Name: DogBark
   m_EditorClassIdentifier: 
-  skillName: DogBark
+  skillName: "\uD654\uC5FC \uB3CC\uC9C4"
   particle: {fileID: 198170, guid: 14e0693baa71ee8419ab0814aede54ec, type: 3}
   skillDamage: 12
   skillElement: 1

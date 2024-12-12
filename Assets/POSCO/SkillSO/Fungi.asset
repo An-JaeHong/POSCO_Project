@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b637d75395ac0a48bbb6a7d99cfae65, type: 3}
   m_Name: Fungi
   m_EditorClassIdentifier: 
-  skillName: Fungi
+  skillName: "\uBC84\uBE14\uBC84\uBE14"
   particle: {fileID: 131904, guid: 16d8536db6f4c8e469e7c0929758624d, type: 3}
   skillDamage: 8
   skillElement: 2

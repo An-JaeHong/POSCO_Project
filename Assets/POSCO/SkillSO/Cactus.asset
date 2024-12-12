@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b637d75395ac0a48bbb6a7d99cfae65, type: 3}
   m_Name: Cactus
   m_EditorClassIdentifier: 
-  skillName: Cactus
+  skillName: "\uAC00\uC2DC \uB358\uC9C0\uAE30"
   particle: {fileID: 165220, guid: 129b169f5d823254bbf71285eff82d44, type: 3}
   skillDamage: 7
   skillElement: 3

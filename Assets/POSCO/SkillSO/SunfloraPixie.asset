@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b637d75395ac0a48bbb6a7d99cfae65, type: 3}
   m_Name: SunfloraPixie
   m_EditorClassIdentifier: 
-  skillName: SunfloraPixie
+  skillName: "\uAF43\uC78E \uCE7C\uB0A0"
   particle: {fileID: 6992426845527451966, guid: f310b4e3fd4c40b49bfc26ba5e1b5b5e, type: 3}
   skillDamage: 24
   skillElement: 3

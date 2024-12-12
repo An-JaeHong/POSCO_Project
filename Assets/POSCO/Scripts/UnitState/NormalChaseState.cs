@@ -34,7 +34,7 @@ public class NormalChaseState : IUnitState
 
             //플레이어를 찾으면 속도가 1.5배 빨라짐
             //unit.SetMoveSpeedFast();
-            unit.moveSpeed = 2f;
+            unit.moveSpeed = 3f;
 
             unit.UnitMove(player.transform.position);
 

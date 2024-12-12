@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b637d75395ac0a48bbb6a7d99cfae65, type: 3}
   m_Name: Phantom
   m_EditorClassIdentifier: 
-  skillName: Phantom
+  skillName: "\uD68C\uC624\uB9AC \uBB3C\uC0B4"
   particle: {fileID: 137586, guid: 0a73ef3872695c14c87225f786afcf7a, type: 3}
   skillDamage: 28
   skillElement: 2

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b637d75395ac0a48bbb6a7d99cfae65, type: 3}
   m_Name: Blossom
   m_EditorClassIdentifier: 
-  skillName: Blossom
+  skillName: "\uC78E\uC0AC\uADC0 \uD3ED\uD48D"
   particle: {fileID: 149536, guid: bf974382206c6c144a8df7b1b678f0ce, type: 3}
   skillDamage: 26
   skillElement: 3
