@@ -48,8 +48,9 @@ public class Unit : MonoBehaviour
     public Animator animator;
 
     //보스가 말하는 텍스트
-    //public GameObject bossSayCanvas;
-    //private TextMeshProUGUI bossText;
+    public GameObject bossSayCanvasPrefab;
+    public GameObject bossSayCanvas;
+    public TextMeshProUGUI bossSayText;
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
@@ -60,7 +61,6 @@ public class Unit : MonoBehaviour
         if (isBoss)
         {
             animator = GetComponentInChildren<Animator>();
-            //bossText = GetComponentInChildren<TextMeshProUGUI>();
         }
         else
         {
@@ -98,6 +98,8 @@ public class Unit : MonoBehaviour
         if (isBoss)
         {
             level = 16;
+            bossSayCanvas = Instantiate(bossSayCanvasPrefab, transform);
+            bossSayText = bossSayCanvas.GetComponentInChildren<TextMeshProUGUI>();
             ChangeState(new BossIdleState());
         }
         else
