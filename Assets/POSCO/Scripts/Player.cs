@@ -17,7 +17,9 @@ public class Player : MonoBehaviour
     public PlayerStateBase currentState;
 
     public bool canMove = true;  //true : 움직일 수 있음, false : 움직일 수 없음
-    public float moveSpeed;      //이동속도
+    public float moveSpeed;//이동속도
+    private float walkSpeed;
+    private float runSpeed;//기본속도
     public float mouseSensivity; //마우스 감도
     public Transform cameraRig;
 
@@ -53,9 +55,10 @@ public class Player : MonoBehaviour
         //{
         //    Debug.LogError("Item 컴포넌트가 Player 객체에 없습니다.");
         //}
-
+        walkSpeed = moveSpeed;
+        runSpeed = moveSpeed*2;
         //시작하면 커서 잠금
-        LockCursor();
+        //LockCursor();
     }
 
     public void UseItem(int itemIndex, Monster targetMonster)
@@ -112,6 +115,17 @@ public class Player : MonoBehaviour
         {
             isMouseMove = true;
         }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            moveSpeed = runSpeed;
+        }
+
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            moveSpeed = walkSpeed;
+        }
+
 
         //if (UIPopupManager.Instance.isPopupUIOpen)
         //{
