@@ -456,9 +456,12 @@ MonoBehaviour:
   isMove: 0
   hasRandomPosition: 0
   characterController: {fileID: 0}
-  canvasPrefab: {fileID: 5154029528745985802, guid: f94f6e1beba2c794285e9e3c404448fa, type: 3}
+  unitInfoCanvasPrefab: {fileID: 5154029528745985802, guid: f94f6e1beba2c794285e9e3c404448fa, type: 3}
   velocity: {x: 0, y: 0, z: 0}
   animator: {fileID: 0}
+  bossSpeechBubblePrefab: {fileID: 0}
+  bossSpeechBubble: {fileID: 0}
+  bossSpeechText: {fileID: 0}
 --- !u!136 &-7737167270606601296
 CapsuleCollider:
   m_ObjectHideFlags: 0

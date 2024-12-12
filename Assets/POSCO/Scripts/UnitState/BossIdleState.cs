@@ -9,7 +9,7 @@ public class BossIdleState : IUnitState
     {
         //보스는 들어가면 그냥 Idle 상태만 재생 가끔 딴짓? 넣어주면 좋을듯
         unit.HideExclamationMark();
-
+        unit.HideBossSpeech();
         //IdleState에서는 앉아있는다
         unit.animator.SetBool("IsStanding", false);
     }

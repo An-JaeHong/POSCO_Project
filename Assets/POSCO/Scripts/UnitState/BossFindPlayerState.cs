@@ -7,7 +7,8 @@ public class BossFindPlayerState : IUnitState
     private GameObject player;
     public void Enter(Unit unit)
     {
-        unit.ShowExclamationMark();
+        //unit.ShowExclamationMark();
+        unit.ShowBossSpeech("오랜만이군!");
         player = GameObject.FindGameObjectWithTag("Player");
         unit.animator.SetBool("IsStanding", true);
     }
@@ -26,7 +27,7 @@ public class BossFindPlayerState : IUnitState
 
     public void Exit(Unit unit)
     {
-        
+        unit.HideBossSpeech();
     }
 
 }

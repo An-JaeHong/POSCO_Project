@@ -39,7 +39,7 @@ public class Unit : MonoBehaviour
 
     public CharacterController characterController;
 
-    public GameObject canvasPrefab;
+    public GameObject unitInfoCanvasPrefab;
     private TextMeshProUGUI unitInfoText;
 
     public Vector3 velocity;
@@ -48,9 +48,9 @@ public class Unit : MonoBehaviour
     public Animator animator;
 
     //보스가 말하는 텍스트
-    public GameObject bossSayCanvasPrefab;
-    public GameObject bossSayCanvas;
-    public TextMeshProUGUI bossSayText;
+    public GameObject bossSpeechBubblePrefab;
+    public GameObject bossSpeechBubble;
+    public TextMeshProUGUI bossSpeechText;
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
@@ -61,6 +61,7 @@ public class Unit : MonoBehaviour
         if (isBoss)
         {
             animator = GetComponentInChildren<Animator>();
+            InitializeBossSpeechBubble();
         }
         else
         {
@@ -81,7 +82,7 @@ public class Unit : MonoBehaviour
         //느낌표 마크를 생성해둔다.
         InstantiateExclamationMark();
 
-        GameObject canvasObject = Instantiate(canvasPrefab, transform);
+        GameObject canvasObject = Instantiate(unitInfoCanvasPrefab, transform);
         unitInfoText = canvasObject.GetComponentInChildren<TextMeshProUGUI>();
 
         float monsterHeight = 3f;
@@ -98,8 +99,6 @@ public class Unit : MonoBehaviour
         if (isBoss)
         {
             level = 16;
-            bossSayCanvas = Instantiate(bossSayCanvasPrefab, transform);
-            bossSayText = bossSayCanvas.GetComponentInChildren<TextMeshProUGUI>();
             ChangeState(new BossIdleState());
         }
         else
@@ -150,6 +149,69 @@ public class Unit : MonoBehaviour
             rb.constraints = RigidbodyConstraints.FreezeRotation;
         }
     }
+    //private void InitializeUnitInfoCanvas()
+    //{
+    //    GameObject canvasObject = Instantiate(unitInfoCanvasPrefab, transform);
+    //    unitInfoText = canvasObject.GetComponentInChildren<TextMeshProUGUI>();
+
+    //    //정보 캔버스 높이
+    //    float unitInfoCanvasHeight = 2f;
+    //    Renderer unitRenderer = GetComponent<Renderer>();
+    //    if (unitRenderer != null)
+    //    {
+    //        unitInfoCanvasHeight = unitRenderer.bounds.size.y;
+    //    }
+    //    else
+    //    {
+    //        Renderer childRenderer = GetComponentInChildren<Renderer>();
+    //        if (childRenderer != null)
+    //        {
+    //            unitInfoCanvasHeight = childRenderer.bounds.size.y;
+    //        }
+    //    }
+
+    //    canvasObject.transform.localPosition = new Vector3(0, unitInfoCanvasHeight + 0.5f, 0);
+    //    UpdateUnitInfoText();
+    //}
+
+    private void InitializeBossSpeechBubble()
+    {
+        if (isBoss && bossSpeechBubblePrefab != null)
+        {
+            bossSpeechBubble = Instantiate(bossSpeechBubblePrefab, transform);
+
+            //높이 조정
+            float bossHeight = 3f;
+            Renderer bossRenderer = GetComponentInChildren<Renderer>();
+            if (bossRenderer != null)
+            {
+                bossHeight = bossRenderer.bounds.size.y;
+            }
+            bossSpeechBubble.transform.localPosition = new Vector3(0, bossHeight + 0.5f, 0);
+            bossSpeechText = bossSpeechBubble.GetComponentInChildren<TextMeshProUGUI>();
+            bossSpeechBubble.SetActive(false);
+        }
+    }
+
+    public void ShowBossSpeech(string message)
+    {
+        if (isBoss && bossSpeechBubble != null)
+        {
+            //입력한 텍스트로 변경 가능
+            bossSpeechText.text = message;
+            //그 후 말풍선 띄우기
+            bossSpeechBubble.SetActive(true);
+        }
+    }
+
+    public void HideBossSpeech()
+    {
+        if (isBoss && bossSpeechBubble != null)
+        {
+            bossSpeechBubble.SetActive(false);
+        }
+    }
+
 
     public void Setlevel(int value)
     {
