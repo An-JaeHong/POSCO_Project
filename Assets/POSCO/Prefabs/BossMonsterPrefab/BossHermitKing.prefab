@@ -1713,7 +1713,7 @@ GameObject:
   - component: {fileID: 5966225356280042063}
   - component: {fileID: -6288036725494043121}
   m_Layer: 0
-  m_Name: Hermit King
+  m_Name: BossHermitKing
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1794,14 +1794,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Hermit King
-  hp: 52
-  maxHp: 52
+  hp: 86
+  maxHp: 86
   level: 1
   expArr: 14000000190000001e00000023000000280000002d00000032000000370000003c00000041000000460000004b00000050000000550000005a0000005f000000
-  levelPerExp: 0
+  levelPerExp: 54
   currentExp: 0
   expToNextLevelArr: 320000003c00000046000000500000005a000000640000006e00000078000000820000008c00000096000000a0000000aa000000b4000000be000000c8000000
-  damage: 11
+  damage: 15
   element: 2
   isEnemy: 0
   animator: {fileID: 5966225356280042063}
