@@ -1,3 +1,4 @@
+using EasyTransition;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,7 @@ using UnityEngine.Events;
 public class PlayerBossBattleState : PlayerStateBase
 {
     private Unit boss;
+
     public PlayerBossBattleState(Player player, Unit boss) : base(player)
     {
         this.boss = boss;
@@ -417,24 +419,25 @@ public class PlayerBossBattleState : PlayerStateBase
 
     private void HandleBossBattleEnd()
     {
-        //상태 변환시키고
-        player.ChangeState(new PlayerIdleState(player));
-
-        CalculateExperience();
         //만약 모든 적이 죽으면 밖에 있는 몬스터를 삭제시켜야한다.
         if (TurnManager.Instance.allEnemyMonstersDead == true)
         {
-            foreach (Monster playerMonster in MonsterDataManager.Instance.selectedMonsterDataList)
-            {
-                playerMonster.GetExp(totalExperience);
-            }
+            
+                //playerMonster.GetExp(totalExperience);
+                TransitionManager.Instance().Transition("GameEnd", player.transition, player.loadDelay);
+            
             //밖에있는 몬스터는 삭제안함
             //GameObject.Destroy(GameManager.Instance.contactedFieldMonster);
         }
         else if (TurnManager.Instance.allPlayerMonstersDead == true)
         {
             Debug.Log("플레이어가 졌다");
+            //플레이어가 졌을때 이벤트
         }
+        //상태 변환시키고
+        player.ChangeState(new PlayerIdleState(player));
+
+        CalculateExperience();
 
         //게임 끝나고나면 전투상태를 초기화 시켜줘야한다.
         GameManager.Instance.InitializeUnitMonsterData(boss);

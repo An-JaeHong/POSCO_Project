@@ -1,3 +1,4 @@
+using EasyTransition;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -34,6 +35,10 @@ public class Player : MonoBehaviour
     private Rigidbody rb;
 
     private bool isMouseMove;
+
+    //씬전환에 필요한 기능
+    public TransitionSettings transition;
+    public float loadDelay;
 
     private void Awake()
     {
