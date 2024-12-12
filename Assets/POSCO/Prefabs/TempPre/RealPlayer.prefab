@@ -5500,7 +5500,7 @@ Transform:
   m_GameObject: {fileID: 7200907370916612718}
   serializedVersion: 2
   m_LocalRotation: {x: 0.11684411, y: 0, z: 0, w: 0.9931503}
-  m_LocalPosition: {x: 0, y: 1.83, z: -2.13}
+  m_LocalPosition: {x: 0, y: 2.08, z: -3.18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6066,15 +6066,17 @@ MonoBehaviour:
   - {fileID: 429202136443674265, guid: ea126fe3b0c3abd4f9c8d1f2cbe860e6, type: 3}
   - {fileID: 1408502971525266044, guid: 4838d6d06bfc43f45a1c4bd9fa2c97ce, type: 3}
   - {fileID: 8144305676402533958, guid: c622b2a4b174449448a108fc5d4f7431, type: 3}
-  - {fileID: 2367042737099000825, guid: 4bf20e0fd4bc1854cb398f21e12d4d44, type: 3}
+  - {fileID: 3315575125725954306, guid: 0b65b98460fb6794c9bb1c95bcf53589, type: 3}
   - {fileID: 198485063038056600, guid: 8009a4e25bd48ec4da1ee0159165e4a6, type: 3}
   - {fileID: 198485063038056600, guid: 8009a4e25bd48ec4da1ee0159165e4a6, type: 3}
   selectedMonsterList: []
   canMove: 1
-  moveSpeed: 10
+  moveSpeed: 5
   mouseSensivity: 20
   cameraRig: {fileID: 4681080725348065199}
   uiInventory: {fileID: 0}
+  transition: {fileID: 11400000, guid: 057babd6f13132c449650d99e3c4e99c, type: 2}
+  loadDelay: 1
 --- !u!136 &3589915200824991289
 CapsuleCollider:
   m_ObjectHideFlags: 0

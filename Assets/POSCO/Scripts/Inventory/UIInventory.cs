@@ -527,7 +527,7 @@ public class UIInventory : MonoBehaviour
         result += $"체력 : {selectedMonster.hp} / {selectedMonster.maxHp}\n";
         result += $"레벨 : {selectedMonster.level}\n";
         result += $"공격력 : {selectedMonster.damage}\n";
-
+        result += $"속성 : {selectedMonster.element}";
         return result;
     }
 
@@ -541,6 +541,7 @@ public class UIInventory : MonoBehaviour
         result += $"체력 : {selectedMonster.hp} / {selectedMonster.maxHp}\n";
         result += $"레벨 : {selectedMonster.level}\n";
         result += $"공격력 : {selectedMonster.damage}\n";
+        result += $"속성 : {selectedMonster.element}";
 
         print(result);
 

@@ -1021,9 +1021,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterPrefabs:
-  - {fileID: 5689664202465289564, guid: 563384e2a390e0a4192b13842809cb62, type: 3}
-  - {fileID: 5689664202465289564, guid: 563384e2a390e0a4192b13842809cb62, type: 3}
-  - {fileID: 5689664202465289564, guid: 563384e2a390e0a4192b13842809cb62, type: 3}
+  - {fileID: 5689664202465289564, guid: 78ba0101dc40e5147af6e064546004db, type: 3}
+  - {fileID: 5689664202465289564, guid: 78ba0101dc40e5147af6e064546004db, type: 3}
+  - {fileID: 5689664202465289564, guid: 78ba0101dc40e5147af6e064546004db, type: 3}
   ownedMonsterList: []
   isBoss: 0
   exclamationMarkPrefab: {fileID: 8764048426798851983, guid: 5494df217f1871e459d48b337ca61ac7, type: 3}
