@@ -297,7 +297,7 @@ public class UIInventory : MonoBehaviour
                 Image elementIconObject = targetElementObject.GetComponent<Image>();
 
                 //소환된 카드 표현되는 이미지 바꾸기(몬스터 모양) 
-                for (int k = 0; k < 5; k++)
+                for (int k = 0; k < playerMonsterList.Count; k++)
                 {
                     if (playerMonsterList[k].name == tempSelectedMonsterList[i].name)
                     {

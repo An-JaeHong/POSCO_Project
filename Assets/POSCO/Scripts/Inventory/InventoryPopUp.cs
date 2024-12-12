@@ -247,7 +247,7 @@ public class InventoryPopUp : MonoBehaviour
         target = itemBackground.transform.Find("InfoText");
         TextMeshProUGUI targetText = target.GetComponent<TextMeshProUGUI>();
         
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < uiInventory.playerMonsterList.Count; i++)
         {
             if (uiInventory.playerMonsterList[i].name == uiInventory.tempSelectedMonsterList[number].name)
             {
