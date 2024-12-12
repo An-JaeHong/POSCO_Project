@@ -9,6 +9,7 @@ public class BossFindPlayerState : IUnitState
     {
         unit.ShowExclamationMark();
         player = GameObject.FindGameObjectWithTag("Player");
+        unit.animator.SetBool("IsStanding", true);
     }
 
     public void Update(Unit unit)

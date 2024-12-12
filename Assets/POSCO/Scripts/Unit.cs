@@ -46,12 +46,26 @@ public class Unit : MonoBehaviour
     private Rigidbody rb;
 
     public Animator animator;
+
+    //보스가 말하는 텍스트
+    //public GameObject bossSayCanvas;
+    //private TextMeshProUGUI bossText;
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
         rb = GetComponent<Rigidbody>();
         player = FindAnyObjectByType<Player>();
-        animator = GetComponent<Animator>();    
+
+        //보스는 애니메이터가 자식에 달려있다
+        if (isBoss)
+        {
+            animator = GetComponentInChildren<Animator>();
+            //bossText = GetComponentInChildren<TextMeshProUGUI>();
+        }
+        else
+        {
+            animator = GetComponent<Animator>();
+        }
     }
 
     private void OnEnable()

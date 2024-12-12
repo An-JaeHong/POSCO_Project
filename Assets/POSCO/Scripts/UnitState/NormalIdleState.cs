@@ -9,11 +9,17 @@ using static UnityEngine.UI.CanvasScaler;
 //일반 몬스터 Idle 상태 -> MonoBehaviour은 객체를 만들어야해서 인터페이스로 만든다.
 public class NormalIdleState : IUnitState
 {
-    Vector3 destination;
+    private Vector3 destination;
     private float waitTime = 2f; //대기시간
     private float waitTimer = 0;
     private bool isWaiting = false;
     private bool hasRandomPosition = true;
+
+    private Vector3 lastPosition; //최근 위치
+    private float stuckCheckTime = 0.5f; //체크 주기
+    private float stuckCheckTimer = 0;
+    private float minMovementDistance = 0.1f; //최소 이동거리 -> 이걸로 낀 걸 판별
+    
 
     //public NormalChaseState(Unit unit) { }
 
@@ -26,6 +32,7 @@ public class NormalIdleState : IUnitState
         destination = unit.SetRandomPosition();
         //unit.InitMoveSpeed();
         unit.moveSpeed = 1f;
+        lastPosition = unit.transform.position; //초기 위치 저장
 
     //들어가면 일단 느낌표는 숨긴다.
     unit.HideExclamationMark();
@@ -65,7 +72,25 @@ public class NormalIdleState : IUnitState
             unit.UnitMove(destination);
             unit.UnitRotation(destination);
             //Debug.Log($"랜덤으로 주어진 좌표 : {destination}");
-            if (Vector3.Distance(unit.transform.position, destination) < 0.1f)
+
+            stuckCheckTimer += Time.deltaTime;
+            if (stuckCheckTimer >= stuckCheckTime)
+            {
+                //이동 거리는 유닛의 위치와 마지막 유닛의 위치를 비교한다
+                float moveDistance = Vector3.Distance(unit.transform.position, lastPosition);
+                if (moveDistance < minMovementDistance)
+                {
+                    Debug.Log("벽에 끼어서 위치를 다시 잡는다");
+                    destination = unit.SetRandomPosition();
+                }
+
+                //타이머 초기화
+                stuckCheckTimer = 0;
+                lastPosition = unit.transform.position;
+            }
+
+            Vector3 unitXZPosition = new Vector3(unit.transform.position.x, destination.y, unit.transform.position.z);
+            if (Vector3.Distance(unitXZPosition, destination) < 0.1f)
             {
                 //여기서 잠시 멈춰주는 함수 넣어주자.
                 Debug.Log("이동중");
