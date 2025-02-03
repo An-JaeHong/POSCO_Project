@@ -9,37 +9,37 @@ public class GameManager : MonoBehaviour
 
     public GameObject damageTextPrefab;
 
-    //ÀüÅõ¿¡ µé¾î°¡´Â ¸ó½ºÅÍ ¸®½ºÆ®
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½î°¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
     public List<Monster> playerMonsterInBattleList = new List<Monster>();
     public List<Monster> enemyMonsterInBattleList = new List<Monster>();
 
-    #region ÀüÅõ¿¡¼­ »ý¼ºµÉ Æ÷Áö¼Ç ¸®½ºÆ®
-    //ÀüÅõ¿¡¼­ ¸ó½ºÅÍ°¡ »ý¼ºµÉ Æ÷Áö¼Ç¸®½ºÆ®
+    #region ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¸ï¿½ï¿½ï¿½Æ®
     public List<Transform> playerBattlePosList = new List<Transform>();
     public List<Transform> enemyBattlePosList = new List<Transform>();
-    //º¸½º¸Ê¿¡¼­ »ý¼ºµÉ Æ÷Áö¼Ç¸®½ºÆ®
+    //ï¿½ï¿½ï¿½ï¿½ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¸ï¿½ï¿½ï¿½Æ®
     public List<Transform> PlayerBossBattlePosList = new List<Transform>();
     public List<Transform> EnemyBossBattlePosList = new List<Transform>();
     #endregion
 
-    //½ÇÁ¦·Î ¼ÒÈ¯µÇ´Â ¸ó½ºÅÍµéÀÇ Prefab¸®½ºÆ® -> ³ªÁß¿¡ ÇÑ¹ø¿¡ »èÁ¦ÇÏ±â ½±°Ô ÇÏ±â À§ÇÑ ¸®½ºÆ®
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½Íµï¿½ï¿½ï¿½ Prefabï¿½ï¿½ï¿½ï¿½Æ® -> ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½Ñ¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
     private List<GameObject> instantiatedMonsterList = new List<GameObject>();
 
-    //±íÀº º¹»ç·Î ÀúÀåÇÒ ¿ø·¡ ¸ó½ºÅÍÀÇ Á¤º¸
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     private List<MonsterDeepCopy> originEnemyMonsterDataList = new List<MonsterDeepCopy>();
 
-    //½ÇÁ¦ ¼ÒÈ¯µÇ´Â ¸ó½ºÅÍµé -> MonsterÇüÅÂ, GameObject ÇüÅÂ´Â instantiateMonsterListÀÌ´Ù.
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½Íµï¿½ -> Monsterï¿½ï¿½ï¿½ï¿½, GameObject ï¿½ï¿½ï¿½Â´ï¿½ instantiateMonsterListï¿½Ì´ï¿½.
     List<Monster> spawnedPlayerMonsterList = new List<Monster>();
     List<Monster> spawnedEnemyMonsterList = new List<Monster>();
 
-    //ÅÏÀÌ ³¡³µ´ÂÁö ¾Ë ¼ö ÀÖ´Â º¯¼ö
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½
     public bool isPlayerActionComplete = false;
     public bool isEnemyActionComplete = false;
 
-    //ÇöÀç ÅÏÀÇ ¸ó½ºÅÍ
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public Monster currentTurnMonster;
 
-    //¹Û¿¡¼­ ¸¸³­ ¸ó½ºÅÍ
+    //ï¿½Û¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public GameObject contactedFieldMonster;
 
     private void Awake()
@@ -58,28 +58,28 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        //ÅÏ ¹Ù²ð¶§¸¶´Ù ÇÔ¼ö¸¦ ½ÇÇàÇÑ´Ù. -> ±Ùµ¥ ±»ÀÌ ÇÊ¿ä°¡ ÀÖ³ª ½Í´Ù. TurnManager.Instance.currentTurnMonster·Î ÃæºÐÇÒ °Í °°´Ù.
+        //ï¿½ï¿½ ï¿½Ù²ð¶§¸ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½. -> ï¿½Ùµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ä°¡ ï¿½Ö³ï¿½ ï¿½Í´ï¿½. TurnManager.Instance.currentTurnMonsterï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
         TurnManager.Instance.monsterTurnChange += SetCurrentTurnMonster;
     }
 
-    //¸¸³­ ¸ó½ºÅÍµé Á¤º¸ ³Ñ°Ü¹Þ´Â ÇÔ¼ö
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Íµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ°Ü¹Þ´ï¿½ ï¿½Ô¼ï¿½
     public void SetNormalMonsterInformation(List<Monster> playerselectedMonster, Unit unit)
     {
-        //ÇÃ·¹ÀÌ¾î ¸ó½ºÅÍ ¸®½ºÆ®´Â ¾èÀº º¹»ç·Î ¹Þ¾Æ¿Â´Ù. -> Á¤º¸°¡ º¯ÇÏ¸é ¾ÈµÇ±â ¶§¹®¿¡.
+        //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾Æ¿Â´ï¿½. -> ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ÈµÇ±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
         playerMonsterInBattleList = playerselectedMonster;
 
-        //ÀÏ´Ü Àû ¸ó½ºÅÍ ¸®½ºÆ®µµ ¾èÀº º¹»ç·Î ¹Þ¾Æ¿Â ´ÙÀ½¿¡ ¸¶Áö¸·¿¡ Á¤º¸¸¦ ÃÊ±âÈ­ ÇØÁØ´Ù.
+        //ï¿½Ï´ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾Æ¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­ ï¿½ï¿½ï¿½Ø´ï¿½.
         for (int i = 0; i < 3; i++)
         {
             enemyMonsterInBattleList.Add(unit.ownedMonsterList[i]);
-            //Å×½ºÆ® ¿ë
-            print($"¸Ê¿¡ »ý¼ºµÈ Àû ¸ó½ºÅÍµéÀÇ ·¹º§ : {enemyMonsterInBattleList[i].level}");
+            //ï¿½×½ï¿½Æ® ï¿½ï¿½
+            print($"ï¿½Ê¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Íµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : {enemyMonsterInBattleList[i].level}");
         }
 
-        //»õ·Î µé¾î¿Â ¸ó½ºÅÍ Á¤º¸´Â ÀÏ´Ü ÃÊ±âÈ­
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½Ê±ï¿½È­
         originEnemyMonsterDataList.Clear();
 
-        //¿©±â¿¡¼­ ±íÀº º¹»ç·Î ¿ø·¡ ¸ó½ºÅÍ Á¤º¸¸¦ º¸°üÇØÁØ´Ù.
+        //ï¿½ï¿½ï¿½â¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½.
         for (int i = 0; i < 3; i++)
         {
             MonsterDeepCopy temp =
@@ -106,16 +106,16 @@ public class GameManager : MonoBehaviour
     {
         playerMonsterInBattleList = playerselectedMonster;
 
-        //ÀÏ´Ü Àû ¸ó½ºÅÍ ¸®½ºÆ®µµ ¾èÀº º¹»ç·Î ¹Þ¾Æ¿Â ´ÙÀ½¿¡ ¸¶Áö¸·¿¡ Á¤º¸¸¦ ÃÊ±âÈ­ ÇØÁØ´Ù.
+        //ï¿½Ï´ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾Æ¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­ ï¿½ï¿½ï¿½Ø´ï¿½.
         for (int i = 0; i < 3; i++)
         {
             enemyMonsterInBattleList.Add(boss.ownedMonsterList[i]);
         }
 
-        //»õ·Î µé¾î¿Â ¸ó½ºÅÍ Á¤º¸´Â ÀÏ´Ü ÃÊ±âÈ­
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½Ê±ï¿½È­
         originEnemyMonsterDataList.Clear();
 
-        //¿©±â¿¡¼­ ±íÀº º¹»ç·Î ¿ø·¡ ¸ó½ºÅÍ Á¤º¸¸¦ º¸°üÇØÁØ´Ù.
+        //ï¿½ï¿½ï¿½â¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½.
 
         for (int i = 0; i < 3; i++)
         {
@@ -139,10 +139,10 @@ public class GameManager : MonoBehaviour
     }
 
     //List<GameObject> enemyMonsterObj = new List<GameObject>();
-    //ÇÃ·¹ÀÌ¾î¿Í Àû ÁöÁ¤µÈ Æ÷Áö¼Ç¿¡ »ý¼ºÇÏ±â
+    //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
     public void SetMonsterOnBattlePosition()
     {
-        //½ÇÁ¦ ¼ÒÈ¯µÇ´Â ¸ó½ºÅÍµé -> MonsterÇüÅÂ, GameObject ÇüÅÂ´Â instantiateMonsterListÀÌ´Ù.
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½Íµï¿½ -> Monsterï¿½ï¿½ï¿½ï¿½, GameObject ï¿½ï¿½ï¿½Â´ï¿½ instantiateMonsterListï¿½Ì´ï¿½.
         spawnedPlayerMonsterList = new List<Monster>();
         spawnedEnemyMonsterList = new List<Monster>();
         
@@ -163,11 +163,11 @@ public class GameManager : MonoBehaviour
             //{
             //    Camera mainCamera = CameraManager.Instance.currentCamera;
             //    canvas.transform.LookAt(mainCamera.transform);
-            //    canvas.transform.Rotate(0, 180, 0); // LookAtÀ¸·Î ÀÎÇØ µÚÁýÈù °æ¿ì º¸Á¤
+            //    canvas.transform.Rotate(0, 180, 0); // LookAtï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             //}
             #endregion
 
-            //³ªÁß¿¡ ÇÑ¹ø¿¡ »èÁ¦ÇÏ±â ÆíÇÏ°Ô ÇÏ·Á°í ¸®½ºÆ®¿¡ Ãß°¡ÇÑ´Ù.
+            //ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½Ñ¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Ï·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ñ´ï¿½.
             instantiatedMonsterList.Add(playerMonsterObj);
         }
         for (int i = 0; i < enemyMonsterInBattleList.Count; i++)
@@ -187,22 +187,22 @@ public class GameManager : MonoBehaviour
             //{
             //    Camera mainCamera = CameraManager.Instance.currentCamera;
             //    canvas.transform.LookAt(mainCamera.transform);
-            //    canvas.transform.Rotate(0, 180, 0); // LookAtÀ¸·Î ÀÎÇØ µÚÁýÈù °æ¿ì º¸Á¤
+            //    canvas.transform.Rotate(0, 180, 0); // LookAtï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             //}
             #endregion
 
-            //³ªÁß¿¡ ÇÑ¹ø¿¡ »èÁ¦ÇÏ±â ÆíÇÏ°Ô ÇÏ·Á°í ¸®½ºÆ®¿¡ Ãß°¡ÇÑ´Ù.
+            //ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½Ñ¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Ï·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ñ´ï¿½.
             instantiatedMonsterList.Add(enemyMonsterObj);
         }
 
-        //±× ÈÄ¿¡ ¼ÒÈ¯µÈ MonsterÇüÅÂÀÇ ¸ó½ºÅÍ ¸®½ºÆ®¸¦ TurnManager¿¡°Ô ³Ñ°ÜÁØ´Ù.
+        //ï¿½ï¿½ ï¿½Ä¿ï¿½ ï¿½ï¿½È¯ï¿½ï¿½ Monsterï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ TurnManagerï¿½ï¿½ï¿½ï¿½ ï¿½Ñ°ï¿½ï¿½Ø´ï¿½.
         TurnManager.Instance.SetMonsterInfomation(spawnedPlayerMonsterList, spawnedEnemyMonsterList);
     }
 
-    //º¸½º¸Ê¿¡¼­ »ý¼ºµÇ´Â ÇÔ¼ö
+    //ï¿½ï¿½ï¿½ï¿½ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½Ô¼ï¿½
     public void SetMonsterOnBossMapPosition()
     {
-        //½ÇÁ¦ ¼ÒÈ¯µÇ´Â ¸ó½ºÅÍµé -> MonsterÇüÅÂ, GameObject ÇüÅÂ´Â instantiateMonsterListÀÌ´Ù.
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½Íµï¿½ -> Monsterï¿½ï¿½ï¿½ï¿½, GameObject ï¿½ï¿½ï¿½Â´ï¿½ instantiateMonsterListï¿½Ì´ï¿½.
         spawnedPlayerMonsterList = new List<Monster>();
         spawnedEnemyMonsterList = new List<Monster>();
 
@@ -220,7 +220,7 @@ public class GameManager : MonoBehaviour
             CameraManager.Instance.SetCanvasEventCamera(canvas);
             #endregion
 
-            //³ªÁß¿¡ ÇÑ¹ø¿¡ »èÁ¦ÇÏ±â ÆíÇÏ°Ô ÇÏ·Á°í ¸®½ºÆ®¿¡ Ãß°¡ÇÑ´Ù.
+            //ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½Ñ¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Ï·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ñ´ï¿½.
             instantiatedMonsterList.Add(playerMonsterObj);
         }
         for (int i = 0; i < enemyMonsterInBattleList.Count; i++)
@@ -239,47 +239,47 @@ public class GameManager : MonoBehaviour
 
             //enemyMonsterObj.AddComponent<DamageDisPlay>();
 
-            //³ªÁß¿¡ ÇÑ¹ø¿¡ »èÁ¦ÇÏ±â ÆíÇÏ°Ô ÇÏ·Á°í ¸®½ºÆ®¿¡ Ãß°¡ÇÑ´Ù.
+            //ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½Ñ¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Ï·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ñ´ï¿½.
             instantiatedMonsterList.Add(enemyMonsterObj);
         }
 
-        //±× ÈÄ¿¡ ¼ÒÈ¯µÈ MonsterÇüÅÂÀÇ ¸ó½ºÅÍ ¸®½ºÆ®¸¦ TurnManager¿¡°Ô ³Ñ°ÜÁØ´Ù.
+        //ï¿½ï¿½ ï¿½Ä¿ï¿½ ï¿½ï¿½È¯ï¿½ï¿½ Monsterï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ TurnManagerï¿½ï¿½ï¿½ï¿½ ï¿½Ñ°ï¿½ï¿½Ø´ï¿½.
         TurnManager.Instance.SetMonsterInfomation(spawnedPlayerMonsterList, spawnedEnemyMonsterList);
     }
 
-    //ÇöÀç ÅÏÀÎ ¸ó½ºÅÍ¸¦ ºÒ·¯¿Â´Ù.
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½Ò·ï¿½ï¿½Â´ï¿½.
     public void SetCurrentTurnMonster(Monster currentTurnMonster)
     {
         this.currentTurnMonster = currentTurnMonster;
     }
 
-    //ÇÃ·¹ÀÌ¾î°¡ °ø°ÝÇÏ´Â Çàµ¿¿¡ µ¹ÀÔ
+    //ï¿½Ã·ï¿½ï¿½Ì¾î°¡ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½àµ¿ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public void ExecutePlayerNormalAttackAction(Monster attacker, Monster target)
     {
-        //»ý¼ºÀÚ·Î »ý¼ºÇØÁÖ°í
+        //ï¿½ï¿½ï¿½ï¿½ï¿½Ú·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö°ï¿½
         AttackCommand attackCommand = new AttackCommand(attacker, target);
-        //print($"currentTurnMonsterÀÇ À§Ä¡ : {currentTurnMonster.transform.position}");
-        //print($"currentTurnMonsterÀÇ ÀÇ ÀÌ¸§ : {currentTurnMonster.name}");
-        //print($"currentTurnMonsterÀÇ Å¸ÀÔ : {currentTurnMonster.GetType()}");
-        //print($"targetÀÇ À§Ä¡ : {target.transform.position}");
-        //print($"targetÀÇ ÀÌ¸§ : {target.name}");
+        //print($"currentTurnMonsterï¿½ï¿½ ï¿½ï¿½Ä¡ : {currentTurnMonster.transform.position}");
+        //print($"currentTurnMonsterï¿½ï¿½ ï¿½ï¿½ ï¿½Ì¸ï¿½ : {currentTurnMonster.name}");
+        //print($"currentTurnMonsterï¿½ï¿½ Å¸ï¿½ï¿½ : {currentTurnMonster.GetType()}");
+        //print($"targetï¿½ï¿½ ï¿½ï¿½Ä¡ : {target.transform.position}");
+        //print($"targetï¿½ï¿½ ï¿½Ì¸ï¿½ : {target.name}");
 
-        ////Å×½ºÆ®¿ë
+        ////ï¿½×½ï¿½Æ®ï¿½ï¿½
         //foreach (var playerMonster in playerBattlePosList)
         //{
-        //    print($"ÇÃ·¹ÀÌ¾î ¸ó½ºÅÍ À§Ä¡ : {playerMonster.transform.position}");
+        //    print($"ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ : {playerMonster.transform.position}");
         //}
 
         //foreach (var enemyMonster in enemyBattlePosList)
         //{
-        //    print($"Àû ¸ó½ºÅÍ À§Ä¡ : {enemyMonster.transform.position}");
+        //    print($"ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ : {enemyMonster.transform.position}");
         //}
 
-        //°ø°ÝÆäÀÌÁî µ¹ÀÔ
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         attackCommand.PlayerNormalAttackExecute();
 
         //UIPopupManager.Instance.ClosePopup();
-        //ÅÏ³¡
+        //ï¿½Ï³ï¿½
 
         //isPlayerActionComplete = true;
         //StartCoroutine(PlayerAttackAnimation(attacker, target));
@@ -291,7 +291,7 @@ public class GameManager : MonoBehaviour
 
     //    //animatorstateinfo stateinfo = attacker.getcomponent<animator>().getcurrentanimatorstateinfo(0);
 
-    //    //// ¾Ö´Ï¸ÞÀÌ¼Ç ±æÀÌ¸¸Å­ ´ë±â
+    //    //// ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½Å­ ï¿½ï¿½ï¿½
     //    //yield return new waitforseconds(stateinfo.length);
 
     //    AttackCommand attackCommand = new AttackCommand(attacker, target);
@@ -307,7 +307,7 @@ public class GameManager : MonoBehaviour
         //UIPopupManager.Instance.ClosePopup();
     }
 
-    //À§¿Í °°´Ù
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public void ExecuteEnemyAttackAction(Monster attacker, Monster target)
     {
         AttackCommand attackCommand = new AttackCommand(attacker, target);
@@ -324,7 +324,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //½Î¿î ¸ó½ºÅÍ ¿ÀºêÁ§Æ®µé Á¦°ÅÇØÁÖ´Â ÇÔ¼ö
+    //ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½Ô¼ï¿½
     public void ClearAllBattleMapMonsterObj()
     {
         foreach(GameObject instantiateMonster in instantiatedMonsterList)
@@ -334,7 +334,7 @@ public class GameManager : MonoBehaviour
         instantiatedMonsterList.Clear();
     }
 
-    //ÇÃ·¹ÀÌ¾îÀÇ ¸ó½ºÅÍµµ µ¥ÀÌÅÍ¸¦ ÃÊ±âÈ­ ÇØÁÖ¾î¾ßÇÑ´Ù.
+    //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Íµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½Ê±ï¿½È­ ï¿½ï¿½ï¿½Ö¾ï¿½ï¿½ï¿½Ñ´ï¿½.
     public void InitializePlayerMonsterData()
     {
         for (int i = 0; i < spawnedPlayerMonsterList.Count; i++)
@@ -351,10 +351,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //¸ó½ºÅÍ Á¤º¸´Â ÀúÀåÇØ ³ù´ø Ã³À½ »óÅÂ·Î µÇµ¹·ÁÁØ´Ù
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½Çµï¿½ï¿½ï¿½ï¿½Ø´ï¿½
     public void InitializeUnitMonsterData(Unit unit)
     {
-        //´ã¾Æ³ù´ø originEnemyMonsterÀÇ Á¤º¸¸¦ ´ã¾ÆÁØ´Ù.
+        //ï¿½ï¿½Æ³ï¿½ï¿½ï¿½ originEnemyMonsterï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ø´ï¿½.
         for(int i = 0; i < enemyMonsterInBattleList.Count; i++)
         {
             unit.ownedMonsterList[i].hp = originEnemyMonsterDataList[i].Hp;
@@ -375,7 +375,7 @@ public class GameManager : MonoBehaviour
         //playerMonsterInBattleList.Clear();
     }
 
-    //ÀüÅõ°¡ ³¡³ª°í³ª¼­ ÀüÅõÀÇ »óÅÂ¸¦ ÃÊ±âÈ­ ÇØÁÖ´Â ÇÔ¼ö
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½Ê±ï¿½È­ ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½Ô¼ï¿½
     public void InitializeBattleState()
     {
         //playerMonsterInBattleList.Clear();
@@ -384,7 +384,7 @@ public class GameManager : MonoBehaviour
         ClearAllBattleMapMonsterObj();
         //InitializeMonsterInfo();
 
-        //Çàµ¿ ¿Ï·á¸¦ false·Î ¹Ù²ãÁØ´Ù.
+        //ï¿½àµ¿ ï¿½Ï·á¸¦ falseï¿½ï¿½ ï¿½Ù²ï¿½ï¿½Ø´ï¿½.
         isPlayerActionComplete = false;
         isEnemyActionComplete = false;
     }

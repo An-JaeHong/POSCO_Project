@@ -10,11 +10,11 @@ using static UnityEngine.EventSystems.EventTrigger;
 
 public class TurnManager : MonoBehaviour
 {
-    //¿ÜºÎ¿¡¼­µµ Á¢±ÙÀÌ °¡´ÉÇØ¾ßÇÔ
+    //ï¿½ÜºÎ¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ï¿½ï¿½
     private static TurnManager instance;
     public static TurnManager Instance { get { return instance; } }
 
-    ////¿ÜºÎ¿¡¼­ Á¢±ÙÇÏ¸é ¾ÈµÇ¼­ Serializable·Î ¾È¾¸
+    ////ï¿½ÜºÎ¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ÈµÇ¼ï¿½ Serializableï¿½ï¿½ ï¿½È¾ï¿½
     //public enum Turn
     //{
     //    None,
@@ -22,28 +22,28 @@ public class TurnManager : MonoBehaviour
     //    EnemyTurn,
     //}
 
-    //ÅÏ
+    //ï¿½ï¿½
     public Queue<Monster> turnQueue = new Queue<Monster>();
-    //ÇöÀç ÅÏÀ» °¡Áö°í ÀÖ´Â Ä³¸¯ÅÍ
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½
     public Monster currentTurnMonster;
-    //ÀÔ·ÂµÇ¾îÀÖ´Â Ä¿¸àµå
+    //ï¿½Ô·ÂµÇ¾ï¿½ï¿½Ö´ï¿½ Ä¿ï¿½ï¿½ï¿½
     private Stack<ICommand> commandHistory = new Stack<ICommand>();
 
-    //GameManager¿¡¼­ ³Ñ°Ü¹ÞÀ» MonsterList
+    //GameManagerï¿½ï¿½ï¿½ï¿½ ï¿½Ñ°Ü¹ï¿½ï¿½ï¿½ MonsterList
     public List<Monster> playerMonsterList = new List<Monster>();
     public List<Monster> enemyMonsterList = new List<Monster>();
 
     public bool isTurnDone = false;
 
-    //¸ðµç ¾Æ±º°ú ÀûÀÇ ¸ó½ºÅÍ°¡ Á×¾ú´ÂÁö
+    //ï¿½ï¿½ï¿½ ï¿½Æ±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Í°ï¿½ ï¿½×¾ï¿½ï¿½ï¿½ï¿½ï¿½
     public bool allPlayerMonstersDead = false;
     public bool allEnemyMonstersDead = false;
 
 
-    //ÀüÅõ ³¡³ª¸é ½ÇÇàµÇ´Â ¾×¼Ç
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½×¼ï¿½
     public event Action OnBattleEnd;
 
-    ////ÅÏÀÌ ¹Ù²î¸é ½ÇÇàµÇ´Â ÀÌº¥Æ®µéÀ» ¸ð¾ÆµÑ²¨ÀÓ
+    ////ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½Ìºï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ÆµÑ²ï¿½ï¿½ï¿½
     //public event Action<Turn> onTurnChanged;
 
     private void Awake()
@@ -62,28 +62,28 @@ public class TurnManager : MonoBehaviour
 
     private void Start()
     {
-        //½ÃÀÛÇÏ¸é ÅÏ ÃÊ±âÈ­ ÈÄ ½ÇÇà
+        //ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ ï¿½Ê±ï¿½È­ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         //InitializeTurnQueue();
         //StartCoroutine(HandleTurn());
     }
 
-    //GameManager¿¡¼­ ¿¬°á -> ¹èÆ²¿¡ µé¾î¿Â ¸ó½ºÅÍµéÀ» ¹Þ¾Æ¿Â´Ù.
+    //GameManagerï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ -> ï¿½ï¿½Æ²ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Íµï¿½ï¿½ï¿½ ï¿½Þ¾Æ¿Â´ï¿½.
     public void SetMonsterInfomation(List<Monster> playerMonsterList, List<Monster> enemyMonsterList)
     {
         this.playerMonsterList = playerMonsterList;
         this.enemyMonsterList = enemyMonsterList;
 
-        //Å×½ºÆ®¿ë
+        //ï¿½×½ï¿½Æ®ï¿½ï¿½
         //foreach (Monster playerMonster in this.playerMonsterList)
         //{
-        //    print($"TurnManager¿¡¼­ ½ÇÇà : {playerMonster.transform.position}");
+        //    print($"TurnManagerï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : {playerMonster.transform.position}");
         //}
-        ////Å×½ºÆ®¿ë
+        ////ï¿½×½ï¿½Æ®ï¿½ï¿½
         //for (int i = 0; i < 3; i++)
         //{
         //    if (this.playerMonsterList[i].animator != null)
         //    {
-        //        print("animator ´Ù ºÙ¾îÀÖ±¸¸¸À¯");
+        //        print("animator ï¿½ï¿½ ï¿½Ù¾ï¿½ï¿½Ö±ï¿½ï¿½ï¿½ï¿½ï¿½");
         //    }
         //}
 
@@ -97,28 +97,28 @@ public class TurnManager : MonoBehaviour
         //}
         //if (this.playerMonsterList[0].animator != null)
         //{
-        //    print("µ¿³×»ç¶÷µé ¿©±â ¾Ö´Ï¸ÞÀÌÅÍ ºÙ¾îÀÖ¾î¿ä!");
+        //    print("ï¿½ï¿½ï¿½×»ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¾ï¿½ï¿½Ö¾ï¿½ï¿½!");
         //}
         //else
         //{
-        //    print("¾ÆÁ÷µµ ¾ÈºÙÀ½");
+        //    print("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Èºï¿½ï¿½ï¿½");
         //}
     }
 
-    //ÅÏ ÃÊ±âÈ­ -> ¾ÀÀÌ ÇÏ³ªÀÌ´Ï±î ÀüÅõ°¡ ´Ù ³¡³ª¸é ÃÊ±âÈ­ ÇÏ´Â ¹æ½ÄÀ¸·Î ÇØ¾ßÇÒ µí
+    //ï¿½ï¿½ ï¿½Ê±ï¿½È­ -> ï¿½ï¿½ï¿½ï¿½ ï¿½Ï³ï¿½ï¿½Ì´Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­ ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø¾ï¿½ï¿½ï¿½ ï¿½ï¿½
     public void InitializeTurnQueue()
     {
-        //ÃÊ±âÈ­ÇÒ¶§, ¸¸³­ ¸ó½ºÅÍµéÀÇ isEnemy¸¦ true·Î ¸¸µé¾îÁØ´Ù. ÀÌ·¡¾ßÁö ÅÏÀÌ Àß ÀÛµ¿ÇÑ´Ù. -> Á¶±Ý ¸¶À½¿¡ µéÁö´Â ¾Ê´Â´Ù.
+        //ï¿½Ê±ï¿½È­ï¿½Ò¶ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Íµï¿½ï¿½ï¿½ isEnemyï¿½ï¿½ trueï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½. ï¿½Ì·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ûµï¿½ï¿½Ñ´ï¿½. -> ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
         foreach (Monster enemyMonster in enemyMonsterList)
         {
             enemyMonster.isEnemy = true;
         }
-        //½ÃÀÛÇÒ¶§ ¸¶´Ù ÅÏ ÃÊ±âÈ­
+        //ï¿½ï¿½ï¿½ï¿½ï¿½Ò¶ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ê±ï¿½È­
         turnQueue.Clear();
 
         foreach (Monster playerCreature in playerMonsterList)
         {
-            //»ì¾Æ ÀÖ´Â ¾êµé¸¸ Queue¿¡ ³ÖÀ»°ÅÀÓ
+            //ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½é¸¸ Queueï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             if (playerCreature.hp > 0)
             {
                 turnQueue.Enqueue(playerCreature);
@@ -126,25 +126,25 @@ public class TurnManager : MonoBehaviour
         }
         foreach (Monster enemyCreature in enemyMonsterList)
         {
-            //»ì¾Æ ÀÖ´Â ¾êµé¸¸ Queue¿¡ ³ÖÀ»°ÅÀÓ
+            //ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½é¸¸ Queueï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             if (enemyCreature.hp > 0)
             {
                 turnQueue.Enqueue(enemyCreature);
             }
         }
-        //ÀÌ·¸°ÔµÇ¸é ÇÃ·¹ÀÌ¾î1, 2, 3, Àû1, 2, 3 ¼ø¼­·Î Queue°¡ Çü¼ºÀÌ µÈ´Ù.
+        //ï¿½Ì·ï¿½ï¿½ÔµÇ¸ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½1, 2, 3, ï¿½ï¿½1, 2, 3 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Queueï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½È´ï¿½.
 
         StartCoroutine(HandleTurn());
     }
 
-    //MonsterÀÇ ÅÏÀÌ ¹Ù²ð‹š ¸¶´Ù È£ÃâµÇ´Â ÀÌº¥Æ®
+    //Monsterï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½Ç´ï¿½ ï¿½Ìºï¿½Æ®
     public event Action<Monster> monsterTurnChange;
-    //º»°ÝÀûÀÎ ÅÏ °ü¸®
+
     private IEnumerator HandleTurn()
     {
         while (true)
         {
-            //ÅÏÀÌ 0 ÀÌ¸é ÅÏ ÃÊ±âÈ­ ÈÄ °è¼Ó ÁøÇà
+            //ï¿½ï¿½ï¿½ï¿½ 0 ï¿½Ì¸ï¿½ ï¿½ï¿½ ï¿½Ê±ï¿½È­ ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             if (turnQueue.Count == 0)
             {
                 InitializeTurnQueue();
@@ -152,37 +152,32 @@ public class TurnManager : MonoBehaviour
                 continue;
             }
 
-            //0ÀÌ ¾Æ´Ï¶ó¸é »Ì¾Æ¼­ ¾¸
             currentTurnMonster = turnQueue.Dequeue();
 
-            //±Ùµ¥ »Ì¾Æ ½è´Âµ¥ ±× ÅÏÀÇ Creature°¡ Ã¼·ÂÀÌ 0 ÀÌÇÏ¶ó¸é ±×³É ÁøÇà
             if (currentTurnMonster.hp <= 0)
             {
                 yield return null;
                 continue;
             }
 
-            print($"{currentTurnMonster.name}ÀÇ ÅÏ!");
-
-            //Å×½ºÆ®¿ë 
-            //print($"ÇöÀçÅÏÀÎ ¸ó½ºÅÍÀÇ À§Ä¡ : {currentTurnMonster.transform.position}");
+            print($"{currentTurnMonster.name}ï¿½ï¿½ ï¿½ï¿½!");
 
             monsterTurnChange?.Invoke(currentTurnMonster);
 
-            //ÇÃ·¹ÀÌ¾î¶ó¸é
+            //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½
             if (!currentTurnMonster.isEnemy)
             {
                 yield return StartCoroutine(HandlePlayerTurn(currentTurnMonster));
             }
-            //ÀûÀÌ¶ó¸é
+            //ï¿½ï¿½ï¿½Ì¶ï¿½ï¿½
             else
             {
-                //ÆË¾÷ ´Ý¾ÆÁÖ°í
+                //ï¿½Ë¾ï¿½ ï¿½Ý¾ï¿½ï¿½Ö°ï¿½
                 UIPopupManager.Instance.ClosePopup();
                 yield return StartCoroutine(HandleEnemyTurn(currentTurnMonster));
             }
 
-            //µÑ Áß ÇÑÆÀÀÌ Àü¸êÇÏ¸é ³¡
+            //ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½
             if (CheckBattleEnd())
             {
                 break;
@@ -191,56 +186,31 @@ public class TurnManager : MonoBehaviour
 
     }
 
-    //ÇÃ·¹ÀÌ¾î¿¡ °üÇÑ ÅÏÀÎµ¥ ÇÑ¸í¾¿ °ø°ÝÇÏ°Ô ÇØ¾ßÇÔ
+    //ï¿½Ã·ï¿½ï¿½Ì¾î¿¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½ ï¿½Ñ¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Ø¾ï¿½ï¿½ï¿½
     private IEnumerator HandlePlayerTurn(Monster player)
     {
-        //isPlayerActionComplete°¡ true°¡ µÉ¶§±îÁö ±â´Ù¸°´Ù.
+        //isPlayerActionCompleteï¿½ï¿½ trueï¿½ï¿½ ï¿½É¶ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ù¸ï¿½ï¿½ï¿½.
         yield return new WaitUntil(() => GameManager.Instance.isPlayerActionComplete);
 
-        turnQueue.Enqueue(player); //´Ù½Ã Queue¿¡ ³Ö¾îÁÜ ±×·¡¾ß °è¼Ó ¹Ýº¹
-        //´Ù½Ã ÇÃ·¹ÀÌ¾î ¾×¼Ç ½ÇÇà
+        turnQueue.Enqueue(player); //ï¿½Ù½ï¿½ Queueï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ýºï¿½
+        //ï¿½Ù½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½×¼ï¿½ ï¿½ï¿½ï¿½ï¿½
         GameManager.Instance.isPlayerActionComplete = false;
     }
 
-    //ActionÀº ÆÄ¶ó¹ÌÅÍ¸¦ ÇÏ³ª¸¸ ³Ñ°Ü¹ÞÀ» ¼ö ÀÖ¾î¼­ ±¸Á¶Ã¼¸¦ ÀÌ¿ëÇØ °ø°ÝÇÏ´Â ÀÚ, °ø°ÝÇÏ´Â ´ë»ó µÑ´Ù ¹ÞÀ½
-    //public struct ActionData
-    //{
-    //    public Monster attacker;
-    //    public Monster target;
-
-    //    public ActionData(Monster attacker, Monster target)
-    //    {
-    //        this.attacker = attacker;
-    //        this.target = target;
-    //    }
-    //}
-
-    //Àû ÅÏÀÌ ½ÇÇàµÇ¸é ºÒ·¯¿Ã Action
-    //public event Action<ActionData> enemyAttack;
     private IEnumerator HandleEnemyTurn(Monster enemy)
     {
-        print($"{enemy.name}ÀÌ(°¡) Çàµ¿ Áß...");
+        print($"{enemy.name}ï¿½ï¿½(ï¿½ï¿½) ï¿½àµ¿ ï¿½ï¿½...");
         yield return new WaitForSeconds(1f);
 
-        //Ã¼·ÂÀÌ 0º¸´Ù ³ôÀº ´ë»ó Ã£±â
         List<Monster> targetMonsterList = playerMonsterList.FindAll(M => M.hp > 0);
 
-        //ÇÑ¸¶¸®¶óµµ ÀÖÀ¸¸é ½ÇÇà
         if (targetMonsterList.Count > 0)
         {
-            //»ì¾ÆÀÖ´Â ÇÃ·¹ÀÌ¾î ¸ó½ºÅÍ Áß¿¡¼­ RandomÀ¸·Î Å¸°ÙÀ» ÁöÁ¤
             Monster targetMonster = targetMonsterList[UnityEngine.Random.Range(0, targetMonsterList.Count)];
 
-            //±×´ÙÀ½ event·Î ¹Þ¾Æ¿Â º¯¼ö ÃÊ±âÈ­
-            //ActionData actionData = new ActionData(enemy, targetMonster);
-            //enemyAttack?.Invoke(actionData);
-            //´ã°ÜÀÖ´ø event ½ÇÇà
-            //enemyAttack?.Invoke(actionData);
-
-            //Å×½ºÆ®
-            print($"ÇöÀç °ø°ÝÁßÀÎ Àû ¸ó½ºÅÍÀÇ ÀÌ¸§ : {currentTurnMonster}");
-            print($"ÇöÀç Å¸°ÙÀÌ µÈ ÇÃ·¹ÀÌ¾î ¸ó½ºÅÍÀÇ ÀÌ¸§ : {targetMonster}");
-            print($"ÇöÀç °ø°ÝÁßÀÎ Àû ¸ó½ºÅÍÀÇ ½ºÅ³ : {currentTurnMonster.selectedSkill}");
+            print($"ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ : {currentTurnMonster}");
+            print($"ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ : {targetMonster}");
+            print($"ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å³ : {currentTurnMonster.selectedSkill}");
 
             GameManager.Instance.ExecuteEnemyAttackAction(currentTurnMonster, targetMonster);
             yield return new WaitUntil(() => GameManager.Instance.isEnemyActionComplete);
@@ -249,41 +219,21 @@ public class TurnManager : MonoBehaviour
         turnQueue.Enqueue(enemy);
     }
     
-    //ÀüÅõ°¡ ³¡³µ´ÂÁö È®ÀÎ
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
     public bool CheckBattleEnd()
     {
         allPlayerMonstersDead = playerMonsterList.All(m => m.hp <= 0);
         allEnemyMonstersDead = enemyMonsterList.All(m => m.hp <= 0);
 
-        ////ÇÃ·¹ÀÌ¾î ¸ó½ºÅÍ°¡ Àü¸êÇÒ¶§
-        //if (allPlayerMonstersDead)
-        //{
-        //    AllPlayerMonsterDead();
-        //    print("ÇÃ·¹ÀÌ¾î ¸ó½ºÅÍ Àü¸ê");
-        //    return true;
-        //}
-        ////Àû ¸ó½ºÅÍ°¡ Àü¸êÇÒ¶§
-        //else if (allEnemyMonstersDead)
-        //{
-        //    AllEnemyMonsterDead();
-        //    print("Àû ¸ó½ºÅÍ Àü¸ê");
-        //    return true;
-        //}
-        
-        //return false;
         if (allPlayerMonstersDead == true || allEnemyMonstersDead == true)
         {
-            //AllPlayerMonsterDead();
-            //AllEnemyMonsterDead();
-
-            //ÀüÅõ°¡ Á¾·áµÇ¸é ºÒ·¯¿Ã ÇÔ¼öµé
             OnBattleEnd?.Invoke();
             return true;
         }
         return false;
     }
 
-    //ÀüÅõ ³¡³ª¸é ½ÇÇàµÇ´Â ¾×¼Ç
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½×¼ï¿½
     //public event Action OnBattleEnd;
 
     //public GameObject contactedFieldMonster;
@@ -300,7 +250,7 @@ public class TurnManager : MonoBehaviour
     //    OnBattleEnd?.Invoke();
     //}
 
-    ////GameManager, UIpop¿¡¼­ ¾µ ÇöÀç °ø°ÝÇÏ´Â ¸ó½ºÅÍ Á¤º¸¸¦ ³Ñ°ÜÁÜ
+    ////GameManager, UIpopï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ°ï¿½ï¿½ï¿½
     //public void SetCurrentTurnMonster(Monster currentMonster)
     //{
     //    currentMonster = currentTurnMonster;

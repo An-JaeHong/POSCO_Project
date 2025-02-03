@@ -36,15 +36,12 @@ public class UIPopupManager : MonoBehaviour
     //실질적으로 팝업을 띄우는 함수
     public void ShowPopup(string title, Dictionary<string, UnityAction> buttons)
     {
-        Debug.Log("ShowPopup called with message: " + title);
-        //팝업 프리팹 없으면
         if (popupPrefab == null)
         {
             Debug.LogError("popupPrefab이 없습니다");
             return;
         }
 
-        //UI는 겹치면 안된다
         if (currentPopup != null)
         {
             Destroy(currentPopup);

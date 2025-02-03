@@ -6,15 +6,12 @@ using UnityEngine;
 public abstract class PlayerStateBase
 {
     protected Player player;
-    //아래 두개는 필요 없을 수도 있다.
     protected GameManager gameManager;
-    protected UIPopup uiPopup;
 
     public PlayerStateBase(Player player)
     {
         this.player = player;
         this.gameManager = GameManager.Instance;
-        //this.uiPopup = UIPopup.Instance;
     }
 
     public abstract void Enter();

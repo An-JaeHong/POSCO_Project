@@ -56,16 +56,12 @@ public class Skill
         {
             skillCount--;
 
-            //파티클 삭제는 원본을 하면 오류가 나서 이렇게 받아줄 얘가 필요하다
             GameObject instantiatedParticle = null;
             if (skillType == SkillType.Ranged)
             {
                 instantiatedParticle = GameObject.Instantiate(particle, attacker.transform.position, Quaternion.identity);
                 attacker.StartParticleMovement(instantiatedParticle, target.transform.position, particleDuration, () =>
                 {
-                    //float finalDamage = CalculateDamage(attacker, target);
-                    //target.TakeDamage(finalDamage);
-                    //이러면 파티클이 다 이동한 후에 맞는 애니메이션 재생이 가능함
                     target.PlayTakeDamageAnimation();
                 }
                 );
@@ -73,9 +69,6 @@ public class Skill
             else if (skillType == SkillType.Melee)
             {
                 instantiatedParticle= GameObject.Instantiate(particle, target.transform.position, Quaternion.identity);
-                //attacker.PlayFirstSkillAnimation();
-                //float finalDamage = CalculateDamage(attacker, target);
-                //target.TakeDamage(finalDamage);
                 target.PlayTakeDamageAnimation();
             }
 

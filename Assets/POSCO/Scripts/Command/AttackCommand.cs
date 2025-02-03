@@ -6,7 +6,7 @@ using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.Events;
 
-//°ø°ÝÇÏ´Â Çàµ¿
+//ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½àµ¿
 public class AttackCommand
 {
     private Monster attacker;
@@ -20,22 +20,22 @@ public class AttackCommand
         this.target=target;
     }
 
-    //±âº»°ø°Ý½Ã ½ÇÇàÇÏ´Â ÇÔ¼ö
+    //ï¿½âº»ï¿½ï¿½ï¿½Ý½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
     public void PlayerNormalAttackExecute()
     {
         //attacker.PlayerAttackAnimation();
-        //Debug.Log($"{attacker}°¡ °ø°ÝÇß´Ù!");
+        //Debug.Log($"{attacker}ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß´ï¿½!");
 
         //target.TakeDamage(attacker.damage);
-        //Debug.Log($"{target}ÀÌ °ø°Ý¹Þ¾Ò´Ù!");
+        //Debug.Log($"{target}ï¿½ï¿½ ï¿½ï¿½ï¿½Ý¹Þ¾Ò´ï¿½!");
 
         CoroutineStarter.Instance.StartPlayerNormalAttackCoroutine(this);
 
-        //ÀÓ½Ã
+        //ï¿½Ó½ï¿½
         TurnManager.Instance.OnBattleEnd += Undo;
     }
 
-    //½ºÅ³°ø°Ý½Ã ½ÇÇàÇÏ´Â ÇÔ¼ö
+    //ï¿½ï¿½Å³ï¿½ï¿½ï¿½Ý½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
     public void PlayerFristSkillAttackExecute()
     {
         CoroutineStarter.Instance.StartPlayerFirstSkillAttackCoroutine(this);
@@ -53,26 +53,26 @@ public class AttackCommand
 
     public IEnumerator PlayerNormalAttackCoroutine()
     {
-        #region ""°¡ ~~ Çàµ¿À» Çß´Ù´Â UI
+        #region ""ï¿½ï¿½ ~~ ï¿½àµ¿ï¿½ï¿½ ï¿½ß´Ù´ï¿½ UI
         var buttons = new Dictionary<string, UnityAction>{};
         UIPopupManager.Instance.ShowPopup(
-            $"{attacker.name} ÀÇ ±âº»°ø°Ý!",
+            $"{attacker.name} ï¿½ï¿½ ï¿½âº»ï¿½ï¿½ï¿½ï¿½!",
             buttons
         );
         #endregion
 
-        //±âÁ¸ À§Ä¡ ÀúÀå
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½
         Vector3 currentPlayerPosition = attacker.transform.position;
         Vector3 targetPosition = target.transform.position;
 
-        float stopDistance = 3.3f; //¸ØÃß´Â °Å¸®
+        float stopDistance = 3.3f; //ï¿½ï¿½ï¿½ß´ï¿½ ï¿½Å¸ï¿½
 
         Vector3 directionToTarget = (targetPosition - currentPlayerPosition).normalized;
         Vector3 stopPosition = targetPosition - directionToTarget * stopDistance;
 
-        //½Ã°£ ´õÇØÁÙ º¯¼ö
+        //ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         float moveTime = 0;
-        //¿òÁ÷ÀÌ´Â ½Ã°£
+        //ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½ ï¿½Ã°ï¿½
         float moveDuration = 1f;
         while (moveTime < moveDuration)
         {
@@ -81,33 +81,33 @@ public class AttackCommand
             yield return null;
         }
 
-        //´Ù½Ã ½Ã°£ ÃÊ±âÈ­
+        //ï¿½Ù½ï¿½ ï¿½Ã°ï¿½ ï¿½Ê±ï¿½È­
         moveTime = 0;
 
-        //ÀÌµ¿ ÈÄ °ø°Ý¾Ö´Ï¸ÞÀÌ¼Ç ½ÇÇà
+        //ï¿½Ìµï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ý¾Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½
         attacker.PlayAttackAnimation();
-        //»ó¼º È®ÀÎ
-        //µ¥¹ÌÁö °è»ê
+        //ï¿½ï¿½ È®ï¿½ï¿½
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
         target.TakeDamage(attacker.damage);
 
-        //Å×½ºÆ®
+        //ï¿½×½ï¿½Æ®
         ShowDamageInBattleMap(target, attacker.damage);
 
-        //ÇÇ°Ý ¾Ö´Ï¸ÞÀÌ¼Ç Àç»ý
+        //ï¿½Ç°ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½
         target.PlayTakeDamageAnimation();
 
         AnimatorStateInfo stateInfo = attacker.animator.GetCurrentAnimatorStateInfo(0);
         yield return new WaitForSeconds(stateInfo.length);
 
-        #region ""°¡ ""¸¦ °ø°ÝÇß´Ù´Â UI
+        #region ""ï¿½ï¿½ ""ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß´Ù´ï¿½ UI
         var button = new Dictionary<string, UnityAction> { };
         UIPopupManager.Instance.ShowPopup(
-            $"{attacker.name}(ÀÌ)°¡ {target.name}¿¡°Ô {attacker.damage}ÀÇ µ¥¹ÌÁö¸¦ ÁÖ¾ú´Ù!",
+            $"{attacker.name}(ï¿½ï¿½)ï¿½ï¿½ {target.name}ï¿½ï¿½ï¿½ï¿½ {attacker.damage}ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½!",
             buttons
         );
         #endregion
 
-        //È®ÀÎ ¹öÆ° ´©¸¦¶§ ±îÁö ´ë±â·Î ¹Ù²ÙÀÚ -> OnClickCheckButton
+        //È®ï¿½ï¿½ ï¿½ï¿½Æ° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²ï¿½ï¿½ï¿½ -> OnClickCheckButton
         yield return new WaitForSeconds(2f);
         while (moveTime < moveDuration)
         {
@@ -116,7 +116,7 @@ public class AttackCommand
             yield return null;
         }
 
-        //°ø°ÝÀÌ ³¡³ª¸é PlayerActionÀÌ ³¡³µ´Ù´Â°É ¾Ë·ÁÁà¾ßÇÔ
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ PlayerActionï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ù´Â°ï¿½ ï¿½Ë·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         GameManager.Instance.isPlayerActionComplete = true;
     }
 
@@ -136,26 +136,26 @@ public class AttackCommand
 
     public IEnumerator EnemyNormalAttackCoroutine()
     {
-        #region ""°¡ ~~ Çàµ¿À» Çß´Ù¶ó´Â UI
+        #region ""ï¿½ï¿½ ~~ ï¿½àµ¿ï¿½ï¿½ ï¿½ß´Ù¶ï¿½ï¿½ UI
         var buttons = new Dictionary<string, UnityAction> { };
         UIPopupManager.Instance.ShowPopup(
-            $"{attacker.name} ÀÇ ±âº»°ø°Ý!",
+            $"{attacker.name} ï¿½ï¿½ ï¿½âº»ï¿½ï¿½ï¿½ï¿½!",
             buttons
         );
         #endregion
 
-        //±âÁ¸ À§Ä¡ ÀúÀå
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½
         Vector3 currentPlayerPosition = attacker.transform.position;
         Vector3 targetPosition = target.transform.position;
 
-        float stopDistance = 3.3f; //¸ØÃß´Â °Å¸®
+        float stopDistance = 3.3f; //ï¿½ï¿½ï¿½ß´ï¿½ ï¿½Å¸ï¿½
 
         Vector3 directionToTarget = (targetPosition - currentPlayerPosition).normalized;
         Vector3 stopPosition = targetPosition - directionToTarget * stopDistance;
 
-        //½Ã°£ ´õÇØÁÙ º¯¼ö
+        //ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         float moveTime = 0;
-        //¿òÁ÷ÀÌ´Â ½Ã°£
+        //ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½ ï¿½Ã°ï¿½
         float moveDuration = 1f;
         while (moveTime < moveDuration)
         {
@@ -164,10 +164,10 @@ public class AttackCommand
             yield return null;
         }
 
-        //´Ù½Ã ½Ã°£ ÃÊ±âÈ­
+        //ï¿½Ù½ï¿½ ï¿½Ã°ï¿½ ï¿½Ê±ï¿½È­
         moveTime = 0;
 
-        //ÀÌµ¿ ÈÄ °ø°Ý
+        //ï¿½Ìµï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         attacker.PlayAttackAnimation();
         target.TakeDamage(attacker.damage);
         target.PlayTakeDamageAnimation();
@@ -175,15 +175,15 @@ public class AttackCommand
         AnimatorStateInfo stateInfo = attacker.animator.GetCurrentAnimatorStateInfo(0);
         yield return new WaitForSeconds(stateInfo.length);
 
-        #region ""°¡ ""¸¦ °ø°ÝÇß´Ù! ¶ó´Â UI
+        #region ""ï¿½ï¿½ ""ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß´ï¿½! ï¿½ï¿½ï¿½ UI
         var button = new Dictionary<string, UnityAction> { };
         UIPopupManager.Instance.ShowPopup(
-            $"{target.name}¿¡°Ô {attacker.damage}¸¸Å­ÀÇ µ¥¹ÌÁö¸¦ ÀÔÇû´Ù!",
+            $"{target.name}ï¿½ï¿½ï¿½ï¿½ {attacker.damage}ï¿½ï¿½Å­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½!",
             button
         );
         #endregion
 
-        //µ¹¾Æ¿À±â±îÁö 2ÃÊ ´ë±â
+        //ï¿½ï¿½ï¿½Æ¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 2ï¿½ï¿½ ï¿½ï¿½ï¿½
         yield return new WaitForSeconds(2f);
         while (moveTime < moveDuration)
         {
@@ -192,24 +192,24 @@ public class AttackCommand
             yield return null;
         }
 
-        //°ø°ÝÀÌ ³¡³ª¸é PlayerActionÀÌ ³¡³µ´Ù´Â°É ¾Ë·ÁÁà¾ßÇÔ
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ PlayerActionï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ù´Â°ï¿½ ï¿½Ë·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         GameManager.Instance.isEnemyActionComplete = true;
     }
 
     private bool isClickCheckButton = false;
-    //Ã¹¹øÂ° ¾Ö´Ï¸ÞÀÌ¼Ç ½ÇÇàÇÏ´Â ÄÚ·çÆ¾
+    //Ã¹ï¿½ï¿½Â° ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ú·ï¿½Æ¾
     public IEnumerator PlayerFirstSkillAttackCoroutine()
     {
-        isClickCheckButton = false; // È®ÀÎÇß´Ù´Â ¹öÆ°À» ´­·¶´Â°¡
+        isClickCheckButton = false; // È®ï¿½ï¿½ï¿½ß´Ù´ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Â°ï¿½
 
-        #region ""°¡ ""½ºÅ³À» ½ÃÀüÇß´Ù! ¶ó´Â UI
+        #region ""ï¿½ï¿½ ""ï¿½ï¿½Å³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß´ï¿½! ï¿½ï¿½ï¿½ UI
         var button = new Dictionary<string, UnityAction> { };
         UIPopupManager.Instance.ShowPopup(
-            $"{attacker.name}ÀÇ {attacker.selectedSkill.skillName}!!",
+            $"{attacker.name}ï¿½ï¿½ {attacker.selectedSkill.skillName}!!",
             button
         );
         #endregion
-        //Ã¹¹øÂ° ½ºÅ³ ½ÇÇàÇÏ´Â ¾Ö´Ï¸ÞÀÌ¼Ç½ÇÇà
+        //Ã¹ï¿½ï¿½Â° ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼Ç½ï¿½ï¿½ï¿½
         attacker.PlayFirstSkillAnimation();
         //bool isEffectIsGreat = false;
         attacker.UseSkill(target);
@@ -218,7 +218,7 @@ public class AttackCommand
         //yield return new WaitForSeconds(stateInfo.length);
         //yield return new WaitForSeconds(2f);
 
-        //ÆÄÆ¼Å¬ Áö¼Ó½Ã°£µ¿¾È ±â´Þ
+        //ï¿½ï¿½Æ¼Å¬ ï¿½ï¿½ï¿½Ó½Ã°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
         yield return new WaitForSeconds(attacker.selectedSkill.particleDuration);
 
         float finalDamage = attacker.selectedSkill.skillDamage;
@@ -266,7 +266,7 @@ public class AttackCommand
             }
         }
 
-        //2ÃÊÈÄ¿¡ Çàµ¿À» Àç°³
+        //2ï¿½ï¿½ï¿½Ä¿ï¿½ ï¿½àµ¿ï¿½ï¿½ ï¿½ç°³
         yield return new WaitUntil(() => isClickCheckButton == true);
         GameManager.Instance.isPlayerActionComplete = true;
     }
@@ -274,25 +274,25 @@ public class AttackCommand
 
     public IEnumerator EnemyFirstSkillAttackCoroutine()
     {
-        isClickCheckButton = false; // È®ÀÎÇß´Ù´Â ¹öÆ°À» ´­·¶´Â°¡
-        #region ""°¡ ""½ºÅ³À» ½ÃÀüÇß´Ù! ¶ó´Â UI
+        isClickCheckButton = false; // È®ï¿½ï¿½ï¿½ß´Ù´ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Â°ï¿½
+        #region ""ï¿½ï¿½ ""ï¿½ï¿½Å³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß´ï¿½! ï¿½ï¿½ï¿½ UI
         var button = new Dictionary<string, UnityAction> { };
         UIPopupManager.Instance.ShowPopup(
-            $"{attacker.name}ÀÇ {attacker.selectedSkill.skillName}!!",
+            $"{attacker.name}ï¿½ï¿½ {attacker.selectedSkill.skillName}!!",
             button
         );
         #endregion
 
-        //½ºÅ³ ¼±ÅÃÇÏ°í -> ÀÌ¹Ì »ý¼ºµÇ´Â°É·Î ¹Ù²ã¼­ »ó°ü ¾øÀ»µí
+        //ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ -> ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç´Â°É·ï¿½ ï¿½Ù²ã¼­ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
         //attacker.selectedSkill = attacker.skillDataArr[0];
-        //½ºÅ³ ¾Ö´Ï¸ÞÀÌ¼Ç Àç»ý
+        //ï¿½ï¿½Å³ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½
         attacker.PlayFirstSkillAnimation();
         attacker.UseSkill(target);
-        //¾Ö´Ï¸ÞÀÌ¼Ç Àç»ýÇÏ´Â º¯¼ö
+        //ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½
         AnimatorStateInfo stateInfo = attacker.animator.GetCurrentAnimatorStateInfo(0);
-        //¾Ö´Ï¸ÞÀÌ¼Ç Àç»ýÇÏ´Â º¯¼öÀÇ ±æÀÌ¸¸Å­ ±â´Ù·ÁÁØ´Ù Áï, ¾Ö´Ï¸ÞÀÌ¼ÇÀÌ ³¡³¯¶§ ±îÁö ±â´Ù¸²
-        //¿©±â¿¡´Ù°¡ Åõ»çÃ¼°¡ Å¸°Ù¿¡°Ô °¡´Â °Í ±îÁö ÇÏ¸é µÉ µí
+        //ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½Å­ ï¿½ï¿½Ù·ï¿½ï¿½Ø´ï¿½ ï¿½ï¿½, ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ù¸ï¿½
+        //ï¿½ï¿½ï¿½â¿¡ï¿½Ù°ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¼ï¿½ï¿½ Å¸ï¿½Ù¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï¸ï¿½ ï¿½ï¿½ ï¿½ï¿½
         yield return new WaitForSeconds(attacker.selectedSkill.particleDuration);
 
         float finalDamage = attacker.selectedSkill.skillDamage;
@@ -306,7 +306,7 @@ public class AttackCommand
             isEffectIsGreat = true;
         }
 
-        // ¿ø°Å¸® ½ºÅ³: ÆÄÆ¼Å¬ ÀÌµ¿
+        // ï¿½ï¿½ï¿½Å¸ï¿½ ï¿½ï¿½Å³: ï¿½ï¿½Æ¼Å¬ ï¿½Ìµï¿½
         if (attacker.selectedSkill.skillType == SkillType.Ranged)
         {
             //GameObject instantiatedParticle = attacker.CreateParticleInstance();
@@ -327,7 +327,7 @@ public class AttackCommand
         }
         else if (attacker.selectedSkill.skillType == SkillType.Melee)
         {
-            // ±Ù°Å¸® ½ºÅ³: Áï½Ã µ¥¹ÌÁö Àû¿ë
+            // ï¿½Ù°Å¸ï¿½ ï¿½ï¿½Å³: ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             target.TakeDamage(finalDamage);
             target.PlayTakeDamageAnimation();
 
@@ -340,7 +340,7 @@ public class AttackCommand
                 ShowDamagePopup(finalDamage);
             }
         }
-        //2ÃÊÈÄ¿¡ Çàµ¿À» Àç°³
+        //2ï¿½ï¿½ï¿½Ä¿ï¿½ ï¿½àµ¿ï¿½ï¿½ ï¿½ç°³
         yield return new WaitUntil(() => isClickCheckButton == true);
         //isClickCheckButton = false;
         GameManager.Instance.isEnemyActionComplete = true;
@@ -351,7 +351,7 @@ public class AttackCommand
         var button = new Dictionary<string, UnityAction>()
         {
             {
-                "È®ÀÎ", () =>
+                "È®ï¿½ï¿½", () =>
                 {
                     UIPopupManager.Instance.ClosePopup();
                     isClickCheckButton = true;
@@ -361,7 +361,7 @@ public class AttackCommand
         };
 
         UIPopupManager.Instance.ShowPopup(
-            $"{target.name}¿¡°Ô {finalDamage}¸¸Å­ÀÇ µ¥¹ÌÁö¸¦ ÀÔÇû´Ù!",
+            $"{target.name}ï¿½ï¿½ï¿½ï¿½ {finalDamage}ï¿½ï¿½Å­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½!",
             button
             );
     }
@@ -372,7 +372,7 @@ public class AttackCommand
         var button = new Dictionary<string, UnityAction>()
         {
             {
-                "È®ÀÎ", () =>
+                "È®ï¿½ï¿½", () =>
                 {
                     UIPopupManager.Instance.ClosePopup();
                     isClickCheckButton = true;
@@ -382,23 +382,23 @@ public class AttackCommand
         };
 
         UIPopupManager.Instance.ShowPopup(
-            $"È¿°ú°¡ ±²ÀåÇß´Ù!!\n{target.name}¿¡°Ô {finalDamage}¸¸Å­ÀÇ µ¥¹ÌÁö¸¦ ÀÔÇû´Ù!",
+            $"È¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß´ï¿½!!\n{target.name}ï¿½ï¿½ï¿½ï¿½ {finalDamage}ï¿½ï¿½Å­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½!",
             button
             );
 
-        Debug.Log("ÀÌ¹Ì ¹öÆ°ÀÌ Áö³ª°¨");
+        Debug.Log("ï¿½Ì¹ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
     }
 
-    //ÀüÅõ ³¡³ª¸é ½ÇÇàÇÒ ÇÔ¼ö
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
     public void Undo()
     {
         //if (TurnManager.Instance.allPlayerMonstersDead == true)
         //{
-        //    Debug.Log("¾Æ±º ¸ó½ºÅÍ Àü¸ê");
+        //    Debug.Log("ï¿½Æ±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
         //}
         //else if (TurnManager.Instance.allEnemyMonstersDead == true)
         //{
-        //    Debug.Log("Àû ¸ó½ºÅÍ Àü¸ê");
+        //    Debug.Log("ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
         //}
     }
 }

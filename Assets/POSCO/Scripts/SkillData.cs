@@ -11,7 +11,7 @@ public class SkillData : ScriptableObject
     public GameObject particle;
     //스킬 데미지
     public float skillDamage;
-    //스킬 속성 -> 필요 없을듯
+    //스킬 속성
     public Element skillElement;
     //스킬 사용가능 횟수
     public int skillCount;

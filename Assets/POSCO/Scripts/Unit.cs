@@ -108,8 +108,6 @@ public class Unit : MonoBehaviour
             ChangeState(new NormalIdleState());
         }
 
-   
-
         //생성되는 몬스터의 레벨이 그대로 가져가게 해야한다
 
         foreach(GameObject monsterPrefab in monsterPrefabs)

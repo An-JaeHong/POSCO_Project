@@ -43,57 +43,43 @@ public class NormalIdleState : IUnitState
 
     public void Update(Unit unit)
     {
-        //updateTimer += Time.deltaTime;
-        //if (updateTimer >= updateInterval)
-        //{
-        //    updateTimer = 0f;
-        //    PerformUpdate(unit);
-        //}
-        //2초 기다림
+        //멈춤
         if (isWaiting)
         {
-            Debug.Log("다시 움직임");
             waitTimer -= Time.deltaTime;
             unit.animator.SetBool("IsMoving", false);
-            //2초 후에는 다시 움직일 수 있게끔 해야한다.
+
             if (waitTimer <= 0)
             {
                 isWaiting = false;
                 destination = unit.SetRandomPosition();
-                //unit.animator.SetBool("isMoving", false);
             }
-
-            //애니메이션 Idle 추가
         }
         //다시 움직임
         else
         {
-            //처음 랜덤 찍은 위치로 움직이면 잠시 멈춘 후 다시 움직임
             unit.UnitMove(destination);
             unit.UnitRotation(destination);
-            //Debug.Log($"랜덤으로 주어진 좌표 : {destination}");
 
             stuckCheckTimer += Time.deltaTime;
             if (stuckCheckTimer >= stuckCheckTime)
             {
-                //이동 거리는 유닛의 위치와 마지막 유닛의 위치를 비교한다
                 float moveDistance = Vector3.Distance(unit.transform.position, lastPosition);
+
                 if (moveDistance < minMovementDistance)
                 {
                     Debug.Log("벽에 끼어서 위치를 다시 잡는다");
                     destination = unit.SetRandomPosition();
                 }
 
-                //타이머 초기화
                 stuckCheckTimer = 0;
                 lastPosition = unit.transform.position;
             }
 
             Vector3 unitXZPosition = new Vector3(unit.transform.position.x, destination.y, unit.transform.position.z);
+
             if (Vector3.Distance(unitXZPosition, destination) < 0.1f)
             {
-                //여기서 잠시 멈춰주는 함수 넣어주자.
-                Debug.Log("이동중");
                 isWaiting = true;
                 waitTimer = waitTime;
             }
@@ -185,17 +171,10 @@ public class NormalIdleState : IUnitState
         //각도 = (유닛이 앞을 보는 방향, 플레이어를 보는 방향)
         float angle = Vector3.Angle(unit.transform.forward, directionToPlayer);
 
-        Debug.Log("1");
-        //시야각 안에 있고
         if (angle < unit.sightAngle / 2)
         {
-            //Debug.Log($"2 : {directionToPlayer}, {unit.detectRange}");
-            //방향 만족하고
             if (Physics.Raycast(unit.transform.position, directionToPlayer, out RaycastHit hit, unit.detectRange, LayerMask.GetMask("Player")))
             {
-                Debug.Log($"hit : {hit}");
-                Debug.Log($"hit2 : {hit.collider.name}");
-                //플레이어 만족하면 true
                 if (hit.collider.gameObject == player)
                 {
                     Debug.Log($"현재 닿은 오브젝트 : {hit.collider.gameObject}");
