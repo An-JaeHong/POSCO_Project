@@ -7,38 +7,38 @@ using UnityEngine.Events;
 
 public class PlayerContactEnemyState : PlayerStateBase
 {
-    //¸¸³­ À¯´Ö
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     private Unit unit;
 
     public PlayerContactEnemyState(Player player, Unit unit) : base(player)
     {
-        //¸¸³­Àû µ¿±âÈ­
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½È­
         this.unit = unit;
     }
 
     public override void Enter()
     {
-        //Å×½ºÆ®
-        Debug.Log("ContactEnemyEnter¿¡ ´Ù½Ã µé¾î¿È");
+        //ï¿½×½ï¿½Æ®
+        Debug.Log("ContactEnemyEnterï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 
-        //Àû°ú ¸¸³ª´Â ¼ø°£Àº ¸¸³¯ ¼ö ¾ø¾î¾ßÇÑ´Ù.
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
         player.canMove = false;
         //unit.isMove = false;
-        //Àû°ú ¸¸³ª¸é Àû°ú ¸¸³µ´Ù´Â UI¸¦ ¶ç¿ö¾ßÇÔ
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ù´ï¿½ UIï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         //uiPopup.EnemyContactCanvasOpen();
-        //¸¸³­ ¼ø°£ GameManager¿¡°Ô ÇÃ·¹ÀÌ¾îÀÇ Á¤º¸¿Í ÀûÀÇ Á¤º¸¸¦ µ¿±âÈ­
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ GameManagerï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½È­
 
-        //»ý¼ºÇÒ ¹öÆ°¿¡ ´ëÇÑ Á¤º¸
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         var buttons = new Dictionary<string, UnityAction>
         {
             { 
-                "½Î¿î´Ù!", () =>
+                "ï¿½Î¿ï¿½ï¿½!", () =>
                 {
                     StartBattle(); 
                 } 
             },
             { 
-                "µµ¸Á°£´Ù", () =>
+                "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", () =>
                 { 
                     RunAway();
                 }
@@ -46,39 +46,39 @@ public class PlayerContactEnemyState : PlayerStateBase
         };
 
         UIPopupManager.Instance.ShowPopup(
-            $"{unit.name} (ÀÌ)°¡ ³ªÅ¸³µ´Ù ¹«¾ùÀ» ÇÒ±î?",
+            $"{unit.name} (ï¿½ï¿½)ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò±ï¿½?",
             buttons
         );
     }
 
     private void StartBattle()
     {
-        //ÇöÀç ÇÃ·¹ÀÌ¾î°¡ µé°íÀÖ´Â ¸ó½ºÅÍ¿Í ¸¸³­ ¸ó½ºÅÍÀÇ Á¤º¸¸¦ ³Ñ°ÜÁÜ
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾î°¡ ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½Í¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ°ï¿½ï¿½ï¿½
         gameManager.SetNormalMonsterInformation(MonsterDataManager.Instance.selectedMonsterDataList, unit);
         //foreach(var selectedMonster in player.selectedMonsterList)
         //{
 
-        //    Debug.Log($"StartBattle¿¡¼­ ³Ñ¾î¿Â ÇÃ·¹ÀÌ¾î°¡ ¼±ÅÃÇÑ ¸ó½ºÅÍ À§Ä¡ : {selectedMonster.transform.position}");
+        //    Debug.Log($"StartBattleï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¾ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾î°¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ : {selectedMonster.transform.position}");
         //}
 
-        //ÇÃ·¹ÀÌ¾îÀÇ Á¤º¸¿Í, ¸¸³­ÀûÀÇ Á¤º¸¸¦ ³Ñ°ÜÁÜ
+        //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ°ï¿½ï¿½ï¿½
         player.ChangeState(new PlayerNormalBattleState(player, unit));
 
-        Debug.Log("ÀüÅõ¿¡ µé¾î¿È");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
     }
 
     private void RunAway()
     {
         player.ChangeState(new PlayerIdleState(player));
-        Debug.Log("µµ¸Á°¨");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 
         unit.ChangeState(new NormalIdleState());
 
         unit.isMove = true;
-        Debug.Log("¸ó½ºÅÍ°¡ Idle »óÅÂ·Î ÀüÈ¯µÊ");
+        Debug.Log("ï¿½ï¿½ï¿½Í°ï¿½ Idle ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½È¯ï¿½ï¿½");
     }
 
-    //Update¿¡´Â µüÈ÷ ¾²´Â°Ô ¾ø´Ù
+    //Updateï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â°ï¿½ ï¿½ï¿½ï¿½ï¿½
     public override void Update()
     {
         
@@ -86,13 +86,13 @@ public class PlayerContactEnemyState : PlayerStateBase
 
     public override void Exit()
     {
-        //Àû°ú Çì¾îÁö¸é ¿òÁ÷ÀÏ ¼ö ÀÖ´Ù.
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½.
         //player.canMove = true;
         //uiPopup.enemyContactCanvas.SetActive(false);
         UIPopupManager.Instance.ClosePopup();
     }
 
-    //ÀÌ°Íµµ µüÈ÷ ¾²´Â°Ô ¾ø´Ù.
+    //ï¿½Ì°Íµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â°ï¿½ ï¿½ï¿½ï¿½ï¿½.
     public override void HandleCollision(Collision collision)
     {
         

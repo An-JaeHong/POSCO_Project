@@ -12,8 +12,8 @@ public class MonsterRespawn : MonoBehaviour
 
     public List<Vector3> respawnPos;
 
-    public List<GameObject> prefabToSpawn; // ¼ÒÈ¯ÇÒ ÇÁ¸®ÆÕ
-    public Vector3 spawnPosition; // ¼ÒÈ¯ÇÒ À§Ä¡
+    public List<GameObject> prefabToSpawn; // ï¿½ï¿½È¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    public Vector3 spawnPosition; // ï¿½ï¿½È¯ï¿½ï¿½ ï¿½ï¿½Ä¡
     
     private List<GameObject> spawnMonsterList;
     private int maxMonsterCount= 12;
@@ -44,7 +44,7 @@ public class MonsterRespawn : MonoBehaviour
 
         spawnMonsterList = new List<GameObject>(new GameObject[maxMonsterCount]);
 
-        //ÃÊ±â¸ó½ºÅÍ
+        //ï¿½Ê±ï¿½ï¿½ï¿½ï¿½
         for (int i = 0; i < maxMonsterCount; i++)
         {
             int random =Random.Range(0, 18);
@@ -67,16 +67,16 @@ public class MonsterRespawn : MonoBehaviour
             {
 
                 SpawnPrefab(prefabToSpawn[random2], respawnPos[random], random);
-                print("»ý¼ºµÊ");
+                print("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
             }
-            else { print("ÀÌ¹Ì ¸ó½ºÅÍ ÀÖÀ½"); }
+            else { print("ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½"); }
         }
     }
 
     private void SpawnPrefab(GameObject monsterPrefab,Vector3 position, int number)
     {
         
-            // ÇÁ¸®ÆÕÀ» Æ¯Á¤ À§Ä¡¿¡ ¼ÒÈ¯
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Æ¯ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½È¯
             GameObject monster = Instantiate(monsterPrefab, position, Quaternion.identity);
             monsterCount++;
             Unit unitScript = monster.GetComponent<Unit>();

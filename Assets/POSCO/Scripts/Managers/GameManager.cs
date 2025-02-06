@@ -58,22 +58,17 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        //�� �ٲ𶧸��� �Լ��� �����Ѵ�. -> �ٵ� ���� �ʿ䰡 �ֳ� �ʹ�. TurnManager.Instance.currentTurnMonster�� ����� �� ����.
         TurnManager.Instance.monsterTurnChange += SetCurrentTurnMonster;
     }
 
     //���� ���͵� ���� �Ѱܹ޴� �Լ�
     public void SetNormalMonsterInformation(List<Monster> playerselectedMonster, Unit unit)
     {
-        //�÷��̾� ���� ����Ʈ�� ���� ����� �޾ƿ´�. -> ������ ���ϸ� �ȵǱ� ������.
         playerMonsterInBattleList = playerselectedMonster;
 
-        //�ϴ� �� ���� ����Ʈ�� ���� ����� �޾ƿ� ������ �������� ������ �ʱ�ȭ ���ش�.
         for (int i = 0; i < 3; i++)
         {
             enemyMonsterInBattleList.Add(unit.ownedMonsterList[i]);
-            //�׽�Ʈ ��
-            print($"�ʿ� ������ �� ���͵��� ���� : {enemyMonsterInBattleList[i].level}");
         }
 
         //���� ���� ���� ������ �ϴ� �ʱ�ȭ
@@ -256,33 +251,8 @@ public class GameManager : MonoBehaviour
     //�÷��̾ �����ϴ� �ൿ�� ����
     public void ExecutePlayerNormalAttackAction(Monster attacker, Monster target)
     {
-        //�����ڷ� �������ְ�
         AttackCommand attackCommand = new AttackCommand(attacker, target);
-        //print($"currentTurnMonster�� ��ġ : {currentTurnMonster.transform.position}");
-        //print($"currentTurnMonster�� �� �̸� : {currentTurnMonster.name}");
-        //print($"currentTurnMonster�� Ÿ�� : {currentTurnMonster.GetType()}");
-        //print($"target�� ��ġ : {target.transform.position}");
-        //print($"target�� �̸� : {target.name}");
-
-        ////�׽�Ʈ��
-        //foreach (var playerMonster in playerBattlePosList)
-        //{
-        //    print($"�÷��̾� ���� ��ġ : {playerMonster.transform.position}");
-        //}
-
-        //foreach (var enemyMonster in enemyBattlePosList)
-        //{
-        //    print($"�� ���� ��ġ : {enemyMonster.transform.position}");
-        //}
-
-        //���������� ����
         attackCommand.PlayerNormalAttackExecute();
-
-        //UIPopupManager.Instance.ClosePopup();
-        //�ϳ�
-
-        //isPlayerActionComplete = true;
-        //StartCoroutine(PlayerAttackAnimation(attacker, target));
     }
 
     //private IEnumerator PlayerAttackAnimation(Monster attacker, Monster target)

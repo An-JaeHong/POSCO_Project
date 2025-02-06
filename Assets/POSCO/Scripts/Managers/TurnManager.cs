@@ -137,7 +137,6 @@ public class TurnManager : MonoBehaviour
         StartCoroutine(HandleTurn());
     }
 
-    //Monster�� ���� �ٲ�� ���� ȣ��Ǵ� �̺�Ʈ
     public event Action<Monster> monsterTurnChange;
 
     private IEnumerator HandleTurn()
@@ -164,15 +163,12 @@ public class TurnManager : MonoBehaviour
 
             monsterTurnChange?.Invoke(currentTurnMonster);
 
-            //�÷��̾���
             if (!currentTurnMonster.isEnemy)
             {
                 yield return StartCoroutine(HandlePlayerTurn(currentTurnMonster));
             }
-            //���̶��
             else
             {
-                //�˾� �ݾ��ְ�
                 UIPopupManager.Instance.ClosePopup();
                 yield return StartCoroutine(HandleEnemyTurn(currentTurnMonster));
             }

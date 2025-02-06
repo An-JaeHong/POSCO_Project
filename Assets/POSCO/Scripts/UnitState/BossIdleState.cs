@@ -2,22 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//º¸½º Idle»óÅÂ
+//ï¿½ï¿½ï¿½ï¿½ Idleï¿½ï¿½ï¿½ï¿½
 public class BossIdleState : IUnitState
 {
     public void Enter(Unit unit)
     {
-        //º¸½º´Â µé¾î°¡¸é ±×³É Idle »óÅÂ¸¸ Àç»ý °¡²û µýÁþ? ³Ö¾îÁÖ¸é ÁÁÀ»µí
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½î°¡ï¿½ï¿½ ï¿½×³ï¿½ Idle ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½? ï¿½Ö¾ï¿½ï¿½Ö¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         unit.HideExclamationMark();
         unit.HideBossSpeech();
-        //IdleState¿¡¼­´Â ¾É¾ÆÀÖ´Â´Ù
+        //IdleStateï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½É¾ï¿½ï¿½Ö´Â´ï¿½
         unit.animator.SetBool("IsStanding", false);
     }
 
     public void Update(Unit unit)
     {
-        //Debug.Log($"ÇöÀç NormalIdleState¿¡ Update·Î µé¾î¿È");
-        //¿©±â¿¡¼­ ÇÃ·¹ÀÌ¾î¸¦ ¹ß°ßÇÏ¸é ´À³¦Ç¥°¡ ¶ß¸é¼­ BossFindPlayerState·Î ¹Ù²î¾î¾ßÇÔ
+        //Debug.Log($"ï¿½ï¿½ï¿½ï¿½ NormalIdleStateï¿½ï¿½ Updateï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
+        //ï¿½ï¿½ï¿½â¿¡ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾î¸¦ ï¿½ß°ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ß¸é¼­ BossFindPlayerStateï¿½ï¿½ ï¿½Ù²ï¿½ï¿½ï¿½ï¿½ï¿½
         if (DetectPlayer(unit))
         {
             unit.ChangeState(new BossFindPlayerState());
@@ -27,10 +27,10 @@ public class BossIdleState : IUnitState
 
     private bool DetectPlayer(Unit unit)
     {
-        //ÇÃ·¹ÀÌ¾îÀÇ ÅÂ±×°¡ Player·Î µÇ¾îÀÖ¾î¾ß ÇÑ´Ù
+        //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½Â±×°ï¿½ Playerï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½Ö¾ï¿½ï¿½ ï¿½Ñ´ï¿½
         GameObject player = GameObject.FindGameObjectWithTag("Player");
 
-        //ÇÃ·¹ÀÌ¾î°¡ ÀÖÀ¸¸é
+        //ï¿½Ã·ï¿½ï¿½Ì¾î°¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (UnitSight(unit, player))
         {
             return true;
@@ -41,21 +41,21 @@ public class BossIdleState : IUnitState
 
     private bool UnitSight(Unit unit, GameObject player)
     {
-        //ÇÃ·¹ÀÌ¾îÂÊÀ» º¸´Â ¹æÇâ -> 0.5¸¦ ¾È´õÇØÁá´õ´Ï ±âÁî¸ð ¹æÇâÀÌ ¾Æ·¡¸¦ ¹Ù¶óºÁ¼­ ÇÃ·¹ÀÌ¾î¸¦ °¨ÁöÇÏÁö ¸øÇß½À´Ï´Ù.
+        //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ -> 0.5ï¿½ï¿½ ï¿½È´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½Ù¶ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾î¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½.
         Vector3 directionToPlayer = (player.transform.position + new Vector3(0, 0.5f, 0) - unit.transform.position).normalized;
-        //°¢µµ = (À¯´ÖÀÌ ¾ÕÀ» º¸´Â ¹æÇâ, ÇÃ·¹ÀÌ¾î¸¦ º¸´Â ¹æÇâ)
+        //ï¿½ï¿½ï¿½ï¿½ = (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½Ã·ï¿½ï¿½Ì¾î¸¦ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
         float angle = Vector3.Angle(unit.transform.forward, directionToPlayer);
 
-        //°¢µµ ¸¸Á·ÇÏ°í
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½
         if (angle < unit.sightAngle / 2)
         {
-            //¹æÇâ ¸¸Á·ÇÏ°í
+            //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½
             if (Physics.Raycast(unit.transform.position, directionToPlayer, out RaycastHit hit, unit.detectRange))
             {
-                //ÇÃ·¹ÀÌ¾î ¸¸Á·ÇÏ¸é true
+                //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ true
                 if (hit.collider.gameObject == player)
                 {
-                    Debug.Log($"ÇöÀç ´êÀº ¿ÀºêÁ§Æ® : {hit.collider.gameObject}");
+                    Debug.Log($"ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® : {hit.collider.gameObject}");
                     return true;
                 }
             }

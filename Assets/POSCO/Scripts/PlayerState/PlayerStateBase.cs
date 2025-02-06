@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//ÇÃ·¹ÀÌ¾î »óÅÂ¸¦ ³ªÅ¸³»´Â Å¬·¡½º -> Ãß»óÇÔ¼ö·Î ¼±¾ðÇØ¼­ °ü¸®ÇÒ °ÍÀÓ.
+//ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ -> ï¿½ß»ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 public abstract class PlayerStateBase
 {
     protected Player player;
@@ -18,6 +18,6 @@ public abstract class PlayerStateBase
     public abstract void Update();
     public abstract void Exit();
 
-    //»óÈ£ÀÛ¿ëÀ» À§ÇØ ÀÏ´Ü ³Ö¾îµÒ
+    //ï¿½ï¿½È£ï¿½Û¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½Ö¾ï¿½ï¿½
     public abstract void HandleCollision(Collision collision);
 }
